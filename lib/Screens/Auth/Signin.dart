@@ -467,9 +467,9 @@ class _SigninState extends State<Signin> {
                                                         ? HeightSize * 0.07
                                                         : HeightSize * 0.09,
                                                 child: TextFormField(
-                                                  textDirection:
-                                                      TextDirection.rtl,
-                                                  textAlign: TextAlign.right,
+                                                    textDirection:
+                                                        TextDirection.rtl,
+                                                    textAlign: TextAlign.right,
                                                   controller: _nomController,
                                                   validator: (value) {
                                                     if (value == null ||

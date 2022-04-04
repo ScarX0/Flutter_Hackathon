@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 
 import 'Providers/auth.dart';
 import 'Screens/Auth/forgotPassword.dart';
+import 'Screens/profile.dart';
 
 void main() {
   Color primaryColor = Color(0xff072227);
@@ -27,7 +28,7 @@ void main() {
     child: MaterialApp(
         debugShowCheckedModeBanner: false,
         debugShowMaterialGrid: false,
-        home: UserType() // signin()
+        home: profile() // signin()
         ),
   ));
 }
