@@ -28,7 +28,7 @@ void main() {
     child: MaterialApp(
         debugShowCheckedModeBanner: false,
         debugShowMaterialGrid: false,
-        home: profile() // signin()
+        home: UserType() // signin()
         ),
   ));
 }
