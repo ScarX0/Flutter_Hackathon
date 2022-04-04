@@ -8,10 +8,12 @@ import 'Screens/Auth/forgotPassword.dart';
 import 'Screens/profile.dart';
 
 void main() {
-  Color primaryColor = Color(0xff072227);
-  Color secondlyColor = Color(0xff35858B);
-  Color thirdlyColor = Color(0xff4FBDBA);
-  Color fourthColor = Color(0xffAEFEFF);
+  Color primaryColor = Color(0xffbd7344);
+  Color secondlyColor = Color(0xffa8293c);
+  Color thirdlyColor = Color(0xff582e44);
+  Color fourthColor = Color(0xff8e7a3d);
+  Color fivethcolor = Color(0xffd7b957);
+
 
   WidgetsFlutterBinding.ensureInitialized();
 

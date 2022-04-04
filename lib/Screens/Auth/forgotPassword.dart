@@ -31,12 +31,12 @@ class _forgotState extends State<forgot> {
                 AnimatedContainer(
                   duration: Duration(milliseconds: 500),
                   height: sizee.height,
-                  color:  Color(0xff072227),
+                  color:  Colors.white,
                 ),
                 Container(
                   height:HeightSize * 0.55,
                   decoration: BoxDecoration(
-                    color: Color(0xff4FBDBA),
+                    color: Color(0xffbd7344),
                     borderRadius: BorderRadius.only(
                       bottomLeft: Radius.circular(60),
                       //  bottomLeft: Radius.circular(100),
@@ -86,13 +86,13 @@ class _forgotState extends State<forgot> {
                             //  _authData['email'] = value!;
                           },
                           keyboardType: TextInputType.emailAddress,
-                          cursorColor: Color(0xff35858B),
+                          cursorColor: Color(0xff582e44),
                           decoration: InputDecoration(
                             hoverColor: Colors.black,
-                            focusColor: Color(0xff35858B),
+                            focusColor: Color(0xff582e44),
                             focusedBorder: OutlineInputBorder(
                                 borderSide: const BorderSide(
-                                  color: Color(0xff35858B),
+                                  color: Color(0xff582e44),
                                 ),
                                 borderRadius: BorderRadius.circular(20.0)),
                             fillColor: Colors.white,
@@ -141,7 +141,7 @@ class _forgotState extends State<forgot> {
                           //   Navigator.pop(context);
                           // }
                         },
-                        textColor: Color(0xff35858B),
+                        textColor: Color(0xff582e44),
                         padding: const EdgeInsets.all(0.0),
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(20.0)),
@@ -158,7 +158,7 @@ class _forgotState extends State<forgot> {
                               style: TextStyle(
 
                                 fontSize: sizee.width * (25 / 540),
-                                color: Colors.black,
+                                color: Color(0xff582e44),
                                 fontWeight: FontWeight.bold,
                               ),
                               textAlign: TextAlign.center,

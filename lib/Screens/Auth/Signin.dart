@@ -52,7 +52,7 @@ class _SigninState extends State<Signin> {
                 Container(
                   height: MediaQuery.of(context).size.height,
                   decoration: const BoxDecoration(
-                    color: Color(0xff072227),
+                    color: Colors.white
                   ),
                 ),
                 Container(
@@ -64,7 +64,7 @@ class _SigninState extends State<Signin> {
                       Expanded(
                         child: Container(
                           decoration: BoxDecoration(
-                            color: Color(0xff4FBDBA),
+                            color: Color(0xffbd7344),
                             borderRadius: BorderRadius.only(
                               topRight: signin
                                   ? Radius.circular(60)
@@ -78,7 +78,7 @@ class _SigninState extends State<Signin> {
                           child: Column(
                             children: [
                               Container(
-                                height: HeightSize * 0.1,
+                                height: HeightSize * 0.11,
                                 padding: EdgeInsets.symmetric(
                                     vertical: HeightSize * 0.02,
                                     horizontal: WidthSize * 0.07),
@@ -110,8 +110,8 @@ class _SigninState extends State<Signin> {
                                             width: WidthSize * 0.2,
                                             height: HeightSize * 0.005,
                                             color: !signin
-                                                ? Color(0xff4FBDBA)
-                                                : Color(0xff072227),
+                                                ? Color(0xffbd7344)
+                                                : Color(0xff582e44),
                                           )
                                         ],
                                       ),
@@ -140,8 +140,8 @@ class _SigninState extends State<Signin> {
                                             width: WidthSize * 0.2,
                                             height: HeightSize * 0.005,
                                             color: signin
-                                                ? Color(0xff4FBDBA)
-                                                : Color(0xff072227),
+                                                ? Color(0xffbd7344)
+                                                : Color(0xff582e44),
                                           )
                                         ],
                                       ),
@@ -183,7 +183,7 @@ class _SigninState extends State<Signin> {
                                                     keyboardType: TextInputType
                                                         .emailAddress,
                                                     cursorColor:
-                                                        Color(0xff4FBDBA),
+                                                        Color(0xff582e44),
                                                     decoration: InputDecoration(
                                                       errorStyle: TextStyle(
                                                         color: Colors.white,
@@ -204,13 +204,13 @@ class _SigninState extends State<Signin> {
 
                                                       hoverColor: Colors.black,
                                                       focusColor:
-                                                          Color(0xff4FBDBA),
+                                                          Color(0xff582e44),
                                                       focusedBorder:
                                                           OutlineInputBorder(
                                                               borderSide:
                                                                   const BorderSide(
                                                                 color: Color(
-                                                                    0xff4FBDBA),
+                                                                    0xff582e44),
                                                               ),
                                                               borderRadius:
                                                                   BorderRadius
@@ -258,7 +258,7 @@ class _SigninState extends State<Signin> {
                                                     obscureText:
                                                         _passwordVisible,
                                                     cursorColor:
-                                                        Color(0xff4FBDBA),
+                                                        Color(0xff582e44),
                                                     decoration: InputDecoration(
                                                       errorStyle: TextStyle(
                                                         color: Colors.white,
@@ -278,13 +278,13 @@ class _SigninState extends State<Signin> {
                                                                           20.0)),
                                                       hoverColor: Colors.black,
                                                       focusColor:
-                                                          Color(0xff4FBDBA),
+                                                          Color(0xff582e44),
                                                       focusedBorder:
                                                           OutlineInputBorder(
                                                               borderSide:
                                                                   const BorderSide(
                                                                 color: Color(
-                                                                    0xff4FBDBA),
+                                                                    0xff582e44),
                                                               ),
                                                               borderRadius:
                                                                   BorderRadius
@@ -378,7 +378,7 @@ class _SigninState extends State<Signin> {
                                                           ),
                                                           Checkbox(
                                                               checkColor: Color(
-                                                                  0xff4FBDBA),
+                                                                  0xff582e44),
                                                               // color of tick Mark
                                                               activeColor:
                                                                   Colors.white,
@@ -402,7 +402,7 @@ class _SigninState extends State<Signin> {
                                                     if (_formKey.currentState!
                                                         .validate()) {}
                                                   },
-                                                  textColor: Color(0xff4FBDBA),
+                                                  textColor: Color(0xff582e44),
                                                   padding:
                                                       const EdgeInsets.all(0.0),
                                                   shape: RoundedRectangleBorder(
@@ -424,7 +424,7 @@ class _SigninState extends State<Signin> {
                                                         style: TextStyle(
                                                           fontSize: WidthSize *
                                                               (25 / 540),
-                                                          color: Colors.black,
+                                                          color: Color(0xff582e44),
                                                           fontWeight:
                                                               FontWeight.bold,
                                                         ),
@@ -484,7 +484,7 @@ class _SigninState extends State<Signin> {
                                                   keyboardType:
                                                       TextInputType.name,
                                                   cursorColor:
-                                                      Color(0xff4FBDBA),
+                                                      Color(0xff582e44),
                                                   decoration: InputDecoration(
                                                     contentPadding:
                                                         EdgeInsets.fromLTRB(
@@ -517,13 +517,13 @@ class _SigninState extends State<Signin> {
                                                                         20.0)),
                                                     hoverColor: Colors.black,
                                                     focusColor:
-                                                        Color(0xff4FBDBA),
+                                                        Color(0xff582e44),
                                                     focusedBorder:
                                                         OutlineInputBorder(
                                                             borderSide:
                                                                 const BorderSide(
                                                               color: Color(
-                                                                  0xff4FBDBA),
+                                                                  0xff582e44),
                                                             ),
                                                             borderRadius:
                                                                 BorderRadius
@@ -573,7 +573,7 @@ class _SigninState extends State<Signin> {
                                                   keyboardType: TextInputType
                                                       .emailAddress,
                                                   cursorColor:
-                                                      Color(0xff4FBDBA),
+                                                      Color(0xff582e44),
                                                   decoration: InputDecoration(
                                                     contentPadding:
                                                         EdgeInsets.fromLTRB(
@@ -606,13 +606,13 @@ class _SigninState extends State<Signin> {
                                                                         20.0)),
                                                     hoverColor: Colors.black,
                                                     focusColor:
-                                                        Color(0xff4FBDBA),
+                                                        Color(0xff582e44),
                                                     focusedBorder:
                                                         OutlineInputBorder(
                                                             borderSide:
                                                                 const BorderSide(
                                                               color: Color(
-                                                                  0xff4FBDBA),
+                                                                  0xff582e44),
                                                             ),
                                                             borderRadius:
                                                                 BorderRadius
@@ -661,7 +661,7 @@ class _SigninState extends State<Signin> {
                                                   keyboardType:
                                                       TextInputType.number,
                                                   cursorColor:
-                                                      Color(0xff4FBDBA),
+                                                      Color(0xff582e44),
                                                   decoration: InputDecoration(
                                                     contentPadding:
                                                         EdgeInsets.fromLTRB(
@@ -694,13 +694,13 @@ class _SigninState extends State<Signin> {
                                                                         20.0)),
                                                     hoverColor: Colors.black,
                                                     focusColor:
-                                                        Color(0xff4FBDBA),
+                                                        Color(0xff582e44),
                                                     focusedBorder:
                                                         OutlineInputBorder(
                                                             borderSide:
                                                                 const BorderSide(
                                                               color: Color(
-                                                                  0xff4FBDBA),
+                                                                  0xff582e44),
                                                             ),
                                                             borderRadius:
                                                                 BorderRadius
@@ -754,7 +754,7 @@ class _SigninState extends State<Signin> {
                                                         keyboardType:
                                                             TextInputType.name,
                                                         cursorColor:
-                                                            Color(0xff4FBDBA),
+                                                            Color(0xff582e44),
                                                         decoration:
                                                             InputDecoration(
                                                           contentPadding: EdgeInsets.fromLTRB(
@@ -788,13 +788,13 @@ class _SigninState extends State<Signin> {
                                                           hoverColor:
                                                               Colors.black,
                                                           focusColor:
-                                                              Color(0xff4FBDBA),
+                                                              Color(0xff582e44),
                                                           focusedBorder:
                                                               OutlineInputBorder(
                                                                   borderSide:
                                                                       const BorderSide(
                                                                     color: Color(
-                                                                        0xff4FBDBA),
+                                                                        0xff582e44),
                                                                   ),
                                                                   borderRadius:
                                                                       BorderRadius
@@ -850,7 +850,7 @@ class _SigninState extends State<Signin> {
                                                   obscureText:
                                                       _password_upVisible,
                                                   cursorColor:
-                                                      Color(0xff4FBDBA),
+                                                      Color(0xff582e44),
                                                   decoration: InputDecoration(
                                                     contentPadding:
                                                         EdgeInsets.fromLTRB(
@@ -883,13 +883,13 @@ class _SigninState extends State<Signin> {
                                                                     .circular(
                                                                         20.0)),
                                                     focusColor:
-                                                        Color(0xff4FBDBA),
+                                                        Color(0xff582e44),
                                                     focusedBorder:
                                                         OutlineInputBorder(
                                                             borderSide:
                                                                 const BorderSide(
                                                               color: Color(
-                                                                  0xff4FBDBA),
+                                                                  0xff582e44),
                                                             ),
                                                             borderRadius:
                                                                 BorderRadius
@@ -947,7 +947,7 @@ class _SigninState extends State<Signin> {
                                                   if (_formKeyUP.currentState!
                                                       .validate()) {}
                                                 },
-                                                textColor: Color(0xff4FBDBA),
+                                                textColor: Color(0xff582e44),
                                                 padding:
                                                     const EdgeInsets.all(0.0),
                                                 shape: RoundedRectangleBorder(
@@ -975,7 +975,7 @@ class _SigninState extends State<Signin> {
                                                       style: TextStyle(
                                                         fontSize: WidthSize *
                                                             (25 / 540),
-                                                        color: Colors.black,
+                                                        color: Color(0xff582e44),
                                                         fontWeight:
                                                             FontWeight.bold,
                                                       ),
@@ -1006,18 +1006,13 @@ class _SigninState extends State<Signin> {
                     height: WidthSize * 0.3,
                     width: WidthSize * 0.3,
                     decoration: const BoxDecoration(
-                      color: Colors.white,
                       borderRadius: BorderRadius.all(Radius.circular(80)),
-                      // image: DecorationImage(
-                      //   fit: BoxFit.cover,
-                      //   image: AssetImage("assets/auth_pic.png"),
-                      // )
+                      image: DecorationImage(
+                        fit: BoxFit.cover,
+                        image: AssetImage("assets/aber_sabel.png"),
+                      )
                     ),
-                    child: Center(
-                        child: Text(
-                      "الشعار",
-                      style: TextStyle(fontSize: WidthSize * (30 / 540)),
-                    )),
+
                   ),
                 ),
                 Container(
@@ -1029,7 +1024,7 @@ class _SigninState extends State<Signin> {
                   child: InkWell(
                       child: Icon(
                         Icons.arrow_back_ios,
-                        color: Colors.white,
+                        color: Color(0xff582e44),
                         size: WidthSize * (40.0 / 540),
                       ),
                       onTap: () async {

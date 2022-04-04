@@ -66,6 +66,7 @@ flutter:
 
   assets:
     - assets/auth_pic.png
+    - assets/aber_sabel.png
 
 
   # To add assets to your application, add an assets section, like this:

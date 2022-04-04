@@ -23,55 +23,16 @@ class _UserTypeState extends State<UserType> {
     return Scaffold(
       body: Stack(
         children: [
+
           Container(
-            height: MediaQuery.of(context).size.height,
-            decoration: const BoxDecoration(
-              color: Color(0xff4FBDBA),
-              // image: DecorationImage(
-              //   fit: BoxFit.cover,
-              //   image: AssetImage("assets/auth_pic.png"),
-              // )
-            ),
-          ),
-          Container(
+            color: Color(0xff582e44),
             width: WidthSize,
             height: MediaQuery.of(context).size.height,
             child: Column(
               children: [
+
                 SizedBox(
-                  height: HeightSize * 0.15,
-                ),
-                Text(
-                  'مرحبا بك',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: WidthSize * (40 / 540),
-                    fontWeight: FontWeight.bold,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-                Container(
-                  margin: EdgeInsets.symmetric(
-                    vertical: HeightSize * 0.05,
-                  ),
-                  height: WidthSize * 0.3,
-                  width: WidthSize * 0.3,
-                  decoration: const BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.all(Radius.circular(80)),
-                    // image: DecorationImage(
-                    //   fit: BoxFit.cover,
-                    //   image: AssetImage("assets/auth_pic.png"),
-                    // )
-                  ),
-                  child: Center(
-                      child: Text(
-                    "الشعار",
-                    style: TextStyle(fontSize: WidthSize * (30 / 540)),
-                  )),
-                ),
-                SizedBox(
-                  height: HeightSize * 0.25,
+                  height: HeightSize * 0.75,
                 ),
                 RaisedButton(
                   onPressed: () async {
@@ -89,13 +50,13 @@ class _UserTypeState extends State<UserType> {
                     width: WidthSize * 0.75,
                     height: HeightSize * 0.08,
                     decoration: const BoxDecoration(
-                        color: Colors.white,
+                        color: Color(0xffbd7344),
                         borderRadius: BorderRadius.all(Radius.circular(20.0))),
                     child: Center(
                       child: Text(
                         "عابر سبيل",
                         style: TextStyle(
-                          color: Colors.black87,
+                          color: Colors.white,
                           fontSize: WidthSize * (25 / 540),
                           fontWeight: FontWeight.bold,
                         ),
@@ -123,13 +84,13 @@ class _UserTypeState extends State<UserType> {
                     width: WidthSize * 0.75,
                     height: HeightSize * 0.08,
                     decoration: const BoxDecoration(
-                        color: Colors.white,
+                        color: Color(0xffbd7344),
                         borderRadius: BorderRadius.all(Radius.circular(20.0))),
                     child: Center(
                       child: Text(
                         "مطعم رحمة",
                         style: TextStyle(
-                          color: Colors.black87,
+                          color: Colors.white,
                           fontSize: WidthSize * (25 / 540),
                           fontWeight: FontWeight.bold,
                         ),
@@ -140,7 +101,48 @@ class _UserTypeState extends State<UserType> {
                 ),
               ],
             ),
-          )
+          ) ,
+          Container(
+            width: WidthSize,
+            child: Column(children: [
+              SizedBox(
+                height: HeightSize * 0.15,
+              ),
+              Text(
+                'مرحبا بك',
+                style: TextStyle(
+                  color: Color(0xff582e44),
+                  fontSize: WidthSize * (40 / 540),
+                  fontWeight: FontWeight.bold,
+                ),
+                textAlign: TextAlign.center,
+              ),
+              Container(
+                margin: EdgeInsets.symmetric(
+                  vertical: HeightSize * 0.05,
+                ),
+                height: WidthSize * 0.3,
+                width: WidthSize * 0.3,
+                decoration:  BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(80)),
+                    image: DecorationImage(
+                      fit: BoxFit.cover,
+                      image: AssetImage("assets/aber_sabel.png"),
+                    )
+                ),
+
+              ),
+            ],),
+            height: MediaQuery.of(context).size.height*0.6,
+            decoration: const BoxDecoration(
+              borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(60)
+              ),
+              color: Colors.white,
+
+
+            ),
+          ),
         ],
       ),
     );
