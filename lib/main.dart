@@ -1,4 +1,6 @@
+import 'package:abir_sabil/Providers/DzData.dart';
 import 'package:abir_sabil/Screens/Auth/UserType.dart';
+import 'package:abir_sabil/Screens/accueil.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
@@ -6,6 +8,7 @@ import 'package:provider/provider.dart';
 import 'Providers/auth.dart';
 import 'Screens/Auth/forgotPassword.dart';
 import 'Screens/profile.dart';
+import 'Screens/restaurant_details.dart';
 
 void main() {
   Color primaryColor = Color(0xffbd7344);
@@ -26,11 +29,14 @@ void main() {
       ListenableProvider<AuthService>(
         create: (_) => AuthService(),
       ),
+      ListenableProvider<DataDz>(
+        create: (_) => DataDz(),
+      ),
     ],
     child: MaterialApp(
         debugShowCheckedModeBanner: false,
         debugShowMaterialGrid: false,
-        home: UserType() // signin()
+        home: accueil() // signin()
         ),
   ));
 }

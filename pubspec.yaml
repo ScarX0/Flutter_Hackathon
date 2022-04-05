@@ -39,7 +39,8 @@ dependencies:
   fluttertoast: ^8.0.9
   flutter_svg: ^1.0.3
   image_picker: ^0.8.4+11
-
+  flutter_typeahead: ^3.2.4
+  url_launcher: ^6.0.20
 
 
 dev_dependencies:
@@ -65,8 +66,8 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/auth_pic.png
     - assets/aber_sabel.png
+    - assets/restaurant.jpg
 
 
   # To add assets to your application, add an assets section, like this:
