@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'dart:math' as math;
 
 import '../../Providers/auth.dart';
 import 'forgotPassword.dart';
@@ -28,9 +27,55 @@ class _SigninState extends State<Signin> {
   final _boutiqueController = TextEditingController();
 
   bool isCheck = false;
+  bool _isLoading = false;
 
   final _formKey = GlobalKey<FormState>();
   final _formKeyUP = GlobalKey<FormState>();
+
+  Future<bool> createNormalUser(String name, String email, String phone) async {
+    setState(() {
+      _isLoading = true;
+    });
+
+    try {
+      await Provider.of<AuthService>(context, listen: false).createUser(
+        _nomController.text,
+        _email_upController.text,
+        _numberController.text,
+      );
+      setState(() {
+        _isLoading = false;
+      });
+      return true;
+    } catch (e) {}
+    setState(() {
+      _isLoading = false;
+    });
+    return false;
+  }
+
+  Future<bool> submit(String email, String password) async {
+    setState(() {
+      _isLoading = true;
+    });
+
+    try {
+      await Provider.of<AuthService>(context, listen: false)
+          .signUp(email, password);
+
+      setState(() {
+        _isLoading = false;
+      });
+
+      return true;
+    } catch (e) {
+      print(e.toString());
+    }
+    setState(() {
+      _isLoading = false;
+    });
+    return false;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -65,10 +110,10 @@ class _SigninState extends State<Signin> {
                           decoration: BoxDecoration(
                             color: Color(0xffbd7344),
                             borderRadius: BorderRadius.only(
-                              topRight: !signin
+                              topRight: signin
                                   ? Radius.circular(60)
                                   : Radius.circular(0),
-                              topLeft: !signin
+                              topLeft: signin
                                   ? Radius.circular(0)
                                   : Radius.circular(60),
                               //  bottomLeft: Radius.circular(100),
@@ -396,93 +441,43 @@ class _SigninState extends State<Signin> {
                                                 ),
                                                 SizedBox(
                                                     height: HeightSize * 0.03),
-                                                Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceAround,
-                                                  children: [
-                                                    RaisedButton(
-                                                      onPressed: () async {},
-                                                      textColor:
-                                                          Color(0xff582e44),
-                                                      padding:
-                                                          const EdgeInsets.all(
-                                                              0.0),
-                                                      shape:
-                                                          RoundedRectangleBorder(
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          20.0)),
-                                                      child: Container(
-                                                        width: WidthSize * 0.2,
-                                                        height:
-                                                            HeightSize * 0.08,
-                                                        decoration: const BoxDecoration(
-                                                            color: Colors.white,
-                                                            borderRadius:
-                                                                BorderRadius.all(
-                                                                    Radius.circular(
-                                                                        20.0))),
-                                                        child: Center(
-                                                          child: Image.asset(
-                                                            'assets/google.png',
-                                                            width: WidthSize *
-                                                                0.09,
-                                                            height: WidthSize *
-                                                                0.09,
-                                                          ),
+                                                RaisedButton(
+                                                  onPressed: () async {
+                                                    if (_formKey.currentState!
+                                                        .validate()) {}
+                                                  },
+                                                  textColor: Color(0xff582e44),
+                                                  padding:
+                                                      const EdgeInsets.all(0.0),
+                                                  shape: RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              20.0)),
+                                                  child: Container(
+                                                    width: WidthSize * 0.9,
+                                                    height: HeightSize * 0.08,
+                                                    decoration: const BoxDecoration(
+                                                        color: Colors.white,
+                                                        borderRadius:
+                                                            BorderRadius.all(
+                                                                Radius.circular(
+                                                                    20.0))),
+                                                    child: Center(
+                                                      child: Text(
+                                                        "تسحبيل الدخول",
+                                                        style: TextStyle(
+                                                          fontSize: WidthSize *
+                                                              (25 / 540),
+                                                          color:
+                                                              Color(0xff582e44),
+                                                          fontWeight:
+                                                              FontWeight.bold,
                                                         ),
+                                                        textAlign:
+                                                            TextAlign.center,
                                                       ),
                                                     ),
-                                                    RaisedButton(
-                                                      onPressed: () async {
-                                                        if (_formKey
-                                                            .currentState!
-                                                            .validate()) {}
-                                                      },
-                                                      textColor:
-                                                          Color(0xff582e44),
-                                                      padding:
-                                                          const EdgeInsets.all(
-                                                              0.0),
-                                                      shape:
-                                                          RoundedRectangleBorder(
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          20.0)),
-                                                      child: Container(
-                                                        width: WidthSize * 0.5,
-                                                        height:
-                                                            HeightSize * 0.08,
-                                                        decoration: const BoxDecoration(
-                                                            color: Colors.white,
-                                                            borderRadius:
-                                                                BorderRadius.all(
-                                                                    Radius.circular(
-                                                                        20.0))),
-                                                        child: Center(
-                                                          child: Text(
-                                                            "تسجيل الدخول",
-                                                            style: TextStyle(
-                                                              fontSize:
-                                                                  WidthSize *
-                                                                      (25 /
-                                                                          540),
-                                                              color: Color(
-                                                                  0xff582e44),
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold,
-                                                            ),
-                                                            textAlign: TextAlign
-                                                                .center,
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ],
+                                                  ),
                                                 ),
                                               ],
                                             ),
@@ -995,7 +990,13 @@ class _SigninState extends State<Signin> {
                                               RaisedButton(
                                                 onPressed: () async {
                                                   if (_formKeyUP.currentState!
-                                                      .validate()) {}
+                                                      .validate()) {
+                                                    await submit(
+                                                        _email_upController
+                                                            .text,
+                                                        _password_upController
+                                                            .text);
+                                                  }
                                                 },
                                                 textColor: Color(0xff582e44),
                                                 padding:
@@ -1065,20 +1066,16 @@ class _SigninState extends State<Signin> {
                   ),
                 ),
                 Container(
-                  alignment: Alignment.topRight,
                   height: WidthSize * 0.12,
-                  width: WidthSize,
+                  width: WidthSize * 0.12,
                   margin: EdgeInsets.only(
                       top: MediaQuery.of(context).padding.top,
-                      right: WidthSize * 0.02),
+                      left: WidthSize * 0.01),
                   child: InkWell(
-                      child: Transform.rotate(
-                        angle: 180 * math.pi / 180,
-                        child: Icon(
-                          Icons.arrow_back_ios,
-                          color: Color(0xff582e44),
-                          size: WidthSize * (40.0 / 540),
-                        ),
+                      child: Icon(
+                        Icons.arrow_back_ios,
+                        color: Color(0xff582e44),
+                        size: WidthSize * (40.0 / 540),
                       ),
                       onTap: () async {
                         Navigator.pop(context);
