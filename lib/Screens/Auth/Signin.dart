@@ -27,9 +27,36 @@ class _SigninState extends State<Signin> {
   final _boutiqueController = TextEditingController();
 
   bool isCheck = false;
+  bool _isLoading = false;
 
   final _formKey = GlobalKey<FormState>();
   final _formKeyUP = GlobalKey<FormState>();
+
+  Future<bool> submit(String email, String password) async {
+    setState(() {
+      _isLoading = true;
+    });
+
+    try {
+      await Provider.of<AuthService>(context, listen: false)
+          .signUp(email, password);
+      await Provider.of<AuthService>(context, listen: false).createUser(
+          _email_upController.text,
+          _numberController.text,
+          _nomController.text);
+      setState(() {
+        _isLoading = false;
+      });
+
+      return true;
+    } catch (e) {
+      print(e.toString());
+    }
+    setState(() {
+      _isLoading = false;
+    });
+    return false;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -51,9 +78,7 @@ class _SigninState extends State<Signin> {
               children: [
                 Container(
                   height: MediaQuery.of(context).size.height,
-                  decoration: const BoxDecoration(
-                    color: Colors.white
-                  ),
+                  decoration: const BoxDecoration(color: Colors.white),
                 ),
                 Container(
                   child: Column(
@@ -424,7 +449,8 @@ class _SigninState extends State<Signin> {
                                                         style: TextStyle(
                                                           fontSize: WidthSize *
                                                               (25 / 540),
-                                                          color: Color(0xff582e44),
+                                                          color:
+                                                              Color(0xff582e44),
                                                           fontWeight:
                                                               FontWeight.bold,
                                                         ),
@@ -467,9 +493,9 @@ class _SigninState extends State<Signin> {
                                                         ? HeightSize * 0.07
                                                         : HeightSize * 0.09,
                                                 child: TextFormField(
-                                                    textDirection:
-                                                        TextDirection.rtl,
-                                                    textAlign: TextAlign.right,
+                                                  textDirection:
+                                                      TextDirection.rtl,
+                                                  textAlign: TextAlign.right,
                                                   controller: _nomController,
                                                   validator: (value) {
                                                     if (value == null ||
@@ -945,7 +971,13 @@ class _SigninState extends State<Signin> {
                                               RaisedButton(
                                                 onPressed: () async {
                                                   if (_formKeyUP.currentState!
-                                                      .validate()) {}
+                                                      .validate()) {
+                                                    await submit(
+                                                        _email_upController
+                                                            .text,
+                                                        _password_upController
+                                                            .text);
+                                                  }
                                                 },
                                                 textColor: Color(0xff582e44),
                                                 padding:
@@ -975,7 +1007,8 @@ class _SigninState extends State<Signin> {
                                                       style: TextStyle(
                                                         fontSize: WidthSize *
                                                             (25 / 540),
-                                                        color: Color(0xff582e44),
+                                                        color:
+                                                            Color(0xff582e44),
                                                         fontWeight:
                                                             FontWeight.bold,
                                                       ),
@@ -1006,13 +1039,11 @@ class _SigninState extends State<Signin> {
                     height: WidthSize * 0.3,
                     width: WidthSize * 0.3,
                     decoration: const BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(80)),
-                      image: DecorationImage(
-                        fit: BoxFit.cover,
-                        image: AssetImage("assets/aber_sabel.png"),
-                      )
-                    ),
-
+                        borderRadius: BorderRadius.all(Radius.circular(80)),
+                        image: DecorationImage(
+                          fit: BoxFit.cover,
+                          image: AssetImage("assets/aber_sabel.png"),
+                        )),
                   ),
                 ),
                 Container(
