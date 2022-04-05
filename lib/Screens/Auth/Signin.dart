@@ -32,6 +32,28 @@ class _SigninState extends State<Signin> {
   final _formKey = GlobalKey<FormState>();
   final _formKeyUP = GlobalKey<FormState>();
 
+  Future<bool> createNormalUser(String name, String email, String phone) async {
+    setState(() {
+      _isLoading = true;
+    });
+
+    try {
+      await Provider.of<AuthService>(context, listen: false).createUser(
+        _nomController.text,
+        _email_upController.text,
+        _numberController.text,
+      );
+      setState(() {
+        _isLoading = false;
+      });
+      return true;
+    } catch (e) {}
+    setState(() {
+      _isLoading = false;
+    });
+    return false;
+  }
+
   Future<bool> submit(String email, String password) async {
     setState(() {
       _isLoading = true;
@@ -40,10 +62,7 @@ class _SigninState extends State<Signin> {
     try {
       await Provider.of<AuthService>(context, listen: false)
           .signUp(email, password);
-      await Provider.of<AuthService>(context, listen: false).createUser(
-          _email_upController.text,
-          _numberController.text,
-          _nomController.text);
+
       setState(() {
         _isLoading = false;
       });
