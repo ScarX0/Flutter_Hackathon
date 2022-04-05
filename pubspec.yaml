@@ -38,14 +38,10 @@ dependencies:
   fluttertoast: ^8.0.9
   flutter_svg: ^1.0.3
   image_picker: ^0.8.4+11
-<<<<<<< HEAD
   flutter_typeahead: ^3.2.4
   url_launcher: ^6.0.20
-
-=======
   firebase_auth: ^3.3.12
   google_sign_in: ^5.2.4
->>>>>>> d2de4a0d53fa146d0813b1799fdc71c0f4090e33
 
 dev_dependencies:
   flutter_test:
@@ -71,6 +67,7 @@ flutter:
   assets:
     - assets/aber_sabel.png
     - assets/restaurant.jpg
+    - assets/google.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:

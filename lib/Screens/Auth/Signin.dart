@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'dart:math' as math;
 
 import '../../Providers/auth.dart';
 import 'forgotPassword.dart';
@@ -51,9 +52,7 @@ class _SigninState extends State<Signin> {
               children: [
                 Container(
                   height: MediaQuery.of(context).size.height,
-                  decoration: const BoxDecoration(
-                    color: Colors.white
-                  ),
+                  decoration: const BoxDecoration(color: Colors.white),
                 ),
                 Container(
                   child: Column(
@@ -66,10 +65,10 @@ class _SigninState extends State<Signin> {
                           decoration: BoxDecoration(
                             color: Color(0xffbd7344),
                             borderRadius: BorderRadius.only(
-                              topRight: signin
+                              topRight: !signin
                                   ? Radius.circular(60)
                                   : Radius.circular(0),
-                              topLeft: signin
+                              topLeft: !signin
                                   ? Radius.circular(0)
                                   : Radius.circular(60),
                               //  bottomLeft: Radius.circular(100),
@@ -397,42 +396,93 @@ class _SigninState extends State<Signin> {
                                                 ),
                                                 SizedBox(
                                                     height: HeightSize * 0.03),
-                                                RaisedButton(
-                                                  onPressed: () async {
-                                                    if (_formKey.currentState!
-                                                        .validate()) {}
-                                                  },
-                                                  textColor: Color(0xff582e44),
-                                                  padding:
-                                                      const EdgeInsets.all(0.0),
-                                                  shape: RoundedRectangleBorder(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              20.0)),
-                                                  child: Container(
-                                                    width: WidthSize * 0.9,
-                                                    height: HeightSize * 0.08,
-                                                    decoration: const BoxDecoration(
-                                                        color: Colors.white,
-                                                        borderRadius:
-                                                            BorderRadius.all(
-                                                                Radius.circular(
-                                                                    20.0))),
-                                                    child: Center(
-                                                      child: Text(
-                                                        "تسحبيل الدخول",
-                                                        style: TextStyle(
-                                                          fontSize: WidthSize *
-                                                              (25 / 540),
-                                                          color: Color(0xff582e44),
-                                                          fontWeight:
-                                                              FontWeight.bold,
+                                                Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceAround,
+                                                  children: [
+                                                    RaisedButton(
+                                                      onPressed: () async {},
+                                                      textColor:
+                                                          Color(0xff582e44),
+                                                      padding:
+                                                          const EdgeInsets.all(
+                                                              0.0),
+                                                      shape:
+                                                          RoundedRectangleBorder(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          20.0)),
+                                                      child: Container(
+                                                        width: WidthSize * 0.2,
+                                                        height:
+                                                            HeightSize * 0.08,
+                                                        decoration: const BoxDecoration(
+                                                            color: Colors.white,
+                                                            borderRadius:
+                                                                BorderRadius.all(
+                                                                    Radius.circular(
+                                                                        20.0))),
+                                                        child: Center(
+                                                          child: Image.asset(
+                                                            'assets/google.png',
+                                                            width: WidthSize *
+                                                                0.09,
+                                                            height: WidthSize *
+                                                                0.09,
+                                                          ),
                                                         ),
-                                                        textAlign:
-                                                            TextAlign.center,
                                                       ),
                                                     ),
-                                                  ),
+                                                    RaisedButton(
+                                                      onPressed: () async {
+                                                        if (_formKey
+                                                            .currentState!
+                                                            .validate()) {}
+                                                      },
+                                                      textColor:
+                                                          Color(0xff582e44),
+                                                      padding:
+                                                          const EdgeInsets.all(
+                                                              0.0),
+                                                      shape:
+                                                          RoundedRectangleBorder(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          20.0)),
+                                                      child: Container(
+                                                        width: WidthSize * 0.5,
+                                                        height:
+                                                            HeightSize * 0.08,
+                                                        decoration: const BoxDecoration(
+                                                            color: Colors.white,
+                                                            borderRadius:
+                                                                BorderRadius.all(
+                                                                    Radius.circular(
+                                                                        20.0))),
+                                                        child: Center(
+                                                          child: Text(
+                                                            "تسجيل الدخول",
+                                                            style: TextStyle(
+                                                              fontSize:
+                                                                  WidthSize *
+                                                                      (25 /
+                                                                          540),
+                                                              color: Color(
+                                                                  0xff582e44),
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold,
+                                                            ),
+                                                            textAlign: TextAlign
+                                                                .center,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ],
                                                 ),
                                               ],
                                             ),
@@ -467,9 +517,9 @@ class _SigninState extends State<Signin> {
                                                         ? HeightSize * 0.07
                                                         : HeightSize * 0.09,
                                                 child: TextFormField(
-                                                    textDirection:
-                                                        TextDirection.rtl,
-                                                    textAlign: TextAlign.right,
+                                                  textDirection:
+                                                      TextDirection.rtl,
+                                                  textAlign: TextAlign.right,
                                                   controller: _nomController,
                                                   validator: (value) {
                                                     if (value == null ||
@@ -975,7 +1025,8 @@ class _SigninState extends State<Signin> {
                                                       style: TextStyle(
                                                         fontSize: WidthSize *
                                                             (25 / 540),
-                                                        color: Color(0xff582e44),
+                                                        color:
+                                                            Color(0xff582e44),
                                                         fontWeight:
                                                             FontWeight.bold,
                                                       ),
@@ -1006,26 +1057,28 @@ class _SigninState extends State<Signin> {
                     height: WidthSize * 0.3,
                     width: WidthSize * 0.3,
                     decoration: const BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(80)),
-                      image: DecorationImage(
-                        fit: BoxFit.cover,
-                        image: AssetImage("assets/aber_sabel.png"),
-                      )
-                    ),
-
+                        borderRadius: BorderRadius.all(Radius.circular(80)),
+                        image: DecorationImage(
+                          fit: BoxFit.cover,
+                          image: AssetImage("assets/aber_sabel.png"),
+                        )),
                   ),
                 ),
                 Container(
+                  alignment: Alignment.topRight,
                   height: WidthSize * 0.12,
-                  width: WidthSize * 0.12,
+                  width: WidthSize,
                   margin: EdgeInsets.only(
                       top: MediaQuery.of(context).padding.top,
-                      left: WidthSize * 0.01),
+                      right: WidthSize * 0.02),
                   child: InkWell(
-                      child: Icon(
-                        Icons.arrow_back_ios,
-                        color: Color(0xff582e44),
-                        size: WidthSize * (40.0 / 540),
+                      child: Transform.rotate(
+                        angle: 180 * math.pi / 180,
+                        child: Icon(
+                          Icons.arrow_back_ios,
+                          color: Color(0xff582e44),
+                          size: WidthSize * (40.0 / 540),
+                        ),
                       ),
                       onTap: () async {
                         Navigator.pop(context);
