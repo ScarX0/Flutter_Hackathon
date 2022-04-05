@@ -25,6 +25,7 @@ void main() {
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
   WidgetsFlutterBinding.ensureInitialized();
 
+
   runApp(MultiProvider(
     providers: [
       ListenableProvider<AuthService>(
@@ -37,7 +38,7 @@ void main() {
     child: MaterialApp(
         debugShowCheckedModeBanner: false,
         debugShowMaterialGrid: false,
-        home: Signin() // signin()
+        home: restaurant_details(title:"مطعم أمين") // signin()
         ),
   ));
 }
