@@ -1,4 +1,6 @@
+import 'package:abir_sabil/Screens/profile.dart';
 import 'package:abir_sabil/Screens/restaurant_details.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
@@ -16,11 +18,11 @@ class accueil extends StatefulWidget {
 }
 
 class _accueilState extends State<accueil> {
+  final user = FirebaseAuth.instance;
   TextEditingController WilayaTEC = TextEditingController();
 
   getWilaya() {
     Provider.of<DataDz>(context, listen: false).getWilaya();
-
   }
 
   @override
@@ -39,6 +41,12 @@ class _accueilState extends State<accueil> {
       appBar: AppBar(
         backgroundColor: Color(0xff582e44),
         actions: [
+          IconButton(
+              onPressed: () {
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (_) => profile()));
+              },
+              icon: Icon(Icons.person)),
           Transform.rotate(
             angle: 180 * math.pi / 180,
             child: IconButton(
@@ -46,12 +54,12 @@ class _accueilState extends State<accueil> {
                 Icons.arrow_back_ios_outlined,
                 color: Colors.white,
               ),
-              onPressed: () {},
+              onPressed: () async {},
             ),
-          )
+          ),
         ],
         leading: IconButton(
-            icon: Icon(
+            icon: const Icon(
               Icons.filter_list_alt,
               color: Colors.white,
             ),
@@ -140,27 +148,24 @@ class _accueilState extends State<accueil> {
       ),
       body: SingleChildScrollView(
         child: Container(
-
           height: sizee.height * 0.85,
           margin: EdgeInsets.symmetric(
               horizontal: sizee.width * 0.03, vertical: sizee.height * 0.02),
           child: ListView.builder(
               itemCount: 5,
               itemBuilder: (BuildContext context, int index) {
-                return
-                Container(
-                  width: sizee.width*0.8,
-                  height: sizee.height*0.18,
+                return Container(
+                  width: sizee.width * 0.8,
+                  height: sizee.height * 0.18,
                   decoration: BoxDecoration(
-
                     boxShadow: [
-
                       BoxShadow(
                         color: Color(0xff582e44).withOpacity(0.05),
                         spreadRadius: 5,
                         blurRadius: 10,
 
-                        offset: const Offset(0, 3), // changes position of shadow
+                        offset:
+                            const Offset(0, 3), // changes position of shadow
                       ),
                     ],
                     borderRadius: const BorderRadius.all(
@@ -170,10 +175,9 @@ class _accueilState extends State<accueil> {
                   margin: EdgeInsets.symmetric(
                       horizontal: sizee.width * 0.03,
                       vertical: sizee.height * 0.01),
-                  padding: EdgeInsets.only(
-                      top: sizee.height * 0.015),
+                  padding: EdgeInsets.only(top: sizee.height * 0.015),
                   child: Row(
-crossAxisAlignment: CrossAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       CircleAvatar(
@@ -183,21 +187,22 @@ crossAxisAlignment: CrossAxisAlignment.center,
                           padding: EdgeInsets.zero,
                           icon: const Icon(Icons.arrow_back_ios_outlined),
                           iconSize: sizee.width * (28 / 540),
-                          color:  Colors.white,
-                          onPressed: () async {  Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder:
-                                    (context) =>
-                                    restaurant_details(title: "المطعم الفلاني")),
-                          );},
+                          color: Colors.white,
+                          onPressed: () async {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => restaurant_details(
+                                      title: "المطعم الفلاني")),
+                            );
+                          },
                         ),
                       ),
                       Expanded(
                         child: Container(
-                          padding: EdgeInsets.symmetric(vertical: sizee.height*0.02
-, horizontal: sizee.width*0.05
-                          ),
+                          padding: EdgeInsets.symmetric(
+                              vertical: sizee.height * 0.02,
+                              horizontal: sizee.width * 0.05),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
@@ -209,11 +214,10 @@ crossAxisAlignment: CrossAxisAlignment.center,
                                 "تيغنيف , معسكر",
                                 textDirection: TextDirection.rtl,
                               ),
-
                             ],
                           ),
                         ),
-                      ) ,
+                      ),
                       Column(
                         children: [
                           Container(
@@ -227,7 +231,8 @@ crossAxisAlignment: CrossAxisAlignment.center,
                                   color: Colors.grey.withOpacity(0.05),
                                   spreadRadius: 5,
                                   blurRadius: 10,
-                                  offset: const Offset(0, 3), // changes position of shadow
+                                  offset: const Offset(
+                                      0, 3), // changes position of shadow
                                 ),
                               ],
                               borderRadius: const BorderRadius.all(
@@ -239,7 +244,6 @@ crossAxisAlignment: CrossAxisAlignment.center,
                           ),
                           Container(
                             width: sizee.height * 0.13,
-
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
@@ -253,14 +257,9 @@ crossAxisAlignment: CrossAxisAlignment.center,
                           )
                         ],
                       ),
-
-
-
-
-                  ],),
+                    ],
+                  ),
                 );
-
-
               }),
         ),
       ),

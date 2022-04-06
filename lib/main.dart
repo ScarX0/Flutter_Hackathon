@@ -1,7 +1,10 @@
+// import 'dart:js';
+
 import 'package:abir_sabil/Providers/DzData.dart';
 import 'package:abir_sabil/Screens/Auth/Signin.dart';
 import 'package:abir_sabil/Screens/Auth/UserType.dart';
 import 'package:abir_sabil/Screens/accueil.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -25,6 +28,8 @@ void main() async {
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  // User? user = FirebaseAuth.instance.currentUser;
+  // print(user!.uid);
 
   runApp(MultiProvider(
     providers: [
@@ -35,10 +40,28 @@ void main() async {
         create: (_) => DataDz(),
       ),
     ],
-    child: const MaterialApp(
+    child: MaterialApp(
         debugShowCheckedModeBanner: false,
         debugShowMaterialGrid: false,
-        home: Signin() // signin()
+        home: StreamBuilder(
+          stream: FirebaseAuth.instance.authStateChanges(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            } else if (snapshot.hasData) {
+              return const accueil();
+            } else if (snapshot.hasError) {
+              return const Center(
+                child: Text('error'),
+              );
+            } else {
+              return const UserType();
+            }
+          },
+        )
+        //  user == null ? UserType() : accueil() // signin()
         ),
   ));
 }

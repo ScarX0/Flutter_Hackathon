@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 
 import '../../Providers/auth.dart';
@@ -32,22 +33,20 @@ class _SigninState extends State<Signin> {
   final _formKey = GlobalKey<FormState>();
   final _formKeyUP = GlobalKey<FormState>();
 
-  Future<bool> createNormalUser(String name, String email, String phone) async {
+  Future<bool> sign(String email, String password) async {
     setState(() {
       _isLoading = true;
     });
-
     try {
-      await Provider.of<AuthService>(context, listen: false).createUser(
-        _nomController.text,
-        _email_upController.text,
-        _numberController.text,
-      );
+      await Provider.of<AuthService>(context, listen: false)
+          .signIn(email, password);
       setState(() {
         _isLoading = false;
       });
       return true;
-    } catch (e) {}
+    } catch (e) {
+      print(e.toString());
+    }
     setState(() {
       _isLoading = false;
     });
@@ -60,8 +59,12 @@ class _SigninState extends State<Signin> {
     });
 
     try {
-      await Provider.of<AuthService>(context, listen: false)
-          .signUp(email, password);
+      await Provider.of<AuthService>(context, listen: false).signUp(
+          _email_upController.text,
+          _password_upController.text,
+          _nomController.text,
+          _numberController.text,
+          _boutiqueController.text);
 
       setState(() {
         _isLoading = false;
@@ -69,7 +72,7 @@ class _SigninState extends State<Signin> {
 
       return true;
     } catch (e) {
-      print(e.toString());
+      print('ssamiir' + e.toString());
     }
     setState(() {
       _isLoading = false;
@@ -440,11 +443,16 @@ class _SigninState extends State<Signin> {
                                                   ),
                                                 ),
                                                 SizedBox(
-                                                    height: HeightSize * 0.03),
+                                                    height: HeightSize * 0.01),
                                                 RaisedButton(
                                                   onPressed: () async {
                                                     if (_formKey.currentState!
-                                                        .validate()) {}
+                                                        .validate()) {
+                                                      await sign(
+                                                          _emailController.text,
+                                                          _passwordController
+                                                              .text);
+                                                    }
                                                   },
                                                   textColor: Color(0xff582e44),
                                                   padding:
@@ -464,18 +472,77 @@ class _SigninState extends State<Signin> {
                                                                     20.0))),
                                                     child: Center(
                                                       child: Text(
-                                                        "تسحبيل الدخول",
+                                                        "تسجيل الدخول",
                                                         style: TextStyle(
                                                           fontSize: WidthSize *
                                                               (25 / 540),
-                                                          color:
-                                                              Color(0xff582e44),
+                                                          color: const Color(
+                                                              0xff582e44),
                                                           fontWeight:
                                                               FontWeight.bold,
                                                         ),
                                                         textAlign:
                                                             TextAlign.center,
                                                       ),
+                                                    ),
+                                                  ),
+                                                ),
+                                                SizedBox(
+                                                    height: HeightSize * 0.005),
+                                                RaisedButton(
+                                                  onPressed: () async {
+                                                    await Provider.of<
+                                                                AuthService>(
+                                                            context,
+                                                            listen: false)
+                                                        .googleLogIn();
+                                                  },
+                                                  textColor: Color(0xff582e44),
+                                                  padding:
+                                                      const EdgeInsets.all(0.0),
+                                                  shape: RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              20.0)),
+                                                  child: Container(
+                                                    width: WidthSize * 0.9,
+                                                    height: HeightSize * 0.08,
+                                                    decoration: const BoxDecoration(
+                                                        color: Colors.white,
+                                                        borderRadius:
+                                                            BorderRadius.all(
+                                                                Radius.circular(
+                                                                    20.0))),
+                                                    child: Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .center,
+                                                      children: [
+                                                        const SizedBox(
+                                                          height: 40,
+                                                          width: 40,
+                                                          child: Image(
+                                                              image: AssetImage(
+                                                                  'assets/google.png')),
+                                                        ),
+                                                        SizedBox(
+                                                          width: 10,
+                                                        ),
+                                                        Text(
+                                                          "تسجيل الدخول بإستعمال ",
+                                                          style: TextStyle(
+                                                            fontSize:
+                                                                WidthSize *
+                                                                    (25 / 540),
+                                                            color: Color(
+                                                                0xff582e44),
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                          ),
+                                                          textAlign:
+                                                              TextAlign.center,
+                                                        ),
+                                                      ],
                                                     ),
                                                   ),
                                                 ),
@@ -987,56 +1054,79 @@ class _SigninState extends State<Signin> {
                                                         ? HeightSize * 0.015
                                                         : HeightSize * 0.02,
                                               ),
-                                              RaisedButton(
-                                                onPressed: () async {
-                                                  if (_formKeyUP.currentState!
-                                                      .validate()) {
-                                                    await submit(
-                                                        _email_upController
-                                                            .text,
-                                                        _password_upController
-                                                            .text);
-                                                  }
-                                                },
-                                                textColor: Color(0xff582e44),
-                                                padding:
-                                                    const EdgeInsets.all(0.0),
-                                                shape: RoundedRectangleBorder(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            20.0)),
-                                                child: Container(
-                                                  width: WidthSize * 0.9,
-                                                  height:
-                                                      !Provider.of<AuthService>(
-                                                                  context,
-                                                                  listen: false)
-                                                              .isVisiteur
-                                                          ? HeightSize * 0.08
-                                                          : HeightSize * 0.08,
-                                                  decoration: const BoxDecoration(
-                                                      color: Colors.white,
-                                                      borderRadius:
-                                                          BorderRadius.all(
-                                                              Radius.circular(
-                                                                  20.0))),
-                                                  child: Center(
-                                                    child: Text(
-                                                      "فتح حساب",
-                                                      style: TextStyle(
-                                                        fontSize: WidthSize *
-                                                            (25 / 540),
-                                                        color:
-                                                            Color(0xff582e44),
-                                                        fontWeight:
-                                                            FontWeight.bold,
+                                              _isLoading
+                                                  ? const CircularProgressIndicator(
+                                                      color: Colors.red,
+                                                    )
+                                                  : RaisedButton(
+                                                      onPressed: () async {
+                                                        if (_formKeyUP
+                                                            .currentState!
+                                                            .validate()) {
+                                                          await submit(
+                                                              _email_upController
+                                                                  .text,
+                                                              _password_upController
+                                                                  .text);
+                                                          //     .then(
+                                                          //         (value) async {
+                                                          //   await createNormalUser(
+                                                          //       _nomController
+                                                          //           .text,
+                                                          //       _email_upController
+                                                          //           .text,
+                                                          //       _numberController
+                                                          //           .text);
+                                                          // });
+                                                        }
+                                                      },
+                                                      textColor:
+                                                          Color(0xff582e44),
+                                                      padding:
+                                                          const EdgeInsets.all(
+                                                              0.0),
+                                                      shape:
+                                                          RoundedRectangleBorder(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          20.0)),
+                                                      child: Container(
+                                                        width: WidthSize * 0.9,
+                                                        height: !Provider.of<
+                                                                        AuthService>(
+                                                                    context,
+                                                                    listen:
+                                                                        false)
+                                                                .isVisiteur
+                                                            ? HeightSize * 0.08
+                                                            : HeightSize * 0.08,
+                                                        decoration: const BoxDecoration(
+                                                            color: Colors.white,
+                                                            borderRadius:
+                                                                BorderRadius.all(
+                                                                    Radius.circular(
+                                                                        20.0))),
+                                                        child: Center(
+                                                          child: Text(
+                                                            "فتح حساب",
+                                                            style: TextStyle(
+                                                              fontSize:
+                                                                  WidthSize *
+                                                                      (25 /
+                                                                          540),
+                                                              color: Color(
+                                                                  0xff582e44),
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold,
+                                                            ),
+                                                            textAlign: TextAlign
+                                                                .center,
+                                                          ),
+                                                        ),
                                                       ),
-                                                      textAlign:
-                                                          TextAlign.center,
                                                     ),
-                                                  ),
-                                                ),
-                                              ),
                                             ],
                                           ),
                                         ),
