@@ -87,60 +87,96 @@ class _restaurant_detailsState extends State<restaurant_details> {
                            ),
                          ),
                          child: Center(child: Text('متوفر 20 مقعد ' ,style: TextStyle(color:Colors.white),))) ,
-                     Container(
-                         width: sizee.width*0.15,
-                         margin: EdgeInsets.symmetric(vertical: sizee.height*0.02),
-                         decoration: BoxDecoration(
-                           color: Color(0xff582e44) ,
-                           boxShadow: [
-                             BoxShadow(
-                               color: Colors.grey.withOpacity(0.05),
-                               spreadRadius: 5,
-                               blurRadius: 10,
-                               offset: const Offset(0, 3), // changes position of shadow
-                             ),
-                           ],
-                           borderRadius: const BorderRadius.all(
-                               Radius.circular(20),
-                           ),
-                         ),
-                         child: Center(child:IconButton(
-                           icon: Icon(
-                             Icons.call,
-                             color: Colors.white,
-                           ),
-                           onPressed: () {
-                             launch(
-                                 ('tel:+213658850774'));
-                           },
-                         ),)) ,
-                     Container(
-                         width: sizee.width*0.15,
-                         margin: EdgeInsets.symmetric(vertical: sizee.height*0.0),
-                         decoration: BoxDecoration(
-                           color: Color(0xff582e44) ,
-                           boxShadow: [
-                             BoxShadow(
-                               color: Colors.grey.withOpacity(0.05),
-                               spreadRadius: 5,
-                               blurRadius: 10,
-                               offset: const Offset(0, 3), // changes position of shadow
-                             ),
-                           ],
-                           borderRadius: const BorderRadius.all(
-                             Radius.circular(20),
-                           ),
-                         ),
-                         child: Center(child:IconButton(
-                           icon: Icon(
-                             Icons.place,
-                             color: Colors.white,
-                           ),
-                           onPressed: () {
-                             launchMap() ;
+                    Container(
+                    child: InkWell(onTap: () {} ,
+                      child: Container(
+                        child: Center(child: Text('احجز مقعد' , style: TextStyle(color: Colors.white),),),
+                        width: sizee.width*0.24,
+                        height: sizee.height*0.05,
+                        margin: EdgeInsets.only(top: sizee.height*0.01),
+                        decoration: BoxDecoration(
+                          color: Color(0xff582e44) ,
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.05),
+                              spreadRadius: 5,
+                              blurRadius: 10,
+                              offset: const Offset(0, 3), // changes position of shadow
+                            ),
+                          ],
+                          borderRadius: const BorderRadius.all(
+                            Radius.circular(20),
+                          ),
+                        ),
+                      ),
+                    )
+                    ) ,
 
-                           },
-                         ),)) ,
+
+                    Container(
+                      width: sizee.width*0.35,
+
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                        Container(
+                            width: sizee.width*0.1,
+                            margin: EdgeInsets.symmetric(vertical: sizee.height*0.02),
+                            decoration: BoxDecoration(
+                              color: Color(0xff582e44) ,
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.withOpacity(0.05),
+                                  spreadRadius: 5,
+                                  blurRadius: 10,
+                                  offset: const Offset(0, 3), // changes position of shadow
+                                ),
+                              ],
+                              borderRadius: const BorderRadius.all(
+                                Radius.circular(20),
+                              ),
+                            ),
+                            child: Center(child:IconButton(
+                              icon: Icon(
+                                Icons.call,
+                                color: Colors.white,
+                              ),
+                              onPressed: () {
+                                launch(
+                                    ('tel:+213658850774'));
+                              },
+                            ),)) ,
+                        Container(
+                            width: sizee.width*0.1,
+                            margin: EdgeInsets.symmetric(vertical: sizee.height*0.0),
+                            decoration: BoxDecoration(
+                              color: Color(0xff582e44) ,
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.withOpacity(0.05),
+                                  spreadRadius: 5,
+                                  blurRadius: 10,
+                                  offset: const Offset(0, 3), // changes position of shadow
+                                ),
+                              ],
+                              borderRadius: const BorderRadius.all(
+                                Radius.circular(20),
+                              ),
+                            ),
+                            child: Center(child:IconButton(
+                              icon: Icon(
+                                Icons.place,
+                                color: Colors.white,
+                              ),
+                              onPressed: () {
+                                launchMap() ;
+
+                              },
+                            ),)) ,
+                      ],),
+                    ),
+
+
                    ],)) ,
                 Container(
                   height: sizee.height*0.3,
@@ -224,7 +260,36 @@ class _restaurant_detailsState extends State<restaurant_details> {
               ),
             ),
             height: sizee.height*0.08,
-          child: Center(child: Text('نحتاج 15 متطوع للمشاركة في هذا العمل الخيري ' ,style: TextStyle(fontWeight: FontWeight.bold),),),) ,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Container(
+                  child: InkWell(onTap: () {} ,
+                    child: Container(
+                      child: Center(child: Text('تطوع' , style: TextStyle(color: Colors.white),),),
+                      width: sizee.width*0.2,
+                      height: sizee.height*0.05,
+                      margin: EdgeInsets.only(top: sizee.height*0.01),
+                      decoration: BoxDecoration(
+                        color: Color(0xffa8293c) ,
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.05),
+                            spreadRadius: 5,
+                            blurRadius: 10,
+                            offset: const Offset(0, 3), // changes position of shadow
+                          ),
+                        ],
+                        borderRadius: const BorderRadius.all(
+                          Radius.circular(20),
+                        ),
+                      ),
+                    ),
+                  )
+              ) ,
+              Text('نحتاج 15 متطوع' ,style: TextStyle(fontWeight: FontWeight.bold),),
+            ],
+          ),) ,
         ],),
       ),
     );
