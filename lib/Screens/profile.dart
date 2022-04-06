@@ -1,7 +1,13 @@
+import 'dart:convert';
 import 'dart:io';
 
+import 'package:abir_sabil/Screens/Map.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
+import 'package:http/http.dart' as http;
+
+import 'package:location/location.dart';
+// import 'package:geocoder/geocoder.dart';
 
 class profile extends StatefulWidget {
   const profile({Key? key}) : super(key: key);
@@ -11,6 +17,65 @@ class profile extends StatefulWidget {
 }
 
 class _profileState extends State<profile> {
+  double? lat;
+  double? long;
+
+  getAddressFromLatLng(context, double lat, double lng) async {
+    String _host = 'https://maps.google.com/maps/api/geocode/json';
+    final url =
+        '$_host?key=AIzaSyDr4ElWM1yVRYWE6ldvD3mhGokioUb4-SA&language=en&latlng=$lat,$lng';
+    if (lat != null && lng != null) {
+      var response = await http.get(Uri.parse(url));
+      if (response.statusCode == 200) {
+        Map data = jsonDecode(response.body);
+        String _formattedAddress = data["results"][0]["formatted_address"];
+        print("response ==== $_formattedAddress");
+        return _formattedAddress;
+      } else
+        return null;
+    } else
+      return null;
+  }
+
+  Future<void> getLoc() async {
+    setState(() {
+      _isLoading = true;
+    });
+    var location = Location();
+
+    var locationEnabled = await location.serviceEnabled();
+
+    if (!locationEnabled) {
+      locationEnabled = await location.requestService();
+      if (!locationEnabled) {
+        return;
+      }
+    }
+
+    var _permission = await location.hasPermission();
+    if (_permission == PermissionStatus.denied) {
+      _permission = await location.requestPermission();
+      if (_permission != PermissionStatus.granted) {
+        return;
+      }
+    }
+
+    var currentLocation = await location.getLocation();
+
+    lat = currentLocation.latitude;
+    long = currentLocation.longitude;
+    // getAddressFromLatLng(context, lat!, long!);
+
+    // final coordinates = Coordinates(lat, long);
+    // var addresses =
+    //     await Geocoder.local.findAddressesFromCoordinates(coordinates);
+
+    // print(addresses);
+
+    setState(() {
+      _isLoading = false;
+    });
+  }
 
   bool changer = false;
   bool _isLoading = false;
@@ -30,6 +95,22 @@ class _profileState extends State<profile> {
         FocusScope.of(context).unfocus();
       },
       child: Scaffold(
+        appBar: AppBar(
+          leading: Container(
+            child: _isLoading
+                ? CircularProgressIndicator()
+                : IconButton(
+                    icon: Icon(Icons.gps_fixed_outlined),
+                    onPressed: () async {
+                      await getLoc().then((value) => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (_) => MapScreen(
+                                  latitude: lat!, longitude: long!))));
+                    },
+                  ),
+          ),
+        ),
         backgroundColor: Color(0xff4FBDBA).withOpacity(0.5),
         body: SingleChildScrollView(
           child: Container(
@@ -50,8 +131,8 @@ class _profileState extends State<profile> {
                       Expanded(
                         child: Container(
                             decoration: BoxDecoration(
-                              color: Color(0xff4FBDBA).withOpacity(0.5),
-                              borderRadius: BorderRadius.only(
+                              color: const Color(0xff4FBDBA).withOpacity(0.5),
+                              borderRadius: const BorderRadius.only(
                                 topLeft: Radius.circular(100),
                                 //  bottomLeft: Radius.circular(100),
                               ),

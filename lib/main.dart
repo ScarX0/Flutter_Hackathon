@@ -31,7 +31,6 @@ void main() async {
   // User? user = FirebaseAuth.instance.currentUser;
   // print(user!.uid);
 
-
   runApp(MultiProvider(
     providers: [
       ListenableProvider<AuthService>(
@@ -44,7 +43,6 @@ void main() async {
     child: MaterialApp(
         debugShowCheckedModeBanner: false,
         debugShowMaterialGrid: false,
-<<<<<<< HEAD
         home: StreamBuilder(
           stream: FirebaseAuth.instance.authStateChanges(),
           builder: (context, snapshot) {
@@ -64,9 +62,6 @@ void main() async {
           },
         )
         //  user == null ? UserType() : accueil() // signin()
-=======
-        home: restaurant_details(title:"مطعم أمين") // signin()
->>>>>>> 65cd0be01d21844cb113c974d16d8e45c87bda6c
         ),
   ));
 }
