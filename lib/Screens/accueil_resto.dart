@@ -1,4 +1,5 @@
 import 'package:abir_sabil/Screens/menu.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:hijri/hijri_calendar.dart';
 import 'package:numberpicker/numberpicker.dart';
@@ -14,15 +15,61 @@ class _accueil_restoState extends State<accueil_resto> {
   @override
   Widget build(BuildContext context) {
     final sizee = MediaQuery.of(context).size;
+    final WidthSize = MediaQuery.of(context).size.width;
+
     String locale = 'ar';
-    int persons = 1 ;
+    int persons = 1;
     //Suppose current gregorian data/time is: Mon May 29 00:27:33  2018
     HijriCalendar _today = HijriCalendar.now();
     HijriCalendar.setLocal(locale);
 
     return Scaffold(
       appBar: AppBar(
-
+        actions: [
+          InkWell(
+              child:
+                  // child: Transform.rotate(
+                  //   angle: 180 * math.pi / 180,
+                  //   child:
+                  Padding(
+                padding: const EdgeInsets.all(3.0),
+                child: Icon(
+                  Icons.logout,
+                  color: Colors.white,
+                  size: WidthSize * (40.0 / 540),
+                ),
+              ),
+              // ),
+              onTap: () async {
+                await FirebaseAuth.instance.signOut();
+                // showDialog<String>(
+                //   context: context,
+                //   builder: (BuildContext context) => AlertDialog(
+                //     title: const Text('تسجبيل الخروج'),
+                //     content: const Text('متأكد ؟'),
+                //     actions: <Widget>[
+                //       TextButton(
+                //         onPressed: () => Navigator.pop(context, 'Cancel'),
+                //         child: const Text(
+                //           'لا',
+                //           style: TextStyle(color: Color(0xff4FBDBA)),
+                //         ),
+                //       ),
+                //       TextButton(
+                //         onPressed: () async {
+                //           // Navigator.pop(ctx);
+                //           await FirebaseAuth.instance.signOut();
+                //         },
+                //         child: const Text(
+                //           'نعم',
+                //           style: TextStyle(color: Color(0xff4FBDBA)),
+                //         ),
+                //       ),
+                //     ],
+                //   ),
+                // );
+              })
+        ],
         backgroundColor: Color(0xff582e44),
         title: Center(child: Text("مطعم الرحمة")),
       ),
@@ -51,7 +98,13 @@ class _accueil_restoState extends State<accueil_resto> {
                   ),
                   elevation: 30,
                   child: Container(
-                    child: Center(child: Text(_today.toFormat("dd MMMM yyyy" ) ,style: TextStyle(fontWeight: FontWeight.bold , fontSize: sizee.width*0.07),)),
+                    child: Center(
+                        child: Text(
+                      _today.toFormat("dd MMMM yyyy"),
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: sizee.width * 0.07),
+                    )),
                     decoration: BoxDecoration(
                       borderRadius: const BorderRadius.all(
                         Radius.circular(300),
@@ -71,14 +124,14 @@ class _accueil_restoState extends State<accueil_resto> {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 InkWell(
-                  onTap: ()  {
+                  onTap: () {
                     showDialog<void>(
                       context: context,
                       barrierDismissible: true,
                       // user must tap button!
                       builder: (
-                          BuildContext ctx,
-                          ) {
+                        BuildContext ctx,
+                      ) {
                         return AlertDialog(
                           title: Text(
                             'عدد الأشخاص المطلوبين للتطوع',
@@ -86,39 +139,30 @@ class _accueil_restoState extends State<accueil_resto> {
                                 color: Colors.black87,
                                 fontSize: sizee.width * (25 / 540)),
                           ),
-                          content: StatefulBuilder(
-                              builder: (context, setState) {
-                                return NumberPicker(
-                                  textStyle: TextStyle(
-                                    color: Colors.black,
-                                  ),
-                                  selectedTextStyle:
-                                  TextStyle(
-                                    color:
-                                    Color(0xffbd7344),
-                                  ),
-                                  value: persons,
-                                  minValue: 1,
-                                  maxValue: 90,
-                                  step: 1,
-                                  itemHeight: sizee.height *
-                                      (100 / 912),
-                                  itemWidth:
-                                  sizee.width * 0.2,
-                                  axis: Axis.horizontal,
-                                  onChanged: (value) =>
-                                      setState(() =>
-                                      persons = value),
-                                  decoration: BoxDecoration(
-                                    borderRadius:
-                                    BorderRadius
-                                        .circular(16),
-                                    border: Border.all(
-                                        color:
-                                        Colors.black26),
-                                  ),
-                                );
-                              }),
+                          content:
+                              StatefulBuilder(builder: (context, setState) {
+                            return NumberPicker(
+                              textStyle: TextStyle(
+                                color: Colors.black,
+                              ),
+                              selectedTextStyle: TextStyle(
+                                color: Color(0xffbd7344),
+                              ),
+                              value: persons,
+                              minValue: 1,
+                              maxValue: 90,
+                              step: 1,
+                              itemHeight: sizee.height * (100 / 912),
+                              itemWidth: sizee.width * 0.2,
+                              axis: Axis.horizontal,
+                              onChanged: (value) =>
+                                  setState(() => persons = value),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(16),
+                                border: Border.all(color: Colors.black26),
+                              ),
+                            );
+                          }),
                           actions: <Widget>[
                             TextButton(
                               child: const Text(
@@ -128,14 +172,13 @@ class _accueil_restoState extends State<accueil_resto> {
                                 ),
                               ),
                               onPressed: () async {
-                           Navigator.pop(context);
+                                Navigator.pop(context);
                               },
                             ),
                           ],
                         );
                       },
                     );
-
                   },
                   child: Card(
                     shape: RoundedRectangleBorder(
@@ -174,10 +217,7 @@ class _accueil_restoState extends State<accueil_resto> {
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(
-                          builder:
-                              (context) =>
-                              menu()),
+                      MaterialPageRoute(builder: (context) => menu()),
                     );
                   },
                   child: Card(
@@ -202,7 +242,7 @@ class _accueil_restoState extends State<accueil_resto> {
                           ),
                           // text
                         ],
-                       ),
+                      ),
                       decoration: BoxDecoration(
                         color: Color(0xffbd7344),
                         borderRadius: const BorderRadius.all(

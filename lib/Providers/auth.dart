@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:abir_sabil/main.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -81,7 +82,8 @@ class AuthService extends ChangeNotifier {
             'restaurantName': restName,
             'photo': '',
             'city': '',
-            'location': ''
+            'location': [],
+            'hasMenu': false
           };
     try {
       CollectionReference collectionReference =
@@ -117,6 +119,36 @@ class AuthService extends ChangeNotifier {
 
       //   pref.setString('userData', userData);
       // }
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Map<String, dynamic> userInfo = {
+    'name': '',
+    'email': '',
+    'phone': '',
+    'isVlounteer': false,
+    'location': [0.0, 0.0],
+    'city': '',
+    'hasMenu': false,
+    'image': '',
+  };
+  // bool s = nu;
+
+  Future<void> getUserInfos() async {
+    try {
+      final auth = FirebaseAuth.instance.currentUser;
+      final where = nu ? 'volounteers' : 'restaurants';
+      final user = await FirebaseFirestore.instance
+          .collection(where)
+          .doc(auth!.uid)
+          .get();
+      userInfo = user.data()!;
+      print(userInfo);
+      print(user.data());
+      if (nu) {
+      } else {}
     } catch (e) {
       rethrow;
     }
@@ -158,7 +190,7 @@ class AuthService extends ChangeNotifier {
             'restaurantName': restName,
             'photo': '',
             'city': '',
-            'location': ''
+            'location': '',
           };
 
     CollectionReference collectionReference =

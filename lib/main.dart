@@ -4,6 +4,8 @@ import 'package:abir_sabil/Providers/DzData.dart';
 import 'package:abir_sabil/Screens/Auth/Signin.dart';
 import 'package:abir_sabil/Screens/Auth/UserType.dart';
 import 'package:abir_sabil/Screens/accueil.dart';
+import 'package:abir_sabil/Screens/accueil_resto.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +17,7 @@ import 'Screens/Auth/forgotPassword.dart';
 import 'Screens/profile.dart';
 import 'Screens/restaurant_details.dart';
 
+bool nu = false;
 void main() async {
   Color primaryColor = Color(0xffbd7344);
   Color secondlyColor = Color(0xffa8293c);
@@ -30,6 +33,16 @@ void main() async {
   await Firebase.initializeApp();
   // User? user = FirebaseAuth.instance.currentUser;
   // print(user!.uid);
+
+  var user = await FirebaseFirestore.instance.collection('restaurants').get();
+  bool check(String id) {
+    for (int i = 0; i < user.docs.length; i++) {
+      if (id == user.docs[i].id) {
+        return true;
+      }
+    }
+    return false;
+  }
 
   runApp(MultiProvider(
     providers: [
@@ -51,7 +64,14 @@ void main() async {
                 child: CircularProgressIndicator(),
               );
             } else if (snapshot.hasData) {
-              return const accueil();
+              var id = FirebaseAuth.instance.currentUser!.uid;
+              print(id);
+              nu = !check(id);
+              if (nu) {
+                return const accueil();
+              } else {
+                return const accueil_resto();
+              }
             } else if (snapshot.hasError) {
               return const Center(
                 child: Text('error'),

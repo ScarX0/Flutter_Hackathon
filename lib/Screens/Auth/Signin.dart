@@ -1,3 +1,5 @@
+import 'package:abir_sabil/Screens/accueil.dart';
+import 'package:abir_sabil/Screens/accueil_resto.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
@@ -86,6 +88,7 @@ class _SigninState extends State<Signin> {
     final HeightSize = MediaQuery.of(context).size.height -
         (MediaQuery.of(context).padding.top +
             MediaQuery.of(context).padding.bottom);
+    final prov = Provider.of<AuthService>(context, listen: false);
 
     return GestureDetector(
       onTap: () {
@@ -444,108 +447,157 @@ class _SigninState extends State<Signin> {
                                                 ),
                                                 SizedBox(
                                                     height: HeightSize * 0.01),
-                                                RaisedButton(
-                                                  onPressed: () async {
-                                                    if (_formKey.currentState!
-                                                        .validate()) {
-                                                      await sign(
-                                                          _emailController.text,
-                                                          _passwordController
-                                                              .text);
-                                                    }
-                                                  },
-                                                  textColor: Color(0xff582e44),
-                                                  padding:
-                                                      const EdgeInsets.all(0.0),
-                                                  shape: RoundedRectangleBorder(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              20.0)),
-                                                  child: Container(
-                                                    width: WidthSize * 0.9,
-                                                    height: HeightSize * 0.08,
-                                                    decoration: const BoxDecoration(
-                                                        color: Colors.white,
-                                                        borderRadius:
-                                                            BorderRadius.all(
-                                                                Radius.circular(
-                                                                    20.0))),
-                                                    child: Center(
-                                                      child: Text(
-                                                        "تسجيل الدخول",
-                                                        style: TextStyle(
-                                                          fontSize: WidthSize *
-                                                              (25 / 540),
-                                                          color: const Color(
-                                                              0xff582e44),
-                                                          fontWeight:
-                                                              FontWeight.bold,
-                                                        ),
-                                                        textAlign:
-                                                            TextAlign.center,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ),
-                                                SizedBox(
-                                                    height: HeightSize * 0.005),
-                                                RaisedButton(
-                                                  onPressed: () async {
-                                                    await Provider.of<
-                                                                AuthService>(
-                                                            context,
-                                                            listen: false)
-                                                        .googleLogIn();
-                                                  },
-                                                  textColor: Color(0xff582e44),
-                                                  padding:
-                                                      const EdgeInsets.all(0.0),
-                                                  shape: RoundedRectangleBorder(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              20.0)),
-                                                  child: Container(
-                                                    width: WidthSize * 0.9,
-                                                    height: HeightSize * 0.08,
-                                                    decoration: const BoxDecoration(
-                                                        color: Colors.white,
-                                                        borderRadius:
-                                                            BorderRadius.all(
-                                                                Radius.circular(
-                                                                    20.0))),
-                                                    child: Row(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .center,
-                                                      children: [
-                                                        const SizedBox(
-                                                          height: 40,
-                                                          width: 40,
-                                                          child: Image(
-                                                              image: AssetImage(
-                                                                  'assets/google.png')),
-                                                        ),
-                                                        SizedBox(
-                                                          width: 10,
-                                                        ),
-                                                        Text(
-                                                          "تسجيل الدخول بإستعمال ",
-                                                          style: TextStyle(
-                                                            fontSize:
-                                                                WidthSize *
-                                                                    (25 / 540),
-                                                            color: Color(
-                                                                0xff582e44),
-                                                            fontWeight:
-                                                                FontWeight.bold,
+                                                _isLoading
+                                                    ? CircularProgressIndicator()
+                                                    : RaisedButton(
+                                                        onPressed: () async {
+                                                          if (_formKey
+                                                              .currentState!
+                                                              .validate()) {
+                                                            Fluttertoast.showToast(
+                                                                msg:
+                                                                    'جاري تسجيل الدخول');
+                                                            if (await sign(
+                                                                _emailController
+                                                                    .text,
+                                                                _passwordController
+                                                                    .text)) {
+                                                              if (prov
+                                                                  .isVisiteur) {
+                                                                Navigator.pop(
+                                                                    context);
+                                                                Navigator.pushReplacement(
+                                                                    context,
+                                                                    MaterialPageRoute(
+                                                                        builder:
+                                                                            (_) =>
+                                                                                accueil()));
+                                                              } else {
+                                                                Navigator.pop(
+                                                                    context);
+                                                                Navigator.pushReplacement(
+                                                                    context,
+                                                                    MaterialPageRoute(
+                                                                        builder:
+                                                                            (_) =>
+                                                                                accueil_resto()));
+                                                              }
+                                                            }
+                                                          }
+                                                        },
+                                                        textColor:
+                                                            Color(0xff582e44),
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .all(0.0),
+                                                        shape: RoundedRectangleBorder(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        20.0)),
+                                                        child: Container(
+                                                          width:
+                                                              WidthSize * 0.9,
+                                                          height:
+                                                              HeightSize * 0.08,
+                                                          decoration: const BoxDecoration(
+                                                              color:
+                                                                  Colors.white,
+                                                              borderRadius: BorderRadius
+                                                                  .all(Radius
+                                                                      .circular(
+                                                                          20.0))),
+                                                          child: Center(
+                                                            child: Text(
+                                                              "تسجيل الدخول",
+                                                              style: TextStyle(
+                                                                fontSize:
+                                                                    WidthSize *
+                                                                        (25 /
+                                                                            540),
+                                                                color: const Color(
+                                                                    0xff582e44),
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold,
+                                                              ),
+                                                              textAlign:
+                                                                  TextAlign
+                                                                      .center,
+                                                            ),
                                                           ),
-                                                          textAlign:
-                                                              TextAlign.center,
                                                         ),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                ),
+                                                      ),
+                                                // SizedBox(
+                                                //     height: HeightSize * 0.005),
+                                                // RaisedButton(
+                                                //   onPressed: () async {
+                                                //     Fluttertoast.showToast(
+                                                //         msg:
+                                                //             'جاري تسجيل الدخول بجوجل');
+                                                //     await Provider.of<
+                                                //                 AuthService>(
+                                                //             context,
+                                                //             listen: false)
+                                                //         .googleLogIn()
+                                                //         .then((value) {
+                                                //       Navigator.pop(context);
+                                                //       Navigator.pushReplacement(
+                                                //           context,
+                                                //           MaterialPageRoute(
+                                                //               builder: (_) =>
+                                                //                   accueil()));
+                                                //     });
+                                                //   },
+                                                //   textColor: Color(0xff582e44),
+                                                //   padding:
+                                                //       const EdgeInsets.all(0.0),
+                                                //   shape: RoundedRectangleBorder(
+                                                //       borderRadius:
+                                                //           BorderRadius.circular(
+                                                //               20.0)),
+                                                //   child: Container(
+                                                //     width: WidthSize * 0.9,
+                                                //     height: HeightSize * 0.08,
+                                                //     decoration: const BoxDecoration(
+                                                //         color: Colors.white,
+                                                //         borderRadius:
+                                                //             BorderRadius.all(
+                                                //                 Radius.circular(
+                                                //                     20.0))),
+                                                //     child: Row(
+                                                //       mainAxisAlignment:
+                                                //           MainAxisAlignment
+                                                //               .center,
+                                                //       children: [
+                                                //         const SizedBox(
+                                                //           height: 40,
+                                                //           width: 40,
+                                                //           child: Image(
+                                                //               image: AssetImage(
+                                                //                   'assets/google.png')),
+                                                //         ),
+                                                //         SizedBox(
+                                                //           width: 10,
+                                                //         ),
+                                                //         Text(
+                                                //           "تسجيل الدخول بإستعمال ",
+                                                //           style: TextStyle(
+                                                //             fontSize:
+                                                //                 WidthSize *
+                                                //                     (25 / 540),
+                                                //             color: Color(
+                                                //                 0xff582e44),
+                                                //             fontWeight:
+                                                //                 FontWeight.bold,
+                                                //           ),
+                                                //           textAlign:
+                                                //               TextAlign.center,
+                                                //         ),
+                                                //       ],
+                                                //     ),
+                                                //   ),
+                                                // ),
                                               ],
                                             ),
                                           ),
@@ -1055,19 +1107,49 @@ class _SigninState extends State<Signin> {
                                                         : HeightSize * 0.02,
                                               ),
                                               _isLoading
-                                                  ? const CircularProgressIndicator(
-                                                      color: Colors.red,
-                                                    )
+                                                  ? const CircularProgressIndicator()
                                                   : RaisedButton(
                                                       onPressed: () async {
                                                         if (_formKeyUP
                                                             .currentState!
                                                             .validate()) {
-                                                          await submit(
+                                                          Fluttertoast.showToast(
+                                                              msg:
+                                                                  'جاري إنشاء حسابك');
+                                                          if (await submit(
                                                               _email_upController
                                                                   .text,
                                                               _password_upController
-                                                                  .text);
+                                                                  .text)) {
+                                                            if (prov
+                                                                .isVisiteur) {
+                                                              Navigator.pop(
+                                                                  context);
+                                                              Navigator.pushReplacement(
+                                                                  context,
+                                                                  MaterialPageRoute(
+                                                                      builder:
+                                                                          (_) =>
+                                                                              accueil()));
+                                                              Fluttertoast
+                                                                  .showToast(
+                                                                      msg:
+                                                                          'مرحبا بك');
+                                                            } else {
+                                                              Navigator.pop(
+                                                                  context);
+                                                              Navigator.pushReplacement(
+                                                                  context,
+                                                                  MaterialPageRoute(
+                                                                      builder:
+                                                                          (_) =>
+                                                                              accueil_resto()));
+                                                              Fluttertoast
+                                                                  .showToast(
+                                                                      msg:
+                                                                          'مرحبا بك');
+                                                            }
+                                                          }
                                                           //     .then(
                                                           //         (value) async {
                                                           //   await createNormalUser(
