@@ -464,7 +464,7 @@ class _SigninState extends State<Signin> {
                                                                     20.0))),
                                                     child: Center(
                                                       child: Text(
-                                                        "تسحبيل الدخول",
+                                                        "تسجيل الدخول",
                                                         style: TextStyle(
                                                           fontSize: WidthSize *
                                                               (25 / 540),
