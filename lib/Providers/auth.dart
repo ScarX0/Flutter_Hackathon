@@ -8,6 +8,15 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+// class Menu {
+//   String? soupe;
+//   String? plat_princip;
+//   String? plat_sec;
+//   String? ;
+
+// }
+// class Menus extends ChangeNotifier{}
+
 class AuthService extends ChangeNotifier {
   final googleSignIn = GoogleSignIn();
   bool googleSignedIn = false;
@@ -145,8 +154,9 @@ class AuthService extends ChangeNotifier {
           .doc(auth!.uid)
           .get();
       userInfo = user.data()!;
-      print(userInfo);
-      print(user.data());
+      // print(userInfo);
+      // print(userInfo);
+      // print(user.data());
       if (nu) {
       } else {}
     } catch (e) {

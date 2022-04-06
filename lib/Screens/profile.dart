@@ -180,24 +180,24 @@ class _profileState extends State<profile> {
                 }),
             // ),
           ],
-          leading: !nu
-              ? Container(
-                  child: _isLoading
-                      ? CircularProgressIndicator(
-                          color: Colors.white,
-                        )
-                      : IconButton(
-                          icon: Icon(Icons.gps_fixed_outlined),
-                          onPressed: () async {
-                            await getLoc().then((value) => Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (_) => MapScreen(
-                                        latitude: lat!, longitude: long!))));
-                          },
-                        ),
-                )
-              : null,
+          // leading: !nu
+          //     ? Container(
+          //         child: _isLoading
+          //             ? CircularProgressIndicator(
+          //                 color: Colors.white,
+          //               )
+          //             : IconButton(
+          //                 icon: Icon(Icons.gps_fixed_outlined),
+          //                 onPressed: () async {
+          //                   await getLoc().then((value) => Navigator.push(
+          //                       context,
+          //                       MaterialPageRoute(
+          //                           builder: (_) => MapScreen(
+          //                               latitude: lat!, longitude: long!))));
+          //                 },
+          //               ),
+          //       )
+          //     : null,
         ),
         backgroundColor: Color(0xff4FBDBA).withOpacity(0.5),
         body: _isLoading
@@ -248,6 +248,12 @@ class _profileState extends State<profile> {
                               CircleAvatar(
                                 backgroundColor: Colors.grey,
                                 radius: WidthSize * (80 / 540),
+                                child: Image(
+                                    fit: BoxFit.fill,
+                                    filterQuality: FilterQuality.low,
+                                    image: AssetImage(nu
+                                        ? 'assets/vollogo.jpg'
+                                        : 'assets/restaurant.jpg')),
                               ),
                               SizedBox(
                                   child: GestureDetector(
@@ -337,7 +343,7 @@ class _profileState extends State<profile> {
                                     Column(
                                       children: [
                                         Text(
-                                          "الاسم  ",
+                                          prov.userInfo['name'],
                                           style: TextStyle(
                                               fontSize: WidthSize * (30 / 540),
                                               fontWeight: FontWeight.bold,
@@ -345,7 +351,7 @@ class _profileState extends State<profile> {
                                               fontFamily: 'Gothic'),
                                         ),
                                         Text(
-                                          "البريد الالكتروني",
+                                          prov.userInfo['email'],
                                           style: TextStyle(
                                               fontSize: WidthSize * (30 / 540),
                                               fontWeight: FontWeight.bold,
@@ -353,13 +359,51 @@ class _profileState extends State<profile> {
                                               fontFamily: 'Gothic'),
                                         ),
                                         Text(
-                                          "رقم الهاتف",
+                                          prov.userInfo['phone'],
                                           style: TextStyle(
                                               fontSize: WidthSize * (30 / 540),
                                               fontWeight: FontWeight.bold,
                                               color: Colors.white,
                                               fontFamily: 'Gothic'),
                                         ),
+                                        if (!nu)
+                                          TextButton(
+                                              onPressed: () async {
+                                                await getLoc().then((value) =>
+                                                    Navigator.push(
+                                                        context,
+                                                        MaterialPageRoute(
+                                                            builder: (_) =>
+                                                                MapScreen(
+                                                                    latitude:
+                                                                        lat!,
+                                                                    longitude:
+                                                                        long!))));
+                                              },
+                                              child: Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  Icon(
+                                                    Icons.gps_fixed,
+                                                    size: 16,
+                                                    color: Colors.white,
+                                                  ),
+                                                  Text(
+                                                    'حدد مكان المطعم',
+                                                    style: TextStyle(
+                                                        fontSize: WidthSize *
+                                                            (30 / 540),
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        color: Colors.white,
+                                                        fontFamily: 'Gothic',
+                                                        decoration:
+                                                            TextDecoration
+                                                                .underline),
+                                                  ),
+                                                ],
+                                              )),
                                         !changer
                                             ? SizedBox(
                                                 height: HeightSize * 0.22,

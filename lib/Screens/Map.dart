@@ -1,4 +1,8 @@
+import 'package:abir_sabil/main.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class MapScreen extends StatefulWidget {
@@ -15,6 +19,28 @@ class _MapScreenState extends State<MapScreen> {
   Marker? _origin;
   Marker? _destination;
   GoogleMapController? _googleMapController;
+  bool _isLoading = false;
+  Future<void> sendCoordinates() async {
+    final auth = FirebaseAuth.instance.currentUser;
+    setState(() {
+      _isLoading = true;
+    });
+
+    try {
+      await FirebaseFirestore.instance
+          .collection('restaurants')
+          .doc(auth!.uid)
+          .update({
+        'location': [_origin!.position.latitude, _origin!.position.longitude]
+      });
+    } catch (e) {
+      print(e.toString());
+    }
+    setState(() {
+      _isLoading = false;
+    });
+  }
+
   @override
   void dispose() {
     // TODO: implement dispose
@@ -29,10 +55,24 @@ class _MapScreenState extends State<MapScreen> {
 
     return Scaffold(
       appBar: AppBar(
-          title: TextButton(
-        child: Text('حفظ مكاني'),
-        onPressed: () {},
-      )),
+          backgroundColor: Color(0xff582e44),
+          title: !nu
+              ? _isLoading
+                  ? const CircularProgressIndicator(
+                      color: Colors.white,
+                    )
+                  : TextButton(
+                      child: const Text(
+                        'حفظ مكاني',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      onPressed: () async {
+                        Fluttertoast.showToast(msg: 'جاري حفظ المكان');
+                        await sendCoordinates()
+                            .then((value) => Navigator.pop(context));
+                      },
+                    )
+              : null),
       body: GoogleMap(
         myLocationButtonEnabled: false,
         zoomControlsEnabled: false,
@@ -42,7 +82,7 @@ class _MapScreenState extends State<MapScreen> {
           if (_origin != null) _origin!,
           if (_destination != null) _destination!
         },
-        onLongPress: _addMarker,
+        onLongPress: !nu ? _addMarkerForResto : _addMarker,
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => _googleMapController!
@@ -50,6 +90,17 @@ class _MapScreenState extends State<MapScreen> {
         child: const Icon(Icons.center_focus_strong),
       ),
     );
+  }
+
+  void _addMarkerForResto(LatLng pos) {
+    setState(() {
+      _origin = Marker(
+          markerId: const MarkerId('origin'),
+          infoWindow: const InfoWindow(title: 'current position'),
+          icon:
+              BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueGreen),
+          position: pos);
+    });
   }
 
   void _addMarker(LatLng pos) {

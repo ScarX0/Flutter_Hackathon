@@ -1,4 +1,5 @@
 import 'package:abir_sabil/Screens/menu.dart';
+import 'package:abir_sabil/Screens/profile.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:hijri/hijri_calendar.dart';
@@ -25,6 +26,13 @@ class _accueil_restoState extends State<accueil_resto> {
 
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(Icons.person),
+          onPressed: () {
+            Navigator.push(
+                context, MaterialPageRoute(builder: (_) => profile()));
+          },
+        ),
         actions: [
           InkWell(
               child:
