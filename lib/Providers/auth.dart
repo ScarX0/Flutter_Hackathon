@@ -9,6 +9,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class AuthService extends ChangeNotifier {
   final googleSignIn = GoogleSignIn();
+  bool googleSignedIn = false;
   GoogleSignInAccount? _user;
   GoogleSignInAccount get user => _user!;
 
@@ -34,86 +35,148 @@ class AuthService extends ChangeNotifier {
   }
 
   Future<void> googleLogIn() async {
-    final googleUser = await googleSignIn.signIn();
-
-    if (googleUser == null) {
-      return;
-    }
-    _user = googleUser;
-
-    final googleAuth = await googleUser.authentication;
-
-    final credential = GoogleAuthProvider.credential(
-        accessToken: googleAuth.accessToken, idToken: googleAuth.idToken);
-
-    await FirebaseAuth.instance.signInWithCredential(credential);
-
-    notifyListeners();
-  }
-
-  Future<void> _authenticate(
-      String email, String password, String urlSegment) async {
-    var url =
-        'https://identitytoolkit.googleapis.com/v1/accounts:$urlSegment?key=AIzaSyCwLJDAJA_U5k1C2dRd_ZaM9sS-xgBj-oQ';
-
     try {
-      final res = await http.post(Uri.parse(url),
-          headers: {'Content-Type': 'application/json'},
-          body: jsonEncode({
-            'email': email,
-            'password': password,
-            'returnSecureToken': false
-          }));
+      final googleUser = await googleSignIn.signIn();
 
-      final respond = await jsonDecode(res.body);
-
-      if (res.statusCode == 200) {
-        _token = respond['idToken'];
-        _uId = respond['localId'];
-        _expiryDate = DateTime.now()
-            .add(Duration(seconds: int.parse(respond['expiresIn'])));
-
-        notifyListeners();
-
-        final pref = await SharedPreferences.getInstance();
-        String userData = jsonEncode({
-          'token': _token,
-          'userId': _uId,
-          'expiryDate': _expiryDate!.toIso8601String(),
-        });
-
-        pref.setString('userData', userData);
+      if (googleUser == null) {
+        return;
       }
+      _user = googleUser;
+
+      final googleAuth = await googleUser.authentication;
+
+      final credential = GoogleAuthProvider.credential(
+          accessToken: googleAuth.accessToken, idToken: googleAuth.idToken);
+
+      await FirebaseAuth.instance.signInWithCredential(credential);
+
+      // _token = googleAuth.idToken;
+      // _uId = googleAuth.accessToken;
+
+      // final pref = await SharedPreferences.getInstance();
+      // String userData = jsonEncode({
+      //   'token': _token,
+      //   'userId': _uId,
+      //   'expiryDate': _expiryDate!.toIso8601String(),
+      // });
+
+      // pref.setString('userData', userData);
+
+      googleSignedIn = true;
+      notifyListeners();
     } catch (e) {
       rethrow;
     }
   }
 
-  Future<void> createUser(String email, String phone, String name) async {
-    Map<String, dynamic> data = {
-      'id': uId,
-      'name': name,
-      'email': email,
-      'phone': phone,
-      'isVolounteer': false
-    };
+  Future<void> signUp(String email, String password, String name, String phone,
+      String restName) async {
+    String where = isVisiteur ? 'volounteers' : 'restaurants';
+    var data = isVisiteur
+        ? {'name': name, 'email': email, 'phone': phone, 'isVolounteer': false}
+        : {
+            'name': name,
+            'email': email,
+            'phone': phone,
+            'restaurantName': restName,
+            'photo': '',
+            'city': '',
+            'location': ''
+          };
+    try {
+      CollectionReference collectionReference =
+          FirebaseFirestore.instance.collection(where);
+      final auth = FirebaseAuth.instance;
+      await auth
+          .createUserWithEmailAndPassword(email: email, password: password)
+          .then((value) => collectionReference.doc(value.user!.uid).set(data));
+      // final res = await http.post(Uri.parse(url),
+      //     headers: {'Content-Type': 'application/json'},
+      //     body: jsonEncode({
+      //       'email': email,
+      //       'password': password,
+      //       'returnSecureToken': false
+      //     }));
+
+      // final respond = await jsonDecode(res.body);
+
+      // if (res.statusCode == 200) {
+      //   _token = respond['idToken'];
+      //   _uId = respond['localId'];
+      //   _expiryDate = DateTime.now()
+      //       .add(Duration(seconds: int.parse(respond['expiresIn'])));
+
+      //   notifyListeners();
+
+      //   final pref = await SharedPreferences.getInstance();
+      //   String userData = jsonEncode({
+      //     'token': _token,
+      //     'userId': _uId,
+      //     'expiryDate': _expiryDate!.toIso8601String(),
+      //   });
+
+      //   pref.setString('userData', userData);
+      // }
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<void> signIn(String email, String password) async {
+    try {
+      final auth = FirebaseAuth.instance;
+      auth
+          .signInWithEmailAndPassword(email: email, password: password)
+          .then((value) => print('not assured' + value.user!.email!));
+
+      final auth2 = FirebaseAuth.instance;
+
+      print('assured' + auth2.currentUser!.email!);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<void> createUser(
+      String email, String phone, String name, String restName) async {
+    String where = isVisiteur ? 'volounteers' : 'restaurants';
+    // final user = FirebaseAuth.instance.currentUser!;
+
+    Map<String, dynamic> data = isVisiteur
+        ? {
+            'id': _uId,
+            'name': name,
+            'email': email,
+            'phone': phone,
+            'isVolounteer': false
+          }
+        : {
+            'id': _uId,
+            'name': name,
+            'email': email,
+            'phone': phone,
+            'restaurantName': restName,
+            'photo': '',
+            'city': '',
+            'location': ''
+          };
 
     CollectionReference collectionReference =
-        FirebaseFirestore.instance.collection('users');
+        FirebaseFirestore.instance.collection(where);
     try {
-      collectionReference.add(data);
+      await collectionReference.doc(_uId).set(data);
     } catch (e) {
       print(e.toString());
     }
   }
 
-  Future<void> signIn(String email, String password) async {
-    _authenticate(email, password, 'signInWithPassword');
-  }
+  // Future<void> signIn(String email, String password) async {
+  //   _authenticate(email, password, 'signInWithPassword');
+  // }
 
-  Future<void> signUp(String email, String password) async {
-    _authenticate(email, password, 'signUp');
-  }
+  // Future<void> signUp(String email, String password) async {
+  //   _authenticate(email, password, 'signUp');
+  // }
 
   bool isVisiteur = false;
 
