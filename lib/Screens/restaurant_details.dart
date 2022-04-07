@@ -1,6 +1,8 @@
 import 'package:abir_sabil/Providers/restaurant.dart';
+import 'package:abir_sabil/Screens/Map.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:location/location.dart';
 import 'package:provider/provider.dart';
 import 'dart:math' as math;
 import 'package:url_launcher/url_launcher.dart';
@@ -15,7 +17,49 @@ class restaurant_details extends StatefulWidget {
 
 class _restaurant_detailsState extends State<restaurant_details> {
   bool _isLoading = false;
+  double? lat;
+  double? long;
   Map<String, dynamic>? menu = {};
+  Future<void> getLoc() async {
+    setState(() {
+      _isLoading = true;
+    });
+    var location = Location();
+
+    var locationEnabled = await location.serviceEnabled();
+
+    if (!locationEnabled) {
+      locationEnabled = await location.requestService();
+      if (!locationEnabled) {
+        return;
+      }
+    }
+
+    var _permission = await location.hasPermission();
+    if (_permission == PermissionStatus.denied) {
+      _permission = await location.requestPermission();
+      if (_permission != PermissionStatus.granted) {
+        return;
+      }
+    }
+
+    var currentLocation = await location.getLocation();
+
+    lat = currentLocation.latitude;
+    long = currentLocation.longitude;
+    // getAddressFromLatLng(context, lat!, long!);
+
+    // final coordinates = Coordinates(lat, long);
+    // var addresses =
+    //     await Geocoder.local.findAddressesFromCoordinates(coordinates);
+
+    // print(addresses);
+
+    setState(() {
+      _isLoading = false;
+    });
+  }
+
   Future<void> getMenu() async {
     setState(() {
       _isLoading = true;
@@ -224,7 +268,56 @@ class _restaurant_detailsState extends State<restaurant_details> {
                                           color: Colors.white,
                                         ),
                                         onPressed: () {
-                                          launchMap();
+                                          showDialog(
+                                              context: context,
+                                              builder: (BuildContext ctx) {
+                                                return AlertDialog(
+                                                  title: Text(
+                                                      'هل تسمح للتطبيق بتحديد مكانك من أجل إرشادك الى المطعم ؟'),
+                                                  actions: [
+                                                    TextButton(
+                                                        onPressed: () async {
+                                                          Navigator.pop(ctx);
+                                                          await getLoc().then((value) =>
+                                                              Navigator.push(
+                                                                  context,
+                                                                  MaterialPageRoute(
+                                                                      builder: (_) =>
+                                                                          MapScreen(
+                                                                            latitude:
+                                                                                lat!,
+                                                                            longitude:
+                                                                                long!,
+                                                                            user:
+                                                                                true,
+                                                                          ))));
+                                                          Navigator.pop(ctx);
+                                                        },
+                                                        child: Text('تأكيد')),
+                                                    TextButton(
+                                                        onPressed: () {
+                                                          Navigator.pop(ctx);
+                                                          Navigator.push(
+                                                              context,
+                                                              MaterialPageRoute(
+                                                                  builder: (_) =>
+                                                                      MapScreen(
+                                                                        latitude: rest
+                                                                            .chosenRestaurant!
+                                                                            .latitude!,
+                                                                        longitude: rest
+                                                                            .chosenRestaurant!
+                                                                            .longitude!,
+                                                                        user:
+                                                                            false,
+                                                                      )));
+                                                        },
+                                                        child: Text('رفض')),
+                                                  ],
+                                                );
+                                              });
+
+                                          // launchMap();
                                         },
                                       ),
                                     )),
