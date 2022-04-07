@@ -58,6 +58,7 @@ void main() async {
       ),
     ],
     child: MaterialApp(
+        theme: ThemeData(fontFamily: 'Hacen'),
         debugShowCheckedModeBanner: false,
         debugShowMaterialGrid: false,
         home:

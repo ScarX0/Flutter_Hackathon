@@ -124,8 +124,17 @@ class _SigninState extends State<Signin> {
             child: Stack(
               children: [
                 Container(
-                  height: MediaQuery.of(context).size.height,
-                  decoration: const BoxDecoration(color: Colors.white),
+                    decoration: const BoxDecoration(
+                    image: DecorationImage(
+                      opacity: 0.2,
+
+                      fit: BoxFit.contain,
+                      image: AssetImage("assets/hilal.png"),
+                    ),
+                    borderRadius: BorderRadius.only(bottomLeft: Radius.circular(60)),
+                    color: Colors.white,
+                  ),
+                  height: MediaQuery.of(context).size.height*0.5,
                 ),
                 Container(
                   child: Column(
@@ -139,1330 +148,1368 @@ class _SigninState extends State<Signin> {
                             : HeightSize * 0.32,
                       ),
                       Expanded(
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: Color(0xffbd7344),
-                            borderRadius: BorderRadius.only(
-                              topRight: signin
-                                  ? Radius.circular(60)
-                                  : Radius.circular(0),
-                              topLeft: signin
-                                  ? Radius.circular(0)
-                                  : Radius.circular(60),
-                              //  bottomLeft: Radius.circular(100),
-                            ),
-                          ),
-                          child: Column(
-                            children: [
-                              Container(
-                                height: HeightSize * 0.11,
-                                padding: EdgeInsets.symmetric(
-                                    vertical: HeightSize * 0.02,
-                                    horizontal: WidthSize * 0.07),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceAround,
-                                  children: [
-                                    InkWell(
-                                      onTap: () {
-                                        setState(() {
-                                          signin = !signin;
-                                        });
-                                      },
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Text(
-                                            "تسجيل الدخول",
-                                            style: TextStyle(
-                                              fontSize: WidthSize * (30 / 540),
-                                              fontWeight: FontWeight.bold,
-                                              color: Colors.white,
-                                            ),
-                                          ),
-                                          AnimatedContainer(
-                                            duration:
-                                                Duration(milliseconds: 300),
-                                            width: WidthSize * 0.2,
-                                            height: HeightSize * 0.005,
-                                            color: !signin
-                                                ? Color(0xffbd7344)
-                                                : Color(0xff582e44),
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                    InkWell(
-                                      onTap: () {
-                                        setState(() {
-                                          signin = !signin;
-                                        });
-                                      },
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Text(
-                                            "فتح حساب",
-                                            style: TextStyle(
-                                              fontSize: WidthSize * (30 / 540),
-                                              fontWeight: FontWeight.bold,
-                                              color: Colors.white,
-                                            ),
-                                          ),
-                                          AnimatedContainer(
-                                            duration:
-                                                Duration(milliseconds: 300),
-                                            width: WidthSize * 0.2,
-                                            height: HeightSize * 0.005,
-                                            color: signin
-                                                ? Color(0xffbd7344)
-                                                : Color(0xff582e44),
-                                          )
-                                        ],
-                                      ),
-                                    )
-                                  ],
+                        child: Stack(
+                          children: [
+
+                            Container(
+                              decoration: BoxDecoration(
+
+                                  gradient: LinearGradient(
+                                    begin: Alignment.topCenter,
+                                    end: Alignment.bottomCenter,
+                                    colors: [
+                                      Color(0xffFAC358).withOpacity(0.7),
+                                      Color(0xff3FB876).withOpacity(0.7),
+
+                                    ],
+                                  ) ,
+                                borderRadius: BorderRadius.only(
+                                  topRight: signin
+                                      ? Radius.circular(60)
+                                      : Radius.circular(0),
+                                  topLeft: signin
+                                      ? Radius.circular(0)
+                                      : Radius.circular(60),
+                                  //  bottomLeft: Radius.circular(100),
                                 ),
                               ),
-                              Expanded(
-                                child: signin
-                                    ? Form(
-                                        key: _formKey,
-                                        child: Container(
-                                          child: Container(
-                                            child: Column(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.spaceEvenly,
-                                              children: [
-                                                Container(
-                                                  height: HeightSize * 0.09,
-                                                  child: TextFormField(
-                                                    textDirection:
-                                                        TextDirection.rtl,
-                                                    textAlign: TextAlign.right,
-                                                    controller:
-                                                        _emailController,
-                                                    validator: (value) {
-                                                      if (value == null ||
-                                                          !value
-                                                              .contains('@') ||
-                                                          !value
-                                                              .contains('.')) {
-                                                        return 'Invalid Email';
-                                                      }
-                                                      return null;
-                                                    },
-                                                    onSaved: (value) {
-                                                      //  _authData['email'] = value!;
-                                                    },
-                                                    keyboardType: TextInputType
-                                                        .emailAddress,
-                                                    cursorColor:
-                                                        Color(0xff582e44),
-                                                    decoration: InputDecoration(
-                                                      errorStyle: TextStyle(
-                                                        color: Colors.white,
-                                                        fontWeight:
-                                                            FontWeight.w400,
-                                                      ),
-                                                      errorBorder:
-                                                          OutlineInputBorder(
-                                                              borderSide:
-                                                                  const BorderSide(
-                                                                color: Colors
-                                                                    .white,
-                                                              ),
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          20.0)),
+                              child: Stack(
+                                children: [
+                                  Align(
+                                    alignment: Alignment.bottomCenter,
+                                    child: Container(height: HeightSize*0.3, decoration: BoxDecoration(   image: DecorationImage(
+                                      fit: BoxFit.cover,
+                                      opacity: 0.5,
+                                      image: AssetImage("assets/hilel2.png" , ),
+                                    )),),
+                                  ) ,
+                                  Column(
+                                    children: [
+                                      Container(
+                                        height: HeightSize * 0.11,
+                                        padding: EdgeInsets.symmetric(
+                                            vertical: HeightSize * 0.02,
+                                            horizontal: WidthSize * 0.07),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceAround,
+                                          children: [
+                                            InkWell(
+                                              onTap: () {
+                                                setState(() {
+                                                  signin = !signin;
+                                                });
+                                              },
+                                              child: Column(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.spaceBetween,
+                                                children: [
+                                                  Text(
+                                                    "تسجيل الدخول",
+                                                    style: TextStyle(
+                                                        fontFamily: 'Hacen' ,
 
-                                                      hoverColor: Colors.black,
-                                                      focusColor:
-                                                          Color(0xff582e44),
-                                                      focusedBorder:
-                                                          OutlineInputBorder(
-                                                              borderSide:
-                                                                  const BorderSide(
-                                                                color: Color(
-                                                                    0xff582e44),
-                                                              ),
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          20.0)),
-                                                      fillColor: Colors.white,
-                                                      filled: true,
-                                                      //          contentPadding: const EdgeInsets.fromLTRB(20, 8, 20, 8),
-                                                      hintText:
-                                                          'البريد الالكتروني',
-                                                      border: OutlineInputBorder(
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      20.0)),
-                                                      suffixIcon: const Icon(
-                                                        Icons.email,
-                                                        color: Colors.black,
-                                                      ),
+                                                      fontSize: WidthSize * (30 / 540),
+                                                      fontWeight: FontWeight.bold,
+                                                      color: Colors.white,
                                                     ),
                                                   ),
-                                                ),
-                                                SizedBox(
-                                                    height: HeightSize * 0.005),
-                                                SizedBox(
-                                                  height: HeightSize * 0.09,
-                                                  child: TextFormField(
-                                                    textDirection:
-                                                        TextDirection.rtl,
-                                                    textAlign: TextAlign.right,
-                                                    controller:
-                                                        _passwordController,
-                                                    validator: (value) {
-                                                      if (value == null ||
-                                                          value.length < 5) {
-                                                        return 'Invalid Password';
-                                                      }
-                                                      return null;
-                                                    },
-                                                    onSaved: (value) {
-                                                      //  _authData['password'] = value!;
-                                                    },
-                                                    keyboardType: TextInputType
-                                                        .visiblePassword,
-                                                    obscureText:
-                                                        _passwordVisible,
-                                                    cursorColor:
-                                                        Color(0xff582e44),
-                                                    decoration: InputDecoration(
-                                                      errorStyle: TextStyle(
-                                                        color: Colors.white,
-                                                        fontWeight:
-                                                            FontWeight.w400,
-                                                      ),
-                                                      errorBorder:
-                                                          OutlineInputBorder(
-                                                              borderSide:
-                                                                  const BorderSide(
-                                                                color: Colors
-                                                                    .white,
-                                                              ),
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          20.0)),
-                                                      hoverColor: Colors.black,
-                                                      focusColor:
-                                                          Color(0xff582e44),
-                                                      focusedBorder:
-                                                          OutlineInputBorder(
-                                                              borderSide:
-                                                                  const BorderSide(
-                                                                color: Color(
-                                                                    0xff582e44),
-                                                              ),
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          20.0)),
-
-                                                      fillColor: Colors.white,
-                                                      filled: true,
-
-                                                      //     contentPadding: const EdgeInsets.fromLTRB(10, 8, 10, 8),
-
-                                                      hintText: 'كلمة السر',
-                                                      border: OutlineInputBorder(
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      20.0)),
-                                                      suffixIcon: const Icon(
-                                                        Icons.password,
-                                                        color: Colors.black,
-                                                      ),
-                                                      prefixIcon: IconButton(
-                                                        icon: Icon(
-                                                          // Based on passwordVisible state choose the icon
-                                                          _passwordVisible
-                                                              ? Icons.visibility
-                                                              : Icons
-                                                                  .visibility_off,
-                                                          color: Colors.black,
-                                                        ),
-                                                        onPressed: () {
-                                                          // Update the state i.e. toogle the state of passwordVisible variable
-                                                          setState(() {
-                                                            _passwordVisible =
-                                                                !_passwordVisible;
-                                                          });
-                                                        },
-                                                      ),
-
-                                                      // icon:
-                                                    ),
-                                                  ),
-                                                ),
-                                                Container(
-                                                  child: Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    children: [
-                                                      SizedBox(
-                                                          child:
-                                                              GestureDetector(
-                                                        onTap: () {
-                                                          Navigator.push(
-                                                            context,
-                                                            MaterialPageRoute(
-                                                                builder:
-                                                                    (context) =>
-                                                                        forgot()),
-                                                          );
-                                                        },
-                                                        child: Text(
-                                                          "نسيت كلمة السر",
-                                                          style: TextStyle(
-                                                            fontSize:
-                                                                WidthSize *
-                                                                    0.032,
-                                                            color: Colors.white,
-                                                            fontWeight:
-                                                                FontWeight.bold,
-                                                            decoration:
-                                                                TextDecoration
-                                                                    .underline,
-                                                          ),
-                                                        ),
-                                                      )),
-                                                      Row(
-                                                        children: [
-                                                          Text(
-                                                            "البقاء متصلا",
-                                                            style: TextStyle(
-                                                              fontSize:
-                                                                  WidthSize *
-                                                                      0.032,
-                                                              color:
-                                                                  Colors.white,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold,
-                                                            ),
-                                                          ),
-                                                          Checkbox(
-                                                              checkColor: Color(
-                                                                  0xff582e44),
-                                                              // color of tick Mark
-                                                              activeColor:
-                                                                  Colors.white,
-                                                              value: isCheck,
-                                                              onChanged: (bool?
-                                                                  value) {
-                                                                setState(() {
-                                                                  isCheck =
-                                                                      value!;
-                                                                });
-                                                              }),
-                                                        ],
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                                SizedBox(
-                                                    height: HeightSize * 0.01),
-                                                _isLoading
-                                                    ? CircularProgressIndicator()
-                                                    : RaisedButton(
-                                                        onPressed: () async {
-                                                          if (_formKey
-                                                              .currentState!
-                                                              .validate()) {
-                                                            Fluttertoast.showToast(
-                                                                msg:
-                                                                    'جاري تسجيل الدخول');
-                                                            if (await sign(
-                                                                _emailController
-                                                                    .text,
-                                                                _passwordController
-                                                                    .text)) {
-                                                              if (nu) {
-                                                                // Navigator.pop(
-                                                                //     context);
-                                                                Navigator.pushReplacement(
-                                                                    context,
-                                                                    MaterialPageRoute(
-                                                                        builder:
-                                                                            (_) =>
-                                                                                accueil()));
-                                                              } else {
-                                                                // Navigator.pop(
-                                                                //     context);
-                                                                Navigator.pushReplacement(
-                                                                    context,
-                                                                    MaterialPageRoute(
-                                                                        builder:
-                                                                            (_) =>
-                                                                                accueil_resto()));
-                                                              }
-                                                            }
-                                                          }
-                                                        },
-                                                        textColor:
-                                                            Color(0xff582e44),
-                                                        padding:
-                                                            const EdgeInsets
-                                                                .all(0.0),
-                                                        shape: RoundedRectangleBorder(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        20.0)),
-                                                        child: Container(
-                                                          width:
-                                                              WidthSize * 0.9,
-                                                          height:
-                                                              HeightSize * 0.08,
-                                                          decoration: const BoxDecoration(
-                                                              color:
-                                                                  Colors.white,
-                                                              borderRadius: BorderRadius
-                                                                  .all(Radius
-                                                                      .circular(
-                                                                          20.0))),
-                                                          child: Center(
-                                                            child: Text(
-                                                              "تسجيل الدخول",
-                                                              style: TextStyle(
-                                                                fontSize:
-                                                                    WidthSize *
-                                                                        (25 /
-                                                                            540),
-                                                                color: const Color(
-                                                                    0xff582e44),
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold,
-                                                              ),
-                                                              textAlign:
-                                                                  TextAlign
-                                                                      .center,
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                // SizedBox(
-                                                //     height: HeightSize * 0.005),
-                                                // RaisedButton(
-                                                //   onPressed: () async {
-                                                //     Fluttertoast.showToast(
-                                                //         msg:
-                                                //             'جاري تسجيل الدخول بجوجل');
-                                                //     await Provider.of<
-                                                //                 AuthService>(
-                                                //             context,
-                                                //             listen: false)
-                                                //         .googleLogIn()
-                                                //         .then((value) {
-                                                //       Navigator.pop(context);
-                                                //       Navigator.pushReplacement(
-                                                //           context,
-                                                //           MaterialPageRoute(
-                                                //               builder: (_) =>
-                                                //                   accueil()));
-                                                //     });
-                                                //   },
-                                                //   textColor: Color(0xff582e44),
-                                                //   padding:
-                                                //       const EdgeInsets.all(0.0),
-                                                //   shape: RoundedRectangleBorder(
-                                                //       borderRadius:
-                                                //           BorderRadius.circular(
-                                                //               20.0)),
-                                                //   child: Container(
-                                                //     width: WidthSize * 0.9,
-                                                //     height: HeightSize * 0.08,
-                                                //     decoration: const BoxDecoration(
-                                                //         color: Colors.white,
-                                                //         borderRadius:
-                                                //             BorderRadius.all(
-                                                //                 Radius.circular(
-                                                //                     20.0))),
-                                                //     child: Row(
-                                                //       mainAxisAlignment:
-                                                //           MainAxisAlignment
-                                                //               .center,
-                                                //       children: [
-                                                //         const SizedBox(
-                                                //           height: 40,
-                                                //           width: 40,
-                                                //           child: Image(
-                                                //               image: AssetImage(
-                                                //                   'assets/google.png')),
-                                                //         ),
-                                                //         SizedBox(
-                                                //           width: 10,
-                                                //         ),
-                                                //         Text(
-                                                //           "تسجيل الدخول بإستعمال ",
-                                                //           style: TextStyle(
-                                                //             fontSize:
-                                                //                 WidthSize *
-                                                //                     (25 / 540),
-                                                //             color: Color(
-                                                //                 0xff582e44),
-                                                //             fontWeight:
-                                                //                 FontWeight.bold,
-                                                //           ),
-                                                //           textAlign:
-                                                //               TextAlign.center,
-                                                //         ),
-                                                //       ],
-                                                //     ),
-                                                //   ),
-                                                // ),
-                                              ],
+                                                  !signin ? Container() :       AnimatedContainer(
+                                                    duration:
+                                                        Duration(milliseconds: 300),
+                                                    width: WidthSize * 0.2,
+                                                    height: HeightSize * 0.005,
+                                                    color:  Color(0xff582e44),
+                                                  )
+                                                ],
+                                              ),
                                             ),
-                                          ),
-                                          padding: EdgeInsets.symmetric(
-                                              vertical: HeightSize * 0.08,
-                                              horizontal: WidthSize * 0.1),
+                                            InkWell(
+                                              onTap: () {
+                                                setState(() {
+                                                  signin = !signin;
+                                                });
+                                              },
+                                              child: Column(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.spaceBetween,
+                                                children: [
+                                                  Text(
+                                                    "فتح حساب",
+                                                    style: TextStyle(
+                                                        fontFamily: 'Hacen' ,
+
+                                                      fontSize: WidthSize * (30 / 540),
+                                                      fontWeight: FontWeight.bold,
+                                                      color: Colors.white,
+                                                    ),
+                                                  ),
+                                                  signin ? Container() :     AnimatedContainer(
+                                                    duration:
+                                                        Duration(milliseconds: 300),
+                                                    width: WidthSize * 0.2,
+                                                    height: HeightSize * 0.005,
+                                                    color:
+                                                         Color(0xff582e44),
+                                                  )
+                                                ],
+                                              ),
+                                            )
+                                          ],
                                         ),
-                                      )
-                                    : Form(
-                                        key: _formKeyUP,
-                                        child: Container(
-                                          padding: EdgeInsets.symmetric(
-                                              vertical:
-                                                  !Provider.of<AuthService>(
-                                                              context,
-                                                              listen: false)
-                                                          .isVisiteur
-                                                      ? HeightSize * 0.01
-                                                      : HeightSize * 0.05,
-                                              horizontal: WidthSize * 0.1),
-                                          child: Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceEvenly,
-                                            children: [
-                                              SizedBox(
-                                                height:
-                                                    !Provider.of<AuthService>(
-                                                                context,
-                                                                listen: false)
-                                                            .isVisiteur
-                                                        ? HeightSize * 0.07
-                                                        : HeightSize * 0.09,
-                                                child: TextFormField(
-                                                  textDirection:
-                                                      TextDirection.rtl,
-                                                  textAlign: TextAlign.right,
-                                                  controller: _nomController,
-                                                  validator: (value) {
-                                                    if (value == null ||
-                                                        value.length < 3) {
-                                                      return 'Invalid name';
-                                                    }
-                                                    return null;
-                                                  },
-                                                  onSaved: (value) {
-                                                    //  _authData['email'] = value!;
-                                                  },
-                                                  keyboardType:
-                                                      TextInputType.name,
-                                                  cursorColor:
-                                                      Color(0xff582e44),
-                                                  decoration: InputDecoration(
-                                                    contentPadding:
-                                                        EdgeInsets.fromLTRB(
-                                                            0,
-                                                            !Provider.of<AuthService>(
-                                                                        context,
-                                                                        listen:
-                                                                            false)
-                                                                    .isVisiteur
-                                                                ? HeightSize *
-                                                                    (15 / 912)
-                                                                : 0,
-                                                            0,
-                                                            0),
-                                                    errorStyle: TextStyle(
-                                                      color: Colors.white,
-                                                      fontWeight:
-                                                          FontWeight.w400,
-                                                    ),
-                                                    errorBorder:
-                                                        OutlineInputBorder(
-                                                            borderSide:
-                                                                const BorderSide(
-                                                              color:
-                                                                  Colors.white,
-                                                            ),
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        20.0)),
-                                                    hoverColor: Colors.black,
-                                                    focusColor:
-                                                        Color(0xff582e44),
-                                                    focusedBorder:
-                                                        OutlineInputBorder(
-                                                            borderSide:
-                                                                const BorderSide(
-                                                              color: Color(
-                                                                  0xff582e44),
-                                                            ),
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        20.0)),
-                                                    fillColor: Colors.white,
-                                                    filled: true,
-                                                    //          contentPadding: const EdgeInsets.fromLTRB(20, 8, 20, 8),
-                                                    hintText: 'الاسم',
-                                                    border: OutlineInputBorder(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(
-                                                                    20.0)),
-                                                    suffixIcon: const Icon(
-                                                      Icons.person,
-                                                      color: Colors.black,
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
-                                              SizedBox(
-                                                height:
-                                                    !Provider.of<AuthService>(
-                                                                context,
-                                                                listen: false)
-                                                            .isVisiteur
-                                                        ? HeightSize * 0.07
-                                                        : HeightSize * 0.09,
-                                                child: TextFormField(
-                                                  textDirection:
-                                                      TextDirection.rtl,
-                                                  textAlign: TextAlign.right,
-                                                  controller:
-                                                      _email_upController,
-                                                  validator: (value) {
-                                                    if (value == null ||
-                                                        !value.contains('@') ||
-                                                        !value.contains('.')) {
-                                                      return 'Invalid Email';
-                                                    }
-                                                    return null;
-                                                  },
-                                                  onSaved: (value) {
-                                                    //  _authData['email'] = value!;
-                                                  },
-                                                  keyboardType: TextInputType
-                                                      .emailAddress,
-                                                  cursorColor:
-                                                      Color(0xff582e44),
-                                                  decoration: InputDecoration(
-                                                    contentPadding:
-                                                        EdgeInsets.fromLTRB(
-                                                            0,
-                                                            !Provider.of<AuthService>(
-                                                                        context,
-                                                                        listen:
-                                                                            false)
-                                                                    .isVisiteur
-                                                                ? HeightSize *
-                                                                    (15 / 912)
-                                                                : 0,
-                                                            0,
-                                                            0),
-                                                    errorStyle: TextStyle(
-                                                      color: Colors.white,
-                                                      fontWeight:
-                                                          FontWeight.w400,
-                                                    ),
-                                                    errorBorder:
-                                                        OutlineInputBorder(
-                                                            borderSide:
-                                                                const BorderSide(
-                                                              color:
-                                                                  Colors.white,
-                                                            ),
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        20.0)),
-                                                    hoverColor: Colors.black,
-                                                    focusColor:
-                                                        Color(0xff582e44),
-                                                    focusedBorder:
-                                                        OutlineInputBorder(
-                                                            borderSide:
-                                                                const BorderSide(
-                                                              color: Color(
-                                                                  0xff582e44),
-                                                            ),
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        20.0)),
-                                                    fillColor: Colors.white,
-                                                    filled: true,
-                                                    //          contentPadding: const EdgeInsets.fromLTRB(20, 8, 20, 8),
-                                                    hintText:
-                                                        'البريد الالكتروني',
-                                                    border: OutlineInputBorder(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(
-                                                                    20.0)),
-                                                    suffixIcon: const Icon(
-                                                      Icons.email,
-                                                      color: Colors.black,
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
-                                              SizedBox(
-                                                height:
-                                                    !Provider.of<AuthService>(
-                                                                context,
-                                                                listen: false)
-                                                            .isVisiteur
-                                                        ? HeightSize * 0.07
-                                                        : HeightSize * 0.09,
-                                                child: TextFormField(
-                                                  textDirection:
-                                                      TextDirection.rtl,
-                                                  textAlign: TextAlign.right,
-                                                  controller: _numberController,
-                                                  validator: (value) {
-                                                    if (value == null ||
-                                                        value.length != 10) {
-                                                      return 'Invalid number';
-                                                    }
-                                                    return null;
-                                                  },
-                                                  onSaved: (value) {
-                                                    //  _authData['email'] = value!;
-                                                  },
-                                                  keyboardType:
-                                                      TextInputType.number,
-                                                  cursorColor:
-                                                      Color(0xff582e44),
-                                                  decoration: InputDecoration(
-                                                    contentPadding:
-                                                        EdgeInsets.fromLTRB(
-                                                            0,
-                                                            !Provider.of<AuthService>(
-                                                                        context,
-                                                                        listen:
-                                                                            false)
-                                                                    .isVisiteur
-                                                                ? HeightSize *
-                                                                    (15 / 912)
-                                                                : 0,
-                                                            0,
-                                                            0),
-                                                    errorStyle: TextStyle(
-                                                      color: Colors.white,
-                                                      fontWeight:
-                                                          FontWeight.w400,
-                                                    ),
-                                                    errorBorder:
-                                                        OutlineInputBorder(
-                                                            borderSide:
-                                                                const BorderSide(
-                                                              color:
-                                                                  Colors.white,
-                                                            ),
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        20.0)),
-                                                    hoverColor: Colors.black,
-                                                    focusColor:
-                                                        Color(0xff582e44),
-                                                    focusedBorder:
-                                                        OutlineInputBorder(
-                                                            borderSide:
-                                                                const BorderSide(
-                                                              color: Color(
-                                                                  0xff582e44),
-                                                            ),
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        20.0)),
-                                                    fillColor: Colors.white,
-                                                    filled: true,
-                                                    //          contentPadding: const EdgeInsets.fromLTRB(20, 8, 20, 8),
-                                                    hintText: 'رقم الهاتف',
-                                                    border: OutlineInputBorder(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(
-                                                                    20.0)),
-                                                    suffixIcon: const Icon(
-                                                      Icons.phone,
-                                                      color: Colors.black,
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
-                                              !Provider.of<AuthService>(context,
-                                                          listen: false)
-                                                      .isVisiteur
-                                                  ? SizedBox(
-                                                      height: !Provider.of<
-                                                                      AuthService>(
-                                                                  context,
-                                                                  listen: false)
-                                                              .isVisiteur
-                                                          ? HeightSize * 0.07
-                                                          : HeightSize * 0.09,
-                                                      child: TextFormField(
-                                                        textDirection:
-                                                            TextDirection.rtl,
-                                                        textAlign:
-                                                            TextAlign.right,
-                                                        controller:
-                                                            _boutiqueController,
-                                                        validator: (value) {
-                                                          if (value == null ||
-                                                              value.length <
-                                                                  2) {
-                                                            return 'Invalid boutique';
-                                                          }
-                                                          return null;
-                                                        },
-                                                        onSaved: (value) {
-                                                          //  _authData['email'] = value!;
-                                                        },
-                                                        keyboardType:
-                                                            TextInputType.name,
-                                                        cursorColor:
-                                                            Color(0xff582e44),
-                                                        decoration:
-                                                            InputDecoration(
-                                                          contentPadding: EdgeInsets.fromLTRB(
-                                                              0,
-                                                              !Provider.of<AuthService>(
-                                                                          context,
-                                                                          listen:
-                                                                              false)
-                                                                      .isVisiteur
-                                                                  ? HeightSize *
-                                                                      (15 / 912)
-                                                                  : 0,
-                                                              0,
-                                                              0),
-                                                          errorStyle: TextStyle(
-                                                            color: Colors.white,
-                                                            fontWeight:
-                                                                FontWeight.w400,
-                                                          ),
-                                                          errorBorder:
-                                                              OutlineInputBorder(
-                                                                  borderSide:
-                                                                      const BorderSide(
-                                                                    color: Colors
-                                                                        .white,
-                                                                  ),
+                                      ),
+                                      Expanded(
+                                        child: signin
+                                            ? Form(
+                                                key: _formKey,
+                                                child: Container(
+                                                  child: Container(
+                                                    child: Column(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment.spaceEvenly,
+                                                      children: [
+                                                        Container(
+                                                          height: HeightSize * 0.09,
+                                                          child: TextFormField(
+                                                            textDirection:
+                                                                TextDirection.rtl,
+                                                            textAlign: TextAlign.right,
+                                                            controller:
+                                                                _emailController,
+                                                            validator: (value) {
+                                                              if (value == null ||
+                                                                  !value
+                                                                      .contains('@') ||
+                                                                  !value
+                                                                      .contains('.')) {
+                                                                return 'Invalid Email';
+                                                              }
+                                                              return null;
+                                                            },
+                                                            onSaved: (value) {
+                                                              //  _authData['email'] = value!;
+                                                            },
+                                                            keyboardType: TextInputType
+                                                                .emailAddress,
+                                                            cursorColor:
+                                                                Color(0xff582e44),
+                                                            decoration: InputDecoration(
+                                                              errorStyle: TextStyle(
+                                                                color: Colors.white,
+                                                                fontWeight:
+                                                                    FontWeight.w400,
+                                                              ),
+                                                              errorBorder:
+                                                                  OutlineInputBorder(
+                                                                      borderSide:
+                                                                          const BorderSide(
+                                                                        color: Colors
+                                                                            .white,
+                                                                      ),
+                                                                      borderRadius:
+                                                                          BorderRadius
+                                                                              .circular(
+                                                                                  20.0)),
+
+                                                              hoverColor: Colors.black,
+                                                              focusColor:
+                                                                  Color(0xff582e44),
+                                                              focusedBorder:
+                                                                  OutlineInputBorder(
+                                                                      borderSide:
+                                                                          const BorderSide(
+                                                                        color: Color(
+                                                                            0xff582e44),
+                                                                      ),
+                                                                      borderRadius:
+                                                                          BorderRadius
+                                                                              .circular(
+                                                                                  20.0)),
+                                                              fillColor: Colors.white,
+                                                              filled: true,
+                                                              //          contentPadding: const EdgeInsets.fromLTRB(20, 8, 20, 8),
+                                                              hintText:
+                                                                  'البريد الالكتروني',
+                                                              border: OutlineInputBorder(
                                                                   borderRadius:
                                                                       BorderRadius
                                                                           .circular(
                                                                               20.0)),
-                                                          hoverColor:
-                                                              Colors.black,
-                                                          focusColor:
-                                                              Color(0xff582e44),
-                                                          focusedBorder:
-                                                              OutlineInputBorder(
-                                                                  borderSide:
-                                                                      const BorderSide(
-                                                                    color: Color(
-                                                                        0xff582e44),
-                                                                  ),
-                                                                  borderRadius:
-                                                                      BorderRadius
-                                                                          .circular(
-                                                                              20.0)),
-                                                          fillColor:
-                                                              Colors.white,
-                                                          filled: true,
-                                                          //          contentPadding: const EdgeInsets.fromLTRB(20, 8, 20, 8),
-                                                          hintText:
-                                                              'اسم المطعم',
-                                                          border: OutlineInputBorder(
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          20.0)),
-                                                          suffixIcon:
-                                                              const Icon(
-                                                            Icons
-                                                                .storefront_outlined,
-                                                            color: Colors.black,
+                                                              suffixIcon: const Icon(
+                                                                Icons.email,
+                                                                color: Color(0xffB1B0B0),
+                                                              ),
+                                                            ),
                                                           ),
                                                         ),
-                                                      ),
-                                                    )
-                                                  : Container(),
-                                              (!Provider.of<AuthService>(
-                                                              context,
-                                                              listen: false)
-                                                          .isVisiteur &&
-                                                      !signin)
-                                                  ? Container(
-                                                      margin: EdgeInsets.only(
-                                                          bottom: sizee.height *
-                                                              0.005),
-                                                      //         height: sizee.height * 0.07,
-                                                      width: sizee.width * 0.95,
-                                                      height:
-                                                          sizee.height * 0.07,
-
-                                                      child: Row(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .spaceBetween,
-                                                        children: [
-                                                          Container(
-                                                            width: sizee.width *
-                                                                (210 / 540),
-                                                            height:
-                                                                sizee.height *
-                                                                    (65 / 912),
-                                                            child:
-                                                                TypeAheadField(
-                                                              direction:
-                                                                  AxisDirection
-                                                                      .up,
-                                                              textFieldConfiguration:
-                                                                  TextFieldConfiguration(
-                                                                textDirection:
-                                                                    TextDirection
-                                                                        .rtl,
-                                                                textAlign:
-                                                                    TextAlign
-                                                                        .right,
-                                                                cursorColor:
-                                                                    Colors
-                                                                        .black,
-                                                                controller:
-                                                                    CommuneTEC,
-                                                                decoration:
-                                                                    InputDecoration(
-                                                                  floatingLabelStyle:
-                                                                      const TextStyle(
-                                                                    color: Colors
-                                                                        .black,
-                                                                  ),
-                                                                  hoverColor:
-                                                                      Colors
-                                                                          .black,
-                                                                  focusColor:
-                                                                      Colors
-                                                                          .black,
-                                                                  focusedBorder:
-                                                                      OutlineInputBorder(
-                                                                          borderSide:
-                                                                              BorderSide(
-                                                                            color:
-                                                                                Colors.black,
-                                                                          ),
-                                                                          borderRadius:
-                                                                              BorderRadius.circular(20.0)),
-                                                                  fillColor:
-                                                                      Colors
-                                                                          .white,
-                                                                  filled: true,
-                                                                  labelText:
-                                                                      'البلدية',
-                                                                  border: OutlineInputBorder(
+                                                        SizedBox(
+                                                            height: HeightSize * 0.005),
+                                                        SizedBox(
+                                                          height: HeightSize * 0.09,
+                                                          child: TextFormField(
+                                                            textDirection:
+                                                                TextDirection.rtl,
+                                                            textAlign: TextAlign.right,
+                                                            controller:
+                                                                _passwordController,
+                                                            validator: (value) {
+                                                              if (value == null ||
+                                                                  value.length < 5) {
+                                                                return 'Invalid Password';
+                                                              }
+                                                              return null;
+                                                            },
+                                                            onSaved: (value) {
+                                                              //  _authData['password'] = value!;
+                                                            },
+                                                            keyboardType: TextInputType
+                                                                .visiblePassword,
+                                                            obscureText:
+                                                                _passwordVisible,
+                                                            cursorColor:
+                                                                Color(0xff582e44),
+                                                            decoration: InputDecoration(
+                                                              errorStyle: TextStyle(
+                                                                color: Colors.white,
+                                                                fontWeight:
+                                                                    FontWeight.w400,
+                                                              ),
+                                                              errorBorder:
+                                                                  OutlineInputBorder(
+                                                                      borderSide:
+                                                                          const BorderSide(
+                                                                        color: Colors
+                                                                            .white,
+                                                                      ),
                                                                       borderRadius:
-                                                                          BorderRadius.circular(
+                                                                          BorderRadius
+                                                                              .circular(
+                                                                                  20.0)),
+                                                              hoverColor: Colors.black,
+                                                              focusColor:
+                                                                  Color(0xff582e44),
+                                                              focusedBorder:
+                                                                  OutlineInputBorder(
+                                                                      borderSide:
+                                                                          const BorderSide(
+                                                                        color: Color(
+                                                                            0xff582e44),
+                                                                      ),
+                                                                      borderRadius:
+                                                                          BorderRadius
+                                                                              .circular(
+                                                                                  20.0)),
+
+                                                              fillColor: Colors.white,
+                                                              filled: true,
+
+                                                              //     contentPadding: const EdgeInsets.fromLTRB(10, 8, 10, 8),
+
+                                                              hintText: 'كلمة السر',
+                                                              border: OutlineInputBorder(
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
                                                                               20.0)),
+                                                              suffixIcon: const Icon(
+                                                                Icons.password,
+                                                                color: Color(0xffB1B0B0),
+                                                              ),
+                                                              prefixIcon: IconButton(
+                                                                icon: Icon(
+                                                                  // Based on passwordVisible state choose the icon
+                                                                  _passwordVisible
+                                                                      ? Icons.visibility
+                                                                      : Icons
+                                                                          .visibility_off,
+                                                                  color: Color(0xffB1B0B0),
+                                                                ),
+                                                                onPressed: () {
+                                                                  // Update the state i.e. toogle the state of passwordVisible variable
+                                                                  setState(() {
+                                                                    _passwordVisible =
+                                                                        !_passwordVisible;
+                                                                  });
+                                                                },
+                                                              ),
+
+                                                              // icon:
+                                                            ),
+                                                          ),
+                                                        ),
+                                                        Container(
+                                                          child: Row(
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .spaceBetween,
+                                                            children: [
+                                                              SizedBox(
+                                                                  child:
+                                                                      GestureDetector(
+                                                                onTap: () {
+                                                                  Navigator.push(
+                                                                    context,
+                                                                    MaterialPageRoute(
+                                                                        builder:
+                                                                            (context) =>
+                                                                                forgot()),
+                                                                  );
+                                                                },
+                                                                child: Text(
+                                                                  "نسيت كلمة السر",
+                                                                  style: TextStyle(
+                                                                      fontFamily: 'Hacen' ,
+
+                                                                    fontSize:
+                                                                        WidthSize *
+                                                                            0.032,
+                                                                    color: Colors.white,
+                                                                    fontWeight:
+                                                                        FontWeight.bold,
+                                                                    decoration:
+                                                                        TextDecoration
+                                                                            .underline,
+                                                                  ),
+                                                                ),
+                                                              )),
+                                                              Row(
+                                                                children: [
+                                                                  Text(
+                                                                    "البقاء متصلا",
+                                                                    style: TextStyle(
+                                                                        fontFamily: 'Hacen' ,
+
+                                                                      fontSize:
+                                                                          WidthSize *
+                                                                              0.032,
+                                                                      color:
+                                                                          Colors.white,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .bold,
+                                                                    ),
+                                                                  ),
+                                                                  Checkbox(
+                                                                      checkColor: Color(
+                                                                          0xff582e44),
+                                                                      // color of tick Mark
+                                                                      activeColor:
+                                                                          Colors.white,
+                                                                      value: isCheck,
+                                                                      onChanged: (bool?
+                                                                          value) {
+                                                                        setState(() {
+                                                                          isCheck =
+                                                                              value!;
+                                                                        });
+                                                                      }),
+                                                                ],
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        ),
+                                                        SizedBox(
+                                                            height: HeightSize * 0.01),
+                                                        _isLoading
+                                                            ? CircularProgressIndicator()
+                                                            : RaisedButton(
+                                                                onPressed: () async {
+                                                                  if (_formKey
+                                                                      .currentState!
+                                                                      .validate()) {
+                                                                    Fluttertoast.showToast(
+                                                                        msg:
+                                                                            'جاري تسجيل الدخول');
+                                                                    if (await sign(
+                                                                        _emailController
+                                                                            .text,
+                                                                        _passwordController
+                                                                            .text)) {
+                                                                      if (nu) {
+                                                                        // Navigator.pop(
+                                                                        //     context);
+                                                                        Navigator.pushReplacement(
+                                                                            context,
+                                                                            MaterialPageRoute(
+                                                                                builder:
+                                                                                    (_) =>
+                                                                                        accueil()));
+                                                                      } else {
+                                                                        // Navigator.pop(
+                                                                        //     context);
+                                                                        Navigator.pushReplacement(
+                                                                            context,
+                                                                            MaterialPageRoute(
+                                                                                builder:
+                                                                                    (_) =>
+                                                                                        accueil_resto()));
+                                                                      }
+                                                                    }
+                                                                  }
+                                                                },
+                                                                textColor:
+                                                                    Color(0xff582e44),
+                                                                padding:
+                                                                    const EdgeInsets
+                                                                        .all(0.0),
+                                                                shape: RoundedRectangleBorder(
+                                                                    borderRadius:
+                                                                        BorderRadius
+                                                                            .circular(
+                                                                                5.0)),
+                                                                child: Container(
+                                                                  width:
+                                                                      WidthSize * 0.9,
+                                                                  height:
+                                                                      HeightSize * 0.08,
+                                                                  decoration: const BoxDecoration(
+                                                                      color:
+                                                                          Colors.white,
+                                                                      borderRadius: BorderRadius
+                                                                          .all(Radius
+                                                                              .circular(
+                                                                                  5.0))),
+                                                                  child: Center(
+                                                                    child: Text(
+                                                                      "تسجيل الدخول",
+                                                                      style: TextStyle(
+                                                                          fontFamily: 'Hacen' ,
+
+                                                                        fontSize:
+                                                                            WidthSize *
+                                                                                (25 /
+                                                                                    540),
+                                                                        color: const Color(
+                                                                            0xff582e44),
+                                                                        fontWeight:
+                                                                            FontWeight
+                                                                                .bold,
+                                                                      ),
+                                                                      textAlign:
+                                                                          TextAlign
+                                                                              .center,
+                                                                    ),
+                                                                  ),
                                                                 ),
                                                               ),
-                                                              suggestionsCallback:
-                                                                  (pattern) {
-                                                                if (pattern
-                                                                    .isEmpty) {
-                                                                  return [];
-                                                                }
-                                                                // The logic to find out which ones should appear
-                                                                return Provider.of<
-                                                                            DataDz>(
+                                                        // SizedBox(
+                                                        //     height: HeightSize * 0.005),
+                                                        // RaisedButton(
+                                                        //   onPressed: () async {
+                                                        //     Fluttertoast.showToast(
+                                                        //         msg:
+                                                        //             'جاري تسجيل الدخول بجوجل');
+                                                        //     await Provider.of<
+                                                        //                 AuthService>(
+                                                        //             context,
+                                                        //             listen: false)
+                                                        //         .googleLogIn()
+                                                        //         .then((value) {
+                                                        //       Navigator.pop(context);
+                                                        //       Navigator.pushReplacement(
+                                                        //           context,
+                                                        //           MaterialPageRoute(
+                                                        //               builder: (_) =>
+                                                        //                   accueil()));
+                                                        //     });
+                                                        //   },
+                                                        //   textColor: Color(0xff582e44),
+                                                        //   padding:
+                                                        //       const EdgeInsets.all(0.0),
+                                                        //   shape: RoundedRectangleBorder(
+                                                        //       borderRadius:
+                                                        //           BorderRadius.circular(
+                                                        //               20.0)),
+                                                        //   child: Container(
+                                                        //     width: WidthSize * 0.9,
+                                                        //     height: HeightSize * 0.08,
+                                                        //     decoration: const BoxDecoration(
+                                                        //         color: Colors.white,
+                                                        //         borderRadius:
+                                                        //             BorderRadius.all(
+                                                        //                 Radius.circular(
+                                                        //                     20.0))),
+                                                        //     child: Row(
+                                                        //       mainAxisAlignment:
+                                                        //           MainAxisAlignment
+                                                        //               .center,
+                                                        //       children: [
+                                                        //         const SizedBox(
+                                                        //           height: 40,
+                                                        //           width: 40,
+                                                        //           child: Image(
+                                                        //               image: AssetImage(
+                                                        //                   'assets/google.png')),
+                                                        //         ),
+                                                        //         SizedBox(
+                                                        //           width: 10,
+                                                        //         ),
+                                                        //         Text(
+                                                        //           "تسجيل الدخول بإستعمال ",
+                                                        //           style: TextStyle(
+                                                        //             fontSize:
+                                                        //                 WidthSize *
+                                                        //                     (25 / 540),
+                                                        //             color: Color(
+                                                        //                 0xff582e44),
+                                                        //             fontWeight:
+                                                        //                 FontWeight.bold,
+                                                        //           ),
+                                                        //           textAlign:
+                                                        //               TextAlign.center,
+                                                        //         ),
+                                                        //       ],
+                                                        //     ),
+                                                        //   ),
+                                                        // ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                  padding: EdgeInsets.symmetric(
+                                                      vertical: HeightSize * 0.08,
+                                                      horizontal: WidthSize * 0.1),
+                                                ),
+                                              )
+                                            : Form(
+                                                key: _formKeyUP,
+                                                child: Container(
+                                                  padding: EdgeInsets.symmetric(
+                                                      vertical:
+                                                          !Provider.of<AuthService>(
+                                                                      context,
+                                                                      listen: false)
+                                                                  .isVisiteur
+                                                              ? HeightSize * 0.01
+                                                              : HeightSize * 0.05,
+                                                      horizontal: WidthSize * 0.1),
+                                                  child: Column(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment.spaceEvenly,
+                                                    children: [
+                                                      SizedBox(
+                                                        height:
+                                                            !Provider.of<AuthService>(
                                                                         context,
-                                                                        listen:
-                                                                            false)
-                                                                    .getCommuneByWilaya(
-                                                                        wilaya)
-                                                                    .where((suggestion) => suggestion
-                                                                        .toLowerCase()
-                                                                        .contains(
-                                                                            pattern.toString()));
-                                                              },
-                                                              itemBuilder:
-                                                                  (context,
-                                                                      suggestion) {
-                                                                return ListTile(
-                                                                  title: Text(
-                                                                      suggestion
-                                                                          .toString()),
-                                                                );
-                                                              },
-                                                              onSuggestionSelected:
-                                                                  (suggestion) {
-                                                                setState(() {
-                                                                  Commune =
-                                                                      suggestion
-                                                                          .toString();
-                                                                  CommuneTEC =
-                                                                      TextEditingController(
-                                                                          text:
-                                                                              Commune);
-                                                                });
-                                                              },
+                                                                        listen: false)
+                                                                    .isVisiteur
+                                                                ? HeightSize * 0.07
+                                                                : HeightSize * 0.09,
+                                                        child: TextFormField(
+                                                          textDirection:
+                                                              TextDirection.rtl,
+                                                          textAlign: TextAlign.right,
+                                                          controller: _nomController,
+                                                          validator: (value) {
+                                                            if (value == null ||
+                                                                value.length < 3) {
+                                                              return 'Invalid name';
+                                                            }
+                                                            return null;
+                                                          },
+                                                          onSaved: (value) {
+                                                            //  _authData['email'] = value!;
+                                                          },
+                                                          keyboardType:
+                                                              TextInputType.name,
+                                                          cursorColor:
+                                                              Color(0xff582e44),
+                                                          decoration: InputDecoration(
+                                                            contentPadding:
+                                                                EdgeInsets.fromLTRB(
+                                                                    0,
+                                                                    !Provider.of<AuthService>(
+                                                                                context,
+                                                                                listen:
+                                                                                    false)
+                                                                            .isVisiteur
+                                                                        ? HeightSize *
+                                                                            (15 / 912)
+                                                                        : 0,
+                                                                    0,
+                                                                    0),
+                                                            errorStyle: TextStyle(
+                                                              color: Colors.white,
+                                                              fontWeight:
+                                                                  FontWeight.w400,
+                                                            ),
+                                                            errorBorder:
+                                                                OutlineInputBorder(
+                                                                    borderSide:
+                                                                        const BorderSide(
+                                                                      color:
+                                                                          Colors.white,
+                                                                    ),
+                                                                    borderRadius:
+                                                                        BorderRadius
+                                                                            .circular(
+                                                                                20.0)),
+                                                            hoverColor: Colors.black,
+                                                            focusColor:
+                                                                Color(0xff582e44),
+                                                            focusedBorder:
+                                                                OutlineInputBorder(
+                                                                    borderSide:
+                                                                        const BorderSide(
+                                                                      color: Color(
+                                                                          0xff582e44),
+                                                                    ),
+                                                                    borderRadius:
+                                                                        BorderRadius
+                                                                            .circular(
+                                                                                20.0)),
+                                                            fillColor: Colors.white,
+                                                            filled: true,
+                                                            //          contentPadding: const EdgeInsets.fromLTRB(20, 8, 20, 8),
+                                                            hintText: 'الاسم',
+                                                            border: OutlineInputBorder(
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            20.0)),
+                                                            suffixIcon: const Icon(
+                                                              Icons.person,
+                                                              color: Color(0xffB1B0B0),
                                                             ),
                                                           ),
-                                                          Container(
-                                                            width: sizee.width *
-                                                                (210 / 540),
-                                                            height:
-                                                                sizee.height *
-                                                                    (65 / 912),
-                                                            child:
-                                                                TypeAheadField(
-                                                              direction:
-                                                                  AxisDirection
-                                                                      .up,
-                                                              textFieldConfiguration:
-                                                                  TextFieldConfiguration(
+                                                        ),
+                                                      ),
+                                                      SizedBox(
+                                                        height:
+                                                            !Provider.of<AuthService>(
+                                                                        context,
+                                                                        listen: false)
+                                                                    .isVisiteur
+                                                                ? HeightSize * 0.07
+                                                                : HeightSize * 0.09,
+                                                        child: TextFormField(
+                                                          textDirection:
+                                                              TextDirection.rtl,
+                                                          textAlign: TextAlign.right,
+                                                          controller:
+                                                              _email_upController,
+                                                          validator: (value) {
+                                                            if (value == null ||
+                                                                !value.contains('@') ||
+                                                                !value.contains('.')) {
+                                                              return 'Invalid Email';
+                                                            }
+                                                            return null;
+                                                          },
+                                                          onSaved: (value) {
+                                                            //  _authData['email'] = value!;
+                                                          },
+                                                          keyboardType: TextInputType
+                                                              .emailAddress,
+                                                          cursorColor:
+                                                              Color(0xff582e44),
+                                                          decoration: InputDecoration(
+                                                            contentPadding:
+                                                                EdgeInsets.fromLTRB(
+                                                                    0,
+                                                                    !Provider.of<AuthService>(
+                                                                                context,
+                                                                                listen:
+                                                                                    false)
+                                                                            .isVisiteur
+                                                                        ? HeightSize *
+                                                                            (15 / 912)
+                                                                        : 0,
+                                                                    0,
+                                                                    0),
+                                                            errorStyle: TextStyle(
+                                                              color: Colors.white,
+                                                              fontWeight:
+                                                                  FontWeight.w400,
+                                                            ),
+                                                            errorBorder:
+                                                                OutlineInputBorder(
+                                                                    borderSide:
+                                                                        const BorderSide(
+                                                                      color:
+                                                                          Colors.white,
+                                                                    ),
+                                                                    borderRadius:
+                                                                        BorderRadius
+                                                                            .circular(
+                                                                                20.0)),
+                                                            hoverColor: Colors.black,
+                                                            focusColor:
+                                                                Color(0xff582e44),
+                                                            focusedBorder:
+                                                                OutlineInputBorder(
+                                                                    borderSide:
+                                                                        const BorderSide(
+                                                                      color: Color(
+                                                                          0xff582e44),
+                                                                    ),
+                                                                    borderRadius:
+                                                                        BorderRadius
+                                                                            .circular(
+                                                                                20.0)),
+                                                            fillColor: Colors.white,
+                                                            filled: true,
+                                                            //          contentPadding: const EdgeInsets.fromLTRB(20, 8, 20, 8),
+                                                            hintText:
+                                                                'البريد الالكتروني',
+                                                            border: OutlineInputBorder(
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            20.0)),
+                                                            suffixIcon: const Icon(
+                                                              Icons.email,
+                                                              color: Color(0xffB1B0B0),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      SizedBox(
+                                                        height:
+                                                            !Provider.of<AuthService>(
+                                                                        context,
+                                                                        listen: false)
+                                                                    .isVisiteur
+                                                                ? HeightSize * 0.07
+                                                                : HeightSize * 0.09,
+                                                        child: TextFormField(
+                                                          textDirection:
+                                                              TextDirection.rtl,
+                                                          textAlign: TextAlign.right,
+                                                          controller: _numberController,
+                                                          validator: (value) {
+                                                            if (value == null ||
+                                                                value.length != 10) {
+                                                              return 'Invalid number';
+                                                            }
+                                                            return null;
+                                                          },
+                                                          onSaved: (value) {
+                                                            //  _authData['email'] = value!;
+                                                          },
+                                                          keyboardType:
+                                                              TextInputType.number,
+                                                          cursorColor:
+                                                              Color(0xff582e44),
+                                                          decoration: InputDecoration(
+                                                            contentPadding:
+                                                                EdgeInsets.fromLTRB(
+                                                                    0,
+                                                                    !Provider.of<AuthService>(
+                                                                                context,
+                                                                                listen:
+                                                                                    false)
+                                                                            .isVisiteur
+                                                                        ? HeightSize *
+                                                                            (15 / 912)
+                                                                        : 0,
+                                                                    0,
+                                                                    0),
+                                                            errorStyle: TextStyle(
+                                                              color: Colors.white,
+                                                              fontWeight:
+                                                                  FontWeight.w400,
+                                                            ),
+                                                            errorBorder:
+                                                                OutlineInputBorder(
+                                                                    borderSide:
+                                                                        const BorderSide(
+                                                                      color:
+                                                                          Colors.white,
+                                                                    ),
+                                                                    borderRadius:
+                                                                        BorderRadius
+                                                                            .circular(
+                                                                                20.0)),
+                                                            hoverColor: Colors.black,
+                                                            focusColor:
+                                                                Color(0xff582e44),
+                                                            focusedBorder:
+                                                                OutlineInputBorder(
+                                                                    borderSide:
+                                                                        const BorderSide(
+                                                                      color: Color(
+                                                                          0xff582e44),
+                                                                    ),
+                                                                    borderRadius:
+                                                                        BorderRadius
+                                                                            .circular(
+                                                                                20.0)),
+                                                            fillColor: Colors.white,
+                                                            filled: true,
+                                                            //          contentPadding: const EdgeInsets.fromLTRB(20, 8, 20, 8),
+                                                            hintText: 'رقم الهاتف',
+                                                            border: OutlineInputBorder(
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            20.0)),
+                                                            suffixIcon: const Icon(
+                                                              Icons.phone,
+                                                              color: Color(0xffB1B0B0),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      !Provider.of<AuthService>(context,
+                                                                  listen: false)
+                                                              .isVisiteur
+                                                          ? SizedBox(
+                                                              height: !Provider.of<
+                                                                              AuthService>(
+                                                                          context,
+                                                                          listen: false)
+                                                                      .isVisiteur
+                                                                  ? HeightSize * 0.07
+                                                                  : HeightSize * 0.09,
+                                                              child: TextFormField(
                                                                 textDirection:
-                                                                    TextDirection
-                                                                        .rtl,
+                                                                    TextDirection.rtl,
                                                                 textAlign:
-                                                                    TextAlign
-                                                                        .right,
-                                                                cursorColor:
-                                                                    Colors
-                                                                        .black,
+                                                                    TextAlign.right,
                                                                 controller:
-                                                                    WilayaTEC,
+                                                                    _boutiqueController,
+                                                                validator: (value) {
+                                                                  if (value == null ||
+                                                                      value.length <
+                                                                          2) {
+                                                                    return 'Invalid boutique';
+                                                                  }
+                                                                  return null;
+                                                                },
+                                                                onSaved: (value) {
+                                                                  //  _authData['email'] = value!;
+                                                                },
+                                                                keyboardType:
+                                                                    TextInputType.name,
+                                                                cursorColor:
+                                                                    Color(0xff582e44),
                                                                 decoration:
                                                                     InputDecoration(
-                                                                  floatingLabelStyle:
-                                                                      const TextStyle(
-                                                                    color: Colors
-                                                                        .black,
+                                                                  contentPadding: EdgeInsets.fromLTRB(
+                                                                      0,
+                                                                      !Provider.of<AuthService>(
+                                                                                  context,
+                                                                                  listen:
+                                                                                      false)
+                                                                              .isVisiteur
+                                                                          ? HeightSize *
+                                                                              (15 / 912)
+                                                                          : 0,
+                                                                      0,
+                                                                      0),
+                                                                  errorStyle: TextStyle(
+                                                                    color: Colors.white,
+                                                                    fontWeight:
+                                                                        FontWeight.w400,
                                                                   ),
+                                                                  errorBorder:
+                                                                      OutlineInputBorder(
+                                                                          borderSide:
+                                                                              const BorderSide(
+                                                                            color: Colors
+                                                                                .white,
+                                                                          ),
+                                                                          borderRadius:
+                                                                              BorderRadius
+                                                                                  .circular(
+                                                                                      20.0)),
                                                                   hoverColor:
-                                                                      Colors
-                                                                          .black,
+                                                                      Colors.black,
                                                                   focusColor:
-                                                                      Colors
-                                                                          .black,
+                                                                      Color(0xff582e44),
                                                                   focusedBorder:
                                                                       OutlineInputBorder(
                                                                           borderSide:
                                                                               const BorderSide(
-                                                                            color:
-                                                                                Colors.black,
+                                                                            color: Color(
+                                                                                0xff582e44),
                                                                           ),
                                                                           borderRadius:
-                                                                              BorderRadius.circular(20.0)),
+                                                                              BorderRadius
+                                                                                  .circular(
+                                                                                      20.0)),
                                                                   fillColor:
-                                                                      Colors
-                                                                          .white,
+                                                                      Colors.white,
                                                                   filled: true,
-                                                                  labelText:
-                                                                      'الولاية',
+                                                                  //          contentPadding: const EdgeInsets.fromLTRB(20, 8, 20, 8),
+                                                                  hintText:
+                                                                      'اسم المطعم',
                                                                   border: OutlineInputBorder(
                                                                       borderRadius:
-                                                                          BorderRadius.circular(
-                                                                              20.0)),
+                                                                          BorderRadius
+                                                                              .circular(
+                                                                                  20.0)),
+                                                                  suffixIcon:
+                                                                      const Icon(
+                                                                    Icons
+                                                                        .storefront_outlined,
+                                                                        color: Color(0xffB1B0B0),
+                                                                  ),
                                                                 ),
                                                               ),
-                                                              suggestionsCallback:
-                                                                  (pattern) {
-                                                                if (pattern
-                                                                    .isEmpty) {
-                                                                  return [];
-                                                                }
-                                                                // The logic to find out which ones should appear
-                                                                return Provider.of<
-                                                                            DataDz>(
+                                                            )
+                                                          : Container(),
+                                                      (!Provider.of<AuthService>(
+                                                                      context,
+                                                                      listen: false)
+                                                                  .isVisiteur &&
+                                                              !signin)
+                                                          ? Container(
+                                                              margin: EdgeInsets.only(
+                                                                  bottom: sizee.height *
+                                                                      0.005),
+                                                              //         height: sizee.height * 0.07,
+                                                              width: sizee.width * 0.95,
+                                                              height:
+                                                                  sizee.height * 0.07,
+
+                                                              child: Row(
+                                                                mainAxisAlignment:
+                                                                    MainAxisAlignment
+                                                                        .spaceBetween,
+                                                                children: [
+                                                                  Container(
+                                                                    width: sizee.width *
+                                                                        (210 / 540),
+                                                                    height:
+                                                                        sizee.height *
+                                                                            (65 / 912),
+                                                                    child:
+                                                                        TypeAheadField(
+                                                                      direction:
+                                                                          AxisDirection
+                                                                              .up,
+                                                                      textFieldConfiguration:
+                                                                          TextFieldConfiguration(
+                                                                        textDirection:
+                                                                            TextDirection
+                                                                                .rtl,
+                                                                        textAlign:
+                                                                            TextAlign
+                                                                                .right,
+                                                                        cursorColor:
+                                                                            Colors
+                                                                                .black,
+                                                                        controller:
+                                                                            CommuneTEC,
+                                                                        decoration:
+                                                                            InputDecoration(
+                                                                          floatingLabelStyle:
+                                                                              const TextStyle(
+                                                                            color: Colors
+                                                                                .black,
+                                                                          ),
+                                                                          hoverColor:
+                                                                              Colors
+                                                                                  .black,
+                                                                          focusColor:
+                                                                              Colors
+                                                                                  .black,
+                                                                          focusedBorder:
+                                                                              OutlineInputBorder(
+                                                                                  borderSide:
+                                                                                      BorderSide(
+                                                                                    color:
+                                                                                        Colors.black,
+                                                                                  ),
+                                                                                  borderRadius:
+                                                                                      BorderRadius.circular(20.0)),
+                                                                          fillColor:
+                                                                              Colors
+                                                                                  .white,
+                                                                          filled: true,
+                                                                          labelText:
+                                                                              'البلدية',
+                                                                          border: OutlineInputBorder(
+                                                                              borderRadius:
+                                                                                  BorderRadius.circular(
+                                                                                      20.0)),
+                                                                        ),
+                                                                      ),
+                                                                      suggestionsCallback:
+                                                                          (pattern) {
+                                                                        if (pattern
+                                                                            .isEmpty) {
+                                                                          return [];
+                                                                        }
+                                                                        // The logic to find out which ones should appear
+                                                                        return Provider.of<
+                                                                                    DataDz>(
+                                                                                context,
+                                                                                listen:
+                                                                                    false)
+                                                                            .getCommuneByWilaya(
+                                                                                wilaya)
+                                                                            .where((suggestion) => suggestion
+                                                                                .toLowerCase()
+                                                                                .contains(
+                                                                                    pattern.toString()));
+                                                                      },
+                                                                      itemBuilder:
+                                                                          (context,
+                                                                              suggestion) {
+                                                                        return ListTile(
+                                                                          title: Text(
+
+                                                                              suggestion
+                                                                                  .toString() ,style: TextStyle(                                    fontFamily: 'Hacen' ,
+                                                                          ),),
+                                                                        );
+                                                                      },
+                                                                      onSuggestionSelected:
+                                                                          (suggestion) {
+                                                                        setState(() {
+                                                                          Commune =
+                                                                              suggestion
+                                                                                  .toString();
+                                                                          CommuneTEC =
+                                                                              TextEditingController(
+                                                                                  text:
+                                                                                      Commune);
+                                                                        });
+                                                                      },
+                                                                    ),
+                                                                  ),
+                                                                  Container(
+                                                                    width: sizee.width *
+                                                                        (210 / 540),
+                                                                    height:
+                                                                        sizee.height *
+                                                                            (65 / 912),
+                                                                    child:
+                                                                        TypeAheadField(
+                                                                      direction:
+                                                                          AxisDirection
+                                                                              .up,
+                                                                      textFieldConfiguration:
+                                                                          TextFieldConfiguration(
+                                                                        textDirection:
+                                                                            TextDirection
+                                                                                .rtl,
+                                                                        textAlign:
+                                                                            TextAlign
+                                                                                .right,
+                                                                        cursorColor:
+                                                                            Colors
+                                                                                .black,
+                                                                        controller:
+                                                                            WilayaTEC,
+                                                                        decoration:
+                                                                            InputDecoration(
+                                                                          floatingLabelStyle:
+                                                                              const TextStyle(
+                                                                            color: Colors
+                                                                                .black,
+                                                                          ),
+                                                                          hoverColor:
+                                                                              Colors
+                                                                                  .black,
+                                                                          focusColor:
+                                                                              Colors
+                                                                                  .black,
+                                                                          focusedBorder:
+                                                                              OutlineInputBorder(
+                                                                                  borderSide:
+                                                                                      const BorderSide(
+                                                                                    color:
+                                                                                        Colors.black,
+                                                                                  ),
+                                                                                  borderRadius:
+                                                                                      BorderRadius.circular(20.0)),
+                                                                          fillColor:
+                                                                              Colors
+                                                                                  .white,
+                                                                          filled: true,
+                                                                          labelText:
+                                                                              'الولاية',
+                                                                          border: OutlineInputBorder(
+                                                                              borderRadius:
+                                                                                  BorderRadius.circular(
+                                                                                      20.0)),
+                                                                        ),
+                                                                      ),
+                                                                      suggestionsCallback:
+                                                                          (pattern) {
+                                                                        if (pattern
+                                                                            .isEmpty) {
+                                                                          return [];
+                                                                        }
+                                                                        // The logic to find out which ones should appear
+                                                                        return Provider.of<
+                                                                                    DataDz>(
+                                                                                context,
+                                                                                listen:
+                                                                                    false)
+                                                                            .wilayaa
+                                                                            .where((suggestion) => suggestion
+                                                                                .toLowerCase()
+                                                                                .contains(
+                                                                                    pattern.toString()));
+                                                                      },
+                                                                      itemBuilder:
+                                                                          (context,
+                                                                              suggestion) {
+                                                                        return ListTile(
+                                                                          title: Text(
+                                                                              suggestion
+                                                                                  .toString(),style: TextStyle(  fontFamily: 'Hacen' ,
+
+                                                                          ),)    );
+                                                                      },
+                                                                      onSuggestionSelected:
+                                                                          (suggestion) {
+                                                                        setState(() {
+                                                                          wilaya =
+                                                                              suggestion
+                                                                                  .toString();
+                                                                          WilayaTEC =
+                                                                              TextEditingController(
+                                                                                  text:
+                                                                                      wilaya);
+                                                                        });
+                                                                      },
+                                                                    ),
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                            )
+                                                          : Container(),
+                                                      SizedBox(
+                                                        height:
+                                                            !Provider.of<AuthService>(
                                                                         context,
-                                                                        listen:
-                                                                            false)
-                                                                    .wilayaa
-                                                                    .where((suggestion) => suggestion
-                                                                        .toLowerCase()
-                                                                        .contains(
-                                                                            pattern.toString()));
-                                                              },
-                                                              itemBuilder:
-                                                                  (context,
-                                                                      suggestion) {
-                                                                return ListTile(
-                                                                  title: Text(
-                                                                      suggestion
-                                                                          .toString()),
-                                                                );
-                                                              },
-                                                              onSuggestionSelected:
-                                                                  (suggestion) {
+                                                                        listen: false)
+                                                                    .isVisiteur
+                                                                ? HeightSize * 0.07
+                                                                : HeightSize * 0.09,
+                                                        child: TextFormField(
+                                                          textDirection:
+                                                              TextDirection.rtl,
+                                                          textAlign: TextAlign.right,
+                                                          controller:
+                                                              _password_upController,
+                                                          validator: (value) {
+                                                            if (value == null ||
+                                                                value.length < 5) {
+                                                              return 'Invalid Password';
+                                                            }
+                                                            return null;
+                                                          },
+                                                          onSaved: (value) {
+                                                            //  _authData['password'] = value!;
+                                                          },
+                                                          keyboardType: TextInputType
+                                                              .visiblePassword,
+                                                          obscureText:
+                                                              _password_upVisible,
+                                                          cursorColor:
+                                                              Color(0xff582e44),
+                                                          decoration: InputDecoration(
+                                                            contentPadding:
+                                                                EdgeInsets.fromLTRB(
+                                                                    0,
+                                                                    !Provider.of<AuthService>(
+                                                                                context,
+                                                                                listen:
+                                                                                    false)
+                                                                            .isVisiteur
+                                                                        ? HeightSize *
+                                                                            (15 / 912)
+                                                                        : 0,
+                                                                    0,
+                                                                    0),
+                                                            hoverColor: Colors.black,
+                                                            errorStyle: TextStyle(
+                                                              color: Colors.white,
+                                                              fontWeight:
+                                                                  FontWeight.w400,
+                                                            ),
+                                                            errorBorder:
+                                                                OutlineInputBorder(
+                                                                    borderSide:
+                                                                        const BorderSide(
+                                                                      color:
+                                                                          Colors.white,
+                                                                    ),
+                                                                    borderRadius:
+                                                                        BorderRadius
+                                                                            .circular(
+                                                                                20.0)),
+                                                            focusColor:
+                                                                Color(0xff582e44),
+                                                            focusedBorder:
+                                                                OutlineInputBorder(
+                                                                    borderSide:
+                                                                        const BorderSide(
+                                                                      color: Color(
+                                                                          0xff582e44),
+                                                                    ),
+                                                                    borderRadius:
+                                                                        BorderRadius
+                                                                            .circular(
+                                                                                20.0)),
+
+                                                            fillColor: Colors.white,
+                                                            filled: true,
+
+                                                            //     contentPadding: const EdgeInsets.fromLTRB(10, 8, 10, 8),
+
+                                                            hintText: 'كلمة السر',
+                                                            border: OutlineInputBorder(
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            20.0)),
+                                                            suffixIcon: const Icon(
+                                                              Icons.password,
+                                                              color: Color(0xffB1B0B0),
+                                                            ),
+                                                            prefixIcon: IconButton(
+                                                              icon: Icon(
+                                                                // Based on passwordVisible state choose the icon
+                                                                _password_upVisible
+                                                                    ? Icons.visibility
+                                                                    : Icons
+                                                                        .visibility_off,
+                                                                color: Color(0xffB1B0B0),
+                                                              ),
+                                                              onPressed: () {
+                                                                // Update the state i.e. toogle the state of passwordVisible variable
                                                                 setState(() {
-                                                                  wilaya =
-                                                                      suggestion
-                                                                          .toString();
-                                                                  WilayaTEC =
-                                                                      TextEditingController(
-                                                                          text:
-                                                                              wilaya);
+                                                                  _password_upVisible =
+                                                                      !_password_upVisible;
                                                                 });
                                                               },
                                                             ),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    )
-                                                  : Container(),
-                                              SizedBox(
-                                                height:
-                                                    !Provider.of<AuthService>(
-                                                                context,
-                                                                listen: false)
-                                                            .isVisiteur
-                                                        ? HeightSize * 0.07
-                                                        : HeightSize * 0.09,
-                                                child: TextFormField(
-                                                  textDirection:
-                                                      TextDirection.rtl,
-                                                  textAlign: TextAlign.right,
-                                                  controller:
-                                                      _password_upController,
-                                                  validator: (value) {
-                                                    if (value == null ||
-                                                        value.length < 5) {
-                                                      return 'Invalid Password';
-                                                    }
-                                                    return null;
-                                                  },
-                                                  onSaved: (value) {
-                                                    //  _authData['password'] = value!;
-                                                  },
-                                                  keyboardType: TextInputType
-                                                      .visiblePassword,
-                                                  obscureText:
-                                                      _password_upVisible,
-                                                  cursorColor:
-                                                      Color(0xff582e44),
-                                                  decoration: InputDecoration(
-                                                    contentPadding:
-                                                        EdgeInsets.fromLTRB(
-                                                            0,
-                                                            !Provider.of<AuthService>(
-                                                                        context,
-                                                                        listen:
-                                                                            false)
-                                                                    .isVisiteur
-                                                                ? HeightSize *
-                                                                    (15 / 912)
-                                                                : 0,
-                                                            0,
-                                                            0),
-                                                    hoverColor: Colors.black,
-                                                    errorStyle: TextStyle(
-                                                      color: Colors.white,
-                                                      fontWeight:
-                                                          FontWeight.w400,
-                                                    ),
-                                                    errorBorder:
-                                                        OutlineInputBorder(
-                                                            borderSide:
-                                                                const BorderSide(
-                                                              color:
-                                                                  Colors.white,
-                                                            ),
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        20.0)),
-                                                    focusColor:
-                                                        Color(0xff582e44),
-                                                    focusedBorder:
-                                                        OutlineInputBorder(
-                                                            borderSide:
-                                                                const BorderSide(
-                                                              color: Color(
-                                                                  0xff582e44),
-                                                            ),
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        20.0)),
 
-                                                    fillColor: Colors.white,
-                                                    filled: true,
-
-                                                    //     contentPadding: const EdgeInsets.fromLTRB(10, 8, 10, 8),
-
-                                                    hintText: 'كلمة السر',
-                                                    border: OutlineInputBorder(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(
-                                                                    20.0)),
-                                                    suffixIcon: const Icon(
-                                                      Icons.password,
-                                                      color: Colors.black,
-                                                    ),
-                                                    prefixIcon: IconButton(
-                                                      icon: Icon(
-                                                        // Based on passwordVisible state choose the icon
-                                                        _password_upVisible
-                                                            ? Icons.visibility
-                                                            : Icons
-                                                                .visibility_off,
-                                                        color: Colors.black,
-                                                      ),
-                                                      onPressed: () {
-                                                        // Update the state i.e. toogle the state of passwordVisible variable
-                                                        setState(() {
-                                                          _password_upVisible =
-                                                              !_password_upVisible;
-                                                        });
-                                                      },
-                                                    ),
-
-                                                    // icon:
-                                                  ),
-                                                ),
-                                              ),
-                                              SizedBox(
-                                                height:
-                                                    !Provider.of<AuthService>(
-                                                                context,
-                                                                listen: false)
-                                                            .isVisiteur
-                                                        ? HeightSize * 0.015
-                                                        : HeightSize * 0.02,
-                                              ),
-                                              _isLoading
-                                                  ? const CircularProgressIndicator()
-                                                  : RaisedButton(
-                                                      onPressed: () async {
-                                                        if (_formKeyUP
-                                                            .currentState!
-                                                            .validate()) {
-                                                          Fluttertoast.showToast(
-                                                              msg:
-                                                                  'جاري إنشاء حسابك');
-                                                          if (await submit(
-                                                              _email_upController
-                                                                  .text,
-                                                              _password_upController
-                                                                  .text)) {
-                                                            if (nu) {
-                                                              // Navigator.pop(
-                                                              //     context);
-                                                              Navigator.pushReplacement(
-                                                                  context,
-                                                                  MaterialPageRoute(
-                                                                      builder:
-                                                                          (_) =>
-                                                                              accueil()));
-                                                              Fluttertoast
-                                                                  .showToast(
-                                                                      msg:
-                                                                          'مرحبا بك');
-                                                            } else {
-                                                              // Navigator.pop(
-                                                              //     context);
-                                                              Navigator.pushReplacement(
-                                                                  context,
-                                                                  MaterialPageRoute(
-                                                                      builder:
-                                                                          (_) =>
-                                                                              accueil_resto()));
-                                                              Fluttertoast
-                                                                  .showToast(
-                                                                      msg:
-                                                                          'مرحبا بك');
-                                                            }
-                                                          }
-                                                          //     .then(
-                                                          //         (value) async {
-                                                          //   await createNormalUser(
-                                                          //       _nomController
-                                                          //           .text,
-                                                          //       _email_upController
-                                                          //           .text,
-                                                          //       _numberController
-                                                          //           .text);
-                                                          // });
-                                                        }
-                                                      },
-                                                      textColor:
-                                                          Color(0xff582e44),
-                                                      padding:
-                                                          const EdgeInsets.all(
-                                                              0.0),
-                                                      shape:
-                                                          RoundedRectangleBorder(
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          20.0)),
-                                                      child: Container(
-                                                        width: WidthSize * 0.9,
-                                                        height: !Provider.of<
-                                                                        AuthService>(
-                                                                    context,
-                                                                    listen:
-                                                                        false)
-                                                                .isVisiteur
-                                                            ? HeightSize * 0.08
-                                                            : HeightSize * 0.08,
-                                                        decoration: const BoxDecoration(
-                                                            color: Colors.white,
-                                                            borderRadius:
-                                                                BorderRadius.all(
-                                                                    Radius.circular(
-                                                                        20.0))),
-                                                        child: Center(
-                                                          child: Text(
-                                                            "فتح حساب",
-                                                            style: TextStyle(
-                                                              fontSize:
-                                                                  WidthSize *
-                                                                      (25 /
-                                                                          540),
-                                                              color: Color(
-                                                                  0xff582e44),
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold,
-                                                            ),
-                                                            textAlign: TextAlign
-                                                                .center,
+                                                            // icon:
                                                           ),
                                                         ),
                                                       ),
-                                                    ),
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                              )
-                            ],
-                          ),
+                                                      SizedBox(
+                                                        height:
+                                                            !Provider.of<AuthService>(
+                                                                        context,
+                                                                        listen: false)
+                                                                    .isVisiteur
+                                                                ? HeightSize * 0.015
+                                                                : HeightSize * 0.02,
+                                                      ),
+                                                      _isLoading
+                                                          ? const CircularProgressIndicator()
+                                                          : RaisedButton(
+                                                              onPressed: () async {
+                                                                if (_formKeyUP
+                                                                    .currentState!
+                                                                    .validate()) {
+                                                                  Fluttertoast.showToast(
+                                                                      msg:
+                                                                          'جاري إنشاء حسابك');
+                                                                  if (await submit(
+                                                                      _email_upController
+                                                                          .text,
+                                                                      _password_upController
+                                                                          .text)) {
+                                                                    if (nu) {
+                                                                      // Navigator.pop(
+                                                                      //     context);
+                                                                      Navigator.pushReplacement(
+                                                                          context,
+                                                                          MaterialPageRoute(
+                                                                              builder:
+                                                                                  (_) =>
+                                                                                      accueil()));
+                                                                      Fluttertoast
+                                                                          .showToast(
+                                                                              msg:
+                                                                                  'مرحبا بك');
+                                                                    } else {
+                                                                      // Navigator.pop(
+                                                                      //     context);
+                                                                      Navigator.pushReplacement(
+                                                                          context,
+                                                                          MaterialPageRoute(
+                                                                              builder:
+                                                                                  (_) =>
+                                                                                      accueil_resto()));
+                                                                      Fluttertoast
+                                                                          .showToast(
+                                                                              msg:
+                                                                                  'مرحبا بك');
+                                                                    }
+                                                                  }
+                                                                  //     .then(
+                                                                  //         (value) async {
+                                                                  //   await createNormalUser(
+                                                                  //       _nomController
+                                                                  //           .text,
+                                                                  //       _email_upController
+                                                                  //           .text,
+                                                                  //       _numberController
+                                                                  //           .text);
+                                                                  // });
+                                                                }
+                                                              },
+                                                              textColor:
+                                                                  Color(0xff582e44),
+                                                              padding:
+                                                                  const EdgeInsets.all(
+                                                                      0.0),
+                                                              shape:
+                                                                  RoundedRectangleBorder(
+                                                                      borderRadius:
+                                                                          BorderRadius
+                                                                              .circular(
+                                                                                  5.0)),
+                                                              child: Container(
+                                                                width: WidthSize * 0.9,
+                                                                height: !Provider.of<
+                                                                                AuthService>(
+                                                                            context,
+                                                                            listen:
+                                                                                false)
+                                                                        .isVisiteur
+                                                                    ? HeightSize * 0.08
+                                                                    : HeightSize * 0.08,
+                                                                decoration: const BoxDecoration(
+                                                                    color: Colors.white,
+                                                                    borderRadius:
+                                                                        BorderRadius.all(
+                                                                            Radius.circular(
+                                                                                5.0))),
+                                                                child: Center(
+                                                                  child: Text(
+                                                                    "فتح حساب",
+                                                                    style: TextStyle(
+                                                                        fontFamily: 'Hacen' ,
+
+                                                                      fontSize:
+                                                                          WidthSize *
+                                                                              (25 /
+                                                                                  540),
+                                                                      color: Color(
+                                                                          0xff582e44),
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .bold,
+                                                                    ),
+                                                                    textAlign: TextAlign
+                                                                        .center,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                    ],
+                                                  ),
+                                                ),
+                                              ),
+                                      )
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
                         ),
                       )
                     ],

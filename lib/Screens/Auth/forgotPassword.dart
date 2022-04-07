@@ -28,15 +28,30 @@ class _forgotState extends State<forgot> {
             height: sizee.height,
             child: Stack(
               children: [
-                AnimatedContainer(
-                  duration: Duration(milliseconds: 500),
-                  height: sizee.height,
-                  color:  Colors.white,
+                Align(
+                  alignment: Alignment.bottomCenter,
+                  child: Container(
+                   decoration: BoxDecoration( image: DecorationImage(
+                     opacity: 0.2,
+
+                     fit: BoxFit.contain,
+                     image: AssetImage("assets/hilal.png"),
+                   ),),
+                    height: sizee.height*0.6,
+                  ),
                 ),
                 Container(
                   height:HeightSize * 0.55,
                   decoration: BoxDecoration(
-                    color: Color(0xffbd7344),
+                      gradient: LinearGradient(
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        colors: [
+                          Color(0xffFAC358).withOpacity(0.8),
+                          Color(0xff3FB876).withOpacity(0.7),
+
+                        ],
+                      ),
                     borderRadius: BorderRadius.only(
                       bottomLeft: Radius.circular(60),
                       //  bottomLeft: Radius.circular(100),
@@ -103,7 +118,7 @@ class _forgotState extends State<forgot> {
                                 borderRadius: BorderRadius.circular(20.0)),
                             suffixIcon: const Icon(
                               Icons.email,
-                              color: Colors.black,
+                              color: Color(0xffB1B0B0),
                             ),
                           ),
                         ),
@@ -144,14 +159,14 @@ class _forgotState extends State<forgot> {
                         textColor: Color(0xff582e44),
                         padding: const EdgeInsets.all(0.0),
                         shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20.0)),
+                            borderRadius: BorderRadius.circular(5.0)),
                         child: Container(
                           width: sizee.width * 0.9,
                           height: HeightSize* 0.08,
                           decoration: const BoxDecoration(
                               color: Colors.white,
                               borderRadius:
-                              BorderRadius.all(Radius.circular(20.0))),
+                              BorderRadius.all(Radius.circular(5.0))),
                           child: Center(
                             child: Text(
                               "إستعادة كلمة المرور",
