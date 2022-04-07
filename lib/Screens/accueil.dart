@@ -23,6 +23,8 @@ class _accueilState extends State<accueil> {
 
   bool _isLoading = false;
 
+  bool searched = false;
+
   Future<void> getRests() async {
     setState(() {
       _isLoading = true;
@@ -55,7 +57,7 @@ class _accueilState extends State<accueil> {
     final sizee = MediaQuery.of(context).size;
     final rests = Provider.of<Restaurants>(context, listen: false);
     String wilaya = "";
-    String Commune = "" ;
+    String Commune = "";
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xffFAC358),
@@ -65,13 +67,16 @@ class _accueilState extends State<accueil> {
                 Navigator.push(
                     context, MaterialPageRoute(builder: (_) => profile()));
               },
-              icon: Icon(Icons.person , size: 35,)),
-
+              icon: Icon(
+                Icons.person,
+                size: 35,
+              )),
         ],
         leading: IconButton(
             icon: const Icon(
               Icons.filter_list_alt,
-              color: Colors.white, size: 32,
+              color: Colors.white,
+              size: 32,
             ),
             onPressed: () {
               showDialog<void>(
@@ -82,14 +87,34 @@ class _accueilState extends State<accueil> {
                     BuildContext ctx,
                   ) {
                     return AlertDialog(
-                      actions: [
-                        TextButton(
-                          child: const Text('تأكيد' , style: TextStyle(color:  Color(0xff582e44)),),
-                          onPressed: () {
-
-                          },
-                        ),
-                      ],
+                        actions: [
+                          TextButton(
+                            child: const Text(
+                              'تأكيد',
+                              style: TextStyle(color: Color(0xff582e44)),
+                            ),
+                            onPressed: () {
+                              Navigator.pop(ctx);
+                              if (WilayaTEC.text.isNotEmpty &&
+                                  CommuneTEC.text.isNotEmpty) {
+                                rests.filterListWC(
+                                    WilayaTEC.text, CommuneTEC.text);
+                                setState(() {
+                                  searched = true;
+                                });
+                              } else if (WilayaTEC.text.isNotEmpty) {
+                                rests.filterList(WilayaTEC.text);
+                                setState(() {
+                                  searched = true;
+                                });
+                              } else {
+                                setState(() {
+                                  searched = false;
+                                });
+                              }
+                            },
+                          ),
+                        ],
                         title: Text(
                           'اختر منطقة تواجدك',
                           style: TextStyle(
@@ -99,7 +124,7 @@ class _accueilState extends State<accueil> {
                         content: StatefulBuilder(
                           builder: (context, setState) {
                             return Container(
-                              height:sizee.height*0.3 ,
+                              height: sizee.height * 0.3,
                               child: Column(
                                 children: [
                                   Container(
@@ -109,7 +134,8 @@ class _accueilState extends State<accueil> {
                                     height: sizee.height * (65 / 912),
                                     child: TypeAheadField(
                                       direction: AxisDirection.up,
-                                      textFieldConfiguration: TextFieldConfiguration(
+                                      textFieldConfiguration:
+                                          TextFieldConfiguration(
                                         cursorColor: const Color(0xff582e44),
                                         controller: WilayaTEC,
                                         decoration: InputDecoration(
@@ -152,97 +178,71 @@ class _accueilState extends State<accueil> {
                                       onSuggestionSelected: (suggestion) {
                                         setState(() {
                                           wilaya = suggestion.toString();
-                                          WilayaTEC =
-                                              TextEditingController(text: wilaya);
+                                          WilayaTEC = TextEditingController(
+                                              text: wilaya);
                                         });
                                       },
                                     ),
                                   ),
                                   Container(
-                                    width: sizee
-                                        .width *
-                                        (210 /
-                                            540),
-                                    height: sizee
-                                        .height *
-                                        (65 /
-                                            912),
-                                    child:
-                                    TypeAheadField(
-                                      direction:
-                                      AxisDirection
-                                          .up,
+                                    width: sizee.width * (210 / 540),
+                                    height: sizee.height * (65 / 912),
+                                    child: TypeAheadField(
+                                      direction: AxisDirection.up,
                                       textFieldConfiguration:
-                                      TextFieldConfiguration(
-                                        textDirection:
-                                        TextDirection.rtl,
-                                        textAlign:
-                                        TextAlign.right,
-                                        cursorColor:
-                                        Colors.black,
-                                        controller:
-                                        CommuneTEC,
-                                        decoration:
-                                        InputDecoration(
-                                          floatingLabelStyle:
-                                          const TextStyle(
-                                            color:
-                                            Colors.black,
+                                          TextFieldConfiguration(
+                                        textDirection: TextDirection.rtl,
+                                        textAlign: TextAlign.right,
+                                        cursorColor: Colors.black,
+                                        controller: CommuneTEC,
+                                        decoration: InputDecoration(
+                                          floatingLabelStyle: const TextStyle(
+                                            color: Colors.black,
                                           ),
-                                          hoverColor:
-                                          Colors.black,
-                                          focusColor:
-                                          Colors.black,
+                                          hoverColor: Colors.black,
+                                          focusColor: Colors.black,
                                           focusedBorder: OutlineInputBorder(
                                               borderSide: BorderSide(
                                                 color: Colors.black,
                                               ),
-                                              borderRadius: BorderRadius.circular(5.0)),
-                                          fillColor:
-                                          Colors.white,
-                                          filled:
-                                          true,
-                                          labelText:
-                                          'البلدية',
-                                          border:
-                                          OutlineInputBorder(borderRadius: BorderRadius.circular(5.0)),
+                                              borderRadius:
+                                                  BorderRadius.circular(5.0)),
+                                          fillColor: Colors.white,
+                                          filled: true,
+                                          labelText: 'البلدية',
+                                          border: OutlineInputBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(5.0)),
                                         ),
                                       ),
-                                      suggestionsCallback:
-                                          (pattern) {
-                                        if (pattern
-                                            .isEmpty) {
+                                      suggestionsCallback: (pattern) {
+                                        if (pattern.isEmpty) {
                                           return [];
                                         }
                                         // The logic to find out which ones should appear
                                         return Provider.of<DataDz>(context,
-                                            listen: false)
+                                                listen: false)
                                             .getCommuneByWilaya(wilaya)
-                                            .where((suggestion) => suggestion.toLowerCase().contains(pattern.toString()));
+                                            .where((suggestion) => suggestion
+                                                .toLowerCase()
+                                                .contains(pattern.toString()));
                                       },
-                                      itemBuilder:
-                                          (context,
-                                          suggestion) {
+                                      itemBuilder: (context, suggestion) {
                                         return ListTile(
-                                          title:
-                                          Text(
+                                          title: Text(
                                             suggestion.toString(),
-                                            style:
-                                            TextStyle(
+                                            style: TextStyle(
                                               fontFamily: 'Hacen',
                                             ),
                                           ),
                                         );
                                       },
-                                      onSuggestionSelected:
-                                          (suggestion) {
-                                        setState(
-                                                () {
-                                              Commune =
-                                                  suggestion.toString();
-                                              CommuneTEC =
-                                                  TextEditingController(text: Commune);
-                                            });
+                                      onSuggestionSelected: (suggestion) {
+                                        setState(() {
+                                          Commune = suggestion.toString();
+                                          CommuneTEC = TextEditingController(
+                                              text: Commune);
+                                        });
                                       },
                                     ),
                                   ),
@@ -270,10 +270,11 @@ class _accueilState extends State<accueil> {
                     horizontal: sizee.width * 0.03,
                     vertical: sizee.height * 0.02),
                 child: ListView.builder(
-                    itemCount: rests.rests.length,
+                    itemCount:
+                        searched ? rests.loadedList.length : rests.rests.length,
                     itemBuilder: (BuildContext context, int index) {
                       return Container(
-                        margin: EdgeInsets.only(bottom: sizee.height*0.02),
+                        margin: EdgeInsets.only(bottom: sizee.height * 0.02),
                         child: Card(
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.all(
@@ -282,16 +283,19 @@ class _accueilState extends State<accueil> {
                           ),
                           elevation: 5,
                           child: Container(
-                            width: sizee.width * (1/5.5),
-                            height: sizee.height * (1/5.5),
+                            width: sizee.width * (1 / 5.5),
+                            height: sizee.height * (1 / 5.5),
                             decoration: BoxDecoration(
-                              border: Border.all(color:Color(0xffFAC358), ),
+                              border: Border.all(
+                                color: Color(0xffFAC358),
+                              ),
                               borderRadius: const BorderRadius.all(
                                 const Radius.circular(13),
                               ),
                             ),
-
-                            padding: EdgeInsets.symmetric(vertical: sizee.height * 0.02 , horizontal: sizee.width*0.05),
+                            padding: EdgeInsets.symmetric(
+                                vertical: sizee.height * 0.02,
+                                horizontal: sizee.width * 0.05),
                             child: Row(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -301,17 +305,21 @@ class _accueilState extends State<accueil> {
                                   radius: sizee.width * (18 / 540),
                                   child: IconButton(
                                     padding: EdgeInsets.zero,
-                                    icon: const Icon(Icons.arrow_back_ios_outlined),
+                                    icon: const Icon(
+                                        Icons.arrow_back_ios_outlined),
                                     iconSize: sizee.width * (28 / 540),
                                     color: Colors.white,
                                     onPressed: () async {
-                                      rests.restoById(rests.rests[index].id!);
+                                      rests.restoById(searched
+                                          ? rests.loadedList[index].id!
+                                          : rests.rests[index].id!);
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) =>
                                                 restaurant_details(
-                                                    title: rests.chosenRestaurant!
+                                                    title: rests
+                                                        .chosenRestaurant!
                                                         .restName!)),
                                       );
                                     },
@@ -323,24 +331,26 @@ class _accueilState extends State<accueil> {
                                         vertical: sizee.height * 0.02,
                                         horizontal: sizee.width * 0.05),
                                     child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.end,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.end,
                                       children: [
                                         Text(
                                           rests.rests[index].restName!,
                                           textDirection: TextDirection.rtl,
-                                          style: TextStyle(fontSize: sizee.width*0.05),
-
-
+                                          style: TextStyle(
+                                              fontSize: sizee.width * 0.05),
                                         ),
                                         Text(
-                                          '${rests.rests[index].city!} ,${rests.rests[index].commune!} ',
+                                          '${searched ? rests.loadedList[index].city! : rests.rests[index].city!} ,${searched ? rests.loadedList[index].commune! : rests.rests[index].commune!} ',
                                           textDirection: TextDirection.rtl,
-                                          style: TextStyle(color: Color(0xffA59F97)),
+                                          style: TextStyle(
+                                              color: Color(0xffA59F97)),
                                         ),
                                         Container(
                                           width: sizee.height * 0.075,
                                           child: Row(
-                                            mainAxisAlignment: MainAxisAlignment.center,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
                                             children: [
                                               Icon(
                                                 Icons.person,
@@ -349,7 +359,7 @@ class _accueilState extends State<accueil> {
                                               Text('  25  ')
                                             ],
                                           ),
-                                        ) ,
+                                        ),
                                       ],
                                     ),
                                   ),

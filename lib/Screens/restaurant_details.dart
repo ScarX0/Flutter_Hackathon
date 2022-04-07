@@ -537,7 +537,7 @@ class _restaurant_detailsState extends State<restaurant_details> {
                               child: InkWell(
                             onTap: () {},
                             child: Container(
-                              child: Center(
+                              child: const Center(
                                 child: Text(
                                   'تطوع',
                                   style: TextStyle(color: Colors.white),
@@ -547,7 +547,7 @@ class _restaurant_detailsState extends State<restaurant_details> {
                               height: sizee.height * 0.05,
                               margin: EdgeInsets.only(top: sizee.height * 0.01),
                               decoration: BoxDecoration(
-                                color: Color(0xffa8293c),
+                                color: const Color(0xffa8293c),
                                 boxShadow: [
                                   BoxShadow(
                                     color: Colors.grey.withOpacity(0.05),

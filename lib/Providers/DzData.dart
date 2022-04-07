@@ -2,7 +2,6 @@ import 'dart:collection';
 
 import 'package:flutter/cupertino.dart';
 
-
 const algeria_cites = [
   {
     "id": 22,
@@ -15435,7 +15434,7 @@ class DataDz extends ChangeNotifier {
       }
       ;
     }
-    notifyListeners();
+    // notifyListeners();
     return listt;
   }
 }
