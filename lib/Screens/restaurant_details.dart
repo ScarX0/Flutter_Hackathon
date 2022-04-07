@@ -565,7 +565,7 @@ class _restaurant_detailsState extends State<restaurant_details> {
                           )),
                           Text(
                             'متطوع ${rest.chosenRestaurant!.needNumberVols} نحتاج',
-                            style: TextStyle(fontWeight: FontWeight.bold),
+                            style: const TextStyle(fontWeight: FontWeight.bold),
                           ),
                         ],
                       ),
