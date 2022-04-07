@@ -80,7 +80,9 @@ class AuthService extends ChangeNotifier {
             'city': city,
             'commune': commune,
             'location': [],
-            'hasMenu': false
+            'hasMenu': false,
+            'need_vol': false,
+            'vols_number': 0
           };
     try {
       String id;
