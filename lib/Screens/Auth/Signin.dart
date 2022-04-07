@@ -337,14 +337,8 @@ class _SigninState extends State<Signin> {
                                                                             .white,
                                                                       ),
                                                                       borderRadius:
-<<<<<<< HEAD
                                                                           BorderRadius.circular(
-                                                                              20.0)),
-=======
-                                                                          BorderRadius
-                                                                              .circular(
-                                                                                  5.0)),
->>>>>>> 875ab26eadbd923de1531bc9cc72d9cc5193402a
+                                                                              5.0)),
 
                                                               hoverColor:
                                                                   Colors.black,
@@ -358,17 +352,10 @@ class _SigninState extends State<Signin> {
                                                                             0xff582e44),
                                                                       ),
                                                                       borderRadius:
-<<<<<<< HEAD
                                                                           BorderRadius.circular(
-                                                                              20.0)),
+                                                                              5.0)),
                                                               fillColor:
                                                                   Colors.white,
-=======
-                                                                          BorderRadius
-                                                                              .circular(
-                                                                                  5.0)),
-                                                              fillColor: Colors.white,
->>>>>>> 875ab26eadbd923de1531bc9cc72d9cc5193402a
                                                               filled: true,
                                                               //          contentPadding: const EdgeInsets.fromLTRB(20, 8, 20, 8),
                                                               hintText:
@@ -377,14 +364,9 @@ class _SigninState extends State<Signin> {
                                                                   borderRadius:
                                                                       BorderRadius
                                                                           .circular(
-<<<<<<< HEAD
-                                                                              20.0)),
+                                                                              5.0)),
                                                               suffixIcon:
                                                                   const Icon(
-=======
-                                                                          5.0)),
-                                                              suffixIcon: const Icon(
->>>>>>> 875ab26eadbd923de1531bc9cc72d9cc5193402a
                                                                 Icons.email,
                                                                 color: Color(
                                                                     0xffB1B0B0),
@@ -443,21 +425,12 @@ class _SigninState extends State<Signin> {
                                                                             .white,
                                                                       ),
                                                                       borderRadius:
-<<<<<<< HEAD
                                                                           BorderRadius.circular(
-                                                                              20.0)),
+                                                                              5.0)),
                                                               hoverColor:
                                                                   Colors.black,
                                                               focusColor: Color(
                                                                   0xff582e44),
-=======
-                                                                          BorderRadius
-                                                                              .circular(
-                                                                              5.0)),
-                                                              hoverColor: Colors.black,
-                                                              focusColor:
-                                                                  Color(0xff582e44),
->>>>>>> 875ab26eadbd923de1531bc9cc72d9cc5193402a
                                                               focusedBorder:
                                                                   OutlineInputBorder(
                                                                       borderSide:
@@ -466,14 +439,8 @@ class _SigninState extends State<Signin> {
                                                                             0xff582e44),
                                                                       ),
                                                                       borderRadius:
-<<<<<<< HEAD
                                                                           BorderRadius.circular(
-                                                                              20.0)),
-=======
-                                                                          BorderRadius
-                                                                              .circular(
                                                                               5.0)),
->>>>>>> 875ab26eadbd923de1531bc9cc72d9cc5193402a
 
                                                               fillColor:
                                                                   Colors.white,
@@ -487,14 +454,9 @@ class _SigninState extends State<Signin> {
                                                                   borderRadius:
                                                                       BorderRadius
                                                                           .circular(
-<<<<<<< HEAD
-                                                                              20.0)),
+                                                                              5.0)),
                                                               suffixIcon:
                                                                   const Icon(
-=======
-                                                                          5.0)),
-                                                              suffixIcon: const Icon(
->>>>>>> 875ab26eadbd923de1531bc9cc72d9cc5193402a
                                                                 Icons.password,
                                                                 color: Color(
                                                                     0xffB1B0B0),
@@ -848,21 +810,12 @@ class _SigninState extends State<Signin> {
                                                                           .white,
                                                                     ),
                                                                     borderRadius:
-<<<<<<< HEAD
                                                                         BorderRadius.circular(
-                                                                            20.0)),
+                                                                            5.0)),
                                                             hoverColor:
                                                                 Colors.black,
                                                             focusColor: Color(
                                                                 0xff582e44),
-=======
-                                                                        BorderRadius
-                                                                            .circular(
-                                                                            5.0)),
-                                                            hoverColor: Colors.black,
-                                                            focusColor:
-                                                                Color(0xff582e44),
->>>>>>> 875ab26eadbd923de1531bc9cc72d9cc5193402a
                                                             focusedBorder:
                                                                 OutlineInputBorder(
                                                                     borderSide:
@@ -871,17 +824,10 @@ class _SigninState extends State<Signin> {
                                                                           0xff582e44),
                                                                     ),
                                                                     borderRadius:
-<<<<<<< HEAD
                                                                         BorderRadius.circular(
-                                                                            20.0)),
+                                                                            5.0)),
                                                             fillColor:
                                                                 Colors.white,
-=======
-                                                                        BorderRadius
-                                                                            .circular(
-                                                                            5.0)),
-                                                            fillColor: Colors.white,
->>>>>>> 875ab26eadbd923de1531bc9cc72d9cc5193402a
                                                             filled: true,
                                                             //          contentPadding: const EdgeInsets.fromLTRB(20, 8, 20, 8),
                                                             hintText: 'الاسم',
@@ -889,14 +835,9 @@ class _SigninState extends State<Signin> {
                                                                 borderRadius:
                                                                     BorderRadius
                                                                         .circular(
-<<<<<<< HEAD
-                                                                            20.0)),
+                                                                            5.0)),
                                                             suffixIcon:
                                                                 const Icon(
-=======
-                                                                        5.0)),
-                                                            suffixIcon: const Icon(
->>>>>>> 875ab26eadbd923de1531bc9cc72d9cc5193402a
                                                               Icons.person,
                                                               color: Color(
                                                                   0xffB1B0B0),
@@ -969,21 +910,12 @@ class _SigninState extends State<Signin> {
                                                                           .white,
                                                                     ),
                                                                     borderRadius:
-<<<<<<< HEAD
                                                                         BorderRadius.circular(
-                                                                            20.0)),
+                                                                            5.0)),
                                                             hoverColor:
                                                                 Colors.black,
                                                             focusColor: Color(
                                                                 0xff582e44),
-=======
-                                                                        BorderRadius
-                                                                            .circular(
-                                                                            5.0)),
-                                                            hoverColor: Colors.black,
-                                                            focusColor:
-                                                                Color(0xff582e44),
->>>>>>> 875ab26eadbd923de1531bc9cc72d9cc5193402a
                                                             focusedBorder:
                                                                 OutlineInputBorder(
                                                                     borderSide:
@@ -992,17 +924,10 @@ class _SigninState extends State<Signin> {
                                                                           0xff582e44),
                                                                     ),
                                                                     borderRadius:
-<<<<<<< HEAD
                                                                         BorderRadius.circular(
-                                                                            20.0)),
+                                                                            5.0)),
                                                             fillColor:
                                                                 Colors.white,
-=======
-                                                                        BorderRadius
-                                                                            .circular(
-                                                                            5.0)),
-                                                            fillColor: Colors.white,
->>>>>>> 875ab26eadbd923de1531bc9cc72d9cc5193402a
                                                             filled: true,
                                                             //          contentPadding: const EdgeInsets.fromLTRB(20, 8, 20, 8),
                                                             hintText:
@@ -1011,14 +936,9 @@ class _SigninState extends State<Signin> {
                                                                 borderRadius:
                                                                     BorderRadius
                                                                         .circular(
-<<<<<<< HEAD
-                                                                            20.0)),
+                                                                            5.0)),
                                                             suffixIcon:
                                                                 const Icon(
-=======
-                                                                        5.0)),
-                                                            suffixIcon: const Icon(
->>>>>>> 875ab26eadbd923de1531bc9cc72d9cc5193402a
                                                               Icons.email,
                                                               color: Color(
                                                                   0xffB1B0B0),
@@ -1089,21 +1009,12 @@ class _SigninState extends State<Signin> {
                                                                           .white,
                                                                     ),
                                                                     borderRadius:
-<<<<<<< HEAD
                                                                         BorderRadius.circular(
-                                                                            20.0)),
+                                                                            5.0)),
                                                             hoverColor:
                                                                 Colors.black,
                                                             focusColor: Color(
                                                                 0xff582e44),
-=======
-                                                                        BorderRadius
-                                                                            .circular(
-                                                                            5.0)),
-                                                            hoverColor: Colors.black,
-                                                            focusColor:
-                                                                Color(0xff582e44),
->>>>>>> 875ab26eadbd923de1531bc9cc72d9cc5193402a
                                                             focusedBorder:
                                                                 OutlineInputBorder(
                                                                     borderSide:
@@ -1112,17 +1023,10 @@ class _SigninState extends State<Signin> {
                                                                           0xff582e44),
                                                                     ),
                                                                     borderRadius:
-<<<<<<< HEAD
                                                                         BorderRadius.circular(
-                                                                            20.0)),
+                                                                            5.0)),
                                                             fillColor:
                                                                 Colors.white,
-=======
-                                                                        BorderRadius
-                                                                            .circular(
-                                                                            5.0)),
-                                                            fillColor: Colors.white,
->>>>>>> 875ab26eadbd923de1531bc9cc72d9cc5193402a
                                                             filled: true,
                                                             //          contentPadding: const EdgeInsets.fromLTRB(20, 8, 20, 8),
                                                             hintText:
@@ -1131,14 +1035,9 @@ class _SigninState extends State<Signin> {
                                                                 borderRadius:
                                                                     BorderRadius
                                                                         .circular(
-<<<<<<< HEAD
-                                                                            20.0)),
+                                                                            5.0)),
                                                             suffixIcon:
                                                                 const Icon(
-=======
-                                                                        5.0)),
-                                                            suffixIcon: const Icon(
->>>>>>> 875ab26eadbd923de1531bc9cc72d9cc5193402a
                                                               Icons.phone,
                                                               color: Color(
                                                                   0xffB1B0B0),
@@ -1217,13 +1116,7 @@ class _SigninState extends State<Signin> {
                                                                                 Colors.white,
                                                                           ),
                                                                           borderRadius:
-<<<<<<< HEAD
-                                                                              BorderRadius.circular(20.0)),
-=======
-                                                                              BorderRadius
-                                                                                  .circular(
-                                                                                  5.0)),
->>>>>>> 875ab26eadbd923de1531bc9cc72d9cc5193402a
+                                                                              BorderRadius.circular(5.0)),
                                                                   hoverColor:
                                                                       Colors
                                                                           .black,
@@ -1237,13 +1130,7 @@ class _SigninState extends State<Signin> {
                                                                                 Color(0xff582e44),
                                                                           ),
                                                                           borderRadius:
-<<<<<<< HEAD
-                                                                              BorderRadius.circular(20.0)),
-=======
-                                                                              BorderRadius
-                                                                                  .circular(
-                                                                                  5.0)),
->>>>>>> 875ab26eadbd923de1531bc9cc72d9cc5193402a
+                                                                              BorderRadius.circular(5.0)),
                                                                   fillColor:
                                                                       Colors
                                                                           .white,
@@ -1253,14 +1140,8 @@ class _SigninState extends State<Signin> {
                                                                       'اسم المطعم',
                                                                   border: OutlineInputBorder(
                                                                       borderRadius:
-<<<<<<< HEAD
                                                                           BorderRadius.circular(
-                                                                              20.0)),
-=======
-                                                                          BorderRadius
-                                                                              .circular(
                                                                               5.0)),
->>>>>>> 875ab26eadbd923de1531bc9cc72d9cc5193402a
                                                                   suffixIcon:
                                                                       const Icon(
                                                                     Icons
@@ -1330,41 +1211,20 @@ class _SigninState extends State<Signin> {
                                                                           hoverColor:
                                                                               Colors.black,
                                                                           focusColor:
-<<<<<<< HEAD
                                                                               Colors.black,
                                                                           focusedBorder: OutlineInputBorder(
                                                                               borderSide: BorderSide(
                                                                                 color: Colors.black,
                                                                               ),
-                                                                              borderRadius: BorderRadius.circular(20.0)),
-=======
-                                                                              Colors
-                                                                                  .black,
-                                                                          focusedBorder:
-                                                                              OutlineInputBorder(
-                                                                                  borderSide:
-                                                                                      BorderSide(
-                                                                                    color:
-                                                                                        Colors.black,
-                                                                                  ),
-                                                                                  borderRadius:
-                                                                                      BorderRadius.circular(5.0)),
->>>>>>> 875ab26eadbd923de1531bc9cc72d9cc5193402a
+                                                                              borderRadius: BorderRadius.circular(5.0)),
                                                                           fillColor:
                                                                               Colors.white,
                                                                           filled:
                                                                               true,
                                                                           labelText:
                                                                               'البلدية',
-<<<<<<< HEAD
                                                                           border:
-                                                                              OutlineInputBorder(borderRadius: BorderRadius.circular(20.0)),
-=======
-                                                                          border: OutlineInputBorder(
-                                                                              borderRadius:
-                                                                                  BorderRadius.circular(
-                                                                                      5.0)),
->>>>>>> 875ab26eadbd923de1531bc9cc72d9cc5193402a
+                                                                              OutlineInputBorder(borderRadius: BorderRadius.circular(5.0)),
                                                                         ),
                                                                       ),
                                                                       suggestionsCallback:
@@ -1439,41 +1299,20 @@ class _SigninState extends State<Signin> {
                                                                           hoverColor:
                                                                               Colors.black,
                                                                           focusColor:
-<<<<<<< HEAD
                                                                               Colors.black,
                                                                           focusedBorder: OutlineInputBorder(
                                                                               borderSide: const BorderSide(
                                                                                 color: Colors.black,
                                                                               ),
-                                                                              borderRadius: BorderRadius.circular(20.0)),
-=======
-                                                                              Colors
-                                                                                  .black,
-                                                                          focusedBorder:
-                                                                              OutlineInputBorder(
-                                                                                  borderSide:
-                                                                                      const BorderSide(
-                                                                                    color:
-                                                                                        Colors.black,
-                                                                                  ),
-                                                                                  borderRadius:
-                                                                                      BorderRadius.circular(5.0)),
->>>>>>> 875ab26eadbd923de1531bc9cc72d9cc5193402a
+                                                                              borderRadius: BorderRadius.circular(5.0)),
                                                                           fillColor:
                                                                               Colors.white,
                                                                           filled:
                                                                               true,
                                                                           labelText:
                                                                               'الولاية',
-<<<<<<< HEAD
                                                                           border:
-                                                                              OutlineInputBorder(borderRadius: BorderRadius.circular(20.0)),
-=======
-                                                                          border: OutlineInputBorder(
-                                                                              borderRadius:
-                                                                                  BorderRadius.circular(
-                                                                                      5.0)),
->>>>>>> 875ab26eadbd923de1531bc9cc72d9cc5193402a
+                                                                              OutlineInputBorder(borderRadius: BorderRadius.circular(5.0)),
                                                                         ),
                                                                       ),
                                                                       suggestionsCallback:
@@ -1586,18 +1425,10 @@ class _SigninState extends State<Signin> {
                                                                           .white,
                                                                     ),
                                                                     borderRadius:
-<<<<<<< HEAD
                                                                         BorderRadius.circular(
-                                                                            20.0)),
+                                                                            5.0)),
                                                             focusColor: Color(
                                                                 0xff582e44),
-=======
-                                                                        BorderRadius
-                                                                            .circular(
-                                                                            5.0)),
-                                                            focusColor:
-                                                                Color(0xff582e44),
->>>>>>> 875ab26eadbd923de1531bc9cc72d9cc5193402a
                                                             focusedBorder:
                                                                 OutlineInputBorder(
                                                                     borderSide:
@@ -1606,14 +1437,8 @@ class _SigninState extends State<Signin> {
                                                                           0xff582e44),
                                                                     ),
                                                                     borderRadius:
-<<<<<<< HEAD
                                                                         BorderRadius.circular(
-                                                                            20.0)),
-=======
-                                                                        BorderRadius
-                                                                            .circular(
                                                                             5.0)),
->>>>>>> 875ab26eadbd923de1531bc9cc72d9cc5193402a
 
                                                             fillColor:
                                                                 Colors.white,
@@ -1627,14 +1452,9 @@ class _SigninState extends State<Signin> {
                                                                 borderRadius:
                                                                     BorderRadius
                                                                         .circular(
-<<<<<<< HEAD
-                                                                            20.0)),
+                                                                            5.0)),
                                                             suffixIcon:
                                                                 const Icon(
-=======
-                                                                        5.0)),
-                                                            suffixIcon: const Icon(
->>>>>>> 875ab26eadbd923de1531bc9cc72d9cc5193402a
                                                               Icons.password,
                                                               color: Color(
                                                                   0xffB1B0B0),
