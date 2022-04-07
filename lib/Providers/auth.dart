@@ -59,19 +59,6 @@ class AuthService extends ChangeNotifier {
           accessToken: googleAuth.accessToken, idToken: googleAuth.idToken);
 
       await FirebaseAuth.instance.signInWithCredential(credential);
-
-      // _token = googleAuth.idToken;
-      // _uId = googleAuth.accessToken;
-
-      // final pref = await SharedPreferences.getInstance();
-      // String userData = jsonEncode({
-      //   'token': _token,
-      //   'userId': _uId,
-      //   'expiryDate': _expiryDate!.toIso8601String(),
-      // });
-
-      // pref.setString('userData', userData);
-
       googleSignedIn = true;
       notifyListeners();
     } catch (e) {
@@ -82,7 +69,7 @@ class AuthService extends ChangeNotifier {
   Future<void> signUp(String email, String password, String name, String phone,
       String restName) async {
     String where = isVisiteur ? 'volounteers' : 'restaurants';
-    var data = isVisiteur
+    var dataa = isVisiteur
         ? {'name': name, 'email': email, 'phone': phone, 'isVolounteer': false}
         : {
             'name': name,
@@ -95,39 +82,31 @@ class AuthService extends ChangeNotifier {
             'hasMenu': false
           };
     try {
+      String id;
       CollectionReference collectionReference =
           FirebaseFirestore.instance.collection(where);
       final auth = FirebaseAuth.instance;
       await auth
           .createUserWithEmailAndPassword(email: email, password: password)
-          .then((value) => collectionReference.doc(value.user!.uid).set(data));
-      // final res = await http.post(Uri.parse(url),
-      //     headers: {'Content-Type': 'application/json'},
-      //     body: jsonEncode({
-      //       'email': email,
-      //       'password': password,
-      //       'returnSecureToken': false
-      //     }));
+          .then((value) async {
+        id = value.user!.uid;
+        await collectionReference
+            .doc(value.user!.uid)
+            .set(dataa)
+            .then((value) async {
+          final infos =
+              await FirebaseFirestore.instance.collection(where).doc(id).get();
 
-      // final respond = await jsonDecode(res.body);
+          userInfo = infos.data()!;
+          if (where == 'restaurants') {
+            nu = false;
+          } else {
+            nu = true;
+          }
+        });
+      });
 
-      // if (res.statusCode == 200) {
-      //   _token = respond['idToken'];
-      //   _uId = respond['localId'];
-      //   _expiryDate = DateTime.now()
-      //       .add(Duration(seconds: int.parse(respond['expiresIn'])));
-
-      //   notifyListeners();
-
-      //   final pref = await SharedPreferences.getInstance();
-      //   String userData = jsonEncode({
-      //     'token': _token,
-      //     'userId': _uId,
-      //     'expiryDate': _expiryDate!.toIso8601String(),
-      //   });
-
-      //   pref.setString('userData', userData);
-      // }
+      notifyListeners();
     } catch (e) {
       rethrow;
     }
@@ -167,13 +146,11 @@ class AuthService extends ChangeNotifier {
   Future<void> signIn(String email, String password) async {
     try {
       final auth = FirebaseAuth.instance;
-      auth
-          .signInWithEmailAndPassword(email: email, password: password)
-          .then((value) => print('not assured' + value.user!.email!));
+      await auth.signInWithEmailAndPassword(email: email, password: password);
 
-      final auth2 = FirebaseAuth.instance;
+      // final auth2 = FirebaseAuth.instance;
 
-      print('assured' + auth2.currentUser!.email!);
+      // print('assured' + auth2.currentUser!.email!);
     } catch (e) {
       rethrow;
     }
@@ -211,14 +188,6 @@ class AuthService extends ChangeNotifier {
       print(e.toString());
     }
   }
-
-  // Future<void> signIn(String email, String password) async {
-  //   _authenticate(email, password, 'signInWithPassword');
-  // }
-
-  // Future<void> signUp(String email, String password) async {
-  //   _authenticate(email, password, 'signUp');
-  // }
 
   bool isVisiteur = false;
 

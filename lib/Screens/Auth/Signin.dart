@@ -464,8 +464,8 @@ class _SigninState extends State<Signin> {
                                                                     .text)) {
                                                               if (prov
                                                                   .isVisiteur) {
-                                                                Navigator.pop(
-                                                                    context);
+                                                                // Navigator.pop(
+                                                                //     context);
                                                                 Navigator.pushReplacement(
                                                                     context,
                                                                     MaterialPageRoute(
@@ -473,8 +473,8 @@ class _SigninState extends State<Signin> {
                                                                             (_) =>
                                                                                 accueil()));
                                                               } else {
-                                                                Navigator.pop(
-                                                                    context);
+                                                                // Navigator.pop(
+                                                                //     context);
                                                                 Navigator.pushReplacement(
                                                                     context,
                                                                     MaterialPageRoute(
@@ -1123,8 +1123,8 @@ class _SigninState extends State<Signin> {
                                                                   .text)) {
                                                             if (prov
                                                                 .isVisiteur) {
-                                                              Navigator.pop(
-                                                                  context);
+                                                              // Navigator.pop(
+                                                              //     context);
                                                               Navigator.pushReplacement(
                                                                   context,
                                                                   MaterialPageRoute(
@@ -1136,8 +1136,8 @@ class _SigninState extends State<Signin> {
                                                                       msg:
                                                                           'مرحبا بك');
                                                             } else {
-                                                              Navigator.pop(
-                                                                  context);
+                                                              // Navigator.pop(
+                                                              //     context);
                                                               Navigator.pushReplacement(
                                                                   context,
                                                                   MaterialPageRoute(

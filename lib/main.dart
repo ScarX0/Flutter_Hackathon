@@ -31,7 +31,7 @@ void main() async {
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  // User? user = FirebaseAuth.instance.currentUser;
+  User? auth = FirebaseAuth.instance.currentUser;
   // print(user!.uid);
 
   var user = await FirebaseFirestore.instance.collection('restaurants').get();
@@ -56,31 +56,46 @@ void main() async {
     child: MaterialApp(
         debugShowCheckedModeBanner: false,
         debugShowMaterialGrid: false,
-        home: StreamBuilder(
-          stream: FirebaseAuth.instance.authStateChanges(),
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-            } else if (snapshot.hasData) {
-              var id = FirebaseAuth.instance.currentUser!.uid;
-              print(id);
-              nu = !check(id);
-              if (nu) {
-                return const accueil();
-              } else {
-                return const accueil_resto();
-              }
-            } else if (snapshot.hasError) {
-              return const Center(
-                child: Text('error'),
-              );
+        home: Builder(builder: (_) {
+          if (auth == null) {
+            return const UserType();
+          } else {
+            var id = FirebaseAuth.instance.currentUser!.uid;
+            // print(id);
+            nu = !check(id);
+            if (nu) {
+              return const accueil();
             } else {
-              return const UserType();
+              return const accueil_resto();
             }
-          },
-        )
+          }
+        })
+
+        //  StreamBuilder(
+        //   stream: FirebaseAuth.instance.authStateChanges(),
+        //   builder: (context, snapshot) {
+        //     if (snapshot.connectionState == ConnectionState.waiting) {
+        //       return const Center(
+        //         child: CircularProgressIndicator(),
+        //       );
+        //     } else if (snapshot.hasData) {
+        //       var id = FirebaseAuth.instance.currentUser!.uid;
+        //       print(id);
+        //       nu = !check(id);
+        //       if (nu) {
+        //         return const accueil();
+        //       } else {
+        //         return const accueil_resto();
+        //       }
+        //     } else if (snapshot.hasError) {
+        //       return const Center(
+        //         child: Text('error'),
+        //       );
+        //     } else {
+        //       return const UserType();
+        //     }
+        //   },
+        // )
         //  user == null ? UserType() : accueil() // signin()
         ),
   ));

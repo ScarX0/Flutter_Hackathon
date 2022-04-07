@@ -13,6 +13,22 @@ class accueil_resto extends StatefulWidget {
 }
 
 class _accueil_restoState extends State<accueil_resto> {
+  bool _isLoading = false;
+  final auth = FirebaseAuth.instance;
+  Future<void> logOut() async {
+    setState(() {
+      _isLoading = true;
+    });
+    try {
+      await auth.signOut();
+    } catch (e) {
+      print(e.toString());
+    }
+    setState(() {
+      _isLoading = false;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final sizee = MediaQuery.of(context).size;
@@ -34,49 +50,55 @@ class _accueil_restoState extends State<accueil_resto> {
           },
         ),
         actions: [
-          InkWell(
-              child:
-                  // child: Transform.rotate(
-                  //   angle: 180 * math.pi / 180,
-                  //   child:
-                  Padding(
-                padding: const EdgeInsets.all(3.0),
-                child: Icon(
-                  Icons.logout,
+          _isLoading
+              ? CircularProgressIndicator(
                   color: Colors.white,
-                  size: WidthSize * (40.0 / 540),
-                ),
-              ),
-              // ),
-              onTap: () async {
-                await FirebaseAuth.instance.signOut();
-                // showDialog<String>(
-                //   context: context,
-                //   builder: (BuildContext context) => AlertDialog(
-                //     title: const Text('تسجبيل الخروج'),
-                //     content: const Text('متأكد ؟'),
-                //     actions: <Widget>[
-                //       TextButton(
-                //         onPressed: () => Navigator.pop(context, 'Cancel'),
-                //         child: const Text(
-                //           'لا',
-                //           style: TextStyle(color: Color(0xff4FBDBA)),
-                //         ),
-                //       ),
-                //       TextButton(
-                //         onPressed: () async {
-                //           // Navigator.pop(ctx);
-                //           await FirebaseAuth.instance.signOut();
-                //         },
-                //         child: const Text(
-                //           'نعم',
-                //           style: TextStyle(color: Color(0xff4FBDBA)),
-                //         ),
-                //       ),
-                //     ],
-                //   ),
-                // );
-              })
+                )
+              : InkWell(
+                  child:
+                      // child: Transform.rotate(
+                      //   angle: 180 * math.pi / 180,
+                      //   child:
+                      Padding(
+                    padding: const EdgeInsets.all(3.0),
+                    child: Icon(
+                      Icons.logout,
+                      color: Colors.white,
+                      size: WidthSize * (40.0 / 540),
+                    ),
+                  ),
+                  // ),
+                  onTap: () async {
+                    await logOut().then((value) => Navigator.of(context)
+                        .popUntil((route) => route.isFirst));
+
+                    // showDialog<String>(
+                    //   context: context,
+                    //   builder: (BuildContext context) => AlertDialog(
+                    //     title: const Text('تسجبيل الخروج'),
+                    //     content: const Text('متأكد ؟'),
+                    //     actions: <Widget>[
+                    //       TextButton(
+                    //         onPressed: () => Navigator.pop(context, 'Cancel'),
+                    //         child: const Text(
+                    //           'لا',
+                    //           style: TextStyle(color: Color(0xff4FBDBA)),
+                    //         ),
+                    //       ),
+                    //       TextButton(
+                    //         onPressed: () async {
+                    //           // Navigator.pop(ctx);
+                    //           await FirebaseAuth.instance.signOut();
+                    //         },
+                    //         child: const Text(
+                    //           'نعم',
+                    //           style: TextStyle(color: Color(0xff4FBDBA)),
+                    //         ),
+                    //       ),
+                    //     ],
+                    //   ),
+                    // );
+                  })
         ],
         backgroundColor: Color(0xff582e44),
         title: Center(child: Text("مطعم الرحمة")),

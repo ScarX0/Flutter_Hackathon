@@ -150,7 +150,8 @@ class _profileState extends State<profile> {
                 ),
                 // ),
                 onTap: () async {
-                  await FirebaseAuth.instance.signOut();
+                  await FirebaseAuth.instance.signOut().then((value) =>
+                      Navigator.of(context).popUntil((route) => route.isFirst));
                   // showDialog<String>(
                   //   context: context,
                   //   builder: (BuildContext context) => AlertDialog(
@@ -251,9 +252,9 @@ class _profileState extends State<profile> {
                                 child: Image(
                                     fit: BoxFit.fill,
                                     filterQuality: FilterQuality.low,
-                                    image: AssetImage(nu
-                                        ? 'assets/vollogo.jpg'
-                                        : 'assets/restaurant.jpg')),
+                                    image: nu
+                                        ? AssetImage('assets/ramadhan.png')
+                                        : AssetImage('assets/restaurant.jpg')),
                               ),
                               SizedBox(
                                   child: GestureDetector(
