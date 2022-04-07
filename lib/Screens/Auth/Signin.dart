@@ -2,9 +2,11 @@ import 'package:abir_sabil/Screens/accueil.dart';
 import 'package:abir_sabil/Screens/accueil_resto.dart';
 import 'package:abir_sabil/main.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 
+import '../../Providers/DzData.dart';
 import '../../Providers/auth.dart';
 import 'forgotPassword.dart';
 
@@ -84,6 +86,22 @@ class _SigninState extends State<Signin> {
     });
     return false;
   }
+  String wilaya = "";
+  String Commune = "";
+
+  TextEditingController WilayaTEC = TextEditingController();
+  TextEditingController CommuneTEC = TextEditingController();
+
+
+
+  getWilaya() {
+    Provider.of<DataDz>(context, listen: false).getWilaya();
+  }
+  @override
+  void initState() {
+    super.initState();
+    getWilaya();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -92,6 +110,7 @@ class _SigninState extends State<Signin> {
         (MediaQuery.of(context).padding.top +
             MediaQuery.of(context).padding.bottom);
     final prov = Provider.of<AuthService>(context, listen: false);
+    final sizee = MediaQuery.of(context).size;
 
     return GestureDetector(
       onTap: () {
@@ -112,7 +131,9 @@ class _SigninState extends State<Signin> {
                   child: Column(
                     children: [
                       SizedBox(
-                        height: HeightSize * 0.32,
+                        height : ( !signin && !Provider.of<AuthService>(context,
+                            listen: false)
+                            .isVisiteur) ? HeightSize * 0.27 : HeightSize * 0.32,
                       ),
                       Expanded(
                         child: Container(
@@ -987,6 +1008,172 @@ class _SigninState extends State<Signin> {
                                                       ),
                                                     )
                                                   : Container(),
+                                              (!Provider.of<AuthService>(context,
+                                                  listen: false)
+                                                  .isVisiteur && !signin)         ?   Container(
+                                                margin: EdgeInsets.only(
+                                                    bottom: sizee.height * 0.005),
+                                                //         height: sizee.height * 0.07,
+                                                width: sizee.width * 0.95,
+                                                height: sizee.height * 0.07,
+
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                  MainAxisAlignment.spaceBetween,
+                                                  children: [
+
+                                                    Container(
+                                                      width: sizee.width * (210 / 540),
+                                                      height: sizee.height * (65 / 912),
+                                                      child: TypeAheadField(
+
+                                                        direction: AxisDirection.up,
+                                                        textFieldConfiguration:
+                                                        TextFieldConfiguration(
+                                                          textDirection:
+                                                          TextDirection.rtl,
+                                                          textAlign: TextAlign.right,
+
+                                                          cursorColor:
+                                                           Colors.black,
+                                                          controller: CommuneTEC,
+                                                          decoration: InputDecoration(
+                                                            floatingLabelStyle:
+                                                            const TextStyle(
+                                                              color:
+                                                              Colors.black,
+                                                            ),
+                                                            hoverColor: Colors.black,
+                                                            focusColor:
+                                                            Colors.black,
+                                                            focusedBorder:
+                                                            OutlineInputBorder(
+                                                                borderSide:
+                                                                 BorderSide(
+                                                                  color:
+                                                                  Colors.black,
+                                                                ),
+                                                                borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                    20.0)),
+                                                            fillColor: Colors.white,
+                                                            filled: true,
+                                                            labelText: 'البلدية',
+                                                            border: OutlineInputBorder(
+                                                                borderRadius:
+                                                                BorderRadius.circular(
+                                                                    20.0)),
+                                                          ),
+                                                        ),
+                                                        suggestionsCallback: (pattern) {
+                                                          if (pattern.isEmpty) {
+                                                            return [];
+                                                          }
+                                                          // The logic to find out which ones should appear
+                                                          return Provider.of<DataDz>(
+                                                              context,
+                                                              listen: false)
+                                                              .getCommuneByWilaya(wilaya)
+                                                              .where((suggestion) =>
+                                                              suggestion
+                                                                  .toLowerCase()
+                                                                  .contains(pattern
+                                                                  .toString()));
+                                                        },
+                                                        itemBuilder: (context, suggestion) {
+                                                          return ListTile(
+                                                            title:
+                                                            Text(suggestion.toString()),
+                                                          );
+                                                        },
+                                                        onSuggestionSelected: (suggestion) {
+                                                          setState(() {
+                                                            Commune = suggestion.toString();
+                                                            CommuneTEC =
+                                                                TextEditingController(
+                                                                    text: Commune);
+                                                          });
+                                                        },
+                                                      ),
+                                                    ),
+                                                    Container(
+                                                      width: sizee.width * (210 / 540),
+                                                      height: sizee.height * (65 / 912),
+                                                      child: TypeAheadField(
+                                                        direction: AxisDirection.up,
+                                                        textFieldConfiguration:
+                                                        TextFieldConfiguration(
+                                                          textDirection:
+                                                          TextDirection.rtl,
+                                                          textAlign: TextAlign.right,
+
+                                                          cursorColor:
+                                                          Colors.black,
+                                                          controller: WilayaTEC,
+                                                          decoration: InputDecoration(
+                                                            floatingLabelStyle:
+                                                            const TextStyle(
+                                                              color:
+                                                              Colors.black,
+                                                            ),
+                                                            hoverColor: Colors.black,
+                                                            focusColor:
+                                                            Colors.black,
+                                                            focusedBorder:
+                                                            OutlineInputBorder(
+                                                                borderSide:
+                                                                const BorderSide(
+                                                                  color:
+                                                                  Colors.black,
+                                                                ),
+                                                                borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                    20.0)),
+                                                            fillColor: Colors.white,
+                                                            filled: true,
+                                                            labelText: 'الولاية',
+                                                            border: OutlineInputBorder(
+                                                                borderRadius:
+                                                                BorderRadius.circular(
+                                                                    20.0)),
+                                                          ),
+                                                        ),
+                                                        suggestionsCallback: (pattern) {
+                                                          if (pattern.isEmpty) {
+                                                            return [];
+                                                          }
+                                                          // The logic to find out which ones should appear
+                                                          return Provider.of<DataDz>(
+                                                              context,
+                                                              listen: false)
+                                                              .wilayaa
+                                                              .where((suggestion) =>
+                                                              suggestion
+                                                                  .toLowerCase()
+                                                                  .contains(pattern
+                                                                  .toString()));
+                                                        },
+                                                        itemBuilder: (context, suggestion) {
+                                                          return ListTile(
+                                                            title:
+                                                            Text(suggestion.toString()),
+                                                          );
+                                                        },
+                                                        onSuggestionSelected: (suggestion) {
+                                                          setState(() {
+                                                            wilaya = suggestion.toString();
+                                                            WilayaTEC =
+                                                                TextEditingController(
+                                                                    text: wilaya);
+                                                          });
+                                                        },
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ):Container(),
                                               SizedBox(
                                                 height:
                                                     !Provider.of<AuthService>(
@@ -1226,7 +1413,9 @@ class _SigninState extends State<Signin> {
                   alignment: Alignment.topCenter,
                   child: Container(
                     margin: EdgeInsets.symmetric(
-                      vertical: HeightSize * 0.09,
+                      vertical:( !Provider.of<AuthService>(context,
+                          listen: false)
+                          .isVisiteur && !signin) ?HeightSize * 0.06 :  HeightSize * 0.09,
                     ),
                     height: WidthSize * 0.3,
                     width: WidthSize * 0.3,

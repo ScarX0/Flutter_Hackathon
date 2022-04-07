@@ -123,83 +123,41 @@ class _profileState extends State<profile> {
       },
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: Color(0xff4FBDBA).withOpacity(0.5),
+          title: Text(""),
+          automaticallyImplyLeading: false,
+          backgroundColor: Color(0xffFAC358),
           actions: [
-            // Container(
-            //   height: WidthSize * 0.12,
-            //   width: WidthSize * 0.12,
-            //   decoration: BoxDecoration(
-            //     color: Color(0xff4FBDBA),
-            //     borderRadius: BorderRadius.circular(80.0),
-            //   ),
-            //   margin: EdgeInsets.only(
-            //       top: MediaQuery.of(context).padding.top,
-            //       left: WidthSize * 0.01),
-            //   child:
-            InkWell(
-                child:
-                    // child: Transform.rotate(
-                    //   angle: 180 * math.pi / 180,
-                    //   child:
-                    Padding(
-                  padding: const EdgeInsets.all(3.0),
-                  child: Icon(
-                    Icons.logout,
-                    color: Colors.white,
-                    size: WidthSize * (40.0 / 540),
-                  ),
+            Transform.rotate(
+              angle: 180 * math.pi / 180,
+              child: IconButton(
+                icon: Icon(
+                  Icons.arrow_back_ios_outlined,
+                  color: Colors.white,
                 ),
-                // ),
-                onTap: () {
-                  FirebaseAuth.instance.signOut();
-                  // auth.signOut();
-                  // showDialog<String>(
-                  //   context: context,
-                  //   builder: (BuildContext context) => AlertDialog(
-                  //     title: const Text('تسجبيل الخروج'),
-                  //     content: const Text('متأكد ؟'),
-                  //     actions: <Widget>[
-                  //       TextButton(
-                  //         onPressed: () => Navigator.pop(context, 'Cancel'),
-                  //         child: const Text(
-                  //           'لا',
-                  //           style: TextStyle(color: Color(0xff4FBDBA)),
-                  //         ),
-                  //       ),
-                  //       TextButton(
-                  //         onPressed: () async {
-                  //           // Navigator.pop(ctx);
-                  //           await FirebaseAuth.instance.signOut();
-                  //         },
-                  //         child: const Text(
-                  //           'نعم',
-                  //           style: TextStyle(color: Color(0xff4FBDBA)),
-                  //         ),
-                  //       ),
-                  //     ],
-                  //   ),
-                  // );
-                }),
+                onPressed: () {Navigator.pop(context);},
+              ),
+            )
+            // InkWell(
+            //     child:
+            //         // child: Transform.rotate(
+            //         //   angle: 180 * math.pi / 180,
+            //         //   child:
+            //         Padding(
+            //       padding: const EdgeInsets.all(3.0),
+            //       child: Icon(
+            //         Icons.logout,
+            //         color: Colors.white,
+            //         size: WidthSize * (40.0 / 540),
+            //       ),
+            //     ),
+            //     // ),
+            //     onTap: () {
+            //       FirebaseAuth.instance.signOut();
+            //
+            //     }),
             // ),
           ],
-          // leading: !nu
-          //     ? Container(
-          //         child: _isLoading
-          //             ? CircularProgressIndicator(
-          //                 color: Colors.white,
-          //               )
-          //             : IconButton(
-          //                 icon: Icon(Icons.gps_fixed_outlined),
-          //                 onPressed: () async {
-          //                   await getLoc().then((value) => Navigator.push(
-          //                       context,
-          //                       MaterialPageRoute(
-          //                           builder: (_) => MapScreen(
-          //                               latitude: lat!, longitude: long!))));
-          //                 },
-          //               ),
-          //       )
-          //     : null,
+
         ),
         backgroundColor: Color(0xff4FBDBA).withOpacity(0.5),
         body: _isLoading

@@ -27,7 +27,7 @@ class _accueilState extends State<accueil> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    getWilaya();
+      getWilaya();
   }
 
   @override
