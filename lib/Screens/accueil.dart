@@ -320,54 +320,52 @@ class _accueilState extends State<accueil> {
                                         Text(
                                           rests.rests[index].restName!,
                                           textDirection: TextDirection.rtl,
+
+
                                         ),
                                         Text(
                                           '${rests.rests[index].city!} ,${rests.rests[index].commune!} ',
                                           textDirection: TextDirection.rtl,
                                         ),
+                                        Container(
+                                          width: sizee.height * 0.13,
+                                          child: Row(
+                                            mainAxisAlignment: MainAxisAlignment.center,
+                                            children: [
+                                              Icon(
+                                                Icons.person,
+                                                color: Color(0xffbd7344),
+                                              ),
+                                              Text('  25  ')
+                                            ],
+                                          ),
+                                        ) ,
                                       ],
                                     ),
                                   ),
                                 ),
-                                Column(
-                                  children: [
-                                    Container(
-                                      decoration: BoxDecoration(
-                                        image: DecorationImage(
-                                          fit: BoxFit.cover,
-                                          image:
-                                              AssetImage("assets/restaurant.jpg"),
-                                        ),
-                                        boxShadow: [
-                                          BoxShadow(
-                                            color: Colors.grey.withOpacity(0.05),
-                                            spreadRadius: 5,
-                                            blurRadius: 10,
-                                            offset: const Offset(
-                                                0, 3), // changes position of shadow
-                                          ),
-                                        ],
-                                        borderRadius: const BorderRadius.all(
-                                          const Radius.circular(20),
-                                        ),
-                                      ),
-                                      height: sizee.height * 0.13,
-                                      width: sizee.height * 0.13,
+                                Container(
+                                  decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                      fit: BoxFit.cover,
+                                      image:
+                                          AssetImage("assets/restaurant.jpg"),
                                     ),
-                                    Container(
-                                      width: sizee.height * 0.13,
-                                      child: Row(
-                                        mainAxisAlignment: MainAxisAlignment.center,
-                                        children: [
-                                          Icon(
-                                            Icons.person,
-                                            color: Color(0xffbd7344),
-                                          ),
-                                          Text('  25  ')
-                                        ],
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors.grey.withOpacity(0.05),
+                                        spreadRadius: 5,
+                                        blurRadius: 10,
+                                        offset: const Offset(
+                                            0, 3), // changes position of shadow
                                       ),
-                                    )
-                                  ],
+                                    ],
+                                    borderRadius: const BorderRadius.all(
+                                      const Radius.circular(20),
+                                    ),
+                                  ),
+                                  height: sizee.height * 0.17,
+                                  width: sizee.height * 0.17,
                                 ),
                               ],
                             ),
