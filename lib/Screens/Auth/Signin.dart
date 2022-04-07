@@ -1,5 +1,6 @@
 import 'package:abir_sabil/Screens/accueil.dart';
 import 'package:abir_sabil/Screens/accueil_resto.dart';
+import 'package:abir_sabil/main.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
@@ -66,7 +67,9 @@ class _SigninState extends State<Signin> {
           _password_upController.text,
           _nomController.text,
           _numberController.text,
-          _boutiqueController.text);
+          _boutiqueController.text,
+          '',
+          '');
 
       setState(() {
         _isLoading = false;
@@ -462,8 +465,7 @@ class _SigninState extends State<Signin> {
                                                                     .text,
                                                                 _passwordController
                                                                     .text)) {
-                                                              if (prov
-                                                                  .isVisiteur) {
+                                                              if (nu) {
                                                                 // Navigator.pop(
                                                                 //     context);
                                                                 Navigator.pushReplacement(
@@ -1121,8 +1123,7 @@ class _SigninState extends State<Signin> {
                                                                   .text,
                                                               _password_upController
                                                                   .text)) {
-                                                            if (prov
-                                                                .isVisiteur) {
+                                                            if (nu) {
                                                               // Navigator.pop(
                                                               //     context);
                                                               Navigator.pushReplacement(
