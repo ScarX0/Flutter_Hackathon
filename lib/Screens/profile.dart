@@ -196,7 +196,8 @@ class _profileState extends State<profile> {
                                 width: sizee.width * (65 / 540) * 2,
                                 height: sizee.width * (65 / 540) * 2,
                                 margin: EdgeInsets.only(
-                                    top: sizee.height * (15 / 912) , bottom: sizee.height*0.01),
+                                    top: sizee.height * (15 / 912),
+                                    bottom: sizee.height * 0.01),
                                 alignment: Alignment.center,
                                 child: Stack(
                                   children: [
@@ -242,23 +243,21 @@ class _profileState extends State<profile> {
                                 ),
                               ),
                               Text(
-
-                                prov.userInfo[nu ? 'name' : 'restaurantName'] ,    style: TextStyle(
-                              fontSize: WidthSize *
-                              (25 / 540),
-                          fontWeight:
-                          FontWeight.bold,
-                          color:
-                          Color(0xff3E4958),
-                          fontFamily: 'Gothic'),) ,
-                              Text(nu ? 'صائم' : 'مطعم' ,   style: TextStyle(
-                                  fontSize: WidthSize *
-                                      (20 / 540),
-                                  fontWeight:
-                                  FontWeight.bold,
-                                  color:
-                                  Color(0xffB1B0B0),
-                                  fontFamily: 'Gothic'),) ,
+                                prov.userInfo[nu ? 'name' : 'restaurantName'],
+                                style: TextStyle(
+                                    fontSize: WidthSize * (25 / 540),
+                                    fontWeight: FontWeight.bold,
+                                    color: Color(0xff3E4958),
+                                    fontFamily: 'Gothic'),
+                              ),
+                              Text(
+                                nu ? 'صائم' : 'مطعم',
+                                style: TextStyle(
+                                    fontSize: WidthSize * (20 / 540),
+                                    fontWeight: FontWeight.bold,
+                                    color: Color(0xffB1B0B0),
+                                    fontFamily: 'Gothic'),
+                              ),
 
                               //   Image(
                               //       fit: BoxFit.contain,
@@ -280,10 +279,17 @@ class _profileState extends State<profile> {
                                           (!nu)
                                               ? Center(
                                                   child: Card(
-                                                    shape: RoundedRectangleBorder(
-                                                      borderRadius: BorderRadius.only(
-                                                          bottomLeft: Radius.circular(5),
-                                                          bottomRight: Radius.circular(5)),),
+                                                    shape:
+                                                        RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.only(
+                                                              bottomLeft: Radius
+                                                                  .circular(5),
+                                                              bottomRight:
+                                                                  Radius
+                                                                      .circular(
+                                                                          5)),
+                                                    ),
                                                     elevation: 1,
                                                     child: Container(
                                                       width: WidthSize * 0.75,
@@ -291,16 +297,16 @@ class _profileState extends State<profile> {
                                                       decoration: BoxDecoration(
                                                           borderRadius:
                                                               BorderRadius.all(
-                                                                  Radius.circular(
-                                                                      5))),
+                                                                  Radius
+                                                                      .circular(
+                                                                          5))),
                                                       child: Row(
                                                         children: [
                                                           Container(
-                                                            margin:
-                                                                EdgeInsets.only(
-                                                                    right:
-                                                                        WidthSize *
-                                                                            0.05),
+                                                            margin: EdgeInsets.only(
+                                                                right:
+                                                                    WidthSize *
+                                                                        0.05),
                                                             width:
                                                                 WidthSize * 0.6,
                                                             alignment: Alignment
@@ -325,8 +331,8 @@ class _profileState extends State<profile> {
                                                           Icon(
                                                             Icons
                                                                 .storefront_outlined,
-                                                            color:
-                                                                Color(0xffB1B0B0),
+                                                            color: Color(
+                                                                0xffB1B0B0),
                                                           ),
                                                         ],
                                                       ),
@@ -338,17 +344,20 @@ class _profileState extends State<profile> {
                                             child: Card(
                                               shape: RoundedRectangleBorder(
                                                 borderRadius: BorderRadius.only(
-                                                    bottomLeft: Radius.circular(5),
-                                                    bottomRight: Radius.circular(5)),),
+                                                    bottomLeft:
+                                                        Radius.circular(5),
+                                                    bottomRight:
+                                                        Radius.circular(5)),
+                                              ),
                                               elevation: 1,
-
-                                                child: Container(
+                                              child: Container(
                                                 width: WidthSize * 0.75,
                                                 height: HeightSize * 0.06,
                                                 decoration: BoxDecoration(
                                                     borderRadius:
                                                         BorderRadius.all(
-                                                            Radius.circular(5))),
+                                                            Radius.circular(
+                                                                5))),
                                                 child: Row(
                                                   children: [
                                                     Container(
@@ -361,13 +370,15 @@ class _profileState extends State<profile> {
                                                       child: Text(
                                                         prov.userInfo['name'],
                                                         style: TextStyle(
-                                                            fontSize: WidthSize *
-                                                                (30 / 540),
+                                                            fontSize:
+                                                                WidthSize *
+                                                                    (30 / 540),
                                                             fontWeight:
                                                                 FontWeight.bold,
-                                                            color:
-                                                                Color(0xffB1B0B0),
-                                                            fontFamily: 'Gothic'),
+                                                            color: Color(
+                                                                0xffB1B0B0),
+                                                            fontFamily:
+                                                                'Gothic'),
                                                       ),
                                                     ),
                                                     Icon(
@@ -383,8 +394,11 @@ class _profileState extends State<profile> {
                                             child: Card(
                                               shape: RoundedRectangleBorder(
                                                 borderRadius: BorderRadius.only(
-                                                    bottomLeft: Radius.circular(5),
-                                                    bottomRight: Radius.circular(5)),),
+                                                    bottomLeft:
+                                                        Radius.circular(5),
+                                                    bottomRight:
+                                                        Radius.circular(5)),
+                                              ),
                                               elevation: 1,
                                               child: Container(
                                                 width: WidthSize * 0.75,
@@ -392,7 +406,8 @@ class _profileState extends State<profile> {
                                                 decoration: BoxDecoration(
                                                     borderRadius:
                                                         BorderRadius.all(
-                                                            Radius.circular(5))),
+                                                            Radius.circular(
+                                                                5))),
                                                 child: Row(
                                                   children: [
                                                     Container(
@@ -405,13 +420,15 @@ class _profileState extends State<profile> {
                                                       child: Text(
                                                         prov.userInfo['email'],
                                                         style: TextStyle(
-                                                            fontSize: WidthSize *
-                                                                (30 / 540),
+                                                            fontSize:
+                                                                WidthSize *
+                                                                    (30 / 540),
                                                             fontWeight:
                                                                 FontWeight.bold,
-                                                            color:
-                                                                Color(0xffB1B0B0),
-                                                            fontFamily: 'Gothic'),
+                                                            color: Color(
+                                                                0xffB1B0B0),
+                                                            fontFamily:
+                                                                'Gothic'),
                                                       ),
                                                     ),
                                                     Icon(
@@ -427,8 +444,11 @@ class _profileState extends State<profile> {
                                             child: Card(
                                               shape: RoundedRectangleBorder(
                                                 borderRadius: BorderRadius.only(
-                                                    bottomLeft: Radius.circular(5),
-                                                    bottomRight: Radius.circular(5)),),
+                                                    bottomLeft:
+                                                        Radius.circular(5),
+                                                    bottomRight:
+                                                        Radius.circular(5)),
+                                              ),
                                               elevation: 1,
                                               child: Container(
                                                 width: WidthSize * 0.75,
@@ -436,7 +456,8 @@ class _profileState extends State<profile> {
                                                 decoration: BoxDecoration(
                                                     borderRadius:
                                                         BorderRadius.all(
-                                                            Radius.circular(5))),
+                                                            Radius.circular(
+                                                                5))),
                                                 child: Row(
                                                   children: [
                                                     Container(
@@ -449,13 +470,15 @@ class _profileState extends State<profile> {
                                                       child: Text(
                                                         prov.userInfo['phone'],
                                                         style: TextStyle(
-                                                            fontSize: WidthSize *
-                                                                (30 / 540),
+                                                            fontSize:
+                                                                WidthSize *
+                                                                    (30 / 540),
                                                             fontWeight:
                                                                 FontWeight.bold,
-                                                            color:
-                                                                Color(0xffB1B0B0),
-                                                            fontFamily: 'Gothic'),
+                                                            color: Color(
+                                                                0xffB1B0B0),
+                                                            fontFamily:
+                                                                'Gothic'),
                                                       ),
                                                     ),
                                                     Icon(
@@ -484,15 +507,19 @@ class _profileState extends State<profile> {
                                               child: Center(
                                                 child: Card(
                                                   shape: RoundedRectangleBorder(
-                                                    borderRadius: BorderRadius.only(
-                                                        bottomLeft: Radius.circular(5),
-                                                        bottomRight: Radius.circular(5)),),
+                                                    borderRadius:
+                                                        BorderRadius.only(
+                                                            bottomLeft: Radius
+                                                                .circular(5),
+                                                            bottomRight:
+                                                                Radius.circular(
+                                                                    5)),
+                                                  ),
                                                   elevation: 1,
                                                   child: Container(
                                                     width: WidthSize * 0.75,
                                                     height: HeightSize * 0.06,
                                                     decoration: BoxDecoration(
-
                                                         borderRadius:
                                                             BorderRadius.all(
                                                                 Radius.circular(
@@ -500,9 +527,11 @@ class _profileState extends State<profile> {
                                                     child: Row(
                                                       children: [
                                                         Container(
-                                                          margin: EdgeInsets.only(
-                                                              left: WidthSize *
-                                                                  0.02),
+                                                          margin:
+                                                              EdgeInsets.only(
+                                                                  left:
+                                                                      WidthSize *
+                                                                          0.02),
                                                           child: SvgPicture.asset(
                                                               "assets/localisation.svg",
                                                               color: Color(
@@ -511,10 +540,13 @@ class _profileState extends State<profile> {
                                                                   'A red up arrow'),
                                                         ),
                                                         Container(
-                                                          margin: EdgeInsets.only(
-                                                              right: WidthSize *
-                                                                  0.05),
-                                                          width: WidthSize * 0.5,
+                                                          margin:
+                                                              EdgeInsets.only(
+                                                                  right:
+                                                                      WidthSize *
+                                                                          0.05),
+                                                          width:
+                                                              WidthSize * 0.5,
                                                           alignment: Alignment
                                                               .centerRight,
                                                           child: Text(
