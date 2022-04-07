@@ -51,6 +51,7 @@ class _accueilState extends State<accueil> {
   @override
   Widget build(BuildContext context) {
     final sizee = MediaQuery.of(context).size;
+    final rests = Provider.of<Restaurants>(context, listen: false);
     String wilaya = "";
 
     return Scaffold(
@@ -173,7 +174,7 @@ class _accueilState extends State<accueil> {
                     horizontal: sizee.width * 0.03,
                     vertical: sizee.height * 0.02),
                 child: ListView.builder(
-                    itemCount: 5,
+                    itemCount: rests.rests.length,
                     itemBuilder: (BuildContext context, int index) {
                       return Container(
                         width: sizee.width * 0.8,
@@ -210,6 +211,7 @@ class _accueilState extends State<accueil> {
                                 iconSize: sizee.width * (28 / 540),
                                 color: Colors.white,
                                 onPressed: () async {
+                                  rests.restoById(rests.rests[index].id!);
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
@@ -229,11 +231,11 @@ class _accueilState extends State<accueil> {
                                   crossAxisAlignment: CrossAxisAlignment.end,
                                   children: [
                                     Text(
-                                      "المطعم الفلاني",
+                                      rests.rests[index].restName!,
                                       textDirection: TextDirection.rtl,
                                     ),
                                     Text(
-                                      "تيغنيف , معسكر",
+                                      '${rests.rests[index].city!} ,${rests.rests[index].commune!} ',
                                       textDirection: TextDirection.rtl,
                                     ),
                                   ],
