@@ -19,13 +19,14 @@ class restaurant_details extends StatefulWidget {
 
 class _restaurant_detailsState extends State<restaurant_details> {
   bool _isLoading = false;
+  bool _isLoading2 = false;
   double? lat;
   double? long;
   Map<String, dynamic>? userInfo = {};
   Map<String, dynamic>? menu = {};
-  Future<void> volunter() async {
+  Future<void> volunter(int m, bool abondone) async {
     setState(() {
-      _isLoading = true;
+      _isLoading2 = true;
     });
 
     try {
@@ -35,9 +36,9 @@ class _restaurant_detailsState extends State<restaurant_details> {
           .collection('volounteers')
           .doc(auth!.uid)
           .update({
-        'isVolounteer': true,
-        'whereVolunteer': rest.chosenRestaurant!.id,
-        'timeVolunteer': DateTime.now()
+        'isVolounteer': abondone ? false : true,
+        'whereVolunter': abondone ? '' : rest.chosenRestaurant!.id,
+        'timeVolunteer': abondone ? null : DateTime.now()
       });
 
       final data = await FirebaseFirestore.instance
@@ -49,13 +50,14 @@ class _restaurant_detailsState extends State<restaurant_details> {
           .collection('restaurants')
           .doc(rest.chosenRestaurant!.id)
           .update({
-        'vols_number': info!['vols_number'] + 1,
+        'vols_number': info!['vols_number'] + m,
+        'need_number_vol': info['need_number_vol'] - m,
       });
     } catch (e) {
       print(e.toString());
     }
     setState(() {
-      _isLoading = true;
+      _isLoading2 = false;
     });
   }
 
@@ -100,7 +102,8 @@ class _restaurant_detailsState extends State<restaurant_details> {
           .doc(auth!.uid)
           .update({
         'isReserved': reserved ? true : false,
-        'whereReserved': reserved ? rest.id : ''
+        'whereReserved': reserved ? rest.id : '',
+        'reserveTime': reserved ? DateTime.now() : null
       });
     } catch (e) {
       print(e.toString());
@@ -314,52 +317,59 @@ class _restaurant_detailsState extends State<restaurant_details> {
                                                                         .restName!))));
                                               }
                                             },
-                                            child: Container(
-                                              child: Center(
-                                                child: userInfo![
-                                                            'isReserved'] &&
-                                                        userInfo![
-                                                                'whereReserved'] ==
-                                                            rest.chosenRestaurant!
-                                                                .id
-                                                    ? const Text(
-                                                        'إلغاء الحجز',
-                                                        style: TextStyle(
-                                                            color:
-                                                                Colors.white),
-                                                      )
-                                                    : userInfo!['isReserved']
-                                                        ? const Text(
-                                                            'تم الحجز مسبقا')
-                                                        : const Text(
-                                                            'احجز مقعد',
-                                                            style: TextStyle(
-                                                                color: Colors
-                                                                    .white),
-                                                          ),
-                                              ),
-                                              width: sizee.width * 0.24,
-                                              height: sizee.height * 0.05,
-                                              margin: EdgeInsets.only(
-                                                  top: sizee.height * 0.01),
-                                              decoration: BoxDecoration(
-                                                color: Color(0xffFAC358),
-                                                boxShadow: [
-                                                  BoxShadow(
-                                                    color: Colors.grey
-                                                        .withOpacity(0.05),
-                                                    spreadRadius: 5,
-                                                    blurRadius: 10,
-                                                    offset: const Offset(0,
-                                                        3), // changes position of shadow
+                                            child: _isLoading
+                                                ? CircularProgressIndicator()
+                                                : Container(
+                                                    child: Center(
+                                                      child: userInfo![
+                                                                  'isReserved'] &&
+                                                              userInfo![
+                                                                      'whereReserved'] ==
+                                                                  rest.chosenRestaurant!
+                                                                      .id
+                                                          ? const Text(
+                                                              'إلغاء الحجز',
+                                                              style: TextStyle(
+                                                                  color: Colors
+                                                                      .white),
+                                                            )
+                                                          : userInfo![
+                                                                  'isReserved']
+                                                              ? const Text(
+                                                                  'تم الحجز مسبقا')
+                                                              : const Text(
+                                                                  'احجز مقعد',
+                                                                  style: TextStyle(
+                                                                      color: Colors
+                                                                          .white),
+                                                                ),
+                                                    ),
+                                                    width: sizee.width * 0.24,
+                                                    height: sizee.height * 0.05,
+                                                    margin: EdgeInsets.only(
+                                                        top: sizee.height *
+                                                            0.01),
+                                                    decoration: BoxDecoration(
+                                                      color: Color(0xffFAC358),
+                                                      boxShadow: [
+                                                        BoxShadow(
+                                                          color: Colors.grey
+                                                              .withOpacity(
+                                                                  0.05),
+                                                          spreadRadius: 5,
+                                                          blurRadius: 10,
+                                                          offset: const Offset(
+                                                              0,
+                                                              3), // changes position of shadow
+                                                        ),
+                                                      ],
+                                                      borderRadius:
+                                                          const BorderRadius
+                                                              .all(
+                                                        Radius.circular(5),
+                                                      ),
+                                                    ),
                                                   ),
-                                                ],
-                                                borderRadius:
-                                                    const BorderRadius.all(
-                                                  Radius.circular(5),
-                                                ),
-                                              ),
-                                            ),
                                           )),
                                     Container(
                                       width: sizee.width * 0.35,
@@ -651,43 +661,82 @@ class _restaurant_detailsState extends State<restaurant_details> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
-                            Container(
-                                child: InkWell(
-                              onTap: () async {
-                                if (!userInfo!['isVolounteer']) {
-                                  await volunter();
-                                }
-                              },
-                              child: Container(
-                                child: Center(
-                                  child: Text(
-                                    userInfo!['isVolounteer']
-                                        ? 'متطوع'
-                                        : 'تطوع الآن',
-                                    style: TextStyle(color: Colors.white),
-                                  ),
-                                ),
-                                width: sizee.width * 0.2,
-                                height: sizee.height * 0.05,
-                                margin:
-                                    EdgeInsets.only(top: sizee.height * 0.01),
-                                decoration: BoxDecoration(
-                                  color: Color(0xffFAC358),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Colors.grey.withOpacity(0.05),
-                                      spreadRadius: 5,
-                                      blurRadius: 10,
-                                      offset: const Offset(
-                                          0, 3), // changes position of shadow
+                            _isLoading2
+                                ? CircularProgressIndicator()
+                                : Container(
+                                    child: InkWell(
+                                    onTap: () async {
+                                      if (!userInfo!['isVolounteer']) {
+                                        await volunter(1, false).then((value) {
+                                          rest.chosenRestaurant!
+                                              .needNumberVols = rest
+                                                  .chosenRestaurant!
+                                                  .needNumberVols! -
+                                              1;
+                                          Navigator.pushReplacement(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (_) =>
+                                                      restaurant_details(
+                                                          title: rest
+                                                              .chosenRestaurant!
+                                                              .restName!)));
+                                        });
+                                      } else if (userInfo!['isVolounteer'] &&
+                                          userInfo!['whereVolunter'] ==
+                                              rest.chosenRestaurant!.id) {
+                                        await volunter(-1, true).then((value) {
+                                          rest.chosenRestaurant!
+                                              .needNumberVols = rest
+                                                  .chosenRestaurant!
+                                                  .needNumberVols! +
+                                              1;
+                                          Navigator.pushReplacement(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (_) =>
+                                                      restaurant_details(
+                                                          title: rest
+                                                              .chosenRestaurant!
+                                                              .restName!)));
+                                        });
+                                      }
+                                    },
+                                    child: Container(
+                                      child: Center(
+                                        child: Text(
+                                          userInfo!['isVolounteer'] &&
+                                                  userInfo!['whereVolunter'] ==
+                                                      rest.chosenRestaurant!.id
+                                              ? 'إلغاء التطوع'
+                                              : userInfo!['isVolounteer']
+                                                  ? 'متطوع'
+                                                  : 'تطوع الآن',
+                                          style: TextStyle(color: Colors.white),
+                                        ),
+                                      ),
+                                      width: sizee.width * 0.2,
+                                      height: sizee.height * 0.05,
+                                      margin: EdgeInsets.only(
+                                          top: sizee.height * 0.01),
+                                      decoration: BoxDecoration(
+                                        color: Color(0xffFAC358),
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color:
+                                                Colors.grey.withOpacity(0.05),
+                                            spreadRadius: 5,
+                                            blurRadius: 10,
+                                            offset: const Offset(0,
+                                                3), // changes position of shadow
+                                          ),
+                                        ],
+                                        borderRadius: const BorderRadius.all(
+                                          Radius.circular(5),
+                                        ),
+                                      ),
                                     ),
-                                  ],
-                                  borderRadius: const BorderRadius.all(
-                                    Radius.circular(5),
-                                  ),
-                                ),
-                              ),
-                            )),
+                                  )),
                             Container(
                               width: sizee.width * 0.3,
                               height: sizee.height * 0.05,

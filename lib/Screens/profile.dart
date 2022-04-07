@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:abir_sabil/Providers/auth.dart';
+import 'package:abir_sabil/Screens/Auth/UserType.dart';
 import 'package:abir_sabil/Screens/Map.dart';
 import 'package:abir_sabil/main.dart';
 import 'package:file_picker/file_picker.dart';
@@ -9,6 +10,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'dart:math' as math;
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
@@ -226,25 +228,26 @@ class _profileState extends State<profile> {
                                 child: Stack(
                                   children: [
                                     CircleAvatar(
-                                      backgroundColor: Colors.grey,
-                                      radius: WidthSize * (65 / 540),
-                                      child: filex == null
-                                          ? Container(
-                                              decoration: BoxDecoration(
-                                                  borderRadius:
-                                                      BorderRadius.all(
-                                                          Radius.circular(80)),
-                                                  image: DecorationImage(
-                                                    fit: BoxFit.cover,
-                                                    image: nu
-                                                        ? AssetImage(
-                                                            "assets/muslim.png")
-                                                        : AssetImage(
-                                                            "assets/restaurant.jpg"),
-                                                  )),
-                                            )
-                                          : Image(image: FileImage(filex!)),
-                                    ),
+                                        backgroundColor: Colors.grey,
+                                        radius: WidthSize * (65 / 540),
+                                        child:
+                                            //  filex == null
+                                            //     ?
+                                            Container(
+                                          decoration: BoxDecoration(
+                                              borderRadius: BorderRadius.all(
+                                                  Radius.circular(80)),
+                                              image: DecorationImage(
+                                                fit: BoxFit.cover,
+                                                image: nu
+                                                    ? AssetImage(
+                                                        "assets/muslim.png")
+                                                    : AssetImage(
+                                                        "assets/restaurant.jpg"),
+                                              )),
+                                        )
+                                        // : Image(image: FileImage(filex!)),
+                                        ),
                                     (!nu)
                                         ? Align(
                                             alignment: Alignment.bottomRight,
@@ -261,14 +264,17 @@ class _profileState extends State<profile> {
                                                       sizee.width * (30 / 540),
                                                 ),
                                                 color: Colors.white,
-                                                onPressed: () async {
-                                                  final imagefile =
-                                                      await ImagePicker.platform
-                                                          .getImage(
-                                                              source:
-                                                                  ImageSource
-                                                                      .gallery);
-                                                  await selectFile(imagefile);
+                                                onPressed: () {
+                                                  Fluttertoast.showToast(
+                                                      msg:
+                                                          'ليست في الخدمة الآن');
+                                                  // final imagefile =
+                                                  //     await ImagePicker.platform
+                                                  //         .getImage(
+                                                  //             source:
+                                                  //                 ImageSource
+                                                  //                     .gallery);
+                                                  // await selectFile(imagefile);
                                                 },
                                               ),
                                             ),
@@ -277,12 +283,12 @@ class _profileState extends State<profile> {
                                   ],
                                 ),
                               ),
-                              if (filex != null)
-                                TextButton(
-                                    onPressed: () async {
-                                      uploadFile();
-                                    },
-                                    child: Text('upload')),
+                              // if (filex != null)
+                              //   TextButton(
+                              //       onPressed: () async {
+                              //         uploadFile();
+                              //       },
+                              //       child: Text('upload')),
                               Text(
                                 prov.userInfo[nu ? 'name' : 'restaurantName'],
                                 style: TextStyle(
@@ -624,8 +630,17 @@ class _profileState extends State<profile> {
                                       ),
                                     ),
                                     RaisedButton(
-                                      onPressed: () async {
-                                        FirebaseAuth.instance.signOut();
+                                      onPressed: () {
+                                        FirebaseAuth.instance
+                                            .signOut()
+                                            .then((value) {
+                                          Navigator.pop(context);
+                                          Navigator.pop(context);
+                                          Navigator.pushReplacement(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (_) => UserType()));
+                                        });
                                       },
                                       padding: const EdgeInsets.all(0.0),
                                       shape: RoundedRectangleBorder(

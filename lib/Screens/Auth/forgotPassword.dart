@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 
 import '../../Providers/auth.dart';
@@ -15,7 +16,9 @@ class _forgotState extends State<forgot> {
 
   @override
   Widget build(BuildContext context) {
-    final HeightSize =  MediaQuery.of(context).size.height-(MediaQuery.of(context).padding.top+MediaQuery.of(context).padding.bottom);
+    final HeightSize = MediaQuery.of(context).size.height -
+        (MediaQuery.of(context).padding.top +
+            MediaQuery.of(context).padding.bottom);
     final sizee = MediaQuery.of(context).size;
 
     return GestureDetector(
@@ -31,27 +34,27 @@ class _forgotState extends State<forgot> {
                 Align(
                   alignment: Alignment.bottomCenter,
                   child: Container(
-                   decoration: BoxDecoration( image: DecorationImage(
-                     opacity: 0.2,
-
-                     fit: BoxFit.contain,
-                     image: AssetImage("assets/hilal.png"),
-                   ),),
-                    height: sizee.height*0.6,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        opacity: 0.2,
+                        fit: BoxFit.contain,
+                        image: AssetImage("assets/hilal.png"),
+                      ),
+                    ),
+                    height: sizee.height * 0.6,
                   ),
                 ),
                 Container(
-                  height:HeightSize * 0.55,
+                  height: HeightSize * 0.55,
                   decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
-                        colors: [
-                          Color(0xffFAC358).withOpacity(0.8),
-                          Color(0xff3FB876).withOpacity(0.7),
-
-                        ],
-                      ),
+                    gradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: [
+                        Color(0xffFAC358).withOpacity(0.8),
+                        Color(0xff3FB876).withOpacity(0.7),
+                      ],
+                    ),
                     borderRadius: BorderRadius.only(
                       bottomLeft: Radius.circular(60),
                       //  bottomLeft: Radius.circular(100),
@@ -86,7 +89,7 @@ class _forgotState extends State<forgot> {
                       ),
                       Container(
                         width: sizee.width * 0.9,
-                        height:HeightSize* 0.09,
+                        height: HeightSize * 0.09,
                         child: TextFormField(
                           textDirection: TextDirection.rtl,
                           textAlign: TextAlign.right,
@@ -128,6 +131,11 @@ class _forgotState extends State<forgot> {
                       ),
                       RaisedButton(
                         onPressed: () async {
+                          Fluttertoast.showToast(
+                                  msg: 'البريد الإلكتروني يجب أن يكون مؤكد')
+                              .then((value) => Fluttertoast.showToast(
+                                  msg: 'ليست في الخدمة الآن'));
+
                           // showDialog(
                           //     context: context,
                           //     barrierDismissible: false,
@@ -162,16 +170,15 @@ class _forgotState extends State<forgot> {
                             borderRadius: BorderRadius.circular(5.0)),
                         child: Container(
                           width: sizee.width * 0.9,
-                          height: HeightSize* 0.08,
+                          height: HeightSize * 0.08,
                           decoration: const BoxDecoration(
                               color: Colors.white,
                               borderRadius:
-                              BorderRadius.all(Radius.circular(5.0))),
+                                  BorderRadius.all(Radius.circular(5.0))),
                           child: Center(
                             child: Text(
                               "إستعادة كلمة المرور",
                               style: TextStyle(
-
                                 fontSize: sizee.width * (25 / 540),
                                 color: Color(0xff582e44),
                                 fontWeight: FontWeight.bold,

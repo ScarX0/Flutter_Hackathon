@@ -1,6 +1,7 @@
 import 'package:abir_sabil/Providers/restaurant.dart';
 import 'package:abir_sabil/Screens/profile.dart';
 import 'package:abir_sabil/Screens/restaurant_details.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -44,9 +45,82 @@ class _accueilState extends State<accueil> {
     Provider.of<DataDz>(context, listen: false).getWilaya();
   }
 
+  Future<void> abondone() async {
+    setState(() {
+      _isLoading = true;
+    });
+    try {
+      final auth = FirebaseAuth.instance.currentUser;
+      final data = await FirebaseFirestore.instance
+          .collection('volounteers')
+          .doc(auth!.uid)
+          .get();
+      final userInfo = data.data();
+      bool isVol = userInfo!['isVolounteer'];
+      bool isRes = userInfo['isReserved'];
+      if (isVol) {
+        Timestamp dateTime = userInfo['timeVolunteer'];
+        final ft = dateTime.toDate();
+        ft.add(const Duration(hours: 12));
+        if (DateTime.now().isBefore(ft)) {
+          final id = userInfo['whereVolunteer'];
+          final rest = await FirebaseFirestore.instance
+              .collection('restaurants')
+              .doc(id)
+              .get();
+          final restInfos = rest.data();
+          await FirebaseFirestore.instance
+              .collection('restaurants')
+              .doc(id)
+              .update({'vols_number': restInfos!['vols_number'] - 1});
+          await FirebaseFirestore.instance
+              .collection('volounteers')
+              .doc(auth.uid)
+              .update({
+            'isVolounteer': false,
+            'whereVolunter': '',
+            'timeVolunteer': null
+          });
+        }
+      }
+      if (isRes) {
+        Timestamp dateTime = userInfo['reserveTime'];
+        final ft = dateTime.toDate();
+        ft.add(Duration(hours: 12));
+        if (DateTime.now().isBefore(ft)) {
+          final id = userInfo['whereReserved'];
+          final rest = await FirebaseFirestore.instance
+              .collection('menus')
+              .doc(id)
+              .get();
+          final menuInfos = rest.data();
+          await FirebaseFirestore.instance
+              .collection('menus')
+              .doc(id)
+              .update({'repas_dispo': menuInfos!['repas_dispo'] + 1});
+
+          await FirebaseFirestore.instance
+              .collection('volounteers')
+              .doc(auth.uid)
+              .update({
+            'isReserved': false,
+            'whereReserved': '',
+            'timeReserve': null
+          });
+        }
+      }
+    } catch (e) {
+      print(e.toString());
+    }
+    setState(() {
+      _isLoading = false;
+    });
+  }
+
   @override
   void initState() {
     // TODO: implement initState
+    abondone();
     getRests();
     super.initState();
     getWilaya();
@@ -274,12 +348,12 @@ class _accueilState extends State<accueil> {
                         height: sizee.height * 0.7,
                         decoration: BoxDecoration(
                             image: DecorationImage(
-                              fit: BoxFit.contain,
-                              opacity: 0.5,
-                              image: AssetImage(
-                                "assets/hilel3.png",
-                              ),
-                            )),
+                          fit: BoxFit.contain,
+                          opacity: 0.5,
+                          image: AssetImage(
+                            "assets/hilel3.png",
+                          ),
+                        )),
                       ),
                     ),
                   ),
@@ -289,11 +363,13 @@ class _accueilState extends State<accueil> {
                         horizontal: sizee.width * 0.03,
                         vertical: sizee.height * 0.02),
                     child: ListView.builder(
-                        itemCount:
-                            searched ? rests.loadedList.length : rests.rests.length,
+                        itemCount: searched
+                            ? rests.loadedList.length
+                            : rests.rests.length,
                         itemBuilder: (BuildContext context, int index) {
                           return Container(
-                            margin: EdgeInsets.only(bottom: sizee.height * 0.02),
+                            margin:
+                                EdgeInsets.only(bottom: sizee.height * 0.02),
                             child: Card(
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.all(
@@ -317,7 +393,8 @@ class _accueilState extends State<accueil> {
                                     horizontal: sizee.width * 0.05),
                                 child: Row(
                                   crossAxisAlignment: CrossAxisAlignment.center,
-                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceAround,
                                   children: [
                                     CircleAvatar(
                                       backgroundColor: Color(0xffFAC358),
@@ -387,16 +464,17 @@ class _accueilState extends State<accueil> {
                                       decoration: BoxDecoration(
                                         image: DecorationImage(
                                           fit: BoxFit.cover,
-                                          image:
-                                              AssetImage("assets/restaurant.jpg"),
+                                          image: AssetImage(
+                                              "assets/restaurant.jpg"),
                                         ),
                                         boxShadow: [
                                           BoxShadow(
-                                            color: Colors.grey.withOpacity(0.05),
+                                            color:
+                                                Colors.grey.withOpacity(0.05),
                                             spreadRadius: 5,
                                             blurRadius: 10,
-                                            offset: const Offset(
-                                                0, 3), // changes position of shadow
+                                            offset: const Offset(0,
+                                                3), // changes position of shadow
                                           ),
                                         ],
                                         borderRadius: const BorderRadius.all(
