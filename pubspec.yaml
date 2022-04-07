@@ -51,6 +51,8 @@ dependencies:
   hijri: ^3.0.0
   location: ^4.2.0
   numberpicker: ^2.1.1
+  file_picker: ^4.5.1
+  firebase_storage: ^10.2.10
 
   # google_map_location_picker: ^4.1.7
   # localization: ^2.1.0
@@ -105,9 +107,9 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-     - family: Hacen
-       fonts:
-         - asset: assets/HA.ttf
+    - family: Hacen
+      fonts:
+        - asset: assets/HA.ttf
 
   #   - family: Trajan Pro
   #     fonts:

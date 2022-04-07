@@ -23,6 +23,42 @@ class _restaurant_detailsState extends State<restaurant_details> {
   double? long;
   Map<String, dynamic>? userInfo = {};
   Map<String, dynamic>? menu = {};
+  Future<void> volunter() async {
+    setState(() {
+      _isLoading = true;
+    });
+
+    try {
+      final rest = Provider.of<Restaurants>(context, listen: false);
+      final auth = FirebaseAuth.instance.currentUser;
+      await FirebaseFirestore.instance
+          .collection('volounteers')
+          .doc(auth!.uid)
+          .update({
+        'isVolounteer': true,
+        'whereVolunteer': rest.chosenRestaurant!.id,
+        'timeVolunteer': DateTime.now()
+      });
+
+      final data = await FirebaseFirestore.instance
+          .collection('restaurants')
+          .doc(rest.chosenRestaurant!.id)
+          .get();
+      final info = data.data();
+      await FirebaseFirestore.instance
+          .collection('restaurants')
+          .doc(rest.chosenRestaurant!.id)
+          .update({
+        'vols_number': info!['vols_number'] + 1,
+      });
+    } catch (e) {
+      print(e.toString());
+    }
+    setState(() {
+      _isLoading = true;
+    });
+  }
+
   Future<void> getInfos() async {
     setState(() {
       _isLoading = true;
@@ -583,40 +619,51 @@ class _restaurant_detailsState extends State<restaurant_details> {
                   SizedBox(
                     height: sizee.height * 0.05,
                   ),
-                  if (rest.chosenRestaurant!.needVol!)
+                  if (rest.chosenRestaurant!.needVol! &&
+                      rest.chosenRestaurant!.needNumberVols! >
+                          rest.chosenRestaurant!.volsNumber!)
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        Container(
-                            child: InkWell(
-                          onTap: () {},
-                          child: Container(
-                            child: Center(
-                              child: Text(
-                                'تطوع',
-                                style: TextStyle(color: Colors.white),
-                              ),
-                            ),
-                            width: sizee.width * 0.2,
-                            height: sizee.height * 0.05,
-                            margin: EdgeInsets.only(top: sizee.height * 0.01),
-                            decoration: BoxDecoration(
-                              color: Color(0xffFAC358),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.grey.withOpacity(0.05),
-                                  spreadRadius: 5,
-                                  blurRadius: 10,
-                                  offset: const Offset(
-                                      0, 3), // changes position of shadow
+                        _isLoading
+                            ? CircularProgressIndicator()
+                            : Container(
+                                child: InkWell(
+                                onTap: () async {
+                                  if (!userInfo!['isVolounteer']) {
+                                    await volunter();
+                                  }
+                                },
+                                child: Container(
+                                  child: Center(
+                                    child: Text(
+                                      !userInfo!['isVolounteer']
+                                          ? 'تطوع الآن'
+                                          : 'متطوع',
+                                      style: TextStyle(color: Colors.white),
+                                    ),
+                                  ),
+                                  width: sizee.width * 0.2,
+                                  height: sizee.height * 0.05,
+                                  margin:
+                                      EdgeInsets.only(top: sizee.height * 0.01),
+                                  decoration: BoxDecoration(
+                                    color: Color(0xffFAC358),
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors.grey.withOpacity(0.05),
+                                        spreadRadius: 5,
+                                        blurRadius: 10,
+                                        offset: const Offset(
+                                            0, 3), // changes position of shadow
+                                      ),
+                                    ],
+                                    borderRadius: const BorderRadius.all(
+                                      Radius.circular(5),
+                                    ),
+                                  ),
                                 ),
-                              ],
-                              borderRadius: const BorderRadius.all(
-                                Radius.circular(5),
-                              ),
-                            ),
-                          ),
-                        )),
+                              )),
                         Container(
                           width: sizee.width * 0.3,
                           height: sizee.height * 0.05,
