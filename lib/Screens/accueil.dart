@@ -82,6 +82,14 @@ class _accueilState extends State<accueil> {
                     BuildContext ctx,
                   ) {
                     return AlertDialog(
+                      actions: [
+                        TextButton(
+                          child: const Text('تأكيد' , style: TextStyle(color:  Color(0xff582e44)),),
+                          onPressed: () {
+
+                          },
+                        ),
+                      ],
                         title: Text(
                           'اختر منطقة تواجدك',
                           style: TextStyle(
@@ -320,15 +328,17 @@ class _accueilState extends State<accueil> {
                                         Text(
                                           rests.rests[index].restName!,
                                           textDirection: TextDirection.rtl,
+                                          style: TextStyle(fontSize: sizee.width*0.05),
 
 
                                         ),
                                         Text(
                                           '${rests.rests[index].city!} ,${rests.rests[index].commune!} ',
                                           textDirection: TextDirection.rtl,
+                                          style: TextStyle(color: Color(0xffA59F97)),
                                         ),
                                         Container(
-                                          width: sizee.height * 0.13,
+                                          width: sizee.height * 0.075,
                                           child: Row(
                                             mainAxisAlignment: MainAxisAlignment.center,
                                             children: [
