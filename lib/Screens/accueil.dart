@@ -1,3 +1,4 @@
+import 'package:abir_sabil/Providers/restaurant.dart';
 import 'package:abir_sabil/Screens/profile.dart';
 import 'package:abir_sabil/Screens/restaurant_details.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -18,6 +19,22 @@ class accueil extends StatefulWidget {
 class _accueilState extends State<accueil> {
   final user = FirebaseAuth.instance;
   TextEditingController WilayaTEC = TextEditingController();
+  bool _isLoading = false;
+
+  Future<void> getRests() async {
+    setState(() {
+      _isLoading = true;
+    });
+
+    try {
+      await Provider.of<Restaurants>(context, listen: false).getRestaurants();
+    } catch (e) {
+      print(e.toString());
+    }
+    setState(() {
+      _isLoading = false;
+    });
+  }
 
   getWilaya() {
     Provider.of<DataDz>(context, listen: false).getWilaya();
@@ -26,8 +43,9 @@ class _accueilState extends State<accueil> {
   @override
   void initState() {
     // TODO: implement initState
+    getRests();
     super.initState();
-      getWilaya();
+    getWilaya();
   }
 
   @override
@@ -144,123 +162,130 @@ class _accueilState extends State<accueil> {
           style: TextStyle(color: Colors.white),
         )),
       ),
-      body: SingleChildScrollView(
-        child: Container(
-          height: sizee.height * 0.85,
-          margin: EdgeInsets.symmetric(
-              horizontal: sizee.width * 0.03, vertical: sizee.height * 0.02),
-          child: ListView.builder(
-              itemCount: 5,
-              itemBuilder: (BuildContext context, int index) {
-                return Container(
-                  width: sizee.width * 0.8,
-                  height: sizee.height * 0.18,
-                  decoration: BoxDecoration(
-                    boxShadow: [
-                      BoxShadow(
-                        color: Color(0xff582e44).withOpacity(0.05),
-                        spreadRadius: 5,
-                        blurRadius: 10,
+      body: _isLoading
+          ? Center(
+              child: CircularProgressIndicator(),
+            )
+          : SingleChildScrollView(
+              child: Container(
+                height: sizee.height * 0.85,
+                margin: EdgeInsets.symmetric(
+                    horizontal: sizee.width * 0.03,
+                    vertical: sizee.height * 0.02),
+                child: ListView.builder(
+                    itemCount: 5,
+                    itemBuilder: (BuildContext context, int index) {
+                      return Container(
+                        width: sizee.width * 0.8,
+                        height: sizee.height * 0.18,
+                        decoration: BoxDecoration(
+                          boxShadow: [
+                            BoxShadow(
+                              color: Color(0xff582e44).withOpacity(0.05),
+                              spreadRadius: 5,
+                              blurRadius: 10,
 
-                        offset:
-                            const Offset(0, 3), // changes position of shadow
-                      ),
-                    ],
-                    borderRadius: const BorderRadius.all(
-                      const Radius.circular(20),
-                    ),
-                  ),
-                  margin: EdgeInsets.symmetric(
-                      horizontal: sizee.width * 0.03,
-                      vertical: sizee.height * 0.01),
-                  padding: EdgeInsets.only(top: sizee.height * 0.015),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      CircleAvatar(
-                        backgroundColor: Color(0xffbd7344),
-                        radius: sizee.width * (18 / 540),
-                        child: IconButton(
-                          padding: EdgeInsets.zero,
-                          icon: const Icon(Icons.arrow_back_ios_outlined),
-                          iconSize: sizee.width * (28 / 540),
-                          color: Colors.white,
-                          onPressed: () async {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => restaurant_details(
-                                      title: "المطعم الفلاني")),
-                            );
-                          },
-                        ),
-                      ),
-                      Expanded(
-                        child: Container(
-                          padding: EdgeInsets.symmetric(
-                              vertical: sizee.height * 0.02,
-                              horizontal: sizee.width * 0.05),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [
-                              Text(
-                                "المطعم الفلاني",
-                                textDirection: TextDirection.rtl,
-                              ),
-                              Text(
-                                "تيغنيف , معسكر",
-                                textDirection: TextDirection.rtl,
-                              ),
-                            ],
+                              offset: const Offset(
+                                  0, 3), // changes position of shadow
+                            ),
+                          ],
+                          borderRadius: const BorderRadius.all(
+                            const Radius.circular(20),
                           ),
                         ),
-                      ),
-                      Column(
-                        children: [
-                          Container(
-                            decoration: BoxDecoration(
-                              image: DecorationImage(
-                                fit: BoxFit.cover,
-                                image: AssetImage("assets/restaurant.jpg"),
-                              ),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.grey.withOpacity(0.05),
-                                  spreadRadius: 5,
-                                  blurRadius: 10,
-                                  offset: const Offset(
-                                      0, 3), // changes position of shadow
-                                ),
-                              ],
-                              borderRadius: const BorderRadius.all(
-                                const Radius.circular(20),
+                        margin: EdgeInsets.symmetric(
+                            horizontal: sizee.width * 0.03,
+                            vertical: sizee.height * 0.01),
+                        padding: EdgeInsets.only(top: sizee.height * 0.015),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            CircleAvatar(
+                              backgroundColor: Color(0xffbd7344),
+                              radius: sizee.width * (18 / 540),
+                              child: IconButton(
+                                padding: EdgeInsets.zero,
+                                icon: const Icon(Icons.arrow_back_ios_outlined),
+                                iconSize: sizee.width * (28 / 540),
+                                color: Colors.white,
+                                onPressed: () async {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            restaurant_details(
+                                                title: "المطعم الفلاني")),
+                                  );
+                                },
                               ),
                             ),
-                            height: sizee.height * 0.13,
-                            width: sizee.height * 0.13,
-                          ),
-                          Container(
-                            width: sizee.height * 0.13,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
+                            Expanded(
+                              child: Container(
+                                padding: EdgeInsets.symmetric(
+                                    vertical: sizee.height * 0.02,
+                                    horizontal: sizee.width * 0.05),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                  children: [
+                                    Text(
+                                      "المطعم الفلاني",
+                                      textDirection: TextDirection.rtl,
+                                    ),
+                                    Text(
+                                      "تيغنيف , معسكر",
+                                      textDirection: TextDirection.rtl,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            Column(
                               children: [
-                                Icon(
-                                  Icons.person,
-                                  color: Color(0xffbd7344),
+                                Container(
+                                  decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                      fit: BoxFit.cover,
+                                      image:
+                                          AssetImage("assets/restaurant.jpg"),
+                                    ),
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors.grey.withOpacity(0.05),
+                                        spreadRadius: 5,
+                                        blurRadius: 10,
+                                        offset: const Offset(
+                                            0, 3), // changes position of shadow
+                                      ),
+                                    ],
+                                    borderRadius: const BorderRadius.all(
+                                      const Radius.circular(20),
+                                    ),
+                                  ),
+                                  height: sizee.height * 0.13,
+                                  width: sizee.height * 0.13,
                                 ),
-                                Text('  25  ')
+                                Container(
+                                  width: sizee.height * 0.13,
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Icon(
+                                        Icons.person,
+                                        color: Color(0xffbd7344),
+                                      ),
+                                      Text('  25  ')
+                                    ],
+                                  ),
+                                )
                               ],
                             ),
-                          )
-                        ],
-                      ),
-                    ],
-                  ),
-                );
-              }),
-        ),
-      ),
+                          ],
+                        ),
+                      );
+                    }),
+              ),
+            ),
     );
   }
 }

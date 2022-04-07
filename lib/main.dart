@@ -1,6 +1,7 @@
 // import 'dart:js';
 
 import 'package:abir_sabil/Providers/DzData.dart';
+import 'package:abir_sabil/Providers/restaurant.dart';
 import 'package:abir_sabil/Screens/Auth/Signin.dart';
 import 'package:abir_sabil/Screens/Auth/UserType.dart';
 import 'package:abir_sabil/Screens/accueil.dart';
@@ -51,6 +52,9 @@ void main() async {
       ),
       ListenableProvider<DataDz>(
         create: (_) => DataDz(),
+      ),
+      ListenableProvider<Restaurants>(
+        create: (_) => Restaurants(),
       ),
     ],
     child: MaterialApp(
