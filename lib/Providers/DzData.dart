@@ -15430,8 +15430,8 @@ class DataDz extends ChangeNotifier {
   List<String> getCommuneByWilaya(String X) {
     List<String> listt = [];
     for (int i = 0; i < algeria_cites.length; i++) {
-      if (algeria_cites[i]["wilaya_name_ascii"].toString() == X) {
-        listt.add(algeria_cites[i]["commune_name_ascii"].toString());
+      if (algeria_cites[i]["wilaya_name"].toString() == X) {
+        listt.add(algeria_cites[i]["commune_name"].toString());
       }
       ;
     }
