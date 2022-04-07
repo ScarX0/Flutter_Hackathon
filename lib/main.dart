@@ -56,46 +56,47 @@ void main() async {
     child: MaterialApp(
         debugShowCheckedModeBanner: false,
         debugShowMaterialGrid: false,
-        home: Builder(builder: (_) {
-          if (auth == null) {
-            return const UserType();
-          } else {
-            var id = FirebaseAuth.instance.currentUser!.uid;
-            // print(id);
-            nu = !check(id);
-            if (nu) {
-              return const accueil();
-            } else {
-              return const accueil_resto();
-            }
-          }
-        })
+        home:
+            //  Builder(builder: (_) {
+            //   if (auth == null) {
+            //     return const UserType();
+            //   } else {
+            //     var id = FirebaseAuth.instance.currentUser!.uid;
+            //     // print(id);
+            //     nu = !check(id);
+            //     if (nu) {
+            //       return const accueil();
+            //     } else {
+            //       return const accueil_resto();
+            //     }
+            //   }
+            // })
 
-        //  StreamBuilder(
-        //   stream: FirebaseAuth.instance.authStateChanges(),
-        //   builder: (context, snapshot) {
-        //     if (snapshot.connectionState == ConnectionState.waiting) {
-        //       return const Center(
-        //         child: CircularProgressIndicator(),
-        //       );
-        //     } else if (snapshot.hasData) {
-        //       var id = FirebaseAuth.instance.currentUser!.uid;
-        //       print(id);
-        //       nu = !check(id);
-        //       if (nu) {
-        //         return const accueil();
-        //       } else {
-        //         return const accueil_resto();
-        //       }
-        //     } else if (snapshot.hasError) {
-        //       return const Center(
-        //         child: Text('error'),
-        //       );
-        //     } else {
-        //       return const UserType();
-        //     }
-        //   },
-        // )
+            StreamBuilder<User?>(
+          stream: FirebaseAuth.instance.authStateChanges(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            } else if (snapshot.hasData) {
+              var id = FirebaseAuth.instance.currentUser!.uid;
+              print(id);
+              nu = !check(id);
+              if (nu) {
+                return const accueil();
+              } else {
+                return const accueil_resto();
+              }
+            } else if (snapshot.hasError) {
+              return const Center(
+                child: Text('error'),
+              );
+            } else {
+              return const UserType();
+            }
+          },
+        )
         //  user == null ? UserType() : accueil() // signin()
         ),
   ));

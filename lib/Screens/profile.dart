@@ -86,6 +86,7 @@ class _profileState extends State<profile> {
 
   final _nameController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
+  final auth = FirebaseAuth.instance;
   Future<void> getInfos() async {
     setState(() {
       _isLoading = true;
@@ -149,9 +150,9 @@ class _profileState extends State<profile> {
                   ),
                 ),
                 // ),
-                onTap: () async {
-                  await FirebaseAuth.instance.signOut().then((value) =>
-                      Navigator.of(context).popUntil((route) => route.isFirst));
+                onTap: () {
+                  FirebaseAuth.instance.signOut();
+                  // auth.signOut();
                   // showDialog<String>(
                   //   context: context,
                   //   builder: (BuildContext context) => AlertDialog(

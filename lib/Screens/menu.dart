@@ -46,6 +46,7 @@ class _menuState extends State<menu> {
   final _entreeController = TextEditingController();
   final _dessertController = TextEditingController();
   final _autreController = TextEditingController();
+  final _repasDispoController = TextEditingController();
 
   bool soupe = true;
   bool plat1 = true;
@@ -53,6 +54,8 @@ class _menuState extends State<menu> {
   bool entree = true;
   bool dessert = true;
   bool autre = true;
+  bool repas = true;
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -234,314 +237,372 @@ class _menuState extends State<menu> {
                   ],
                 ),
                 (soupe || plat1 || plat2 || entree || dessert || autre)
-                    ? Container(
-                        height: HeightSize * 0.55,
-                        child: Column(
-                          children: [
-                            SizedBox(
-                              height: HeightSize * 0.01,
-                            ),
-                            soupe
-                                ? SizedBox(
-                                    height: HeightSize * 0.09,
-                                    child: TextFormField(
-                                      textDirection: TextDirection.rtl,
-                                      textAlign: TextAlign.right,
-                                      controller: _soupeController,
-                                      validator: (value) {
-                                        if (value == null || value.length < 3) {
-                                          return 'Invalid a';
-                                        }
-                                        return null;
-                                      },
-                                      onSaved: (value) {
-                                        //  _authData['email'] = value!;
-                                      },
-                                      keyboardType: TextInputType.name,
-                                      cursorColor: Color(0xff582e44),
-                                      decoration: InputDecoration(
-                                        contentPadding: EdgeInsets.fromLTRB(
-                                            0, 0, WidthSize * 0.05, 0),
-                                        errorStyle: TextStyle(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.w400,
+                    ? Form(
+                        key: _formKey,
+                        child: SizedBox(
+                          height: HeightSize * 0.65,
+                          child: Column(
+                            children: [
+                              SizedBox(
+                                height: HeightSize * 0.01,
+                              ),
+                              soupe
+                                  ? SizedBox(
+                                      height: HeightSize * 0.09,
+                                      child: TextFormField(
+                                        textDirection: TextDirection.rtl,
+                                        textAlign: TextAlign.right,
+                                        controller: _soupeController,
+                                        validator: (value) {
+                                          if (value == null ||
+                                              value.length < 3) {
+                                            return 'الرجاء إدخال الحساء';
+                                          }
+                                          return null;
+                                        },
+                                        onSaved: (value) {
+                                          //  _authData['email'] = value!;
+                                        },
+                                        keyboardType: TextInputType.name,
+                                        cursorColor: Color(0xff582e44),
+                                        decoration: InputDecoration(
+                                          contentPadding: EdgeInsets.fromLTRB(
+                                              0, 0, WidthSize * 0.05, 0),
+                                          errorStyle: TextStyle(
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.w400,
+                                          ),
+                                          errorBorder: OutlineInputBorder(
+                                              borderSide: const BorderSide(
+                                                color: Colors.white,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(20.0)),
+                                          hoverColor: Colors.black,
+                                          focusColor: Color(0xff582e44),
+                                          focusedBorder: OutlineInputBorder(
+                                              borderSide: const BorderSide(
+                                                color: Color(0xff582e44),
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(20.0)),
+                                          fillColor: Colors.white,
+                                          filled: true,
+                                          //          contentPadding: const EdgeInsets.fromLTRB(20, 8, 20, 8),
+                                          hintText: 'الحساء',
+                                          border: OutlineInputBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(20.0)),
                                         ),
-                                        errorBorder: OutlineInputBorder(
-                                            borderSide: const BorderSide(
-                                              color: Colors.white,
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(20.0)),
-                                        hoverColor: Colors.black,
-                                        focusColor: Color(0xff582e44),
-                                        focusedBorder: OutlineInputBorder(
-                                            borderSide: const BorderSide(
-                                              color: Color(0xff582e44),
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(20.0)),
-                                        fillColor: Colors.white,
-                                        filled: true,
-                                        //          contentPadding: const EdgeInsets.fromLTRB(20, 8, 20, 8),
-                                        hintText: 'الحساء',
-                                        border: OutlineInputBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(20.0)),
                                       ),
-                                    ),
-                                  )
-                                : Container(),
-                            plat1
-                                ? SizedBox(
-                                    height: HeightSize * 0.09,
-                                    child: TextFormField(
-                                      textDirection: TextDirection.rtl,
-                                      textAlign: TextAlign.right,
-                                      controller: _plat1Controller,
-                                      validator: (value) {
-                                        if (value == null || value.length < 3) {
-                                          return 'Invalid b';
-                                        }
-                                        return null;
-                                      },
-                                      onSaved: (value) {
-                                        //  _authData['email'] = value!;
-                                      },
-                                      keyboardType: TextInputType.name,
-                                      cursorColor: Color(0xff582e44),
-                                      decoration: InputDecoration(
-                                        contentPadding: EdgeInsets.fromLTRB(
-                                            0, 0, WidthSize * 0.05, 0),
-                                        errorStyle: TextStyle(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.w400,
+                                    )
+                                  : Container(),
+                              plat1
+                                  ? SizedBox(
+                                      height: HeightSize * 0.09,
+                                      child: TextFormField(
+                                        textDirection: TextDirection.rtl,
+                                        textAlign: TextAlign.right,
+                                        controller: _plat1Controller,
+                                        validator: (value) {
+                                          if (value == null ||
+                                              value.length < 3) {
+                                            return 'الرجاء إدخال الطبق الأساسي';
+                                          }
+                                          return null;
+                                        },
+                                        onSaved: (value) {
+                                          //  _authData['email'] = value!;
+                                        },
+                                        keyboardType: TextInputType.name,
+                                        cursorColor: Color(0xff582e44),
+                                        decoration: InputDecoration(
+                                          contentPadding: EdgeInsets.fromLTRB(
+                                              0, 0, WidthSize * 0.05, 0),
+                                          errorStyle: TextStyle(
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.w400,
+                                          ),
+                                          errorBorder: OutlineInputBorder(
+                                              borderSide: const BorderSide(
+                                                color: Colors.white,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(20.0)),
+                                          hoverColor: Colors.black,
+                                          focusColor: Color(0xff582e44),
+                                          focusedBorder: OutlineInputBorder(
+                                              borderSide: const BorderSide(
+                                                color: Color(0xff582e44),
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(20.0)),
+                                          fillColor: Colors.white,
+                                          filled: true,
+                                          //          contentPadding: const EdgeInsets.fromLTRB(20, 8, 20, 8),
+                                          hintText: 'الطبق الأساسي',
+                                          border: OutlineInputBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(20.0)),
                                         ),
-                                        errorBorder: OutlineInputBorder(
-                                            borderSide: const BorderSide(
-                                              color: Colors.white,
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(20.0)),
-                                        hoverColor: Colors.black,
-                                        focusColor: Color(0xff582e44),
-                                        focusedBorder: OutlineInputBorder(
-                                            borderSide: const BorderSide(
-                                              color: Color(0xff582e44),
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(20.0)),
-                                        fillColor: Colors.white,
-                                        filled: true,
-                                        //          contentPadding: const EdgeInsets.fromLTRB(20, 8, 20, 8),
-                                        hintText: 'الطبق الأساسي',
-                                        border: OutlineInputBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(20.0)),
                                       ),
-                                    ),
-                                  )
-                                : Container(),
-                            plat2
-                                ? SizedBox(
-                                    height: HeightSize * 0.09,
-                                    child: TextFormField(
-                                      textDirection: TextDirection.rtl,
-                                      textAlign: TextAlign.right,
-                                      controller: _plat2Controller,
-                                      validator: (value) {
-                                        if (value == null || value.length < 3) {
-                                          return 'Invalid a';
-                                        }
-                                        return null;
-                                      },
-                                      onSaved: (value) {
-                                        //  _authData['email'] = value!;
-                                      },
-                                      keyboardType: TextInputType.name,
-                                      cursorColor: Color(0xff582e44),
-                                      decoration: InputDecoration(
-                                        contentPadding: EdgeInsets.fromLTRB(
-                                            0, 0, WidthSize * 0.05, 0),
-                                        errorStyle: TextStyle(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.w400,
+                                    )
+                                  : Container(),
+                              plat2
+                                  ? SizedBox(
+                                      height: HeightSize * 0.09,
+                                      child: TextFormField(
+                                        textDirection: TextDirection.rtl,
+                                        textAlign: TextAlign.right,
+                                        controller: _plat2Controller,
+                                        validator: (value) {
+                                          if (value == null ||
+                                              value.length < 3) {
+                                            return 'الرجاء إدخال الطبق الثاني';
+                                          }
+                                          return null;
+                                        },
+                                        onSaved: (value) {
+                                          //  _authData['email'] = value!;
+                                        },
+                                        keyboardType: TextInputType.name,
+                                        cursorColor: Color(0xff582e44),
+                                        decoration: InputDecoration(
+                                          contentPadding: EdgeInsets.fromLTRB(
+                                              0, 0, WidthSize * 0.05, 0),
+                                          errorStyle: TextStyle(
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.w400,
+                                          ),
+                                          errorBorder: OutlineInputBorder(
+                                              borderSide: const BorderSide(
+                                                color: Colors.white,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(20.0)),
+                                          hoverColor: Colors.black,
+                                          focusColor: Color(0xff582e44),
+                                          focusedBorder: OutlineInputBorder(
+                                              borderSide: const BorderSide(
+                                                color: Color(0xff582e44),
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(20.0)),
+                                          fillColor: Colors.white,
+                                          filled: true,
+                                          //          contentPadding: const EdgeInsets.fromLTRB(20, 8, 20, 8),
+                                          hintText: 'الطبق الثاني',
+                                          border: OutlineInputBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(20.0)),
                                         ),
-                                        errorBorder: OutlineInputBorder(
-                                            borderSide: const BorderSide(
-                                              color: Colors.white,
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(20.0)),
-                                        hoverColor: Colors.black,
-                                        focusColor: Color(0xff582e44),
-                                        focusedBorder: OutlineInputBorder(
-                                            borderSide: const BorderSide(
-                                              color: Color(0xff582e44),
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(20.0)),
-                                        fillColor: Colors.white,
-                                        filled: true,
-                                        //          contentPadding: const EdgeInsets.fromLTRB(20, 8, 20, 8),
-                                        hintText: 'الطبق الثاني',
-                                        border: OutlineInputBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(20.0)),
                                       ),
-                                    ),
-                                  )
-                                : Container(),
-                            entree
-                                ? SizedBox(
-                                    height: HeightSize * 0.09,
-                                    child: TextFormField(
-                                      textDirection: TextDirection.rtl,
-                                      textAlign: TextAlign.right,
-                                      controller: _entreeController,
-                                      validator: (value) {
-                                        if (value == null || value.length < 3) {
-                                          return 'Invalid a';
-                                        }
-                                        return null;
-                                      },
-                                      onSaved: (value) {
-                                        //  _authData['email'] = value!;
-                                      },
-                                      keyboardType: TextInputType.name,
-                                      cursorColor: Color(0xff582e44),
-                                      decoration: InputDecoration(
-                                        contentPadding: EdgeInsets.fromLTRB(
-                                            0, 0, WidthSize * 0.05, 0),
-                                        errorStyle: TextStyle(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.w400,
+                                    )
+                                  : Container(),
+                              entree
+                                  ? SizedBox(
+                                      height: HeightSize * 0.09,
+                                      child: TextFormField(
+                                        textDirection: TextDirection.rtl,
+                                        textAlign: TextAlign.right,
+                                        controller: _entreeController,
+                                        validator: (value) {
+                                          if (value == null ||
+                                              value.length < 3) {
+                                            return 'الرجاء إدخال المقبلة';
+                                          }
+                                          return null;
+                                        },
+                                        onSaved: (value) {
+                                          //  _authData['email'] = value!;
+                                        },
+                                        keyboardType: TextInputType.name,
+                                        cursorColor: Color(0xff582e44),
+                                        decoration: InputDecoration(
+                                          contentPadding: EdgeInsets.fromLTRB(
+                                              0, 0, WidthSize * 0.05, 0),
+                                          errorStyle: TextStyle(
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.w400,
+                                          ),
+                                          errorBorder: OutlineInputBorder(
+                                              borderSide: const BorderSide(
+                                                color: Colors.white,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(20.0)),
+                                          hoverColor: Colors.black,
+                                          focusColor: Color(0xff582e44),
+                                          focusedBorder: OutlineInputBorder(
+                                              borderSide: const BorderSide(
+                                                color: Color(0xff582e44),
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(20.0)),
+                                          fillColor: Colors.white,
+                                          filled: true,
+                                          //          contentPadding: const EdgeInsets.fromLTRB(20, 8, 20, 8),
+                                          hintText: 'المقبلة',
+                                          border: OutlineInputBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(20.0)),
                                         ),
-                                        errorBorder: OutlineInputBorder(
-                                            borderSide: const BorderSide(
-                                              color: Colors.white,
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(20.0)),
-                                        hoverColor: Colors.black,
-                                        focusColor: Color(0xff582e44),
-                                        focusedBorder: OutlineInputBorder(
-                                            borderSide: const BorderSide(
-                                              color: Color(0xff582e44),
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(20.0)),
-                                        fillColor: Colors.white,
-                                        filled: true,
-                                        //          contentPadding: const EdgeInsets.fromLTRB(20, 8, 20, 8),
-                                        hintText: 'المقبلة',
-                                        border: OutlineInputBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(20.0)),
                                       ),
-                                    ),
-                                  )
-                                : Container(),
-                            dessert
-                                ? SizedBox(
-                                    height: HeightSize * 0.09,
-                                    child: TextFormField(
-                                      textDirection: TextDirection.rtl,
-                                      textAlign: TextAlign.right,
-                                      controller: _dessertController,
-                                      validator: (value) {
-                                        if (value == null || value.length < 3) {
-                                          return 'Invalid a';
-                                        }
-                                        return null;
-                                      },
-                                      onSaved: (value) {
-                                        //  _authData['email'] = value!;
-                                      },
-                                      keyboardType: TextInputType.name,
-                                      cursorColor: Color(0xff582e44),
-                                      decoration: InputDecoration(
-                                        contentPadding: EdgeInsets.fromLTRB(
-                                            0, 0, WidthSize * 0.05, 0),
-                                        errorStyle: TextStyle(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.w400,
+                                    )
+                                  : Container(),
+                              dessert
+                                  ? SizedBox(
+                                      height: HeightSize * 0.09,
+                                      child: TextFormField(
+                                        textDirection: TextDirection.rtl,
+                                        textAlign: TextAlign.right,
+                                        controller: _dessertController,
+                                        validator: (value) {
+                                          if (value == null ||
+                                              value.length < 3) {
+                                            return 'الرجاء إدخال التحلية';
+                                          }
+                                          return null;
+                                        },
+                                        onSaved: (value) {
+                                          //  _authData['email'] = value!;
+                                        },
+                                        keyboardType: TextInputType.name,
+                                        cursorColor: Color(0xff582e44),
+                                        decoration: InputDecoration(
+                                          contentPadding: EdgeInsets.fromLTRB(
+                                              0, 0, WidthSize * 0.05, 0),
+                                          errorStyle: TextStyle(
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.w400,
+                                          ),
+                                          errorBorder: OutlineInputBorder(
+                                              borderSide: const BorderSide(
+                                                color: Colors.white,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(20.0)),
+                                          hoverColor: Colors.black,
+                                          focusColor: Color(0xff582e44),
+                                          focusedBorder: OutlineInputBorder(
+                                              borderSide: const BorderSide(
+                                                color: Color(0xff582e44),
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(20.0)),
+                                          fillColor: Colors.white,
+                                          filled: true,
+                                          //          contentPadding: const EdgeInsets.fromLTRB(20, 8, 20, 8),
+                                          hintText: 'التحلية',
+                                          border: OutlineInputBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(20.0)),
                                         ),
-                                        errorBorder: OutlineInputBorder(
-                                            borderSide: const BorderSide(
-                                              color: Colors.white,
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(20.0)),
-                                        hoverColor: Colors.black,
-                                        focusColor: Color(0xff582e44),
-                                        focusedBorder: OutlineInputBorder(
-                                            borderSide: const BorderSide(
-                                              color: Color(0xff582e44),
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(20.0)),
-                                        fillColor: Colors.white,
-                                        filled: true,
-                                        //          contentPadding: const EdgeInsets.fromLTRB(20, 8, 20, 8),
-                                        hintText: 'التحلية',
-                                        border: OutlineInputBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(20.0)),
                                       ),
-                                    ),
-                                  )
-                                : Container(),
-                            autre
-                                ? SizedBox(
-                                    height: HeightSize * 0.09,
-                                    child: TextFormField(
-                                      textDirection: TextDirection.rtl,
-                                      textAlign: TextAlign.right,
-                                      controller: _autreController,
-                                      validator: (value) {
-                                        if (value == null || value.length < 3) {
-                                          return 'Invalid a';
-                                        }
-                                        return null;
-                                      },
-                                      onSaved: (value) {
-                                        //  _authData['email'] = value!;
-                                      },
-                                      keyboardType: TextInputType.name,
-                                      cursorColor: Color(0xff582e44),
-                                      decoration: InputDecoration(
-                                        contentPadding: EdgeInsets.fromLTRB(
-                                            0, 0, WidthSize * 0.05, 0),
-                                        errorStyle: TextStyle(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.w400,
+                                    )
+                                  : Container(),
+                              autre
+                                  ? SizedBox(
+                                      height: HeightSize * 0.09,
+                                      child: TextFormField(
+                                        textDirection: TextDirection.rtl,
+                                        textAlign: TextAlign.right,
+                                        controller: _autreController,
+                                        // validator: (value) {
+                                        //   if (value == null || value.length < 3) {
+                                        //     return 'Invalid a';
+                                        //   }
+                                        //   return null;
+                                        // },
+                                        onSaved: (value) {
+                                          //  _authData['email'] = value!;
+                                        },
+                                        keyboardType: TextInputType.name,
+                                        cursorColor: Color(0xff582e44),
+                                        decoration: InputDecoration(
+                                          contentPadding: EdgeInsets.fromLTRB(
+                                              0, 0, WidthSize * 0.05, 0),
+                                          errorStyle: TextStyle(
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.w400,
+                                          ),
+                                          errorBorder: OutlineInputBorder(
+                                              borderSide: const BorderSide(
+                                                color: Colors.white,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(20.0)),
+                                          hoverColor: Colors.black,
+                                          focusColor: Color(0xff582e44),
+                                          focusedBorder: OutlineInputBorder(
+                                              borderSide: const BorderSide(
+                                                color: Color(0xff582e44),
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(20.0)),
+                                          fillColor: Colors.white,
+                                          filled: true,
+                                          //          contentPadding: const EdgeInsets.fromLTRB(20, 8, 20, 8),
+                                          hintText: 'أخرى',
+                                          border: OutlineInputBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(20.0)),
                                         ),
-                                        errorBorder: OutlineInputBorder(
-                                            borderSide: const BorderSide(
-                                              color: Colors.white,
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(20.0)),
-                                        hoverColor: Colors.black,
-                                        focusColor: Color(0xff582e44),
-                                        focusedBorder: OutlineInputBorder(
-                                            borderSide: const BorderSide(
-                                              color: Color(0xff582e44),
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(20.0)),
-                                        fillColor: Colors.white,
-                                        filled: true,
-                                        //          contentPadding: const EdgeInsets.fromLTRB(20, 8, 20, 8),
-                                        hintText: 'أخرى',
-                                        border: OutlineInputBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(20.0)),
                                       ),
-                                    ),
-                                  )
-                                : Container(),
-                          ],
+                                    )
+                                  : Container(),
+                              repas
+                                  ? SizedBox(
+                                      height: HeightSize * 0.09,
+                                      child: TextFormField(
+                                        textDirection: TextDirection.rtl,
+                                        textAlign: TextAlign.right,
+                                        controller: _repasDispoController,
+                                        validator: (value) {
+                                          if (value == null) {
+                                            return 'الرجاء إدخال العدد';
+                                          }
+                                          return null;
+                                        },
+                                        onSaved: (value) {
+                                          //  _authData['email'] = value!;
+                                        },
+                                        keyboardType: TextInputType.number,
+                                        cursorColor: Color(0xff582e44),
+                                        decoration: InputDecoration(
+                                          contentPadding: EdgeInsets.fromLTRB(
+                                              0, 0, WidthSize * 0.05, 0),
+                                          errorStyle: TextStyle(
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.w400,
+                                          ),
+                                          errorBorder: OutlineInputBorder(
+                                              borderSide: const BorderSide(
+                                                color: Colors.white,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(20.0)),
+                                          hoverColor: Colors.black,
+                                          focusColor: Color(0xff582e44),
+                                          focusedBorder: OutlineInputBorder(
+                                              borderSide: const BorderSide(
+                                                color: Color(0xff582e44),
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(20.0)),
+                                          fillColor: Colors.white,
+                                          filled: true,
+                                          //          contentPadding: const EdgeInsets.fromLTRB(20, 8, 20, 8),
+                                          hintText: 'عدد الوجبات المتوفرة',
+                                          border: OutlineInputBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(20.0)),
+                                        ),
+                                      ),
+                                    )
+                                  : Container()
+                            ],
+                          ),
                         ),
                       )
                     : Container(
@@ -552,9 +613,12 @@ class _menuState extends State<menu> {
                         ? CircularProgressIndicator()
                         : RaisedButton(
                             onPressed: () async {
-                              Fluttertoast.showToast(msg: 'جاري تحميل الوجبة');
-                              await menu();
-                              Fluttertoast.showToast(msg: 'إنتهى التحميل');
+                              if (_formKey.currentState!.validate()) {
+                                Fluttertoast.showToast(
+                                    msg: 'جاري تحميل الوجبة');
+                                await menu();
+                                Fluttertoast.showToast(msg: 'إنتهى التحميل');
+                              }
                             },
                             textColor: Color(0xff582e44),
                             padding: const EdgeInsets.all(0.0),

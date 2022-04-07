@@ -68,9 +68,10 @@ class _accueil_restoState extends State<accueil_resto> {
                     ),
                   ),
                   // ),
-                  onTap: () async {
-                    await logOut().then((value) => Navigator.of(context)
-                        .popUntil((route) => route.isFirst));
+                  onTap: () {
+                    FirebaseAuth.instance.signOut();
+                    // auth.signOut();
+                    // await logOut();
 
                     // showDialog<String>(
                     //   context: context,
