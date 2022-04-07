@@ -70,7 +70,15 @@ class AuthService extends ChangeNotifier {
       String restName, String city, String commune) async {
     String where = isVisiteur ? 'volounteers' : 'restaurants';
     var dataa = isVisiteur
-        ? {'name': name, 'email': email, 'phone': phone, 'isVolounteer': false}
+        ? {
+            'name': name,
+            'email': email,
+            'phone': phone,
+            'isVolounteer': false,
+            'whereVolunter': '',
+            'isReserved': false,
+            'whereReserved': ''
+          }
         : {
             'name': name,
             'email': email,

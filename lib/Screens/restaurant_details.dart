@@ -20,6 +20,30 @@ class _restaurant_detailsState extends State<restaurant_details> {
   double? lat;
   double? long;
   Map<String, dynamic>? menu = {};
+  Future<void> reserve() async {
+    setState(() {
+      _isLoading = true;
+    });
+    try {
+      final rest =
+          Provider.of<Restaurants>(context, listen: false).chosenRestaurant;
+      final data = await FirebaseFirestore.instance
+          .collection('menus')
+          .doc(rest!.id)
+          .get();
+      final prevValue = data.data();
+      await FirebaseFirestore.instance
+          .collection('menus')
+          .doc(rest.id)
+          .update({'repas_dispo': prevValue!['repas_dispo'] - 1});
+    } catch (e) {
+      print(e.toString());
+    }
+    setState(() {
+      _isLoading = false;
+    });
+  }
+
   Future<void> getLoc() async {
     setState(() {
       _isLoading = true;
@@ -177,36 +201,41 @@ class _restaurant_detailsState extends State<restaurant_details> {
                                 'متوفر ${menu!['repas_dispo']} مقعد ',
                                 style: TextStyle(color: Colors.white),
                               ))),
-                          Container(
-                              child: InkWell(
-                            onTap: () {},
-                            child: Container(
-                              child: Center(
-                                child: Text(
-                                  'احجز مقعد',
-                                  style: TextStyle(color: Colors.white),
-                                ),
-                              ),
-                              width: sizee.width * 0.24,
-                              height: sizee.height * 0.05,
-                              margin: EdgeInsets.only(top: sizee.height * 0.01),
-                              decoration: BoxDecoration(
-                                color: Color(0xff582e44),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.grey.withOpacity(0.05),
-                                    spreadRadius: 5,
-                                    blurRadius: 10,
-                                    offset: const Offset(
-                                        0, 3), // changes position of shadow
+                          _isLoading
+                              ? CircularProgressIndicator()
+                              : Container(
+                                  child: InkWell(
+                                  onTap: () async {
+                                    await reserve();
+                                  },
+                                  child: Container(
+                                    child: Center(
+                                      child: Text(
+                                        'احجز مقعد',
+                                        style: TextStyle(color: Colors.white),
+                                      ),
+                                    ),
+                                    width: sizee.width * 0.24,
+                                    height: sizee.height * 0.05,
+                                    margin: EdgeInsets.only(
+                                        top: sizee.height * 0.01),
+                                    decoration: BoxDecoration(
+                                      color: Color(0xff582e44),
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Colors.grey.withOpacity(0.05),
+                                          spreadRadius: 5,
+                                          blurRadius: 10,
+                                          offset: const Offset(0,
+                                              3), // changes position of shadow
+                                        ),
+                                      ],
+                                      borderRadius: const BorderRadius.all(
+                                        Radius.circular(20),
+                                      ),
+                                    ),
                                   ),
-                                ],
-                                borderRadius: const BorderRadius.all(
-                                  Radius.circular(20),
-                                ),
-                              ),
-                            ),
-                          )),
+                                )),
                           Container(
                             width: sizee.width * 0.35,
                             child: Row(

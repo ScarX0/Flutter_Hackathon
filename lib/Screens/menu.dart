@@ -146,7 +146,7 @@ class _menuState extends State<menu> {
             Transform.rotate(
               angle: 180 * math.pi / 180,
               child: IconButton(
-                icon: Icon(
+                icon: const Icon(
                   Icons.arrow_back_ios_outlined,
                   color: Colors.white,
                 ),
@@ -160,26 +160,29 @@ class _menuState extends State<menu> {
           title: Center(child: Text("وجبة اليوم")),
         ),
         body: _isLoading2
-            ? Center(
+            ? const Center(
                 child: CircularProgressIndicator(),
               )
             : SingleChildScrollView(
                 child: Stack(
-
                   children: [
                     Container(
                       height: HeightSize,
                       child: Align(
                         alignment: Alignment.bottomCenter,
                         child: Container(
-
-                          height: HeightSize*0.7, decoration: BoxDecoration(   image: DecorationImage(
-                          fit: BoxFit.contain,
-                          opacity: 0.5,
-                          image: AssetImage("assets/hilel3.png" , ),
-                        )),),
+                          height: HeightSize * 0.7,
+                          decoration: BoxDecoration(
+                              image: DecorationImage(
+                            fit: BoxFit.contain,
+                            opacity: 0.5,
+                            image: AssetImage(
+                              "assets/hilel3.png",
+                            ),
+                          )),
+                        ),
                       ),
-                    ) ,
+                    ),
                     Container(
                       margin: EdgeInsets.symmetric(
                           horizontal: WidthSize * 0.05,
@@ -194,10 +197,11 @@ class _menuState extends State<menu> {
                                 padding:
                                     EdgeInsets.only(bottom: HeightSize * 0.015),
                                 child: FilterChip(
-                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.all( Radius.circular(10))),
-
-                                  padding:
-                                      EdgeInsets.only(bottom: HeightSize * 0.01332),
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(10))),
+                                  padding: EdgeInsets.only(
+                                      bottom: HeightSize * 0.01332),
                                   selectedColor: const Color(0xffFAC358),
                                   showCheckmark: false,
                                   labelStyle: const TextStyle(),
@@ -205,7 +209,9 @@ class _menuState extends State<menu> {
                                   label: Text(
                                     'الطبق الثاني  ',
                                     style: TextStyle(
-                                        color: plat2 ? Colors.white : Colors.black),
+                                        color: plat2
+                                            ? Colors.white
+                                            : Colors.black),
                                   ),
                                   selected: plat2,
                                   onSelected: (bool value) {
@@ -220,9 +226,11 @@ class _menuState extends State<menu> {
                                 padding:
                                     EdgeInsets.only(bottom: HeightSize * 0.015),
                                 child: FilterChip(
-                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.all( Radius.circular(10))),
-                                  padding:
-                                      EdgeInsets.only(bottom: HeightSize * 0.01332),
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(10))),
+                                  padding: EdgeInsets.only(
+                                      bottom: HeightSize * 0.01332),
                                   selectedColor: const Color(0xffFAC358),
                                   showCheckmark: false,
                                   labelStyle: const TextStyle(),
@@ -230,7 +238,9 @@ class _menuState extends State<menu> {
                                   label: Text(
                                     'الطبق الأساسي',
                                     style: TextStyle(
-                                        color: plat1 ? Colors.white : Colors.black),
+                                        color: plat1
+                                            ? Colors.white
+                                            : Colors.black),
                                   ),
                                   selected: plat1,
                                   onSelected: (bool value) {
@@ -245,9 +255,11 @@ class _menuState extends State<menu> {
                                 padding:
                                     EdgeInsets.only(bottom: HeightSize * 0.015),
                                 child: FilterChip(
-                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.all( Radius.circular(10))),
-                                  padding:
-                                      EdgeInsets.only(bottom: HeightSize * 0.01332),
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(10))),
+                                  padding: EdgeInsets.only(
+                                      bottom: HeightSize * 0.01332),
                                   selectedColor: const Color(0xffFAC358),
                                   showCheckmark: false,
                                   labelStyle: const TextStyle(),
@@ -255,7 +267,9 @@ class _menuState extends State<menu> {
                                   label: Text(
                                     '  الحساء  ',
                                     style: TextStyle(
-                                        color: soupe ? Colors.white : Colors.black),
+                                        color: soupe
+                                            ? Colors.white
+                                            : Colors.black),
                                   ),
                                   selected: soupe,
                                   onSelected: (bool value) {
@@ -275,10 +289,11 @@ class _menuState extends State<menu> {
                                 padding:
                                     EdgeInsets.only(bottom: HeightSize * 0.015),
                                 child: FilterChip(
-                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.all( Radius.circular(10))),
-
-                                  padding:
-                                      EdgeInsets.only(bottom: HeightSize * 0.01332),
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(10))),
+                                  padding: EdgeInsets.only(
+                                      bottom: HeightSize * 0.01332),
                                   selectedColor: const Color(0xffFAC358),
                                   showCheckmark: false,
                                   labelStyle: const TextStyle(),
@@ -286,7 +301,9 @@ class _menuState extends State<menu> {
                                   label: Text(
                                     ' اخرى  ',
                                     style: TextStyle(
-                                        color: autre ? Colors.white : Colors.black),
+                                        color: autre
+                                            ? Colors.white
+                                            : Colors.black),
                                   ),
                                   selected: autre,
                                   onSelected: (bool value) {
@@ -301,10 +318,11 @@ class _menuState extends State<menu> {
                                 padding:
                                     EdgeInsets.only(bottom: HeightSize * 0.015),
                                 child: FilterChip(
-                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.all( Radius.circular(10))),
-
-                                  padding:
-                                      EdgeInsets.only(bottom: HeightSize * 0.01332),
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(10))),
+                                  padding: EdgeInsets.only(
+                                      bottom: HeightSize * 0.01332),
                                   selectedColor: const Color(0xffFAC358),
                                   showCheckmark: false,
                                   labelStyle: const TextStyle(),
@@ -312,8 +330,9 @@ class _menuState extends State<menu> {
                                   label: Text(
                                     'التحلية ',
                                     style: TextStyle(
-                                        color:
-                                            dessert ? Colors.white : Colors.black),
+                                        color: dessert
+                                            ? Colors.white
+                                            : Colors.black),
                                   ),
                                   selected: dessert,
                                   onSelected: (bool value) {
@@ -328,10 +347,11 @@ class _menuState extends State<menu> {
                                 padding:
                                     EdgeInsets.only(bottom: HeightSize * 0.015),
                                 child: FilterChip(
-                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.all( Radius.circular(10))),
-
-                                  padding:
-                                      EdgeInsets.only(bottom: HeightSize * 0.01332),
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(10))),
+                                  padding: EdgeInsets.only(
+                                      bottom: HeightSize * 0.01332),
                                   selectedColor: const Color(0xffFAC358),
                                   showCheckmark: false,
                                   labelStyle: const TextStyle(),
@@ -339,8 +359,9 @@ class _menuState extends State<menu> {
                                   label: Text(
                                     '  المقبلة  ',
                                     style: TextStyle(
-                                        color:
-                                            entree ? Colors.white : Colors.black),
+                                        color: entree
+                                            ? Colors.white
+                                            : Colors.black),
                                   ),
                                   selected: entree,
                                   onSelected: (bool value) {
@@ -352,7 +373,12 @@ class _menuState extends State<menu> {
                               ),
                             ],
                           ),
-                          (soupe || plat1 || plat2 || entree || dessert || autre)
+                          (soupe ||
+                                  plat1 ||
+                                  plat2 ||
+                                  entree ||
+                                  dessert ||
+                                  autre)
                               ? Form(
                                   key: _formKey,
                                   child: SizedBox(
@@ -366,7 +392,8 @@ class _menuState extends State<menu> {
                                             ? SizedBox(
                                                 height: HeightSize * 0.09,
                                                 child: TextFormField(
-                                                  textDirection: TextDirection.rtl,
+                                                  textDirection:
+                                                      TextDirection.rtl,
                                                   textAlign: TextAlign.right,
                                                   controller: _soupeController,
                                                   validator: (value) {
@@ -379,45 +406,55 @@ class _menuState extends State<menu> {
                                                   onSaved: (value) {
                                                     //  _authData['email'] = value!;
                                                   },
-                                                  keyboardType: TextInputType.name,
-                                                  cursorColor: Color(0xff582e44),
+                                                  keyboardType:
+                                                      TextInputType.name,
+                                                  cursorColor:
+                                                      Color(0xff582e44),
                                                   decoration: InputDecoration(
                                                     contentPadding:
-                                                        EdgeInsets.fromLTRB(0, 0,
-                                                            WidthSize * 0.05, 0),
+                                                        EdgeInsets.fromLTRB(
+                                                            0,
+                                                            0,
+                                                            WidthSize * 0.05,
+                                                            0),
                                                     errorStyle: TextStyle(
                                                       color: Colors.white,
-                                                      fontWeight: FontWeight.w400,
+                                                      fontWeight:
+                                                          FontWeight.w400,
                                                     ),
-                                                    errorBorder: OutlineInputBorder(
-                                                        borderSide:
-                                                            const BorderSide(
-                                                          color: Colors.white,
-                                                        ),
-                                                        borderRadius:
-                                                            BorderRadius.circular(
-                                                                5.0)),
-                                                    hoverColor: Colors.black,
-                                                    focusColor: Color(0xff582e44),
-                                                    focusedBorder:
+                                                    errorBorder:
                                                         OutlineInputBorder(
                                                             borderSide:
                                                                 const BorderSide(
                                                               color:
-                                                                  Color(0xff582e44),
+                                                                  Colors.white,
                                                             ),
                                                             borderRadius:
                                                                 BorderRadius
                                                                     .circular(
-                                                                       5.0)),
+                                                                        5.0)),
+                                                    hoverColor: Colors.black,
+                                                    focusColor:
+                                                        Color(0xff582e44),
+                                                    focusedBorder:
+                                                        OutlineInputBorder(
+                                                            borderSide:
+                                                                const BorderSide(
+                                                              color: Color(
+                                                                  0xff582e44),
+                                                            ),
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        5.0)),
                                                     fillColor: Colors.white,
                                                     filled: true,
                                                     //          contentPadding: const EdgeInsets.fromLTRB(20, 8, 20, 8),
                                                     hintText: 'الحساء',
                                                     border: OutlineInputBorder(
                                                         borderRadius:
-                                                            BorderRadius.circular(
-                                                                5.0)),
+                                                            BorderRadius
+                                                                .circular(5.0)),
                                                   ),
                                                 ),
                                               )
@@ -426,7 +463,8 @@ class _menuState extends State<menu> {
                                             ? SizedBox(
                                                 height: HeightSize * 0.09,
                                                 child: TextFormField(
-                                                  textDirection: TextDirection.rtl,
+                                                  textDirection:
+                                                      TextDirection.rtl,
                                                   textAlign: TextAlign.right,
                                                   controller: _plat1Controller,
                                                   validator: (value) {
@@ -439,32 +477,42 @@ class _menuState extends State<menu> {
                                                   onSaved: (value) {
                                                     //  _authData['email'] = value!;
                                                   },
-                                                  keyboardType: TextInputType.name,
-                                                  cursorColor: Color(0xff582e44),
+                                                  keyboardType:
+                                                      TextInputType.name,
+                                                  cursorColor:
+                                                      Color(0xff582e44),
                                                   decoration: InputDecoration(
                                                     contentPadding:
-                                                        EdgeInsets.fromLTRB(0, 0,
-                                                            WidthSize * 0.05, 0),
+                                                        EdgeInsets.fromLTRB(
+                                                            0,
+                                                            0,
+                                                            WidthSize * 0.05,
+                                                            0),
                                                     errorStyle: TextStyle(
                                                       color: Colors.white,
-                                                      fontWeight: FontWeight.w400,
+                                                      fontWeight:
+                                                          FontWeight.w400,
                                                     ),
-                                                    errorBorder: OutlineInputBorder(
-                                                        borderSide:
-                                                            const BorderSide(
-                                                          color: Colors.white,
-                                                        ),
-                                                        borderRadius:
-                                                            BorderRadius.circular(
-                                                                5.0)),
-                                                    hoverColor: Colors.black,
-                                                    focusColor: Color(0xff582e44),
-                                                    focusedBorder:
+                                                    errorBorder:
                                                         OutlineInputBorder(
                                                             borderSide:
                                                                 const BorderSide(
                                                               color:
-                                                                  Color(0xff582e44),
+                                                                  Colors.white,
+                                                            ),
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        5.0)),
+                                                    hoverColor: Colors.black,
+                                                    focusColor:
+                                                        Color(0xff582e44),
+                                                    focusedBorder:
+                                                        OutlineInputBorder(
+                                                            borderSide:
+                                                                const BorderSide(
+                                                              color: Color(
+                                                                  0xff582e44),
                                                             ),
                                                             borderRadius:
                                                                 BorderRadius
@@ -476,8 +524,8 @@ class _menuState extends State<menu> {
                                                     hintText: 'الطبق الأساسي',
                                                     border: OutlineInputBorder(
                                                         borderRadius:
-                                                            BorderRadius.circular(
-                                                                5.0)),
+                                                            BorderRadius
+                                                                .circular(5.0)),
                                                   ),
                                                 ),
                                               )
@@ -486,7 +534,8 @@ class _menuState extends State<menu> {
                                             ? SizedBox(
                                                 height: HeightSize * 0.09,
                                                 child: TextFormField(
-                                                  textDirection: TextDirection.rtl,
+                                                  textDirection:
+                                                      TextDirection.rtl,
                                                   textAlign: TextAlign.right,
                                                   controller: _plat2Controller,
                                                   validator: (value) {
@@ -499,32 +548,42 @@ class _menuState extends State<menu> {
                                                   onSaved: (value) {
                                                     //  _authData['email'] = value!;
                                                   },
-                                                  keyboardType: TextInputType.name,
-                                                  cursorColor: Color(0xff582e44),
+                                                  keyboardType:
+                                                      TextInputType.name,
+                                                  cursorColor:
+                                                      Color(0xff582e44),
                                                   decoration: InputDecoration(
                                                     contentPadding:
-                                                        EdgeInsets.fromLTRB(0, 0,
-                                                            WidthSize * 0.05, 0),
+                                                        EdgeInsets.fromLTRB(
+                                                            0,
+                                                            0,
+                                                            WidthSize * 0.05,
+                                                            0),
                                                     errorStyle: TextStyle(
                                                       color: Colors.white,
-                                                      fontWeight: FontWeight.w400,
+                                                      fontWeight:
+                                                          FontWeight.w400,
                                                     ),
-                                                    errorBorder: OutlineInputBorder(
-                                                        borderSide:
-                                                            const BorderSide(
-                                                          color: Colors.white,
-                                                        ),
-                                                        borderRadius:
-                                                            BorderRadius.circular(
-                                                                5.0)),
-                                                    hoverColor: Colors.black,
-                                                    focusColor: Color(0xff582e44),
-                                                    focusedBorder:
+                                                    errorBorder:
                                                         OutlineInputBorder(
                                                             borderSide:
                                                                 const BorderSide(
                                                               color:
-                                                                  Color(0xff582e44),
+                                                                  Colors.white,
+                                                            ),
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        5.0)),
+                                                    hoverColor: Colors.black,
+                                                    focusColor:
+                                                        Color(0xff582e44),
+                                                    focusedBorder:
+                                                        OutlineInputBorder(
+                                                            borderSide:
+                                                                const BorderSide(
+                                                              color: Color(
+                                                                  0xff582e44),
                                                             ),
                                                             borderRadius:
                                                                 BorderRadius
@@ -536,8 +595,8 @@ class _menuState extends State<menu> {
                                                     hintText: 'الطبق الثاني',
                                                     border: OutlineInputBorder(
                                                         borderRadius:
-                                                            BorderRadius.circular(
-                                                                5.0)),
+                                                            BorderRadius
+                                                                .circular(5.0)),
                                                   ),
                                                 ),
                                               )
@@ -546,7 +605,8 @@ class _menuState extends State<menu> {
                                             ? SizedBox(
                                                 height: HeightSize * 0.09,
                                                 child: TextFormField(
-                                                  textDirection: TextDirection.rtl,
+                                                  textDirection:
+                                                      TextDirection.rtl,
                                                   textAlign: TextAlign.right,
                                                   controller: _entreeController,
                                                   validator: (value) {
@@ -559,32 +619,42 @@ class _menuState extends State<menu> {
                                                   onSaved: (value) {
                                                     //  _authData['email'] = value!;
                                                   },
-                                                  keyboardType: TextInputType.name,
-                                                  cursorColor: Color(0xff582e44),
+                                                  keyboardType:
+                                                      TextInputType.name,
+                                                  cursorColor:
+                                                      Color(0xff582e44),
                                                   decoration: InputDecoration(
                                                     contentPadding:
-                                                        EdgeInsets.fromLTRB(0, 0,
-                                                            WidthSize * 0.05, 0),
+                                                        EdgeInsets.fromLTRB(
+                                                            0,
+                                                            0,
+                                                            WidthSize * 0.05,
+                                                            0),
                                                     errorStyle: TextStyle(
                                                       color: Colors.white,
-                                                      fontWeight: FontWeight.w400,
+                                                      fontWeight:
+                                                          FontWeight.w400,
                                                     ),
-                                                    errorBorder: OutlineInputBorder(
-                                                        borderSide:
-                                                            const BorderSide(
-                                                          color: Colors.white,
-                                                        ),
-                                                        borderRadius:
-                                                            BorderRadius.circular(
-                                                                5.0)),
-                                                    hoverColor: Colors.black,
-                                                    focusColor: Color(0xff582e44),
-                                                    focusedBorder:
+                                                    errorBorder:
                                                         OutlineInputBorder(
                                                             borderSide:
                                                                 const BorderSide(
                                                               color:
-                                                                  Color(0xff582e44),
+                                                                  Colors.white,
+                                                            ),
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        5.0)),
+                                                    hoverColor: Colors.black,
+                                                    focusColor:
+                                                        Color(0xff582e44),
+                                                    focusedBorder:
+                                                        OutlineInputBorder(
+                                                            borderSide:
+                                                                const BorderSide(
+                                                              color: Color(
+                                                                  0xff582e44),
                                                             ),
                                                             borderRadius:
                                                                 BorderRadius
@@ -596,8 +666,8 @@ class _menuState extends State<menu> {
                                                     hintText: 'المقبلة',
                                                     border: OutlineInputBorder(
                                                         borderRadius:
-                                                            BorderRadius.circular(
-                                                                5.0)),
+                                                            BorderRadius
+                                                                .circular(5.0)),
                                                   ),
                                                 ),
                                               )
@@ -606,9 +676,11 @@ class _menuState extends State<menu> {
                                             ? SizedBox(
                                                 height: HeightSize * 0.09,
                                                 child: TextFormField(
-                                                  textDirection: TextDirection.rtl,
+                                                  textDirection:
+                                                      TextDirection.rtl,
                                                   textAlign: TextAlign.right,
-                                                  controller: _dessertController,
+                                                  controller:
+                                                      _dessertController,
                                                   validator: (value) {
                                                     if (value == null ||
                                                         value.length < 3) {
@@ -619,32 +691,42 @@ class _menuState extends State<menu> {
                                                   onSaved: (value) {
                                                     //  _authData['email'] = value!;
                                                   },
-                                                  keyboardType: TextInputType.name,
-                                                  cursorColor: Color(0xff582e44),
+                                                  keyboardType:
+                                                      TextInputType.name,
+                                                  cursorColor:
+                                                      Color(0xff582e44),
                                                   decoration: InputDecoration(
                                                     contentPadding:
-                                                        EdgeInsets.fromLTRB(0, 0,
-                                                            WidthSize * 0.05, 0),
+                                                        EdgeInsets.fromLTRB(
+                                                            0,
+                                                            0,
+                                                            WidthSize * 0.05,
+                                                            0),
                                                     errorStyle: TextStyle(
                                                       color: Colors.white,
-                                                      fontWeight: FontWeight.w400,
+                                                      fontWeight:
+                                                          FontWeight.w400,
                                                     ),
-                                                    errorBorder: OutlineInputBorder(
-                                                        borderSide:
-                                                            const BorderSide(
-                                                          color: Colors.white,
-                                                        ),
-                                                        borderRadius:
-                                                            BorderRadius.circular(
-                                                                5.0)),
-                                                    hoverColor: Colors.black,
-                                                    focusColor: Color(0xff582e44),
-                                                    focusedBorder:
+                                                    errorBorder:
                                                         OutlineInputBorder(
                                                             borderSide:
                                                                 const BorderSide(
                                                               color:
-                                                                  Color(0xff582e44),
+                                                                  Colors.white,
+                                                            ),
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        5.0)),
+                                                    hoverColor: Colors.black,
+                                                    focusColor:
+                                                        Color(0xff582e44),
+                                                    focusedBorder:
+                                                        OutlineInputBorder(
+                                                            borderSide:
+                                                                const BorderSide(
+                                                              color: Color(
+                                                                  0xff582e44),
                                                             ),
                                                             borderRadius:
                                                                 BorderRadius
@@ -656,8 +738,8 @@ class _menuState extends State<menu> {
                                                     hintText: 'التحلية',
                                                     border: OutlineInputBorder(
                                                         borderRadius:
-                                                            BorderRadius.circular(
-                                                                5.0)),
+                                                            BorderRadius
+                                                                .circular(5.0)),
                                                   ),
                                                 ),
                                               )
@@ -666,7 +748,8 @@ class _menuState extends State<menu> {
                                             ? SizedBox(
                                                 height: HeightSize * 0.09,
                                                 child: TextFormField(
-                                                  textDirection: TextDirection.rtl,
+                                                  textDirection:
+                                                      TextDirection.rtl,
                                                   textAlign: TextAlign.right,
                                                   controller: _autreController,
                                                   // validator: (value) {
@@ -678,32 +761,42 @@ class _menuState extends State<menu> {
                                                   onSaved: (value) {
                                                     //  _authData['email'] = value!;
                                                   },
-                                                  keyboardType: TextInputType.name,
-                                                  cursorColor: Color(0xff582e44),
+                                                  keyboardType:
+                                                      TextInputType.name,
+                                                  cursorColor:
+                                                      Color(0xff582e44),
                                                   decoration: InputDecoration(
                                                     contentPadding:
-                                                        EdgeInsets.fromLTRB(0, 0,
-                                                            WidthSize * 0.05, 0),
+                                                        EdgeInsets.fromLTRB(
+                                                            0,
+                                                            0,
+                                                            WidthSize * 0.05,
+                                                            0),
                                                     errorStyle: TextStyle(
                                                       color: Colors.white,
-                                                      fontWeight: FontWeight.w400,
+                                                      fontWeight:
+                                                          FontWeight.w400,
                                                     ),
-                                                    errorBorder: OutlineInputBorder(
-                                                        borderSide:
-                                                            const BorderSide(
-                                                          color: Colors.white,
-                                                        ),
-                                                        borderRadius:
-                                                            BorderRadius.circular(
-                                                                5.0)),
-                                                    hoverColor: Colors.black,
-                                                    focusColor: Color(0xff582e44),
-                                                    focusedBorder:
+                                                    errorBorder:
                                                         OutlineInputBorder(
                                                             borderSide:
                                                                 const BorderSide(
                                                               color:
-                                                                  Color(0xff582e44),
+                                                                  Colors.white,
+                                                            ),
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        5.0)),
+                                                    hoverColor: Colors.black,
+                                                    focusColor:
+                                                        Color(0xff582e44),
+                                                    focusedBorder:
+                                                        OutlineInputBorder(
+                                                            borderSide:
+                                                                const BorderSide(
+                                                              color: Color(
+                                                                  0xff582e44),
                                                             ),
                                                             borderRadius:
                                                                 BorderRadius
@@ -715,8 +808,8 @@ class _menuState extends State<menu> {
                                                     hintText: 'أخرى',
                                                     border: OutlineInputBorder(
                                                         borderRadius:
-                                                            BorderRadius.circular(
-                                                                5.0)),
+                                                            BorderRadius
+                                                                .circular(5.0)),
                                                   ),
                                                 ),
                                               )
@@ -725,9 +818,11 @@ class _menuState extends State<menu> {
                                             ? SizedBox(
                                                 height: HeightSize * 0.09,
                                                 child: TextFormField(
-                                                  textDirection: TextDirection.rtl,
+                                                  textDirection:
+                                                      TextDirection.rtl,
                                                   textAlign: TextAlign.right,
-                                                  controller: _repasDispoController,
+                                                  controller:
+                                                      _repasDispoController,
                                                   validator: (value) {
                                                     if (value == null) {
                                                       return 'الرجاء إدخال العدد';
@@ -737,34 +832,42 @@ class _menuState extends State<menu> {
                                                   onSaved: (value) {
                                                     //  _authData['email'] = value!;
                                                   },
-
                                                   keyboardType:
                                                       TextInputType.number,
-                                                  cursorColor: Color(0xff582e44),
+                                                  cursorColor:
+                                                      Color(0xff582e44),
                                                   decoration: InputDecoration(
                                                     contentPadding:
-                                                        EdgeInsets.fromLTRB(0, 0,
-                                                            WidthSize * 0.05, 0),
+                                                        EdgeInsets.fromLTRB(
+                                                            0,
+                                                            0,
+                                                            WidthSize * 0.05,
+                                                            0),
                                                     errorStyle: TextStyle(
                                                       color: Colors.white,
-                                                      fontWeight: FontWeight.w400,
+                                                      fontWeight:
+                                                          FontWeight.w400,
                                                     ),
-                                                    errorBorder: OutlineInputBorder(
-                                                        borderSide:
-                                                            const BorderSide(
-                                                          color: Colors.white,
-                                                        ),
-                                                        borderRadius:
-                                                            BorderRadius.circular(
-                                                                5.0)),
-                                                    hoverColor: Colors.black,
-                                                    focusColor: Color(0xff582e44),
-                                                    focusedBorder:
+                                                    errorBorder:
                                                         OutlineInputBorder(
                                                             borderSide:
                                                                 const BorderSide(
                                                               color:
-                                                                  Color(0xff582e44),
+                                                                  Colors.white,
+                                                            ),
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        5.0)),
+                                                    hoverColor: Colors.black,
+                                                    focusColor:
+                                                        Color(0xff582e44),
+                                                    focusedBorder:
+                                                        OutlineInputBorder(
+                                                            borderSide:
+                                                                const BorderSide(
+                                                              color: Color(
+                                                                  0xff582e44),
                                                             ),
                                                             borderRadius:
                                                                 BorderRadius
@@ -773,14 +876,15 @@ class _menuState extends State<menu> {
                                                     fillColor: Colors.white,
                                                     filled: true,
                                                     labelStyle: TextStyle(),
-                                                    labelText: 'عدد الوجبات المتوفرة',
+                                                    labelText:
+                                                        'عدد الوجبات المتوفرة',
                                                     //          contentPadding: const EdgeInsets.fromLTRB(20, 8, 20, 8),
                                                     hintText:
                                                         'عدد الوجبات المتوفرة',
                                                     border: OutlineInputBorder(
                                                         borderRadius:
-                                                            BorderRadius.circular(
-                                                                5.0)),
+                                                            BorderRadius
+                                                                .circular(5.0)),
                                                   ),
                                                 ),
                                               )
@@ -791,9 +895,14 @@ class _menuState extends State<menu> {
                                 )
                               : Container(
                                   height: HeightSize * 0.5,
-                                  child:
-                                      Center(child: Text('اختر طبقا على الأقل'))),
-                          (soupe || plat1 || plat2 || entree || dessert || autre)
+                                  child: Center(
+                                      child: Text('اختر طبقا على الأقل'))),
+                          (soupe ||
+                                  plat1 ||
+                                  plat2 ||
+                                  entree ||
+                                  dessert ||
+                                  autre)
                               ? _isLoading
                                   ? CircularProgressIndicator()
                                   : RaisedButton(
@@ -807,7 +916,9 @@ class _menuState extends State<menu> {
                                       textColor: Color(0xff582e44),
                                       padding: const EdgeInsets.all(0.0),
                                       shape: RoundedRectangleBorder(
-                                        side: BorderSide(width: 0.5 , color: Color(0xff582e44)),
+                                          side: BorderSide(
+                                              width: 0.5,
+                                              color: Color(0xff582e44)),
                                           borderRadius:
                                               BorderRadius.circular(5.0)),
                                       child: Container(
