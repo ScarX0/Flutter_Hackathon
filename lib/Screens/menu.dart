@@ -146,7 +146,7 @@ class _menuState extends State<menu> {
             Transform.rotate(
               angle: 180 * math.pi / 180,
               child: IconButton(
-                icon: Icon(
+                icon: const Icon(
                   Icons.arrow_back_ios_outlined,
                   color: Colors.white,
                 ),
@@ -160,7 +160,7 @@ class _menuState extends State<menu> {
           title: Center(child: Text("وجبة اليوم")),
         ),
         body: _isLoading2
-            ? Center(
+            ? const Center(
                 child: CircularProgressIndicator(),
               )
             : SingleChildScrollView(
@@ -539,7 +539,7 @@ class _menuState extends State<menu> {
                                                 contentPadding:
                                                     EdgeInsets.fromLTRB(0, 0,
                                                         WidthSize * 0.05, 0),
-                                                errorStyle: TextStyle(
+                                                errorStyle: const TextStyle(
                                                   color: Colors.white,
                                                   fontWeight: FontWeight.w400,
                                                 ),
