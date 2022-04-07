@@ -264,135 +264,156 @@ class _accueilState extends State<accueil> {
               child: CircularProgressIndicator(),
             )
           : SingleChildScrollView(
-              child: Container(
-                height: sizee.height * 0.85,
-                margin: EdgeInsets.symmetric(
-                    horizontal: sizee.width * 0.03,
-                    vertical: sizee.height * 0.02),
-                child: ListView.builder(
-                    itemCount:
-                        searched ? rests.loadedList.length : rests.rests.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return Container(
-                        margin: EdgeInsets.only(bottom: sizee.height * 0.02),
-                        child: Card(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(13),
-                            ),
-                          ),
-                          elevation: 5,
-                          child: Container(
-                            width: sizee.width * (1 / 5.5),
-                            height: sizee.height * (1 / 5.5),
-                            decoration: BoxDecoration(
-                              border: Border.all(
-                                color: Color(0xffFAC358),
+              child: Stack(
+                children: [
+                  Container(
+                    height: sizee.height,
+                    child: Align(
+                      alignment: Alignment.bottomCenter,
+                      child: Container(
+                        height: sizee.height * 0.7,
+                        decoration: BoxDecoration(
+                            image: DecorationImage(
+                              fit: BoxFit.contain,
+                              opacity: 0.5,
+                              image: AssetImage(
+                                "assets/hilel3.png",
                               ),
-                              borderRadius: const BorderRadius.all(
-                                const Radius.circular(13),
+                            )),
+                      ),
+                    ),
+                  ),
+                  Container(
+                    height: sizee.height * 0.85,
+                    margin: EdgeInsets.symmetric(
+                        horizontal: sizee.width * 0.03,
+                        vertical: sizee.height * 0.02),
+                    child: ListView.builder(
+                        itemCount:
+                            searched ? rests.loadedList.length : rests.rests.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return Container(
+                            margin: EdgeInsets.only(bottom: sizee.height * 0.02),
+                            child: Card(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(13),
+                                ),
                               ),
-                            ),
-                            padding: EdgeInsets.symmetric(
-                                vertical: sizee.height * 0.02,
-                                horizontal: sizee.width * 0.05),
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                CircleAvatar(
-                                  backgroundColor: Color(0xffFAC358),
-                                  radius: sizee.width * (18 / 540),
-                                  child: IconButton(
-                                    padding: EdgeInsets.zero,
-                                    icon: const Icon(
-                                        Icons.arrow_back_ios_outlined),
-                                    iconSize: sizee.width * (28 / 540),
-                                    color: Colors.white,
-                                    onPressed: () async {
-                                      rests.restoById(searched
-                                          ? rests.loadedList[index].id!
-                                          : rests.rests[index].id!);
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                restaurant_details(
-                                                    title: rests
-                                                        .chosenRestaurant!
-                                                        .restName!)),
-                                      );
-                                    },
+                              elevation: 5,
+                              child: Container(
+                                width: sizee.width * (1 / 5.5),
+                                height: sizee.height * (1 / 5.5),
+                                decoration: BoxDecoration(
+                                  border: Border.all(
+                                    color: Color(0xffFAC358),
+                                  ),
+                                  borderRadius: const BorderRadius.all(
+                                    const Radius.circular(13),
                                   ),
                                 ),
-                                Expanded(
-                                  child: Container(
-                                    padding: EdgeInsets.symmetric(
-                                        vertical: sizee.height * 0.02,
-                                        horizontal: sizee.width * 0.05),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.end,
-                                      children: [
-                                        Text(
-                                          rests.rests[index].restName!,
-                                          textDirection: TextDirection.rtl,
-                                          style: TextStyle(
-                                              fontSize: sizee.width * 0.05),
-                                        ),
-                                        Text(
-                                          '${searched ? rests.loadedList[index].city! : rests.rests[index].city!} ,${searched ? rests.loadedList[index].commune! : rests.rests[index].commune!} ',
-                                          textDirection: TextDirection.rtl,
-                                          style: TextStyle(
-                                              color: Color(0xffA59F97)),
-                                        ),
-                                        Container(
-                                          width: sizee.height * 0.075,
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              Icon(
-                                                Icons.person,
-                                                color: Color(0xffbd7344),
-                                              ),
-                                              Text('  25  ')
-                                            ],
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                                Container(
-                                  decoration: BoxDecoration(
-                                    image: DecorationImage(
-                                      fit: BoxFit.cover,
-                                      image:
-                                          AssetImage("assets/restaurant.jpg"),
-                                    ),
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: Colors.grey.withOpacity(0.05),
-                                        spreadRadius: 5,
-                                        blurRadius: 10,
-                                        offset: const Offset(
-                                            0, 3), // changes position of shadow
+                                padding: EdgeInsets.symmetric(
+                                    vertical: sizee.height * 0.02,
+                                    horizontal: sizee.width * 0.05),
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                  children: [
+                                    CircleAvatar(
+                                      backgroundColor: Color(0xffFAC358),
+                                      radius: sizee.width * (18 / 540),
+                                      child: IconButton(
+                                        padding: EdgeInsets.zero,
+                                        icon: const Icon(
+                                            Icons.arrow_back_ios_outlined),
+                                        iconSize: sizee.width * (28 / 540),
+                                        color: Colors.white,
+                                        onPressed: () async {
+                                          rests.restoById(searched
+                                              ? rests.loadedList[index].id!
+                                              : rests.rests[index].id!);
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    restaurant_details(
+                                                        title: rests
+                                                            .chosenRestaurant!
+                                                            .restName!)),
+                                          );
+                                        },
                                       ),
-                                    ],
-                                    borderRadius: const BorderRadius.all(
-                                      const Radius.circular(20),
                                     ),
-                                  ),
-                                  height: sizee.height * 0.17,
-                                  width: sizee.height * 0.17,
+                                    Expanded(
+                                      child: Container(
+                                        padding: EdgeInsets.symmetric(
+                                            vertical: sizee.height * 0.02,
+                                            horizontal: sizee.width * 0.05),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.end,
+                                          children: [
+                                            Text(
+                                              rests.rests[index].restName!,
+                                              textDirection: TextDirection.rtl,
+                                              style: TextStyle(
+                                                  fontSize: sizee.width * 0.05),
+                                            ),
+                                            Text(
+                                              '${searched ? rests.loadedList[index].city! : rests.rests[index].city!} ,${searched ? rests.loadedList[index].commune! : rests.rests[index].commune!} ',
+                                              textDirection: TextDirection.rtl,
+                                              style: TextStyle(
+                                                  color: Color(0xffA59F97)),
+                                            ),
+                                            Container(
+                                              width: sizee.height * 0.075,
+                                              child: Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  Icon(
+                                                    Icons.person,
+                                                    color: Color(0xffbd7344),
+                                                  ),
+                                                  Text('  25  ')
+                                                ],
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                    Container(
+                                      decoration: BoxDecoration(
+                                        image: DecorationImage(
+                                          fit: BoxFit.cover,
+                                          image:
+                                              AssetImage("assets/restaurant.jpg"),
+                                        ),
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color: Colors.grey.withOpacity(0.05),
+                                            spreadRadius: 5,
+                                            blurRadius: 10,
+                                            offset: const Offset(
+                                                0, 3), // changes position of shadow
+                                          ),
+                                        ],
+                                        borderRadius: const BorderRadius.all(
+                                          const Radius.circular(20),
+                                        ),
+                                      ),
+                                      height: sizee.height * 0.17,
+                                      width: sizee.height * 0.17,
+                                    ),
+                                  ],
                                 ),
-                              ],
+                              ),
                             ),
-                          ),
-                        ),
-                      );
-                    }),
+                          );
+                        }),
+                  ),
+                ],
               ),
             ),
     );
