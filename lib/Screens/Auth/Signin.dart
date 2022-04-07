@@ -1,6 +1,7 @@
 import 'package:abir_sabil/Screens/accueil.dart';
 import 'package:abir_sabil/Screens/accueil_resto.dart';
 import 'package:abir_sabil/main.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -43,12 +44,15 @@ class _SigninState extends State<Signin> {
       _isLoading = true;
     });
     try {
-      await Provider.of<AuthService>(context, listen: false)
-          .signIn(email, password);
-      setState(() {
-        _isLoading = false;
-      });
-      return true;
+      var x = Provider.of<AuthService>(context, listen: false);
+
+      if (await x.signIn(email, password)) {
+        setState(() {
+          _isLoading = false;
+        });
+        return true;
+      }
+      ;
     } catch (e) {
       print(e.toString());
     }
@@ -571,7 +575,10 @@ class _SigninState extends State<Signin> {
                                                             height: HeightSize *
                                                                 0.01),
                                                         _isLoading
-                                                            ? CircularProgressIndicator()
+                                                            ? CircularProgressIndicator(
+                                                                color: Colors
+                                                                    .white,
+                                                              )
                                                             : RaisedButton(
                                                                 onPressed:
                                                                     () async {
@@ -587,19 +594,42 @@ class _SigninState extends State<Signin> {
                                                                             .text,
                                                                         _passwordController
                                                                             .text)) {
-                                                                      if (nu) {
+                                                                      if (prov.isVisiteur &&
+                                                                          prov.userType) {
                                                                         // Navigator.pop(
                                                                         //     context);
                                                                         Navigator.pushReplacement(
                                                                             context,
                                                                             MaterialPageRoute(builder: (_) => accueil()));
-                                                                      } else {
+                                                                      } else if (prov
+                                                                              .isVisiteur &&
+                                                                          prov.isRest) {
+                                                                        FirebaseAuth
+                                                                            .instance
+                                                                            .signOut();
+                                                                        Fluttertoast.showToast(
+                                                                            msg:
+                                                                                'لايوجد بريد إلكتروني لهذا المستخدم');
+                                                                      } else if (!prov
+                                                                              .isVisiteur &&
+                                                                          prov.isRest) {
                                                                         // Navigator.pop(
                                                                         //     context);
                                                                         Navigator.pushReplacement(
                                                                             context,
                                                                             MaterialPageRoute(builder: (_) => accueil_resto()));
+                                                                      } else {
+                                                                        FirebaseAuth
+                                                                            .instance
+                                                                            .signOut();
+                                                                        Fluttertoast.showToast(
+                                                                            msg:
+                                                                                'لايوجد بريد إلكتروني لهذا المستخدم');
                                                                       }
+                                                                    } else {
+                                                                      Fluttertoast
+                                                                          .showToast(
+                                                                              msg: 'يُرجى التحقق من المعلومات المُدخلة');
                                                                     }
                                                                   }
                                                                 },
@@ -1495,7 +1525,10 @@ class _SigninState extends State<Signin> {
                                                             : HeightSize * 0.02,
                                                       ),
                                                       _isLoading
-                                                          ? const CircularProgressIndicator()
+                                                          ? const CircularProgressIndicator(
+                                                              color:
+                                                                  Colors.white,
+                                                            )
                                                           : RaisedButton(
                                                               onPressed:
                                                                   () async {

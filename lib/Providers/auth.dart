@@ -156,10 +156,46 @@ class AuthService extends ChangeNotifier {
     }
   }
 
-  Future<void> signIn(String email, String password) async {
+  bool _userType = false;
+  bool _isRest = false;
+
+  bool get userType {
+    return _userType;
+  }
+
+  bool get isRest {
+    return _isRest;
+  }
+
+  Future<bool> signIn(String email, String password) async {
+    bool retur = false;
     try {
       final auth = FirebaseAuth.instance;
-      await auth.signInWithEmailAndPassword(email: email, password: password);
+      await auth
+          .signInWithEmailAndPassword(email: email, password: password)
+          .then((value) async {
+        await FirebaseFirestore.instance
+            .collection('volounteers')
+            .doc(value.user!.uid)
+            .get()
+            .then((value) {
+          if (value.exists) {
+            retur = true;
+            _userType = true;
+            notifyListeners();
+          } else {
+            retur = true;
+            _isRest = true;
+            notifyListeners();
+          }
+        });
+        return true;
+      });
+      if (!retur) {
+        FirebaseAuth.instance.signOut();
+        return false;
+      }
+      return true;
 
       // final auth2 = FirebaseAuth.instance;
 
