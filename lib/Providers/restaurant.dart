@@ -46,6 +46,25 @@ class Restaurants extends ChangeNotifier {
     }
   }
 
+  List<Restaurant> loadedList = [];
+  void filterListWC(String city, String commune) {
+    for (int i = 0; i < rests.length; i++) {
+      if (city == rests[i].city && commune == rests[i].commune) {
+        loadedList.add(rests[i]);
+      }
+    }
+    notifyListeners();
+  }
+
+  void filterList(String name) {
+    for (int i = 0; i < rests.length; i++) {
+      if (name == rests[i].city) {
+        loadedList.add(rests[i]);
+      }
+    }
+    notifyListeners();
+  }
+
   Future<void> getRestaurants() async {
     try {
       final data =

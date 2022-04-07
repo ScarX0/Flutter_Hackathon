@@ -481,6 +481,7 @@ width: sizee.width*0.8,
                             style: TextStyle(fontWeight: FontWeight.bold),
                           )),
                           Container(
+<<<<<<< HEAD
                             width: sizee.width * 0.7,
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.end,
@@ -569,6 +570,33 @@ width: sizee.width*0.8,
                                   blurRadius: 10,
                                   offset: const Offset(
                                       0, 3), // changes position of shadow
+=======
+                              child: InkWell(
+                            onTap: () {},
+                            child: Container(
+                              child: const Center(
+                                child: Text(
+                                  'تطوع',
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              ),
+                              width: sizee.width * 0.2,
+                              height: sizee.height * 0.05,
+                              margin: EdgeInsets.only(top: sizee.height * 0.01),
+                              decoration: BoxDecoration(
+                                color: const Color(0xffa8293c),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.grey.withOpacity(0.05),
+                                    spreadRadius: 5,
+                                    blurRadius: 10,
+                                    offset: const Offset(
+                                        0, 3), // changes position of shadow
+                                  ),
+                                ],
+                                borderRadius: const BorderRadius.all(
+                                  Radius.circular(20),
+>>>>>>> 74450a4996708157f0ad4fde3a09e8b70e6c727e
                                 ),
                               ],
                               borderRadius: const BorderRadius.all(
