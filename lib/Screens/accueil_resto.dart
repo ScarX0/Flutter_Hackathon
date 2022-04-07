@@ -42,66 +42,9 @@ class _accueil_restoState extends State<accueil_resto> {
 
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-          icon: Icon(Icons.person),
-          onPressed: () {
-            Navigator.push(
-                context, MaterialPageRoute(builder: (_) => profile()));
-          },
-        ),
-        actions: [
-          _isLoading
-              ? CircularProgressIndicator(
-                  color: Colors.white,
-                )
-              : InkWell(
-                  child:
-                      // child: Transform.rotate(
-                      //   angle: 180 * math.pi / 180,
-                      //   child:
-                      Padding(
-                    padding: const EdgeInsets.all(3.0),
-                    child: Icon(
-                      Icons.logout,
-                      color: Colors.white,
-                      size: WidthSize * (40.0 / 540),
-                    ),
-                  ),
-                  // ),
-                  onTap: () {
-                    FirebaseAuth.instance.signOut();
-                    // auth.signOut();
-                    // await logOut();
+automaticallyImplyLeading: false,
 
-                    // showDialog<String>(
-                    //   context: context,
-                    //   builder: (BuildContext context) => AlertDialog(
-                    //     title: const Text('تسجبيل الخروج'),
-                    //     content: const Text('متأكد ؟'),
-                    //     actions: <Widget>[
-                    //       TextButton(
-                    //         onPressed: () => Navigator.pop(context, 'Cancel'),
-                    //         child: const Text(
-                    //           'لا',
-                    //           style: TextStyle(color: Color(0xff4FBDBA)),
-                    //         ),
-                    //       ),
-                    //       TextButton(
-                    //         onPressed: () async {
-                    //           // Navigator.pop(ctx);
-                    //           await FirebaseAuth.instance.signOut();
-                    //         },
-                    //         child: const Text(
-                    //           'نعم',
-                    //           style: TextStyle(color: Color(0xff4FBDBA)),
-                    //         ),
-                    //       ),
-                    //     ],
-                    //   ),
-                    // );
-                  })
-        ],
-        backgroundColor: Color(0xff582e44),
+        backgroundColor: Color(0xffFAC358),
         title: Center(child: Text("مطعم الرحمة")),
       ),
       body: Column(
@@ -112,7 +55,7 @@ class _accueil_restoState extends State<accueil_resto> {
                   bottomLeft: Radius.circular(60),
                   bottomRight: Radius.circular(60)),
             ),
-            elevation: 30,
+            elevation: 5,
             child: Container(
               decoration: BoxDecoration(
                 image: DecorationImage(
@@ -127,7 +70,7 @@ class _accueil_restoState extends State<accueil_resto> {
                       Radius.circular(300),
                     ),
                   ),
-                  elevation: 30,
+                  elevation: 5,
                   child: Container(
                     child: Center(
                         child: Text(
@@ -177,7 +120,7 @@ class _accueil_restoState extends State<accueil_resto> {
                                 color: Colors.black,
                               ),
                               selectedTextStyle: TextStyle(
-                                color: Color(0xffbd7344),
+                                color: Color(0xffFAC358),
                               ),
                               value: persons,
                               minValue: 1,
@@ -199,7 +142,7 @@ class _accueil_restoState extends State<accueil_resto> {
                               child: const Text(
                                 'تأكيد',
                                 style: TextStyle(
-                                  color: Color(0xffbd7344),
+                                  color: Color(0xffFAC358),
                                 ),
                               ),
                               onPressed: () async {
@@ -217,19 +160,19 @@ class _accueil_restoState extends State<accueil_resto> {
                         Radius.circular(300),
                       ),
                     ),
-                    elevation: 30,
+                    elevation: 5,
                     child: Container(
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           Icon(
                             Icons.person_search_outlined,
-                            color: Color(0xffbd7344),
+                            color: Color(0xffFAC358),
                           ),
                           // icon
                           Text(
                             "متطوعين",
-                            style: TextStyle(color: Color(0xffbd7344)),
+                            style: TextStyle(color: Color(0xffFAC358)),
                           ),
                           // text
                         ],
@@ -275,7 +218,7 @@ class _accueil_restoState extends State<accueil_resto> {
                         ],
                       ),
                       decoration: BoxDecoration(
-                        color: Color(0xffbd7344),
+                        color: Color(0xffFAC358),
                         borderRadius: const BorderRadius.all(
                           Radius.circular(300),
                         ),
@@ -286,26 +229,29 @@ class _accueil_restoState extends State<accueil_resto> {
                   ),
                 ),
                 InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(
+                        context, MaterialPageRoute(builder: (_) => profile()));
+                  },
                   child: Card(
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.all(
                         Radius.circular(300),
                       ),
                     ),
-                    elevation: 30,
+                    elevation: 5,
                     child: Container(
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           Icon(
-                            Icons.assessment_outlined,
-                            color: Color(0xffbd7344),
+                            Icons.person,
+                            color: Color(0xffFAC358),
                           ),
                           // icon
                           Text(
-                            "الاحصائيات",
-                            style: TextStyle(color: Color(0xffbd7344)),
+                            "حسابي",
+                            style: TextStyle(color: Color(0xffFAC358)),
                           ),
                           // text
                         ],

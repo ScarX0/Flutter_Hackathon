@@ -109,13 +109,13 @@ class _forgotState extends State<forgot> {
                                 borderSide: const BorderSide(
                                   color: Color(0xff582e44),
                                 ),
-                                borderRadius: BorderRadius.circular(20.0)),
+                                borderRadius: BorderRadius.circular(5.0)),
                             fillColor: Colors.white,
                             filled: true,
                             //          contentPadding: const EdgeInsets.fromLTRB(20, 8, 20, 8),
                             hintText: 'بريدك الالكتروني',
                             border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(20.0)),
+                                borderRadius: BorderRadius.circular(5.0)),
                             suffixIcon: const Icon(
                               Icons.email,
                               color: Color(0xffB1B0B0),
