@@ -23,6 +23,42 @@ class _restaurant_detailsState extends State<restaurant_details> {
   double? long;
   Map<String, dynamic>? userInfo = {};
   Map<String, dynamic>? menu = {};
+  Future<void> volunter() async {
+    setState(() {
+      _isLoading = true;
+    });
+
+    try {
+      final rest = Provider.of<Restaurants>(context, listen: false);
+      final auth = FirebaseAuth.instance.currentUser;
+      await FirebaseFirestore.instance
+          .collection('volounteers')
+          .doc(auth!.uid)
+          .update({
+        'isVolounteer': true,
+        'whereVolunteer': rest.chosenRestaurant!.id,
+        'timeVolunteer': DateTime.now()
+      });
+
+      final data = await FirebaseFirestore.instance
+          .collection('restaurants')
+          .doc(rest.chosenRestaurant!.id)
+          .get();
+      final info = data.data();
+      await FirebaseFirestore.instance
+          .collection('restaurants')
+          .doc(rest.chosenRestaurant!.id)
+          .update({
+        'vols_number': info!['vols_number'] + 1,
+      });
+    } catch (e) {
+      print(e.toString());
+    }
+    setState(() {
+      _isLoading = true;
+    });
+  }
+
   Future<void> getInfos() async {
     setState(() {
       _isLoading = true;
@@ -184,17 +220,15 @@ class _restaurant_detailsState extends State<restaurant_details> {
                     child: Align(
                       alignment: Alignment.bottomCenter,
                       child: Container(
-                        height: sizee.height
-                            * 0.6,
+                        height: sizee.height * 0.6,
                         decoration: BoxDecoration(
-
                             image: DecorationImage(
-                              fit: BoxFit.fitWidth,
-                              opacity: 0.5,
-                              image: AssetImage(
-                                "assets/hilel3.png",
-                              ),
-                            )),
+                          fit: BoxFit.fitWidth,
+                          opacity: 0.5,
+                          image: AssetImage(
+                            "assets/hilel3.png",
+                          ),
+                        )),
                       ),
                     ),
                   ),
@@ -262,9 +296,11 @@ class _restaurant_detailsState extends State<restaurant_details> {
                                                                     title: rest
                                                                         .chosenRestaurant!
                                                                         .restName!))));
-                                              } else if (userInfo!['isReserved'] &&
+                                              } else if (userInfo![
+                                                      'isReserved'] &&
                                                   userInfo!['whereReserved'] ==
-                                                      rest.chosenRestaurant!.id) {
+                                                      rest.chosenRestaurant!
+                                                          .id) {
                                                 Fluttertoast.showToast(
                                                     msg: 'جاري حذف الحجز');
                                                 await reserve(1, false).then((value) =>
@@ -280,7 +316,8 @@ class _restaurant_detailsState extends State<restaurant_details> {
                                             },
                                             child: Container(
                                               child: Center(
-                                                child: userInfo!['isReserved'] &&
+                                                child: userInfo![
+                                                            'isReserved'] &&
                                                         userInfo![
                                                                 'whereReserved'] ==
                                                             rest.chosenRestaurant!
@@ -288,7 +325,8 @@ class _restaurant_detailsState extends State<restaurant_details> {
                                                     ? const Text(
                                                         'إلغاء الحجز',
                                                         style: TextStyle(
-                                                            color: Colors.white),
+                                                            color:
+                                                                Colors.white),
                                                       )
                                                     : userInfo!['isReserved']
                                                         ? const Text(
@@ -296,8 +334,8 @@ class _restaurant_detailsState extends State<restaurant_details> {
                                                         : const Text(
                                                             'احجز مقعد',
                                                             style: TextStyle(
-                                                                color:
-                                                                    Colors.white),
+                                                                color: Colors
+                                                                    .white),
                                                           ),
                                               ),
                                               width: sizee.width * 0.24,
@@ -333,7 +371,8 @@ class _restaurant_detailsState extends State<restaurant_details> {
                                               width: sizee.width * 0.08,
                                               height: sizee.width * 0.08,
                                               margin: EdgeInsets.symmetric(
-                                                  vertical: sizee.height * 0.02),
+                                                  vertical:
+                                                      sizee.height * 0.02),
                                               decoration: BoxDecoration(
                                                 color: Color(0xffFAC358),
                                                 boxShadow: [
@@ -403,38 +442,40 @@ class _restaurant_detailsState extends State<restaurant_details> {
                                                               TextButton(
                                                                   onPressed:
                                                                       () async {
-                                                                    Navigator.pop(
-                                                                        ctx);
-                                                                    await getLoc().then((value) =>
-                                                                        Navigator.push(
-                                                                            context,
-                                                                            MaterialPageRoute(
-                                                                                builder: (_) => MapScreen(
-                                                                                      latitude: lat!,
-                                                                                      longitude: long!,
-                                                                                      user: true,
-                                                                                    ))));
-                                                                    Navigator.pop(
-                                                                        ctx);
+                                                                    Navigator
+                                                                        .pop(
+                                                                            ctx);
+                                                                    await getLoc().then((value) => Navigator.push(
+                                                                        context,
+                                                                        MaterialPageRoute(
+                                                                            builder: (_) => MapScreen(
+                                                                                  latitude: lat!,
+                                                                                  longitude: long!,
+                                                                                  user: true,
+                                                                                ))));
+                                                                    Navigator
+                                                                        .pop(
+                                                                            ctx);
                                                                   },
                                                                   child: Text(
                                                                       'تأكيد')),
                                                               TextButton(
-                                                                  onPressed: () {
-                                                                    Navigator.pop(
-                                                                        ctx);
+                                                                  onPressed:
+                                                                      () {
+                                                                    Navigator
+                                                                        .pop(
+                                                                            ctx);
                                                                     Navigator.push(
                                                                         context,
                                                                         MaterialPageRoute(
-                                                                            builder: (_) =>
-                                                                                MapScreen(
+                                                                            builder: (_) => MapScreen(
                                                                                   latitude: rest.chosenRestaurant!.latitude!,
                                                                                   longitude: rest.chosenRestaurant!.longitude!,
                                                                                   user: false,
                                                                                 )));
                                                                   },
-                                                                  child:
-                                                                      Text('رفض')),
+                                                                  child: Text(
+                                                                      'رفض')),
                                                             ],
                                                           );
                                                         });
@@ -604,23 +645,32 @@ class _restaurant_detailsState extends State<restaurant_details> {
                       SizedBox(
                         height: sizee.height * 0.05,
                       ),
-                      if (rest.chosenRestaurant!.needVol!)
+                      if (rest.chosenRestaurant!.needVol! &&
+                          rest.chosenRestaurant!.needNumberVols! >
+                              rest.chosenRestaurant!.volsNumber!)
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
                             Container(
                                 child: InkWell(
-                              onTap: () {},
+                              onTap: () async {
+                                if (!userInfo!['isVolounteer']) {
+                                  await volunter();
+                                }
+                              },
                               child: Container(
                                 child: Center(
                                   child: Text(
-                                    'تطوع',
+                                    userInfo!['isVolounteer']
+                                        ? 'متطوع'
+                                        : 'تطوع الآن',
                                     style: TextStyle(color: Colors.white),
                                   ),
                                 ),
                                 width: sizee.width * 0.2,
                                 height: sizee.height * 0.05,
-                                margin: EdgeInsets.only(top: sizee.height * 0.01),
+                                margin:
+                                    EdgeInsets.only(top: sizee.height * 0.01),
                                 decoration: BoxDecoration(
                                   color: Color(0xffFAC358),
                                   boxShadow: [

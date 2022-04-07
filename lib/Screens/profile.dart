@@ -4,11 +4,14 @@ import 'dart:io';
 import 'package:abir_sabil/Providers/auth.dart';
 import 'package:abir_sabil/Screens/Map.dart';
 import 'package:abir_sabil/main.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'dart:math' as math;
 import 'package:http/http.dart' as http;
+import 'package:image_picker/image_picker.dart';
 
 import 'package:location/location.dart';
 import 'package:provider/provider.dart';
@@ -24,6 +27,18 @@ class profile extends StatefulWidget {
 class _profileState extends State<profile> {
   double? lat;
   double? long;
+  File? filex;
+  Future selectFile(XFile? file) async {
+    // final result = await FilePicker.platform.pickFiles(allowMultiple: false);
+    if (file == null) {
+      return;
+    }
+    final path = file.path;
+
+    setState(() {
+      filex = File(path);
+    });
+  }
 
   getAddressFromLatLng(context, double lat, double lng) async {
     String _host = 'https://maps.google.com/maps/api/geocode/json';
@@ -40,6 +55,15 @@ class _profileState extends State<profile> {
         return null;
     } else
       return null;
+  }
+
+  Future uploadFile() async {
+    if (filex == null) return;
+    final num = math.Random();
+    final filename = 'test.png';
+    final destination = 'files/$filename';
+
+    final x = FirebaseApi.uploadFile(destination, filex!);
   }
 
   Future<void> getLoc() async {
@@ -204,19 +228,22 @@ class _profileState extends State<profile> {
                                     CircleAvatar(
                                       backgroundColor: Colors.grey,
                                       radius: WidthSize * (65 / 540),
-                                      child: Container(
-                                        decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.all(
-                                                Radius.circular(80)),
-                                            image: DecorationImage(
-                                              fit: BoxFit.cover,
-                                              image: nu
-                                                  ? AssetImage(
-                                                      "assets/muslim.png")
-                                                  : AssetImage(
-                                                      "assets/restaurant.jpg"),
-                                            )),
-                                      ),
+                                      child: filex == null
+                                          ? Container(
+                                              decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.all(
+                                                          Radius.circular(80)),
+                                                  image: DecorationImage(
+                                                    fit: BoxFit.cover,
+                                                    image: nu
+                                                        ? AssetImage(
+                                                            "assets/muslim.png")
+                                                        : AssetImage(
+                                                            "assets/restaurant.jpg"),
+                                                  )),
+                                            )
+                                          : Image(image: FileImage(filex!)),
                                     ),
                                     (!nu)
                                         ? Align(
@@ -234,7 +261,15 @@ class _profileState extends State<profile> {
                                                       sizee.width * (30 / 540),
                                                 ),
                                                 color: Colors.white,
-                                                onPressed: () async {},
+                                                onPressed: () async {
+                                                  final imagefile =
+                                                      await ImagePicker.platform
+                                                          .getImage(
+                                                              source:
+                                                                  ImageSource
+                                                                      .gallery);
+                                                  await selectFile(imagefile);
+                                                },
                                               ),
                                             ),
                                           )
@@ -242,6 +277,12 @@ class _profileState extends State<profile> {
                                   ],
                                 ),
                               ),
+                              if (filex != null)
+                                TextButton(
+                                    onPressed: () async {
+                                      uploadFile();
+                                    },
+                                    child: Text('upload')),
                               Text(
                                 prov.userInfo[nu ? 'name' : 'restaurantName'],
                                 style: TextStyle(
@@ -624,5 +665,17 @@ class _profileState extends State<profile> {
               ),
       ),
     );
+  }
+}
+
+class FirebaseApi {
+  static UploadTask? uploadFile(String dest, File file) {
+    try {
+      final ref = FirebaseStorage.instance.ref(dest);
+
+      return ref.putFile(file);
+    } catch (e) {
+      print(e.toString());
+    }
   }
 }
