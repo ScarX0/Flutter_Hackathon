@@ -1,7 +1,9 @@
 import 'package:abir_sabil/Screens/menu.dart';
 import 'package:abir_sabil/Screens/profile.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hijri/hijri_calendar.dart';
 import 'package:numberpicker/numberpicker.dart';
 
@@ -13,6 +15,25 @@ class accueil_resto extends StatefulWidget {
 }
 
 class _accueil_restoState extends State<accueil_resto> {
+  Future<void> askForVols(int number) async {
+    setState(() {
+      _isLoading = true;
+    });
+    try {
+      final auth = FirebaseAuth.instance.currentUser;
+
+      await FirebaseFirestore.instance
+          .collection('restaurants')
+          .doc(auth!.uid)
+          .update({'need_vol': true, 'need_number_vol': number});
+    } catch (e) {
+      print(e.toString());
+    }
+    setState(() {
+      _isLoading = false;
+    });
+  }
+
   bool _isLoading = false;
   final auth = FirebaseAuth.instance;
   Future<void> logOut() async {
@@ -42,8 +63,7 @@ class _accueil_restoState extends State<accueil_resto> {
 
     return Scaffold(
       appBar: AppBar(
-automaticallyImplyLeading: false,
-
+        automaticallyImplyLeading: false,
         backgroundColor: Color(0xffFAC358),
         title: Center(child: Text("مطعم الرحمة")),
       ),
@@ -138,17 +158,22 @@ automaticallyImplyLeading: false,
                             );
                           }),
                           actions: <Widget>[
-                            TextButton(
-                              child: const Text(
-                                'تأكيد',
-                                style: TextStyle(
-                                  color: Color(0xffFAC358),
-                                ),
-                              ),
-                              onPressed: () async {
-                                Navigator.pop(context);
-                              },
-                            ),
+                            _isLoading
+                                ? CircularProgressIndicator()
+                                : TextButton(
+                                    child: const Text(
+                                      'تأكيد',
+                                      style: TextStyle(
+                                        color: Color(0xffFAC358),
+                                      ),
+                                    ),
+                                    onPressed: () async {
+                                      await askForVols(persons).then((value) {
+                                        Navigator.pop(context);
+                                        Fluttertoast.showToast(msg: 'تم');
+                                      });
+                                    },
+                                  ),
                           ],
                         );
                       },
@@ -234,7 +259,7 @@ automaticallyImplyLeading: false,
                         context, MaterialPageRoute(builder: (_) => profile()));
                   },
                   child: Card(
-                    shape: RoundedRectangleBorder(
+                    shape: const RoundedRectangleBorder(
                       borderRadius: BorderRadius.all(
                         Radius.circular(300),
                       ),
