@@ -11,7 +11,8 @@ class Restaurant {
   String? commune;
   double? latitude;
   double? longitude;
-  Map<String, dynamic>? menu;
+  int? needNumberVols;
+  // Map<String, dynamic>? menu;
   bool? needVol;
   int? volsNumber;
   bool? hasMenu;
@@ -26,7 +27,8 @@ class Restaurant {
       required this.commune,
       required this.latitude,
       required this.longitude,
-      required this.menu,
+      required this.needNumberVols,
+      // required this.menu,
       required this.needVol,
       required this.volsNumber,
       required this.hasMenu});
@@ -34,6 +36,15 @@ class Restaurant {
 
 class Restaurants extends ChangeNotifier {
   List<Restaurant> rests = [];
+  Restaurant? chosenRestaurant;
+  void restoById(String id) {
+    for (int i = 0; i < rests.length; i++) {
+      if (id == rests[i].id) {
+        chosenRestaurant = rests[i];
+        notifyListeners();
+      }
+    }
+  }
 
   Future<void> getRestaurants() async {
     try {
@@ -42,9 +53,33 @@ class Restaurants extends ChangeNotifier {
 
       final docs = data.docs;
 
-      for (var element in docs) {}
+      Map<String, dynamic> holder;
+      for (var element in docs) {
+        var id = element.id;
+        holder = element.data();
+        if (holder['hasMenu']) {
+          // print(id);
+          rests.add(Restaurant(
+              id: id,
+              name: holder['name'],
+              restName: holder['restaurantName'],
+              imgUrl: holder['photo'],
+              city: holder['city'],
+              phone: holder['phone'],
+              commune: holder['commune'],
+              latitude:
+                  holder['location'].isEmpty ? 0.0 : holder['location'][0],
+              longitude:
+                  holder['location'].isEmpty ? 0.0 : holder['location'][1],
+              needNumberVols: holder['need_number_vol'],
+              //  menu: menu,
+              needVol: holder['need_vol'],
+              volsNumber: holder['vols_number'],
+              hasMenu: holder['hasMenu']));
+        }
+      }
 
-      print(docs[2].data());
+      // print(docs[2].data());
     } catch (e) {
       rethrow;
     }

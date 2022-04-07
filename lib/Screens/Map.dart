@@ -1,14 +1,18 @@
+import 'package:abir_sabil/Providers/restaurant.dart';
 import 'package:abir_sabil/main.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:provider/provider.dart';
 
 class MapScreen extends StatefulWidget {
+  final bool? user;
   final double latitude;
   final double longitude;
-  const MapScreen({Key? key, required this.latitude, required this.longitude})
+  const MapScreen(
+      {Key? key, required this.latitude, required this.longitude, this.user})
       : super(key: key);
 
   @override
@@ -20,6 +24,27 @@ class _MapScreenState extends State<MapScreen> {
   Marker? _destination;
   GoogleMapController? _googleMapController;
   bool _isLoading = false;
+
+  void setMarkers() {
+    var prov = Provider.of<Restaurants>(context, listen: false);
+
+    if (widget.user!) {
+      _origin = Marker(
+          markerId: const MarkerId('origin'),
+          infoWindow: const InfoWindow(title: 'current position'),
+          icon:
+              BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueGreen),
+          position: LatLng(widget.latitude, widget.longitude));
+    }
+
+    _destination = Marker(
+        markerId: const MarkerId('dest'),
+        infoWindow: const InfoWindow(title: 'dest'),
+        icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueRed),
+        position: LatLng(prov.chosenRestaurant!.latitude!,
+            prov.chosenRestaurant!.longitude!));
+  }
+
   Future<void> sendCoordinates() async {
     final auth = FirebaseAuth.instance.currentUser;
     setState(() {
@@ -39,6 +64,15 @@ class _MapScreenState extends State<MapScreen> {
     setState(() {
       _isLoading = false;
     });
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    if (widget.user != null) {
+      setMarkers();
+    }
+    super.initState();
   }
 
   @override
@@ -78,11 +112,16 @@ class _MapScreenState extends State<MapScreen> {
         zoomControlsEnabled: false,
         initialCameraPosition: cameraPosition,
         onMapCreated: (controller) => _googleMapController = controller,
-        markers: {
-          if (_origin != null) _origin!,
-          if (_destination != null) _destination!
-        },
-        onLongPress: !nu ? _addMarkerForResto : _addMarker,
+        markers: widget.user != null
+            ? {
+                if (_origin != null) _origin!,
+                _destination!,
+              }
+            : {
+                if (_origin != null) _origin!,
+                if (_destination != null) _destination!
+              },
+        onLongPress: !nu ? _addMarkerForResto : null,
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => _googleMapController!
@@ -103,30 +142,30 @@ class _MapScreenState extends State<MapScreen> {
     });
   }
 
-  void _addMarker(LatLng pos) {
-    if ((_origin == null) || (_origin != null && _destination != null)) {
-      setState(() {
-        _origin = Marker(
-            markerId: MarkerId('origin'),
-            infoWindow: const InfoWindow(title: 'current position'),
-            icon: BitmapDescriptor.defaultMarkerWithHue(
-                BitmapDescriptor.hueAzure),
-            position: pos);
-      });
-      _destination = null;
-    } else {
-      setState(() {
-        _destination = Marker(
-            markerId: MarkerId('destination'),
-            infoWindow: const InfoWindow(title: 'destination'),
-            icon: BitmapDescriptor.defaultMarkerWithHue(
-                BitmapDescriptor.hueViolet),
-            position: pos);
-        print(_destination!.position.latitude);
-        print(_destination!.position.longitude);
-      });
-      // _destination = null;
+  // void _addMarker(LatLng pos) {
+  //   if ((_origin == null) || (_origin != null && _destination != null)) {
+  //     setState(() {
+  //       _origin = Marker(
+  //           markerId: MarkerId('origin'),
+  //           infoWindow: const InfoWindow(title: 'current position'),
+  //           icon: BitmapDescriptor.defaultMarkerWithHue(
+  //               BitmapDescriptor.hueAzure),
+  //           position: pos);
+  //     });
+  //     _destination = null;
+  //   } else {
+  //     setState(() {
+  //       _destination = Marker(
+  //           markerId: MarkerId('destination'),
+  //           infoWindow: const InfoWindow(title: 'destination'),
+  //           icon: BitmapDescriptor.defaultMarkerWithHue(
+  //               BitmapDescriptor.hueViolet),
+  //           position: pos);
+  //       print(_destination!.position.latitude);
+  //       print(_destination!.position.longitude);
+  //     });
+  //     // _destination = null;
 
-    }
-  }
+  //   }
+  // }
 }
