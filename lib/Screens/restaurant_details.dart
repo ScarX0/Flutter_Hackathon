@@ -192,9 +192,11 @@ class _restaurant_detailsState extends State<restaurant_details> {
                               children: [
                                 Container(
                                     width: sizee.width * 0.35,
-                                    height: sizee.height*0.05,
+                                    height: sizee.height * 0.05,
                                     decoration: BoxDecoration(
-                                      border: Border.all(color:Color(0xffFAC358), ),
+                                      border: Border.all(
+                                        color: Color(0xffFAC358),
+                                      ),
                                       borderRadius: const BorderRadius.only(
                                           topRight: Radius.circular(5),
                                           bottomRight: Radius.circular(5)),
@@ -206,12 +208,13 @@ class _restaurant_detailsState extends State<restaurant_details> {
                                     ))),
                                 Container(
                                     width: sizee.width * 0.35,
-                                    height: sizee.height*0.05,
+                                    height: sizee.height * 0.05,
                                     margin: EdgeInsets.symmetric(
                                         vertical: sizee.height * 0.012),
                                     decoration: BoxDecoration(
-                                      border: Border.all(color:Color(0xffFAC358), ),
-
+                                      border: Border.all(
+                                        color: Color(0xffFAC358),
+                                      ),
                                       borderRadius: const BorderRadius.only(
                                           topRight: Radius.circular(5),
                                           bottomRight: Radius.circular(5)),
@@ -307,7 +310,7 @@ class _restaurant_detailsState extends State<restaurant_details> {
                                     children: [
                                       Container(
                                           width: sizee.width * 0.08,
-                                          height : sizee.width * 0.08,
+                                          height: sizee.width * 0.08,
                                           margin: EdgeInsets.symmetric(
                                               vertical: sizee.height * 0.02),
                                           decoration: BoxDecoration(
@@ -335,14 +338,14 @@ class _restaurant_detailsState extends State<restaurant_details> {
                                                 color: Colors.white,
                                               ),
                                               onPressed: () {
-                                                launch('tel:${rest
-                                                    .chosenRestaurant!.phone!}');
+                                                launch(
+                                                    'tel:${rest.chosenRestaurant!.phone!}');
                                               },
                                             ),
                                           )),
                                       Container(
                                           width: sizee.width * 0.08,
-                                          height : sizee.width * 0.08,
+                                          height: sizee.width * 0.08,
                                           decoration: BoxDecoration(
                                             color: Color(0xffFAC358),
                                             boxShadow: [
@@ -442,14 +445,16 @@ class _restaurant_detailsState extends State<restaurant_details> {
                                     0, 3), // changes position of shadow
                               ),
                             ],
-                            borderRadius: const BorderRadius.all(
-                              Radius.circular(15)),
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(15)),
                           ),
                         ),
                       ],
                     ),
                   ),
-                  SizedBox(height: sizee.height*0.05,),
+                  SizedBox(
+                    height: sizee.height * 0.05,
+                  ),
                   Card(
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.all(
@@ -458,16 +463,15 @@ class _restaurant_detailsState extends State<restaurant_details> {
                     ),
                     elevation: 10,
                     child: Container(
-width: sizee.width*0.8,
+                      width: sizee.width * 0.8,
                       padding: EdgeInsets.symmetric(
                           vertical: sizee.height * 0.02,
                           horizontal: sizee.width * 0.03),
-                      margin: EdgeInsets.symmetric(
-
-                         ),
+                      margin: EdgeInsets.symmetric(),
                       decoration: BoxDecoration(
-                        border: Border.all(color: Color(0xffFAC358), ),
-
+                        border: Border.all(
+                          color: Color(0xffFAC358),
+                        ),
                         borderRadius: const BorderRadius.all(
                           Radius.circular(15),
                         ),
@@ -481,59 +485,94 @@ width: sizee.width*0.8,
                             style: TextStyle(fontWeight: FontWeight.bold),
                           )),
                           Container(
-<<<<<<< HEAD
                             width: sizee.width * 0.7,
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
                                 Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween ,
-                                  children: [
-                                  Container(
-
-                                    width: sizee.width*0.5, child: Text('${menu!['soupe']}' , textDirection: TextDirection.rtl,),) ,
-                                  Text(':الحساء ')
-                                ],) ,
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween ,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
                                     Container(
-
-                                      width: sizee.width*0.5, child: Text('${menu!['plat_principal']}' , textDirection: TextDirection.rtl,),) ,
+                                      width: sizee.width * 0.5,
+                                      child: Text(
+                                        '${menu!['soupe']}',
+                                        textDirection: TextDirection.rtl,
+                                      ),
+                                    ),
+                                    Text(':الحساء ')
+                                  ],
+                                ),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Container(
+                                      width: sizee.width * 0.5,
+                                      child: Text(
+                                        '${menu!['plat_principal']}',
+                                        textDirection: TextDirection.rtl,
+                                      ),
+                                    ),
                                     Text(':الطبق الرئيسي ')
-                                  ],) ,
+                                  ],
+                                ),
                                 Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween ,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
                                     Container(
-
-                                      width: sizee.width*0.5, child: Text('${menu!['plat_sec']}' , textDirection: TextDirection.rtl,),) ,
+                                      width: sizee.width * 0.5,
+                                      child: Text(
+                                        '${menu!['plat_sec']}',
+                                        textDirection: TextDirection.rtl,
+                                      ),
+                                    ),
                                     Text(':الطبق الثانوي ')
-                                  ],) ,
+                                  ],
+                                ),
                                 Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween ,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
                                     Container(
-
-                                      width: sizee.width*0.5, child: Text('${menu!['entree']}' , textDirection: TextDirection.rtl,),) ,
+                                      width: sizee.width * 0.5,
+                                      child: Text(
+                                        '${menu!['entree']}',
+                                        textDirection: TextDirection.rtl,
+                                      ),
+                                    ),
                                     Text(':المقبلة ')
-                                  ],) ,
+                                  ],
+                                ),
                                 Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween ,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
                                     Container(
-
-                                      width: sizee.width*0.5, child: Text('${menu!['dessert']}' , textDirection: TextDirection.rtl,),) ,
+                                      width: sizee.width * 0.5,
+                                      child: Text(
+                                        '${menu!['dessert']}',
+                                        textDirection: TextDirection.rtl,
+                                      ),
+                                    ),
                                     Text(':التحلية ')
-                                  ],) ,
+                                  ],
+                                ),
                                 Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween ,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
                                     Container(
-
-                                      width: sizee.width*0.5, child: Text('${menu!['autre']}' , textDirection: TextDirection.rtl,),) ,
+                                      width: sizee.width * 0.5,
+                                      child: Text(
+                                        '${menu!['autre']}',
+                                        textDirection: TextDirection.rtl,
+                                      ),
+                                    ),
                                     Text(':أخرى ')
-                                  ],) ,
+                                  ],
+                                ),
                               ],
                             ),
                           )
@@ -541,14 +580,14 @@ width: sizee.width*0.8,
                       ),
                     ),
                   ),
-                  SizedBox(height: sizee.height*0.05,),
-
+                  SizedBox(
+                    height: sizee.height * 0.05,
+                  ),
                   if (rest.chosenRestaurant!.needVol!)
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         Container(
-
                             child: InkWell(
                           onTap: () {},
                           child: Container(
@@ -570,33 +609,6 @@ width: sizee.width*0.8,
                                   blurRadius: 10,
                                   offset: const Offset(
                                       0, 3), // changes position of shadow
-=======
-                              child: InkWell(
-                            onTap: () {},
-                            child: Container(
-                              child: const Center(
-                                child: Text(
-                                  'تطوع',
-                                  style: TextStyle(color: Colors.white),
-                                ),
-                              ),
-                              width: sizee.width * 0.2,
-                              height: sizee.height * 0.05,
-                              margin: EdgeInsets.only(top: sizee.height * 0.01),
-                              decoration: BoxDecoration(
-                                color: const Color(0xffa8293c),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.grey.withOpacity(0.05),
-                                    spreadRadius: 5,
-                                    blurRadius: 10,
-                                    offset: const Offset(
-                                        0, 3), // changes position of shadow
-                                  ),
-                                ],
-                                borderRadius: const BorderRadius.all(
-                                  Radius.circular(20),
->>>>>>> 74450a4996708157f0ad4fde3a09e8b70e6c727e
                                 ),
                               ],
                               borderRadius: const BorderRadius.all(
@@ -624,21 +636,27 @@ width: sizee.width*0.8,
                               Radius.circular(5),
                             ),
                           ),
-
                           child: Center(
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
-'متطوع' ,
-                                  style: const TextStyle(fontWeight: FontWeight.bold , color: Colors.black),
-                                ),                                Text(
-                                  '  ${rest.chosenRestaurant!.needNumberVols} ',
-                                  style: const TextStyle(fontWeight: FontWeight.bold , color: Colors.black),
+                                  'متطوع',
+                                  style: const TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black),
                                 ),
                                 Text(
-                                  'نحتاج' ,
-                                  style: const TextStyle(fontWeight: FontWeight.bold , color: Colors.black),
+                                  '  ${rest.chosenRestaurant!.needNumberVols} ',
+                                  style: const TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black),
+                                ),
+                                Text(
+                                  'نحتاج',
+                                  style: const TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black),
                                 ),
                               ],
                             ),
