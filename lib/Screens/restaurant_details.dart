@@ -176,494 +176,517 @@ class _restaurant_detailsState extends State<restaurant_details> {
               height: sizee.height,
               width: sizee.width,
               margin: EdgeInsets.only(
-                  top: sizee.height * 0.04, bottom: sizee.height * 0.02),
-              child: Column(
+                  top: sizee.height * 0.04, bottom: sizee.height * 0.00),
+              child: Stack(
                 children: [
                   Container(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Container(
-                            padding: EdgeInsets.symmetric(
-                                vertical: sizee.height * 0.02),
-                            height: sizee.height * 0.32,
-                            width: sizee.width * 0.35,
-                            child: Column(
-                              children: [
-                                Container(
-                                    width: sizee.width * 0.35,
-                                    height: sizee.height * 0.05,
-                                    decoration: BoxDecoration(
-                                      border: Border.all(
-                                        color: Color(0xffFAC358),
-                                      ),
-                                      borderRadius: const BorderRadius.only(
-                                          topRight: Radius.circular(5),
-                                          bottomRight: Radius.circular(5)),
-                                    ),
-                                    child: Center(
-                                        child: Text(
-                                      '${rest.chosenRestaurant!.city}, ${rest.chosenRestaurant!.commune}',
-                                      style: TextStyle(color: Colors.black),
-                                    ))),
-                                Container(
-                                    width: sizee.width * 0.35,
-                                    height: sizee.height * 0.05,
-                                    margin: EdgeInsets.symmetric(
-                                        vertical: sizee.height * 0.012),
-                                    decoration: BoxDecoration(
-                                      border: Border.all(
-                                        color: Color(0xffFAC358),
-                                      ),
-                                      borderRadius: const BorderRadius.only(
-                                          topRight: Radius.circular(5),
-                                          bottomRight: Radius.circular(5)),
-                                    ),
-                                    child: Center(
-                                        child: Text(
-                                      'متوفر ${menu!['repas_dispo']} مقعد ',
-                                      style: TextStyle(color: Colors.black),
-                                    ))),
-                                _isLoading
-                                    ? CircularProgressIndicator()
-                                    : Container(
-                                        child: InkWell(
-                                        onTap: () async {
-                                          if (!userInfo!['isReserved']) {
-                                            Fluttertoast.showToast(
-                                                msg: 'جاري الحجز');
-                                            await reserve(-1, true).then((value) =>
-                                                Navigator.pushReplacement(
-                                                    context,
-                                                    MaterialPageRoute(
-                                                        builder: (_) =>
-                                                            restaurant_details(
-                                                                title: rest
-                                                                    .chosenRestaurant!
-                                                                    .restName!))));
-                                          } else if (userInfo!['isReserved'] &&
-                                              userInfo!['whereReserved'] ==
-                                                  rest.chosenRestaurant!.id) {
-                                            Fluttertoast.showToast(
-                                                msg: 'جاري حذف الحجز');
-                                            await reserve(1, false).then((value) =>
-                                                Navigator.pushReplacement(
-                                                    context,
-                                                    MaterialPageRoute(
-                                                        builder: (_) =>
-                                                            restaurant_details(
-                                                                title: rest
-                                                                    .chosenRestaurant!
-                                                                    .restName!))));
-                                          }
-                                        },
-                                        child: Container(
-                                          child: Center(
-                                            child: userInfo!['isReserved'] &&
-                                                    userInfo![
-                                                            'whereReserved'] ==
-                                                        rest.chosenRestaurant!
-                                                            .id
-                                                ? const Text(
-                                                    'إلغاء الحجز',
-                                                    style: TextStyle(
-                                                        color: Colors.white),
-                                                  )
-                                                : userInfo!['isReserved']
-                                                    ? const Text(
-                                                        'تم الحجز مسبقا')
-                                                    : const Text(
-                                                        'احجز مقعد',
-                                                        style: TextStyle(
-                                                            color:
-                                                                Colors.white),
-                                                      ),
-                                          ),
-                                          width: sizee.width * 0.24,
-                                          height: sizee.height * 0.05,
-                                          margin: EdgeInsets.only(
-                                              top: sizee.height * 0.01),
-                                          decoration: BoxDecoration(
+                    height: sizee.height,
+                    child: Align(
+                      alignment: Alignment.bottomCenter,
+                      child: Container(
+                        height: sizee.height
+                            * 0.6,
+                        decoration: BoxDecoration(
+
+                            image: DecorationImage(
+                              fit: BoxFit.fitWidth,
+                              opacity: 0.5,
+                              image: AssetImage(
+                                "assets/hilel3.png",
+                              ),
+                            )),
+                      ),
+                    ),
+                  ),
+                  Column(
+                    children: [
+                      Container(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Container(
+                                padding: EdgeInsets.symmetric(
+                                    vertical: sizee.height * 0.02),
+                                height: sizee.height * 0.32,
+                                width: sizee.width * 0.35,
+                                child: Column(
+                                  children: [
+                                    Container(
+                                        width: sizee.width * 0.35,
+                                        height: sizee.height * 0.05,
+                                        decoration: BoxDecoration(
+                                          border: Border.all(
                                             color: Color(0xffFAC358),
-                                            boxShadow: [
-                                              BoxShadow(
-                                                color: Colors.grey
-                                                    .withOpacity(0.05),
-                                                spreadRadius: 5,
-                                                blurRadius: 10,
-                                                offset: const Offset(0,
-                                                    3), // changes position of shadow
-                                              ),
-                                            ],
-                                            borderRadius:
-                                                const BorderRadius.all(
-                                              Radius.circular(5),
-                                            ),
                                           ),
+                                          borderRadius: const BorderRadius.only(
+                                              topRight: Radius.circular(5),
+                                              bottomRight: Radius.circular(5)),
                                         ),
-                                      )),
-                                Container(
-                                  width: sizee.width * 0.35,
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      Container(
-                                          width: sizee.width * 0.08,
-                                          height: sizee.width * 0.08,
-                                          margin: EdgeInsets.symmetric(
-                                              vertical: sizee.height * 0.02),
-                                          decoration: BoxDecoration(
+                                        child: Center(
+                                            child: Text(
+                                          '${rest.chosenRestaurant!.city}, ${rest.chosenRestaurant!.commune}',
+                                          style: TextStyle(color: Colors.black),
+                                        ))),
+                                    Container(
+                                        width: sizee.width * 0.35,
+                                        height: sizee.height * 0.05,
+                                        margin: EdgeInsets.symmetric(
+                                            vertical: sizee.height * 0.012),
+                                        decoration: BoxDecoration(
+                                          border: Border.all(
                                             color: Color(0xffFAC358),
-                                            boxShadow: [
-                                              BoxShadow(
-                                                color: Colors.grey
-                                                    .withOpacity(0.05),
-                                                spreadRadius: 5,
-                                                blurRadius: 10,
-                                                offset: const Offset(0,
-                                                    3), // changes position of shadow
-                                              ),
-                                            ],
-                                            borderRadius:
-                                                const BorderRadius.all(
-                                              Radius.circular(5),
-                                            ),
                                           ),
-                                          child: Center(
-                                            child: IconButton(
-                                              icon: Icon(
-                                                Icons.call,
-                                                size: 18,
-                                                color: Colors.white,
+                                          borderRadius: const BorderRadius.only(
+                                              topRight: Radius.circular(5),
+                                              bottomRight: Radius.circular(5)),
+                                        ),
+                                        child: Center(
+                                            child: Text(
+                                          'متوفر ${menu!['repas_dispo']} مقعد ',
+                                          style: TextStyle(color: Colors.black),
+                                        ))),
+                                    _isLoading
+                                        ? CircularProgressIndicator()
+                                        : Container(
+                                            child: InkWell(
+                                            onTap: () async {
+                                              if (!userInfo!['isReserved']) {
+                                                Fluttertoast.showToast(
+                                                    msg: 'جاري الحجز');
+                                                await reserve(-1, true).then((value) =>
+                                                    Navigator.pushReplacement(
+                                                        context,
+                                                        MaterialPageRoute(
+                                                            builder: (_) =>
+                                                                restaurant_details(
+                                                                    title: rest
+                                                                        .chosenRestaurant!
+                                                                        .restName!))));
+                                              } else if (userInfo!['isReserved'] &&
+                                                  userInfo!['whereReserved'] ==
+                                                      rest.chosenRestaurant!.id) {
+                                                Fluttertoast.showToast(
+                                                    msg: 'جاري حذف الحجز');
+                                                await reserve(1, false).then((value) =>
+                                                    Navigator.pushReplacement(
+                                                        context,
+                                                        MaterialPageRoute(
+                                                            builder: (_) =>
+                                                                restaurant_details(
+                                                                    title: rest
+                                                                        .chosenRestaurant!
+                                                                        .restName!))));
+                                              }
+                                            },
+                                            child: Container(
+                                              child: Center(
+                                                child: userInfo!['isReserved'] &&
+                                                        userInfo![
+                                                                'whereReserved'] ==
+                                                            rest.chosenRestaurant!
+                                                                .id
+                                                    ? const Text(
+                                                        'إلغاء الحجز',
+                                                        style: TextStyle(
+                                                            color: Colors.white),
+                                                      )
+                                                    : userInfo!['isReserved']
+                                                        ? const Text(
+                                                            'تم الحجز مسبقا')
+                                                        : const Text(
+                                                            'احجز مقعد',
+                                                            style: TextStyle(
+                                                                color:
+                                                                    Colors.white),
+                                                          ),
                                               ),
-                                              onPressed: () {
-                                                launch(
-                                                    'tel:${rest.chosenRestaurant!.phone!}');
-                                              },
+                                              width: sizee.width * 0.24,
+                                              height: sizee.height * 0.05,
+                                              margin: EdgeInsets.only(
+                                                  top: sizee.height * 0.01),
+                                              decoration: BoxDecoration(
+                                                color: Color(0xffFAC358),
+                                                boxShadow: [
+                                                  BoxShadow(
+                                                    color: Colors.grey
+                                                        .withOpacity(0.05),
+                                                    spreadRadius: 5,
+                                                    blurRadius: 10,
+                                                    offset: const Offset(0,
+                                                        3), // changes position of shadow
+                                                  ),
+                                                ],
+                                                borderRadius:
+                                                    const BorderRadius.all(
+                                                  Radius.circular(5),
+                                                ),
+                                              ),
                                             ),
                                           )),
-                                      Container(
-                                          width: sizee.width * 0.08,
-                                          height: sizee.width * 0.08,
-                                          decoration: BoxDecoration(
-                                            color: Color(0xffFAC358),
-                                            boxShadow: [
-                                              BoxShadow(
-                                                color: Colors.grey
-                                                    .withOpacity(0.05),
-                                                spreadRadius: 5,
-                                                blurRadius: 10,
-                                                offset: const Offset(0,
-                                                    3), // changes position of shadow
+                                    Container(
+                                      width: sizee.width * 0.35,
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceEvenly,
+                                        children: [
+                                          Container(
+                                              width: sizee.width * 0.08,
+                                              height: sizee.width * 0.08,
+                                              margin: EdgeInsets.symmetric(
+                                                  vertical: sizee.height * 0.02),
+                                              decoration: BoxDecoration(
+                                                color: Color(0xffFAC358),
+                                                boxShadow: [
+                                                  BoxShadow(
+                                                    color: Colors.grey
+                                                        .withOpacity(0.05),
+                                                    spreadRadius: 5,
+                                                    blurRadius: 10,
+                                                    offset: const Offset(0,
+                                                        3), // changes position of shadow
+                                                  ),
+                                                ],
+                                                borderRadius:
+                                                    const BorderRadius.all(
+                                                  Radius.circular(5),
+                                                ),
                                               ),
-                                            ],
-                                            borderRadius:
-                                                const BorderRadius.all(
-                                              Radius.circular(5),
-                                            ),
-                                          ),
-                                          child: Center(
-                                            child: IconButton(
-                                              icon: Icon(
-                                                Icons.place,
-                                                size: 18,
-                                                color: Colors.white,
+                                              child: Center(
+                                                child: IconButton(
+                                                  icon: Icon(
+                                                    Icons.call,
+                                                    size: 18,
+                                                    color: Colors.white,
+                                                  ),
+                                                  onPressed: () {
+                                                    launch(
+                                                        'tel:${rest.chosenRestaurant!.phone!}');
+                                                  },
+                                                ),
+                                              )),
+                                          Container(
+                                              width: sizee.width * 0.08,
+                                              height: sizee.width * 0.08,
+                                              decoration: BoxDecoration(
+                                                color: Color(0xffFAC358),
+                                                boxShadow: [
+                                                  BoxShadow(
+                                                    color: Colors.grey
+                                                        .withOpacity(0.05),
+                                                    spreadRadius: 5,
+                                                    blurRadius: 10,
+                                                    offset: const Offset(0,
+                                                        3), // changes position of shadow
+                                                  ),
+                                                ],
+                                                borderRadius:
+                                                    const BorderRadius.all(
+                                                  Radius.circular(5),
+                                                ),
                                               ),
-                                              onPressed: () {
-                                                showDialog(
-                                                    context: context,
-                                                    builder:
-                                                        (BuildContext ctx) {
-                                                      return AlertDialog(
-                                                        title: Text(
-                                                            'هل تسمح للتطبيق بتحديد مكانك من أجل إرشادك الى المطعم ؟'),
-                                                        actions: [
-                                                          TextButton(
-                                                              onPressed:
-                                                                  () async {
-                                                                Navigator.pop(
-                                                                    ctx);
-                                                                await getLoc().then((value) =>
+                                              child: Center(
+                                                child: IconButton(
+                                                  icon: Icon(
+                                                    Icons.place,
+                                                    size: 18,
+                                                    color: Colors.white,
+                                                  ),
+                                                  onPressed: () {
+                                                    showDialog(
+                                                        context: context,
+                                                        builder:
+                                                            (BuildContext ctx) {
+                                                          return AlertDialog(
+                                                            title: Text(
+                                                                'هل تسمح للتطبيق بتحديد مكانك من أجل إرشادك الى المطعم ؟'),
+                                                            actions: [
+                                                              TextButton(
+                                                                  onPressed:
+                                                                      () async {
+                                                                    Navigator.pop(
+                                                                        ctx);
+                                                                    await getLoc().then((value) =>
+                                                                        Navigator.push(
+                                                                            context,
+                                                                            MaterialPageRoute(
+                                                                                builder: (_) => MapScreen(
+                                                                                      latitude: lat!,
+                                                                                      longitude: long!,
+                                                                                      user: true,
+                                                                                    ))));
+                                                                    Navigator.pop(
+                                                                        ctx);
+                                                                  },
+                                                                  child: Text(
+                                                                      'تأكيد')),
+                                                              TextButton(
+                                                                  onPressed: () {
+                                                                    Navigator.pop(
+                                                                        ctx);
                                                                     Navigator.push(
                                                                         context,
                                                                         MaterialPageRoute(
-                                                                            builder: (_) => MapScreen(
-                                                                                  latitude: lat!,
-                                                                                  longitude: long!,
-                                                                                  user: true,
-                                                                                ))));
-                                                                Navigator.pop(
-                                                                    ctx);
-                                                              },
-                                                              child: Text(
-                                                                  'تأكيد')),
-                                                          TextButton(
-                                                              onPressed: () {
-                                                                Navigator.pop(
-                                                                    ctx);
-                                                                Navigator.push(
-                                                                    context,
-                                                                    MaterialPageRoute(
-                                                                        builder: (_) =>
-                                                                            MapScreen(
-                                                                              latitude: rest.chosenRestaurant!.latitude!,
-                                                                              longitude: rest.chosenRestaurant!.longitude!,
-                                                                              user: false,
-                                                                            )));
-                                                              },
-                                                              child:
-                                                                  Text('رفض')),
-                                                        ],
-                                                      );
-                                                    });
+                                                                            builder: (_) =>
+                                                                                MapScreen(
+                                                                                  latitude: rest.chosenRestaurant!.latitude!,
+                                                                                  longitude: rest.chosenRestaurant!.longitude!,
+                                                                                  user: false,
+                                                                                )));
+                                                                  },
+                                                                  child:
+                                                                      Text('رفض')),
+                                                            ],
+                                                          );
+                                                        });
 
-                                                // launchMap();
-                                              },
-                                            ),
-                                          )),
-                                    ],
+                                                    // launchMap();
+                                                  },
+                                                ),
+                                              )),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                )),
+                            Container(
+                              margin: EdgeInsets.only(right: sizee.width * 0.1),
+                              height: sizee.height * 0.3,
+                              width: sizee.width * 0.45,
+                              decoration: BoxDecoration(
+                                image: DecorationImage(
+                                  fit: BoxFit.cover,
+                                  image: AssetImage("assets/restaurant.jpg"),
+                                ),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.grey.withOpacity(0.05),
+                                    spreadRadius: 5,
+                                    blurRadius: 10,
+                                    offset: const Offset(
+                                        0, 3), // changes position of shadow
+                                  ),
+                                ],
+                                borderRadius:
+                                    const BorderRadius.all(Radius.circular(15)),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        height: sizee.height * 0.05,
+                      ),
+                      Card(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(13),
+                          ),
+                        ),
+                        elevation: 10,
+                        child: Container(
+                          width: sizee.width * 0.8,
+                          padding: EdgeInsets.symmetric(
+                              vertical: sizee.height * 0.02,
+                              horizontal: sizee.width * 0.03),
+                          margin: EdgeInsets.symmetric(),
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: Color(0xffFAC358),
+                            ),
+                            borderRadius: const BorderRadius.all(
+                              Radius.circular(15),
+                            ),
+                          ),
+                          height: sizee.height * 0.2,
+                          child: Column(
+                            children: [
+                              Center(
+                                  child: Text(
+                                'قائمة اليوم',
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              )),
+                              Container(
+                                width: sizee.width * 0.7,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                  children: [
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Container(
+                                          width: sizee.width * 0.45,
+                                          child: Text(
+                                            '${menu!['soupe']}',
+                                            textDirection: TextDirection.rtl,
+                                          ),
+                                        ),
+                                        Text(':الحساء ')
+                                      ],
+                                    ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Container(
+                                          width: sizee.width * 0.45,
+                                          child: Text(
+                                            '${menu!['plat_principal']}',
+                                            textDirection: TextDirection.rtl,
+                                          ),
+                                        ),
+                                        Text(':الطبق الرئيسي ')
+                                      ],
+                                    ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Container(
+                                          width: sizee.width * 0.45,
+                                          child: Text(
+                                            '${menu!['plat_sec']}',
+                                            textDirection: TextDirection.rtl,
+                                          ),
+                                        ),
+                                        Text(':الطبق الثانوي ')
+                                      ],
+                                    ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Container(
+                                          width: sizee.width * 0.45,
+                                          child: Text(
+                                            '${menu!['entree']}',
+                                            textDirection: TextDirection.rtl,
+                                          ),
+                                        ),
+                                        Text(':المقبلة ')
+                                      ],
+                                    ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Container(
+                                          width: sizee.width * 0.45,
+                                          child: Text(
+                                            '${menu!['dessert']}',
+                                            textDirection: TextDirection.rtl,
+                                          ),
+                                        ),
+                                        Text(':التحلية ')
+                                      ],
+                                    ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Container(
+                                          width: sizee.width * 0.45,
+                                          child: Text(
+                                            '${menu!['autre']}',
+                                            textDirection: TextDirection.rtl,
+                                          ),
+                                        ),
+                                        Text(':أخرى ')
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: sizee.height * 0.05,
+                      ),
+                      if (rest.chosenRestaurant!.needVol!)
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Container(
+                                child: InkWell(
+                              onTap: () {},
+                              child: Container(
+                                child: Center(
+                                  child: Text(
+                                    'تطوع',
+                                    style: TextStyle(color: Colors.white),
                                   ),
                                 ),
-                              ],
+                                width: sizee.width * 0.2,
+                                height: sizee.height * 0.05,
+                                margin: EdgeInsets.only(top: sizee.height * 0.01),
+                                decoration: BoxDecoration(
+                                  color: Color(0xffFAC358),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.grey.withOpacity(0.05),
+                                      spreadRadius: 5,
+                                      blurRadius: 10,
+                                      offset: const Offset(
+                                          0, 3), // changes position of shadow
+                                    ),
+                                  ],
+                                  borderRadius: const BorderRadius.all(
+                                    Radius.circular(5),
+                                  ),
+                                ),
+                              ),
                             )),
-                        Container(
-                          margin: EdgeInsets.only(right: sizee.width * 0.1),
-                          height: sizee.height * 0.3,
-                          width: sizee.width * 0.5,
-                          decoration: BoxDecoration(
-                            image: DecorationImage(
-                              fit: BoxFit.cover,
-                              image: AssetImage("assets/restaurant.jpg"),
-                            ),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.grey.withOpacity(0.05),
-                                spreadRadius: 5,
-                                blurRadius: 10,
-                                offset: const Offset(
-                                    0, 3), // changes position of shadow
+                            Container(
+                              width: sizee.width * 0.3,
+                              height: sizee.height * 0.05,
+                              margin: EdgeInsets.only(top: sizee.height * 0.01),
+                              decoration: BoxDecoration(
+                                border: Border.all(color: Colors.black),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.white,
+                                    spreadRadius: 5,
+                                    blurRadius: 10,
+                                    offset: const Offset(
+                                        0, 3), // changes position of shadow
+                                  ),
+                                ],
+                                borderRadius: const BorderRadius.all(
+                                  Radius.circular(5),
+                                ),
                               ),
-                            ],
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(15)),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    height: sizee.height * 0.05,
-                  ),
-                  Card(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(13),
-                      ),
-                    ),
-                    elevation: 10,
-                    child: Container(
-                      width: sizee.width * 0.8,
-                      padding: EdgeInsets.symmetric(
-                          vertical: sizee.height * 0.02,
-                          horizontal: sizee.width * 0.03),
-                      margin: EdgeInsets.symmetric(),
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          color: Color(0xffFAC358),
-                        ),
-                        borderRadius: const BorderRadius.all(
-                          Radius.circular(15),
-                        ),
-                      ),
-                      height: sizee.height * 0.2,
-                      child: Column(
-                        children: [
-                          Center(
-                              child: Text(
-                            'قائمة اليوم',
-                            style: TextStyle(fontWeight: FontWeight.bold),
-                          )),
-                          Container(
-                            width: sizee.width * 0.7,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              children: [
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                              child: Center(
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    Container(
-                                      width: sizee.width * 0.5,
-                                      child: Text(
-                                        '${menu!['soupe']}',
-                                        textDirection: TextDirection.rtl,
-                                      ),
+                                    Text(
+                                      'متطوع',
+                                      style: const TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.black),
                                     ),
-                                    Text(':الحساء ')
+                                    Text(
+                                      '  ${rest.chosenRestaurant!.needNumberVols} ',
+                                      style: const TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.black),
+                                    ),
+                                    Text(
+                                      'نحتاج',
+                                      style: const TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.black),
+                                    ),
                                   ],
                                 ),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Container(
-                                      width: sizee.width * 0.5,
-                                      child: Text(
-                                        '${menu!['plat_principal']}',
-                                        textDirection: TextDirection.rtl,
-                                      ),
-                                    ),
-                                    Text(':الطبق الرئيسي ')
-                                  ],
-                                ),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Container(
-                                      width: sizee.width * 0.5,
-                                      child: Text(
-                                        '${menu!['plat_sec']}',
-                                        textDirection: TextDirection.rtl,
-                                      ),
-                                    ),
-                                    Text(':الطبق الثانوي ')
-                                  ],
-                                ),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Container(
-                                      width: sizee.width * 0.5,
-                                      child: Text(
-                                        '${menu!['entree']}',
-                                        textDirection: TextDirection.rtl,
-                                      ),
-                                    ),
-                                    Text(':المقبلة ')
-                                  ],
-                                ),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Container(
-                                      width: sizee.width * 0.5,
-                                      child: Text(
-                                        '${menu!['dessert']}',
-                                        textDirection: TextDirection.rtl,
-                                      ),
-                                    ),
-                                    Text(':التحلية ')
-                                  ],
-                                ),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Container(
-                                      width: sizee.width * 0.5,
-                                      child: Text(
-                                        '${menu!['autre']}',
-                                        textDirection: TextDirection.rtl,
-                                      ),
-                                    ),
-                                    Text(':أخرى ')
-                                  ],
-                                ),
-                              ],
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: sizee.height * 0.05,
-                  ),
-                  if (rest.chosenRestaurant!.needVol!)
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        Container(
-                            child: InkWell(
-                          onTap: () {},
-                          child: Container(
-                            child: Center(
-                              child: Text(
-                                'تطوع',
-                                style: TextStyle(color: Colors.white),
                               ),
                             ),
-                            width: sizee.width * 0.2,
-                            height: sizee.height * 0.05,
-                            margin: EdgeInsets.only(top: sizee.height * 0.01),
-                            decoration: BoxDecoration(
-                              color: Color(0xffFAC358),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.grey.withOpacity(0.05),
-                                  spreadRadius: 5,
-                                  blurRadius: 10,
-                                  offset: const Offset(
-                                      0, 3), // changes position of shadow
-                                ),
-                              ],
-                              borderRadius: const BorderRadius.all(
-                                Radius.circular(5),
-                              ),
-                            ),
-                          ),
-                        )),
-                        Container(
-                          width: sizee.width * 0.3,
-                          height: sizee.height * 0.05,
-                          margin: EdgeInsets.only(top: sizee.height * 0.01),
-                          decoration: BoxDecoration(
-                            border: Border.all(color: Colors.black),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.white,
-                                spreadRadius: 5,
-                                blurRadius: 10,
-                                offset: const Offset(
-                                    0, 3), // changes position of shadow
-                              ),
-                            ],
-                            borderRadius: const BorderRadius.all(
-                              Radius.circular(5),
-                            ),
-                          ),
-                          child: Center(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  'متطوع',
-                                  style: const TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
-                                ),
-                                Text(
-                                  '  ${rest.chosenRestaurant!.needNumberVols} ',
-                                  style: const TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
-                                ),
-                                Text(
-                                  'نحتاج',
-                                  style: const TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black),
-                                ),
-                              ],
-                            ),
-                          ),
+                          ],
                         ),
-                      ],
-                    ),
+                    ],
+                  ),
                 ],
               ),
             ),
