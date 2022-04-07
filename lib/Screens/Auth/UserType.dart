@@ -1,4 +1,5 @@
 import 'package:abir_sabil/Screens/Auth/Signin.dart';
+import 'package:abir_sabil/main.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -23,19 +24,18 @@ class _UserTypeState extends State<UserType> {
     return Scaffold(
       body: Stack(
         children: [
-
           Container(
             color: Color(0xff582e44),
             width: WidthSize,
             height: MediaQuery.of(context).size.height,
             child: Column(
               children: [
-
                 SizedBox(
                   height: HeightSize * 0.75,
                 ),
                 RaisedButton(
                   onPressed: () async {
+                    nu = true;
                     await authServicer.updateVisisteurOrVendeur(true);
                     Navigator.push(
                       context,
@@ -70,6 +70,7 @@ class _UserTypeState extends State<UserType> {
                 ),
                 RaisedButton(
                   onPressed: () async {
+                    nu = false;
                     await authServicer.updateVisisteurOrVendeur(false);
                     Navigator.push(
                       context,
@@ -101,46 +102,42 @@ class _UserTypeState extends State<UserType> {
                 ),
               ],
             ),
-          ) ,
+          ),
           Container(
             width: WidthSize,
-            child: Column(children: [
-              SizedBox(
-                height: HeightSize * 0.15,
-              ),
-              Text(
-                'مرحبا بك',
-                style: TextStyle(
-                  color: Color(0xff582e44),
-                  fontSize: WidthSize * (40 / 540),
-                  fontWeight: FontWeight.bold,
+            child: Column(
+              children: [
+                SizedBox(
+                  height: HeightSize * 0.15,
                 ),
-                textAlign: TextAlign.center,
-              ),
-              Container(
-                margin: EdgeInsets.symmetric(
-                  vertical: HeightSize * 0.05,
+                Text(
+                  'مرحبا بك',
+                  style: TextStyle(
+                    color: Color(0xff582e44),
+                    fontSize: WidthSize * (40 / 540),
+                    fontWeight: FontWeight.bold,
+                  ),
+                  textAlign: TextAlign.center,
                 ),
-                height: WidthSize * 0.3,
-                width: WidthSize * 0.3,
-                decoration:  BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(80)),
-                    image: DecorationImage(
-                      fit: BoxFit.cover,
-                      image: AssetImage("assets/aber_sabel.png"),
-                    )
+                Container(
+                  margin: EdgeInsets.symmetric(
+                    vertical: HeightSize * 0.05,
+                  ),
+                  height: WidthSize * 0.3,
+                  width: WidthSize * 0.3,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(80)),
+                      image: DecorationImage(
+                        fit: BoxFit.cover,
+                        image: AssetImage("assets/aber_sabel.png"),
+                      )),
                 ),
-
-              ),
-            ],),
-            height: MediaQuery.of(context).size.height*0.6,
+              ],
+            ),
+            height: MediaQuery.of(context).size.height * 0.6,
             decoration: const BoxDecoration(
-              borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(60)
-              ),
+              borderRadius: BorderRadius.only(bottomLeft: Radius.circular(60)),
               color: Colors.white,
-
-
             ),
           ),
         ],
