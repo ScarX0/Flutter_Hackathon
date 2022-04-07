@@ -67,7 +67,7 @@ class AuthService extends ChangeNotifier {
   }
 
   Future<void> signUp(String email, String password, String name, String phone,
-      String restName) async {
+      String restName, String city, String commune) async {
     String where = isVisiteur ? 'volounteers' : 'restaurants';
     var dataa = isVisiteur
         ? {'name': name, 'email': email, 'phone': phone, 'isVolounteer': false}
@@ -77,7 +77,8 @@ class AuthService extends ChangeNotifier {
             'phone': phone,
             'restaurantName': restName,
             'photo': '',
-            'city': '',
+            'city': city,
+            'commune': commune,
             'location': [],
             'hasMenu': false
           };
@@ -119,6 +120,7 @@ class AuthService extends ChangeNotifier {
     'isVlounteer': false,
     'location': [0.0, 0.0],
     'city': '',
+    'commune': '',
     'hasMenu': false,
     'image': '',
   };

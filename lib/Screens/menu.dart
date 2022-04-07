@@ -22,12 +22,12 @@ class _menuState extends State<menu> {
     try {
       final auth = FirebaseAuth.instance.currentUser;
       Map<String, dynamic> data = {
-        'soupe': _soupeController.text,
-        'plat_principal': _plat1Controller.text,
-        'plat_sec': _plat2Controller.text,
-        'entree': _entreeController.text,
-        'dessert': _dessertController.text,
-        'autre': _autreController.text,
+        'soupe': soupe ? _soupeController.text : '',
+        'plat_principal': plat1 ? _plat1Controller.text : '',
+        'plat_sec': plat2 ? _plat2Controller.text : '',
+        'entree': entree ? _entreeController.text : '',
+        'dessert': dessert ? _dessertController.text : '',
+        'autre': autre ? _autreController.text : '',
         'repas_dispo': int.parse(_repasDispoController.text),
       };
       await FirebaseFirestore.instance
