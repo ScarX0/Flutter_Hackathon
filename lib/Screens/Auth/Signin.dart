@@ -124,17 +124,17 @@ class _SigninState extends State<Signin> {
             child: Stack(
               children: [
                 Container(
-                    decoration: const BoxDecoration(
+                  decoration: const BoxDecoration(
                     image: DecorationImage(
                       opacity: 0.2,
-
                       fit: BoxFit.contain,
                       image: AssetImage("assets/hilal.png"),
                     ),
-                    borderRadius: BorderRadius.only(bottomLeft: Radius.circular(60)),
+                    borderRadius:
+                        BorderRadius.only(bottomLeft: Radius.circular(60)),
                     color: Colors.white,
                   ),
-                  height: MediaQuery.of(context).size.height*0.5,
+                  height: MediaQuery.of(context).size.height * 0.5,
                 ),
                 Container(
                   child: Column(
@@ -150,19 +150,16 @@ class _SigninState extends State<Signin> {
                       Expanded(
                         child: Stack(
                           children: [
-
                             Container(
                               decoration: BoxDecoration(
-
-                                  gradient: LinearGradient(
-                                    begin: Alignment.topCenter,
-                                    end: Alignment.bottomCenter,
-                                    colors: [
-                                      Color(0xffFAC358).withOpacity(0.7),
-                                      Color(0xff3FB876).withOpacity(0.7),
-
-                                    ],
-                                  ) ,
+                                gradient: LinearGradient(
+                                  begin: Alignment.topCenter,
+                                  end: Alignment.bottomCenter,
+                                  colors: [
+                                    Color(0xffFAC358).withOpacity(0.7),
+                                    Color(0xff3FB876).withOpacity(0.7),
+                                  ],
+                                ),
                                 borderRadius: BorderRadius.only(
                                   topRight: signin
                                       ? Radius.circular(60)
@@ -177,12 +174,18 @@ class _SigninState extends State<Signin> {
                                 children: [
                                   Align(
                                     alignment: Alignment.bottomCenter,
-                                    child: Container(height: HeightSize*0.3, decoration: BoxDecoration(   image: DecorationImage(
-                                      fit: BoxFit.cover,
-                                      opacity: 0.5,
-                                      image: AssetImage("assets/hilel2.png" , ),
-                                    )),),
-                                  ) ,
+                                    child: Container(
+                                      height: HeightSize * 0.3,
+                                      decoration: BoxDecoration(
+                                          image: DecorationImage(
+                                        fit: BoxFit.cover,
+                                        opacity: 0.5,
+                                        image: AssetImage(
+                                          "assets/hilel2.png",
+                                        ),
+                                      )),
+                                    ),
+                                  ),
                                   Column(
                                     children: [
                                       Container(
@@ -202,25 +205,33 @@ class _SigninState extends State<Signin> {
                                               },
                                               child: Column(
                                                 mainAxisAlignment:
-                                                    MainAxisAlignment.spaceBetween,
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
                                                 children: [
                                                   Text(
                                                     "تسجيل الدخول",
                                                     style: TextStyle(
-                                                        fontFamily: 'Hacen' ,
-
-                                                      fontSize: WidthSize * (30 / 540),
-                                                      fontWeight: FontWeight.bold,
+                                                      fontFamily: 'Hacen',
+                                                      fontSize: WidthSize *
+                                                          (30 / 540),
+                                                      fontWeight:
+                                                          FontWeight.bold,
                                                       color: Colors.white,
                                                     ),
                                                   ),
-                                                  !signin ? Container() :       AnimatedContainer(
-                                                    duration:
-                                                        Duration(milliseconds: 300),
-                                                    width: WidthSize * 0.2,
-                                                    height: HeightSize * 0.005,
-                                                    color:  Color(0xff582e44),
-                                                  )
+                                                  !signin
+                                                      ? Container()
+                                                      : AnimatedContainer(
+                                                          duration: Duration(
+                                                              milliseconds:
+                                                                  300),
+                                                          width:
+                                                              WidthSize * 0.2,
+                                                          height: HeightSize *
+                                                              0.005,
+                                                          color:
+                                                              Color(0xff582e44),
+                                                        )
                                                 ],
                                               ),
                                             ),
@@ -232,26 +243,33 @@ class _SigninState extends State<Signin> {
                                               },
                                               child: Column(
                                                 mainAxisAlignment:
-                                                    MainAxisAlignment.spaceBetween,
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
                                                 children: [
                                                   Text(
                                                     "فتح حساب",
                                                     style: TextStyle(
-                                                        fontFamily: 'Hacen' ,
-
-                                                      fontSize: WidthSize * (30 / 540),
-                                                      fontWeight: FontWeight.bold,
+                                                      fontFamily: 'Hacen',
+                                                      fontSize: WidthSize *
+                                                          (30 / 540),
+                                                      fontWeight:
+                                                          FontWeight.bold,
                                                       color: Colors.white,
                                                     ),
                                                   ),
-                                                  signin ? Container() :     AnimatedContainer(
-                                                    duration:
-                                                        Duration(milliseconds: 300),
-                                                    width: WidthSize * 0.2,
-                                                    height: HeightSize * 0.005,
-                                                    color:
-                                                         Color(0xff582e44),
-                                                  )
+                                                  signin
+                                                      ? Container()
+                                                      : AnimatedContainer(
+                                                          duration: Duration(
+                                                              milliseconds:
+                                                                  300),
+                                                          width:
+                                                              WidthSize * 0.2,
+                                                          height: HeightSize *
+                                                              0.005,
+                                                          color:
+                                                              Color(0xff582e44),
+                                                        )
                                                 ],
                                               ),
                                             )
@@ -266,22 +284,29 @@ class _SigninState extends State<Signin> {
                                                   child: Container(
                                                     child: Column(
                                                       mainAxisAlignment:
-                                                          MainAxisAlignment.spaceEvenly,
+                                                          MainAxisAlignment
+                                                              .spaceEvenly,
                                                       children: [
                                                         Container(
-                                                          height: HeightSize * 0.09,
+                                                          height:
+                                                              HeightSize * 0.09,
                                                           child: TextFormField(
                                                             textDirection:
-                                                                TextDirection.rtl,
-                                                            textAlign: TextAlign.right,
+                                                                TextDirection
+                                                                    .rtl,
+                                                            textAlign:
+                                                                TextAlign.right,
                                                             controller:
                                                                 _emailController,
                                                             validator: (value) {
-                                                              if (value == null ||
+                                                              if (value ==
+                                                                      null ||
                                                                   !value
-                                                                      .contains('@') ||
+                                                                      .contains(
+                                                                          '@') ||
                                                                   !value
-                                                                      .contains('.')) {
+                                                                      .contains(
+                                                                          '.')) {
                                                                 return 'Invalid Email';
                                                               }
                                                               return null;
@@ -289,15 +314,20 @@ class _SigninState extends State<Signin> {
                                                             onSaved: (value) {
                                                               //  _authData['email'] = value!;
                                                             },
-                                                            keyboardType: TextInputType
-                                                                .emailAddress,
-                                                            cursorColor:
-                                                                Color(0xff582e44),
-                                                            decoration: InputDecoration(
-                                                              errorStyle: TextStyle(
-                                                                color: Colors.white,
+                                                            keyboardType:
+                                                                TextInputType
+                                                                    .emailAddress,
+                                                            cursorColor: Color(
+                                                                0xff582e44),
+                                                            decoration:
+                                                                InputDecoration(
+                                                              errorStyle:
+                                                                  TextStyle(
+                                                                color: Colors
+                                                                    .white,
                                                                 fontWeight:
-                                                                    FontWeight.w400,
+                                                                    FontWeight
+                                                                        .w400,
                                                               ),
                                                               errorBorder:
                                                                   OutlineInputBorder(
@@ -307,13 +337,13 @@ class _SigninState extends State<Signin> {
                                                                             .white,
                                                                       ),
                                                                       borderRadius:
-                                                                          BorderRadius
-                                                                              .circular(
-                                                                                  5.0)),
+                                                                          BorderRadius.circular(
+                                                                              5.0)),
 
-                                                              hoverColor: Colors.black,
-                                                              focusColor:
-                                                                  Color(0xff582e44),
+                                                              hoverColor:
+                                                                  Colors.black,
+                                                              focusColor: Color(
+                                                                  0xff582e44),
                                                               focusedBorder:
                                                                   OutlineInputBorder(
                                                                       borderSide:
@@ -322,10 +352,10 @@ class _SigninState extends State<Signin> {
                                                                             0xff582e44),
                                                                       ),
                                                                       borderRadius:
-                                                                          BorderRadius
-                                                                              .circular(
-                                                                                  5.0)),
-                                                              fillColor: Colors.white,
+                                                                          BorderRadius.circular(
+                                                                              5.0)),
+                                                              fillColor:
+                                                                  Colors.white,
                                                               filled: true,
                                                               //          contentPadding: const EdgeInsets.fromLTRB(20, 8, 20, 8),
                                                               hintText:
@@ -334,27 +364,35 @@ class _SigninState extends State<Signin> {
                                                                   borderRadius:
                                                                       BorderRadius
                                                                           .circular(
-                                                                          5.0)),
-                                                              suffixIcon: const Icon(
+                                                                              5.0)),
+                                                              suffixIcon:
+                                                                  const Icon(
                                                                 Icons.email,
-                                                                color: Color(0xffB1B0B0),
+                                                                color: Color(
+                                                                    0xffB1B0B0),
                                                               ),
                                                             ),
                                                           ),
                                                         ),
                                                         SizedBox(
-                                                            height: HeightSize * 0.005),
+                                                            height: HeightSize *
+                                                                0.005),
                                                         SizedBox(
-                                                          height: HeightSize * 0.09,
+                                                          height:
+                                                              HeightSize * 0.09,
                                                           child: TextFormField(
                                                             textDirection:
-                                                                TextDirection.rtl,
-                                                            textAlign: TextAlign.right,
+                                                                TextDirection
+                                                                    .rtl,
+                                                            textAlign:
+                                                                TextAlign.right,
                                                             controller:
                                                                 _passwordController,
                                                             validator: (value) {
-                                                              if (value == null ||
-                                                                  value.length < 5) {
+                                                              if (value ==
+                                                                      null ||
+                                                                  value.length <
+                                                                      5) {
                                                                 return 'Invalid Password';
                                                               }
                                                               return null;
@@ -362,17 +400,22 @@ class _SigninState extends State<Signin> {
                                                             onSaved: (value) {
                                                               //  _authData['password'] = value!;
                                                             },
-                                                            keyboardType: TextInputType
-                                                                .visiblePassword,
+                                                            keyboardType:
+                                                                TextInputType
+                                                                    .visiblePassword,
                                                             obscureText:
                                                                 _passwordVisible,
-                                                            cursorColor:
-                                                                Color(0xff582e44),
-                                                            decoration: InputDecoration(
-                                                              errorStyle: TextStyle(
-                                                                color: Colors.white,
+                                                            cursorColor: Color(
+                                                                0xff582e44),
+                                                            decoration:
+                                                                InputDecoration(
+                                                              errorStyle:
+                                                                  TextStyle(
+                                                                color: Colors
+                                                                    .white,
                                                                 fontWeight:
-                                                                    FontWeight.w400,
+                                                                    FontWeight
+                                                                        .w400,
                                                               ),
                                                               errorBorder:
                                                                   OutlineInputBorder(
@@ -382,12 +425,12 @@ class _SigninState extends State<Signin> {
                                                                             .white,
                                                                       ),
                                                                       borderRadius:
-                                                                          BorderRadius
-                                                                              .circular(
+                                                                          BorderRadius.circular(
                                                                               5.0)),
-                                                              hoverColor: Colors.black,
-                                                              focusColor:
-                                                                  Color(0xff582e44),
+                                                              hoverColor:
+                                                                  Colors.black,
+                                                              focusColor: Color(
+                                                                  0xff582e44),
                                                               focusedBorder:
                                                                   OutlineInputBorder(
                                                                       borderSide:
@@ -396,33 +439,39 @@ class _SigninState extends State<Signin> {
                                                                             0xff582e44),
                                                                       ),
                                                                       borderRadius:
-                                                                          BorderRadius
-                                                                              .circular(
+                                                                          BorderRadius.circular(
                                                                               5.0)),
 
-                                                              fillColor: Colors.white,
+                                                              fillColor:
+                                                                  Colors.white,
                                                               filled: true,
 
                                                               //     contentPadding: const EdgeInsets.fromLTRB(10, 8, 10, 8),
 
-                                                              hintText: 'كلمة السر',
+                                                              hintText:
+                                                                  'كلمة السر',
                                                               border: OutlineInputBorder(
                                                                   borderRadius:
                                                                       BorderRadius
                                                                           .circular(
-                                                                          5.0)),
-                                                              suffixIcon: const Icon(
+                                                                              5.0)),
+                                                              suffixIcon:
+                                                                  const Icon(
                                                                 Icons.password,
-                                                                color: Color(0xffB1B0B0),
+                                                                color: Color(
+                                                                    0xffB1B0B0),
                                                               ),
-                                                              prefixIcon: IconButton(
+                                                              prefixIcon:
+                                                                  IconButton(
                                                                 icon: Icon(
                                                                   // Based on passwordVisible state choose the icon
                                                                   _passwordVisible
-                                                                      ? Icons.visibility
+                                                                      ? Icons
+                                                                          .visibility
                                                                       : Icons
                                                                           .visibility_off,
-                                                                  color: Color(0xffB1B0B0),
+                                                                  color: Color(
+                                                                      0xffB1B0B0),
                                                                 ),
                                                                 onPressed: () {
                                                                   // Update the state i.e. toogle the state of passwordVisible variable
@@ -447,7 +496,8 @@ class _SigninState extends State<Signin> {
                                                                   child:
                                                                       GestureDetector(
                                                                 onTap: () {
-                                                                  Navigator.push(
+                                                                  Navigator
+                                                                      .push(
                                                                     context,
                                                                     MaterialPageRoute(
                                                                         builder:
@@ -457,15 +507,18 @@ class _SigninState extends State<Signin> {
                                                                 },
                                                                 child: Text(
                                                                   "نسيت كلمة السر",
-                                                                  style: TextStyle(
-                                                                      fontFamily: 'Hacen' ,
-
+                                                                  style:
+                                                                      TextStyle(
+                                                                    fontFamily:
+                                                                        'Hacen',
                                                                     fontSize:
                                                                         WidthSize *
                                                                             0.032,
-                                                                    color: Colors.white,
+                                                                    color: Colors
+                                                                        .white,
                                                                     fontWeight:
-                                                                        FontWeight.bold,
+                                                                        FontWeight
+                                                                            .bold,
                                                                     decoration:
                                                                         TextDecoration
                                                                             .underline,
@@ -476,29 +529,35 @@ class _SigninState extends State<Signin> {
                                                                 children: [
                                                                   Text(
                                                                     "البقاء متصلا",
-                                                                    style: TextStyle(
-                                                                        fontFamily: 'Hacen' ,
-
+                                                                    style:
+                                                                        TextStyle(
+                                                                      fontFamily:
+                                                                          'Hacen',
                                                                       fontSize:
                                                                           WidthSize *
                                                                               0.032,
-                                                                      color:
-                                                                          Colors.white,
+                                                                      color: Colors
+                                                                          .white,
                                                                       fontWeight:
                                                                           FontWeight
                                                                               .bold,
                                                                     ),
                                                                   ),
                                                                   Checkbox(
-                                                                      checkColor: Color(
-                                                                          0xff582e44),
+                                                                      checkColor:
+                                                                          Color(
+                                                                              0xff582e44),
                                                                       // color of tick Mark
                                                                       activeColor:
-                                                                          Colors.white,
-                                                                      value: isCheck,
-                                                                      onChanged: (bool?
-                                                                          value) {
-                                                                        setState(() {
+                                                                          Colors
+                                                                              .white,
+                                                                      value:
+                                                                          isCheck,
+                                                                      onChanged:
+                                                                          (bool?
+                                                                              value) {
+                                                                        setState(
+                                                                            () {
                                                                           isCheck =
                                                                               value!;
                                                                         });
@@ -509,17 +568,20 @@ class _SigninState extends State<Signin> {
                                                           ),
                                                         ),
                                                         SizedBox(
-                                                            height: HeightSize * 0.01),
+                                                            height: HeightSize *
+                                                                0.01),
                                                         _isLoading
                                                             ? CircularProgressIndicator()
                                                             : RaisedButton(
-                                                                onPressed: () async {
+                                                                onPressed:
+                                                                    () async {
                                                                   if (_formKey
                                                                       .currentState!
                                                                       .validate()) {
-                                                                    Fluttertoast.showToast(
-                                                                        msg:
-                                                                            'جاري تسجيل الدخول');
+                                                                    Fluttertoast
+                                                                        .showToast(
+                                                                            msg:
+                                                                                'جاري تسجيل الدخول');
                                                                     if (await sign(
                                                                         _emailController
                                                                             .text,
@@ -530,60 +592,55 @@ class _SigninState extends State<Signin> {
                                                                         //     context);
                                                                         Navigator.pushReplacement(
                                                                             context,
-                                                                            MaterialPageRoute(
-                                                                                builder:
-                                                                                    (_) =>
-                                                                                        accueil()));
+                                                                            MaterialPageRoute(builder: (_) => accueil()));
                                                                       } else {
                                                                         // Navigator.pop(
                                                                         //     context);
                                                                         Navigator.pushReplacement(
                                                                             context,
-                                                                            MaterialPageRoute(
-                                                                                builder:
-                                                                                    (_) =>
-                                                                                        accueil_resto()));
+                                                                            MaterialPageRoute(builder: (_) => accueil_resto()));
                                                                       }
                                                                     }
                                                                   }
                                                                 },
-                                                                textColor:
-                                                                    Color(0xff582e44),
+                                                                textColor: Color(
+                                                                    0xff582e44),
                                                                 padding:
                                                                     const EdgeInsets
-                                                                        .all(0.0),
+                                                                            .all(
+                                                                        0.0),
                                                                 shape: RoundedRectangleBorder(
                                                                     borderRadius:
-                                                                        BorderRadius
-                                                                            .circular(
-                                                                                5.0)),
-                                                                child: Container(
+                                                                        BorderRadius.circular(
+                                                                            5.0)),
+                                                                child:
+                                                                    Container(
                                                                   width:
-                                                                      WidthSize * 0.9,
+                                                                      WidthSize *
+                                                                          0.9,
                                                                   height:
-                                                                      HeightSize * 0.08,
+                                                                      HeightSize *
+                                                                          0.08,
                                                                   decoration: const BoxDecoration(
-                                                                      color:
-                                                                          Colors.white,
-                                                                      borderRadius: BorderRadius
-                                                                          .all(Radius
-                                                                              .circular(
-                                                                                  5.0))),
+                                                                      color: Colors
+                                                                          .white,
+                                                                      borderRadius:
+                                                                          BorderRadius.all(
+                                                                              Radius.circular(5.0))),
                                                                   child: Center(
                                                                     child: Text(
                                                                       "تسجيل الدخول",
-                                                                      style: TextStyle(
-                                                                          fontFamily: 'Hacen' ,
-
+                                                                      style:
+                                                                          TextStyle(
+                                                                        fontFamily:
+                                                                            'Hacen',
                                                                         fontSize:
                                                                             WidthSize *
-                                                                                (25 /
-                                                                                    540),
+                                                                                (25 / 540),
                                                                         color: const Color(
                                                                             0xff582e44),
                                                                         fontWeight:
-                                                                            FontWeight
-                                                                                .bold,
+                                                                            FontWeight.bold,
                                                                       ),
                                                                       textAlign:
                                                                           TextAlign
@@ -666,42 +723,50 @@ class _SigninState extends State<Signin> {
                                                     ),
                                                   ),
                                                   padding: EdgeInsets.symmetric(
-                                                      vertical: HeightSize * 0.08,
-                                                      horizontal: WidthSize * 0.1),
+                                                      vertical:
+                                                          HeightSize * 0.08,
+                                                      horizontal:
+                                                          WidthSize * 0.1),
                                                 ),
                                               )
                                             : Form(
                                                 key: _formKeyUP,
                                                 child: Container(
                                                   padding: EdgeInsets.symmetric(
-                                                      vertical:
-                                                          !Provider.of<AuthService>(
-                                                                      context,
-                                                                      listen: false)
-                                                                  .isVisiteur
-                                                              ? HeightSize * 0.01
-                                                              : HeightSize * 0.05,
-                                                      horizontal: WidthSize * 0.1),
+                                                      vertical: !Provider.of<
+                                                                      AuthService>(
+                                                                  context,
+                                                                  listen: false)
+                                                              .isVisiteur
+                                                          ? HeightSize * 0.01
+                                                          : HeightSize * 0.05,
+                                                      horizontal:
+                                                          WidthSize * 0.1),
                                                   child: Column(
                                                     mainAxisAlignment:
-                                                        MainAxisAlignment.spaceEvenly,
+                                                        MainAxisAlignment
+                                                            .spaceEvenly,
                                                     children: [
                                                       SizedBox(
-                                                        height:
-                                                            !Provider.of<AuthService>(
-                                                                        context,
-                                                                        listen: false)
-                                                                    .isVisiteur
-                                                                ? HeightSize * 0.07
-                                                                : HeightSize * 0.09,
+                                                        height: !Provider.of<
+                                                                        AuthService>(
+                                                                    context,
+                                                                    listen:
+                                                                        false)
+                                                                .isVisiteur
+                                                            ? HeightSize * 0.07
+                                                            : HeightSize * 0.09,
                                                         child: TextFormField(
                                                           textDirection:
                                                               TextDirection.rtl,
-                                                          textAlign: TextAlign.right,
-                                                          controller: _nomController,
+                                                          textAlign:
+                                                              TextAlign.right,
+                                                          controller:
+                                                              _nomController,
                                                           validator: (value) {
                                                             if (value == null ||
-                                                                value.length < 3) {
+                                                                value.length <
+                                                                    3) {
                                                               return 'Invalid name';
                                                             }
                                                             return null;
@@ -710,42 +775,47 @@ class _SigninState extends State<Signin> {
                                                             //  _authData['email'] = value!;
                                                           },
                                                           keyboardType:
-                                                              TextInputType.name,
+                                                              TextInputType
+                                                                  .name,
                                                           cursorColor:
                                                               Color(0xff582e44),
-                                                          decoration: InputDecoration(
-                                                            contentPadding:
-                                                                EdgeInsets.fromLTRB(
-                                                                    0,
-                                                                    !Provider.of<AuthService>(
-                                                                                context,
-                                                                                listen:
-                                                                                    false)
-                                                                            .isVisiteur
-                                                                        ? HeightSize *
-                                                                            (15 / 912)
-                                                                        : 0,
-                                                                    0,
-                                                                    0),
-                                                            errorStyle: TextStyle(
-                                                              color: Colors.white,
+                                                          decoration:
+                                                              InputDecoration(
+                                                            contentPadding: EdgeInsets.fromLTRB(
+                                                                0,
+                                                                !Provider.of<AuthService>(
+                                                                            context,
+                                                                            listen:
+                                                                                false)
+                                                                        .isVisiteur
+                                                                    ? HeightSize *
+                                                                        (15 /
+                                                                            912)
+                                                                    : 0,
+                                                                0,
+                                                                0),
+                                                            errorStyle:
+                                                                TextStyle(
+                                                              color:
+                                                                  Colors.white,
                                                               fontWeight:
-                                                                  FontWeight.w400,
+                                                                  FontWeight
+                                                                      .w400,
                                                             ),
                                                             errorBorder:
                                                                 OutlineInputBorder(
                                                                     borderSide:
                                                                         const BorderSide(
-                                                                      color:
-                                                                          Colors.white,
+                                                                      color: Colors
+                                                                          .white,
                                                                     ),
                                                                     borderRadius:
-                                                                        BorderRadius
-                                                                            .circular(
+                                                                        BorderRadius.circular(
                                                                             5.0)),
-                                                            hoverColor: Colors.black,
-                                                            focusColor:
-                                                                Color(0xff582e44),
+                                                            hoverColor:
+                                                                Colors.black,
+                                                            focusColor: Color(
+                                                                0xff582e44),
                                                             focusedBorder:
                                                                 OutlineInputBorder(
                                                                     borderSide:
@@ -754,10 +824,10 @@ class _SigninState extends State<Signin> {
                                                                           0xff582e44),
                                                                     ),
                                                                     borderRadius:
-                                                                        BorderRadius
-                                                                            .circular(
+                                                                        BorderRadius.circular(
                                                                             5.0)),
-                                                            fillColor: Colors.white,
+                                                            fillColor:
+                                                                Colors.white,
                                                             filled: true,
                                                             //          contentPadding: const EdgeInsets.fromLTRB(20, 8, 20, 8),
                                                             hintText: 'الاسم',
@@ -765,32 +835,38 @@ class _SigninState extends State<Signin> {
                                                                 borderRadius:
                                                                     BorderRadius
                                                                         .circular(
-                                                                        5.0)),
-                                                            suffixIcon: const Icon(
+                                                                            5.0)),
+                                                            suffixIcon:
+                                                                const Icon(
                                                               Icons.person,
-                                                              color: Color(0xffB1B0B0),
+                                                              color: Color(
+                                                                  0xffB1B0B0),
                                                             ),
                                                           ),
                                                         ),
                                                       ),
                                                       SizedBox(
-                                                        height:
-                                                            !Provider.of<AuthService>(
-                                                                        context,
-                                                                        listen: false)
-                                                                    .isVisiteur
-                                                                ? HeightSize * 0.07
-                                                                : HeightSize * 0.09,
+                                                        height: !Provider.of<
+                                                                        AuthService>(
+                                                                    context,
+                                                                    listen:
+                                                                        false)
+                                                                .isVisiteur
+                                                            ? HeightSize * 0.07
+                                                            : HeightSize * 0.09,
                                                         child: TextFormField(
                                                           textDirection:
                                                               TextDirection.rtl,
-                                                          textAlign: TextAlign.right,
+                                                          textAlign:
+                                                              TextAlign.right,
                                                           controller:
                                                               _email_upController,
                                                           validator: (value) {
                                                             if (value == null ||
-                                                                !value.contains('@') ||
-                                                                !value.contains('.')) {
+                                                                !value.contains(
+                                                                    '@') ||
+                                                                !value.contains(
+                                                                    '.')) {
                                                               return 'Invalid Email';
                                                             }
                                                             return null;
@@ -798,43 +874,48 @@ class _SigninState extends State<Signin> {
                                                           onSaved: (value) {
                                                             //  _authData['email'] = value!;
                                                           },
-                                                          keyboardType: TextInputType
-                                                              .emailAddress,
+                                                          keyboardType:
+                                                              TextInputType
+                                                                  .emailAddress,
                                                           cursorColor:
                                                               Color(0xff582e44),
-                                                          decoration: InputDecoration(
-                                                            contentPadding:
-                                                                EdgeInsets.fromLTRB(
-                                                                    0,
-                                                                    !Provider.of<AuthService>(
-                                                                                context,
-                                                                                listen:
-                                                                                    false)
-                                                                            .isVisiteur
-                                                                        ? HeightSize *
-                                                                            (15 / 912)
-                                                                        : 0,
-                                                                    0,
-                                                                    0),
-                                                            errorStyle: TextStyle(
-                                                              color: Colors.white,
+                                                          decoration:
+                                                              InputDecoration(
+                                                            contentPadding: EdgeInsets.fromLTRB(
+                                                                0,
+                                                                !Provider.of<AuthService>(
+                                                                            context,
+                                                                            listen:
+                                                                                false)
+                                                                        .isVisiteur
+                                                                    ? HeightSize *
+                                                                        (15 /
+                                                                            912)
+                                                                    : 0,
+                                                                0,
+                                                                0),
+                                                            errorStyle:
+                                                                TextStyle(
+                                                              color:
+                                                                  Colors.white,
                                                               fontWeight:
-                                                                  FontWeight.w400,
+                                                                  FontWeight
+                                                                      .w400,
                                                             ),
                                                             errorBorder:
                                                                 OutlineInputBorder(
                                                                     borderSide:
                                                                         const BorderSide(
-                                                                      color:
-                                                                          Colors.white,
+                                                                      color: Colors
+                                                                          .white,
                                                                     ),
                                                                     borderRadius:
-                                                                        BorderRadius
-                                                                            .circular(
+                                                                        BorderRadius.circular(
                                                                             5.0)),
-                                                            hoverColor: Colors.black,
-                                                            focusColor:
-                                                                Color(0xff582e44),
+                                                            hoverColor:
+                                                                Colors.black,
+                                                            focusColor: Color(
+                                                                0xff582e44),
                                                             focusedBorder:
                                                                 OutlineInputBorder(
                                                                     borderSide:
@@ -843,10 +924,10 @@ class _SigninState extends State<Signin> {
                                                                           0xff582e44),
                                                                     ),
                                                                     borderRadius:
-                                                                        BorderRadius
-                                                                            .circular(
+                                                                        BorderRadius.circular(
                                                                             5.0)),
-                                                            fillColor: Colors.white,
+                                                            fillColor:
+                                                                Colors.white,
                                                             filled: true,
                                                             //          contentPadding: const EdgeInsets.fromLTRB(20, 8, 20, 8),
                                                             hintText:
@@ -855,30 +936,36 @@ class _SigninState extends State<Signin> {
                                                                 borderRadius:
                                                                     BorderRadius
                                                                         .circular(
-                                                                        5.0)),
-                                                            suffixIcon: const Icon(
+                                                                            5.0)),
+                                                            suffixIcon:
+                                                                const Icon(
                                                               Icons.email,
-                                                              color: Color(0xffB1B0B0),
+                                                              color: Color(
+                                                                  0xffB1B0B0),
                                                             ),
                                                           ),
                                                         ),
                                                       ),
                                                       SizedBox(
-                                                        height:
-                                                            !Provider.of<AuthService>(
-                                                                        context,
-                                                                        listen: false)
-                                                                    .isVisiteur
-                                                                ? HeightSize * 0.07
-                                                                : HeightSize * 0.09,
+                                                        height: !Provider.of<
+                                                                        AuthService>(
+                                                                    context,
+                                                                    listen:
+                                                                        false)
+                                                                .isVisiteur
+                                                            ? HeightSize * 0.07
+                                                            : HeightSize * 0.09,
                                                         child: TextFormField(
                                                           textDirection:
                                                               TextDirection.rtl,
-                                                          textAlign: TextAlign.right,
-                                                          controller: _numberController,
+                                                          textAlign:
+                                                              TextAlign.right,
+                                                          controller:
+                                                              _numberController,
                                                           validator: (value) {
                                                             if (value == null ||
-                                                                value.length != 10) {
+                                                                value.length !=
+                                                                    10) {
                                                               return 'Invalid number';
                                                             }
                                                             return null;
@@ -887,42 +974,47 @@ class _SigninState extends State<Signin> {
                                                             //  _authData['email'] = value!;
                                                           },
                                                           keyboardType:
-                                                              TextInputType.number,
+                                                              TextInputType
+                                                                  .number,
                                                           cursorColor:
                                                               Color(0xff582e44),
-                                                          decoration: InputDecoration(
-                                                            contentPadding:
-                                                                EdgeInsets.fromLTRB(
-                                                                    0,
-                                                                    !Provider.of<AuthService>(
-                                                                                context,
-                                                                                listen:
-                                                                                    false)
-                                                                            .isVisiteur
-                                                                        ? HeightSize *
-                                                                            (15 / 912)
-                                                                        : 0,
-                                                                    0,
-                                                                    0),
-                                                            errorStyle: TextStyle(
-                                                              color: Colors.white,
+                                                          decoration:
+                                                              InputDecoration(
+                                                            contentPadding: EdgeInsets.fromLTRB(
+                                                                0,
+                                                                !Provider.of<AuthService>(
+                                                                            context,
+                                                                            listen:
+                                                                                false)
+                                                                        .isVisiteur
+                                                                    ? HeightSize *
+                                                                        (15 /
+                                                                            912)
+                                                                    : 0,
+                                                                0,
+                                                                0),
+                                                            errorStyle:
+                                                                TextStyle(
+                                                              color:
+                                                                  Colors.white,
                                                               fontWeight:
-                                                                  FontWeight.w400,
+                                                                  FontWeight
+                                                                      .w400,
                                                             ),
                                                             errorBorder:
                                                                 OutlineInputBorder(
                                                                     borderSide:
                                                                         const BorderSide(
-                                                                      color:
-                                                                          Colors.white,
+                                                                      color: Colors
+                                                                          .white,
                                                                     ),
                                                                     borderRadius:
-                                                                        BorderRadius
-                                                                            .circular(
+                                                                        BorderRadius.circular(
                                                                             5.0)),
-                                                            hoverColor: Colors.black,
-                                                            focusColor:
-                                                                Color(0xff582e44),
+                                                            hoverColor:
+                                                                Colors.black,
+                                                            focusColor: Color(
+                                                                0xff582e44),
                                                             focusedBorder:
                                                                 OutlineInputBorder(
                                                                     borderSide:
@@ -931,119 +1023,131 @@ class _SigninState extends State<Signin> {
                                                                           0xff582e44),
                                                                     ),
                                                                     borderRadius:
-                                                                        BorderRadius
-                                                                            .circular(
+                                                                        BorderRadius.circular(
                                                                             5.0)),
-                                                            fillColor: Colors.white,
+                                                            fillColor:
+                                                                Colors.white,
                                                             filled: true,
                                                             //          contentPadding: const EdgeInsets.fromLTRB(20, 8, 20, 8),
-                                                            hintText: 'رقم الهاتف',
+                                                            hintText:
+                                                                'رقم الهاتف',
                                                             border: OutlineInputBorder(
                                                                 borderRadius:
                                                                     BorderRadius
                                                                         .circular(
-                                                                        5.0)),
-                                                            suffixIcon: const Icon(
+                                                                            5.0)),
+                                                            suffixIcon:
+                                                                const Icon(
                                                               Icons.phone,
-                                                              color: Color(0xffB1B0B0),
+                                                              color: Color(
+                                                                  0xffB1B0B0),
                                                             ),
                                                           ),
                                                         ),
                                                       ),
-                                                      !Provider.of<AuthService>(context,
+                                                      !Provider.of<AuthService>(
+                                                                  context,
                                                                   listen: false)
                                                               .isVisiteur
                                                           ? SizedBox(
                                                               height: !Provider.of<
                                                                               AuthService>(
                                                                           context,
-                                                                          listen: false)
+                                                                          listen:
+                                                                              false)
                                                                       .isVisiteur
-                                                                  ? HeightSize * 0.07
-                                                                  : HeightSize * 0.09,
-                                                              child: TextFormField(
+                                                                  ? HeightSize *
+                                                                      0.07
+                                                                  : HeightSize *
+                                                                      0.09,
+                                                              child:
+                                                                  TextFormField(
                                                                 textDirection:
-                                                                    TextDirection.rtl,
+                                                                    TextDirection
+                                                                        .rtl,
                                                                 textAlign:
-                                                                    TextAlign.right,
+                                                                    TextAlign
+                                                                        .right,
                                                                 controller:
                                                                     _boutiqueController,
-                                                                validator: (value) {
-                                                                  if (value == null ||
+                                                                validator:
+                                                                    (value) {
+                                                                  if (value ==
+                                                                          null ||
                                                                       value.length <
                                                                           2) {
                                                                     return 'Invalid boutique';
                                                                   }
                                                                   return null;
                                                                 },
-                                                                onSaved: (value) {
+                                                                onSaved:
+                                                                    (value) {
                                                                   //  _authData['email'] = value!;
                                                                 },
                                                                 keyboardType:
-                                                                    TextInputType.name,
-                                                                cursorColor:
-                                                                    Color(0xff582e44),
+                                                                    TextInputType
+                                                                        .name,
+                                                                cursorColor: Color(
+                                                                    0xff582e44),
                                                                 decoration:
                                                                     InputDecoration(
                                                                   contentPadding: EdgeInsets.fromLTRB(
                                                                       0,
-                                                                      !Provider.of<AuthService>(
-                                                                                  context,
-                                                                                  listen:
-                                                                                      false)
+                                                                      !Provider.of<AuthService>(context, listen: false)
                                                                               .isVisiteur
                                                                           ? HeightSize *
                                                                               (15 / 912)
                                                                           : 0,
                                                                       0,
                                                                       0),
-                                                                  errorStyle: TextStyle(
-                                                                    color: Colors.white,
+                                                                  errorStyle:
+                                                                      TextStyle(
+                                                                    color: Colors
+                                                                        .white,
                                                                     fontWeight:
-                                                                        FontWeight.w400,
+                                                                        FontWeight
+                                                                            .w400,
                                                                   ),
                                                                   errorBorder:
                                                                       OutlineInputBorder(
                                                                           borderSide:
                                                                               const BorderSide(
-                                                                            color: Colors
-                                                                                .white,
+                                                                            color:
+                                                                                Colors.white,
                                                                           ),
                                                                           borderRadius:
-                                                                              BorderRadius
-                                                                                  .circular(
-                                                                                  5.0)),
+                                                                              BorderRadius.circular(5.0)),
                                                                   hoverColor:
-                                                                      Colors.black,
-                                                                  focusColor:
-                                                                      Color(0xff582e44),
+                                                                      Colors
+                                                                          .black,
+                                                                  focusColor: Color(
+                                                                      0xff582e44),
                                                                   focusedBorder:
                                                                       OutlineInputBorder(
                                                                           borderSide:
                                                                               const BorderSide(
-                                                                            color: Color(
-                                                                                0xff582e44),
+                                                                            color:
+                                                                                Color(0xff582e44),
                                                                           ),
                                                                           borderRadius:
-                                                                              BorderRadius
-                                                                                  .circular(
-                                                                                  5.0)),
+                                                                              BorderRadius.circular(5.0)),
                                                                   fillColor:
-                                                                      Colors.white,
+                                                                      Colors
+                                                                          .white,
                                                                   filled: true,
                                                                   //          contentPadding: const EdgeInsets.fromLTRB(20, 8, 20, 8),
                                                                   hintText:
                                                                       'اسم المطعم',
                                                                   border: OutlineInputBorder(
                                                                       borderRadius:
-                                                                          BorderRadius
-                                                                              .circular(
+                                                                          BorderRadius.circular(
                                                                               5.0)),
                                                                   suffixIcon:
                                                                       const Icon(
                                                                     Icons
                                                                         .storefront_outlined,
-                                                                        color: Color(0xffB1B0B0),
+                                                                    color: Color(
+                                                                        0xffB1B0B0),
                                                                   ),
                                                                 ),
                                                               ),
@@ -1051,17 +1155,22 @@ class _SigninState extends State<Signin> {
                                                           : Container(),
                                                       (!Provider.of<AuthService>(
                                                                       context,
-                                                                      listen: false)
+                                                                      listen:
+                                                                          false)
                                                                   .isVisiteur &&
                                                               !signin)
                                                           ? Container(
                                                               margin: EdgeInsets.only(
-                                                                  bottom: sizee.height *
+                                                                  bottom: sizee
+                                                                          .height *
                                                                       0.005),
                                                               //         height: sizee.height * 0.07,
-                                                              width: sizee.width * 0.95,
+                                                              width:
+                                                                  sizee.width *
+                                                                      0.95,
                                                               height:
-                                                                  sizee.height * 0.07,
+                                                                  sizee.height *
+                                                                      0.07,
 
                                                               child: Row(
                                                                 mainAxisAlignment:
@@ -1069,11 +1178,14 @@ class _SigninState extends State<Signin> {
                                                                         .spaceBetween,
                                                                 children: [
                                                                   Container(
-                                                                    width: sizee.width *
-                                                                        (210 / 540),
-                                                                    height:
-                                                                        sizee.height *
-                                                                            (65 / 912),
+                                                                    width: sizee
+                                                                            .width *
+                                                                        (210 /
+                                                                            540),
+                                                                    height: sizee
+                                                                            .height *
+                                                                        (65 /
+                                                                            912),
                                                                     child:
                                                                         TypeAheadField(
                                                                       direction:
@@ -1082,48 +1194,37 @@ class _SigninState extends State<Signin> {
                                                                       textFieldConfiguration:
                                                                           TextFieldConfiguration(
                                                                         textDirection:
-                                                                            TextDirection
-                                                                                .rtl,
+                                                                            TextDirection.rtl,
                                                                         textAlign:
-                                                                            TextAlign
-                                                                                .right,
+                                                                            TextAlign.right,
                                                                         cursorColor:
-                                                                            Colors
-                                                                                .black,
+                                                                            Colors.black,
                                                                         controller:
                                                                             CommuneTEC,
                                                                         decoration:
                                                                             InputDecoration(
                                                                           floatingLabelStyle:
                                                                               const TextStyle(
-                                                                            color: Colors
-                                                                                .black,
+                                                                            color:
+                                                                                Colors.black,
                                                                           ),
                                                                           hoverColor:
-                                                                              Colors
-                                                                                  .black,
+                                                                              Colors.black,
                                                                           focusColor:
-                                                                              Colors
-                                                                                  .black,
-                                                                          focusedBorder:
-                                                                              OutlineInputBorder(
-                                                                                  borderSide:
-                                                                                      BorderSide(
-                                                                                    color:
-                                                                                        Colors.black,
-                                                                                  ),
-                                                                                  borderRadius:
-                                                                                      BorderRadius.circular(5.0)),
+                                                                              Colors.black,
+                                                                          focusedBorder: OutlineInputBorder(
+                                                                              borderSide: BorderSide(
+                                                                                color: Colors.black,
+                                                                              ),
+                                                                              borderRadius: BorderRadius.circular(5.0)),
                                                                           fillColor:
-                                                                              Colors
-                                                                                  .white,
-                                                                          filled: true,
+                                                                              Colors.white,
+                                                                          filled:
+                                                                              true,
                                                                           labelText:
                                                                               'البلدية',
-                                                                          border: OutlineInputBorder(
-                                                                              borderRadius:
-                                                                                  BorderRadius.circular(
-                                                                                      5.0)),
+                                                                          border:
+                                                                              OutlineInputBorder(borderRadius: BorderRadius.circular(5.0)),
                                                                         ),
                                                                       ),
                                                                       suggestionsCallback:
@@ -1133,49 +1234,46 @@ class _SigninState extends State<Signin> {
                                                                           return [];
                                                                         }
                                                                         // The logic to find out which ones should appear
-                                                                        return Provider.of<
-                                                                                    DataDz>(
-                                                                                context,
-                                                                                listen:
-                                                                                    false)
-                                                                            .getCommuneByWilaya(
-                                                                                wilaya)
-                                                                            .where((suggestion) => suggestion
-                                                                                .toLowerCase()
-                                                                                .contains(
-                                                                                    pattern.toString()));
+                                                                        return Provider.of<DataDz>(context,
+                                                                                listen: false)
+                                                                            .getCommuneByWilaya(wilaya)
+                                                                            .where((suggestion) => suggestion.toLowerCase().contains(pattern.toString()));
                                                                       },
                                                                       itemBuilder:
                                                                           (context,
                                                                               suggestion) {
                                                                         return ListTile(
-                                                                          title: Text(
-
-                                                                              suggestion
-                                                                                  .toString() ,style: TextStyle(                                    fontFamily: 'Hacen' ,
-                                                                          ),),
+                                                                          title:
+                                                                              Text(
+                                                                            suggestion.toString(),
+                                                                            style:
+                                                                                TextStyle(
+                                                                              fontFamily: 'Hacen',
+                                                                            ),
+                                                                          ),
                                                                         );
                                                                       },
                                                                       onSuggestionSelected:
                                                                           (suggestion) {
-                                                                        setState(() {
+                                                                        setState(
+                                                                            () {
                                                                           Commune =
-                                                                              suggestion
-                                                                                  .toString();
+                                                                              suggestion.toString();
                                                                           CommuneTEC =
-                                                                              TextEditingController(
-                                                                                  text:
-                                                                                      Commune);
+                                                                              TextEditingController(text: Commune);
                                                                         });
                                                                       },
                                                                     ),
                                                                   ),
                                                                   Container(
-                                                                    width: sizee.width *
-                                                                        (210 / 540),
-                                                                    height:
-                                                                        sizee.height *
-                                                                            (65 / 912),
+                                                                    width: sizee
+                                                                            .width *
+                                                                        (210 /
+                                                                            540),
+                                                                    height: sizee
+                                                                            .height *
+                                                                        (65 /
+                                                                            912),
                                                                     child:
                                                                         TypeAheadField(
                                                                       direction:
@@ -1184,48 +1282,37 @@ class _SigninState extends State<Signin> {
                                                                       textFieldConfiguration:
                                                                           TextFieldConfiguration(
                                                                         textDirection:
-                                                                            TextDirection
-                                                                                .rtl,
+                                                                            TextDirection.rtl,
                                                                         textAlign:
-                                                                            TextAlign
-                                                                                .right,
+                                                                            TextAlign.right,
                                                                         cursorColor:
-                                                                            Colors
-                                                                                .black,
+                                                                            Colors.black,
                                                                         controller:
                                                                             WilayaTEC,
                                                                         decoration:
                                                                             InputDecoration(
                                                                           floatingLabelStyle:
                                                                               const TextStyle(
-                                                                            color: Colors
-                                                                                .black,
+                                                                            color:
+                                                                                Colors.black,
                                                                           ),
                                                                           hoverColor:
-                                                                              Colors
-                                                                                  .black,
+                                                                              Colors.black,
                                                                           focusColor:
-                                                                              Colors
-                                                                                  .black,
-                                                                          focusedBorder:
-                                                                              OutlineInputBorder(
-                                                                                  borderSide:
-                                                                                      const BorderSide(
-                                                                                    color:
-                                                                                        Colors.black,
-                                                                                  ),
-                                                                                  borderRadius:
-                                                                                      BorderRadius.circular(5.0)),
+                                                                              Colors.black,
+                                                                          focusedBorder: OutlineInputBorder(
+                                                                              borderSide: const BorderSide(
+                                                                                color: Colors.black,
+                                                                              ),
+                                                                              borderRadius: BorderRadius.circular(5.0)),
                                                                           fillColor:
-                                                                              Colors
-                                                                                  .white,
-                                                                          filled: true,
+                                                                              Colors.white,
+                                                                          filled:
+                                                                              true,
                                                                           labelText:
                                                                               'الولاية',
-                                                                          border: OutlineInputBorder(
-                                                                              borderRadius:
-                                                                                  BorderRadius.circular(
-                                                                                      5.0)),
+                                                                          border:
+                                                                              OutlineInputBorder(borderRadius: BorderRadius.circular(5.0)),
                                                                         ),
                                                                       ),
                                                                       suggestionsCallback:
@@ -1235,37 +1322,34 @@ class _SigninState extends State<Signin> {
                                                                           return [];
                                                                         }
                                                                         // The logic to find out which ones should appear
-                                                                        return Provider.of<
-                                                                                    DataDz>(
-                                                                                context,
-                                                                                listen:
-                                                                                    false)
+                                                                        return Provider.of<DataDz>(context,
+                                                                                listen: false)
                                                                             .wilayaa
-                                                                            .where((suggestion) => suggestion
-                                                                                .toLowerCase()
-                                                                                .contains(
-                                                                                    pattern.toString()));
+                                                                            .where((suggestion) => suggestion.toLowerCase().contains(pattern.toString()));
                                                                       },
                                                                       itemBuilder:
                                                                           (context,
                                                                               suggestion) {
                                                                         return ListTile(
-                                                                          title: Text(
-                                                                              suggestion
-                                                                                  .toString(),style: TextStyle(  fontFamily: 'Hacen' ,
-
-                                                                          ),)    );
+                                                                            title:
+                                                                                Text(
+                                                                          suggestion
+                                                                              .toString(),
+                                                                          style:
+                                                                              TextStyle(
+                                                                            fontFamily:
+                                                                                'Hacen',
+                                                                          ),
+                                                                        ));
                                                                       },
                                                                       onSuggestionSelected:
                                                                           (suggestion) {
-                                                                        setState(() {
+                                                                        setState(
+                                                                            () {
                                                                           wilaya =
-                                                                              suggestion
-                                                                                  .toString();
+                                                                              suggestion.toString();
                                                                           WilayaTEC =
-                                                                              TextEditingController(
-                                                                                  text:
-                                                                                      wilaya);
+                                                                              TextEditingController(text: wilaya);
                                                                         });
                                                                       },
                                                                     ),
@@ -1275,22 +1359,25 @@ class _SigninState extends State<Signin> {
                                                             )
                                                           : Container(),
                                                       SizedBox(
-                                                        height:
-                                                            !Provider.of<AuthService>(
-                                                                        context,
-                                                                        listen: false)
-                                                                    .isVisiteur
-                                                                ? HeightSize * 0.07
-                                                                : HeightSize * 0.09,
+                                                        height: !Provider.of<
+                                                                        AuthService>(
+                                                                    context,
+                                                                    listen:
+                                                                        false)
+                                                                .isVisiteur
+                                                            ? HeightSize * 0.07
+                                                            : HeightSize * 0.09,
                                                         child: TextFormField(
                                                           textDirection:
                                                               TextDirection.rtl,
-                                                          textAlign: TextAlign.right,
+                                                          textAlign:
+                                                              TextAlign.right,
                                                           controller:
                                                               _password_upController,
                                                           validator: (value) {
                                                             if (value == null ||
-                                                                value.length < 5) {
+                                                                value.length <
+                                                                    5) {
                                                               return 'Invalid Password';
                                                             }
                                                             return null;
@@ -1298,45 +1385,50 @@ class _SigninState extends State<Signin> {
                                                           onSaved: (value) {
                                                             //  _authData['password'] = value!;
                                                           },
-                                                          keyboardType: TextInputType
-                                                              .visiblePassword,
+                                                          keyboardType:
+                                                              TextInputType
+                                                                  .visiblePassword,
                                                           obscureText:
                                                               _password_upVisible,
                                                           cursorColor:
                                                               Color(0xff582e44),
-                                                          decoration: InputDecoration(
-                                                            contentPadding:
-                                                                EdgeInsets.fromLTRB(
-                                                                    0,
-                                                                    !Provider.of<AuthService>(
-                                                                                context,
-                                                                                listen:
-                                                                                    false)
-                                                                            .isVisiteur
-                                                                        ? HeightSize *
-                                                                            (15 / 912)
-                                                                        : 0,
-                                                                    0,
-                                                                    0),
-                                                            hoverColor: Colors.black,
-                                                            errorStyle: TextStyle(
-                                                              color: Colors.white,
+                                                          decoration:
+                                                              InputDecoration(
+                                                            contentPadding: EdgeInsets.fromLTRB(
+                                                                0,
+                                                                !Provider.of<AuthService>(
+                                                                            context,
+                                                                            listen:
+                                                                                false)
+                                                                        .isVisiteur
+                                                                    ? HeightSize *
+                                                                        (15 /
+                                                                            912)
+                                                                    : 0,
+                                                                0,
+                                                                0),
+                                                            hoverColor:
+                                                                Colors.black,
+                                                            errorStyle:
+                                                                TextStyle(
+                                                              color:
+                                                                  Colors.white,
                                                               fontWeight:
-                                                                  FontWeight.w400,
+                                                                  FontWeight
+                                                                      .w400,
                                                             ),
                                                             errorBorder:
                                                                 OutlineInputBorder(
                                                                     borderSide:
                                                                         const BorderSide(
-                                                                      color:
-                                                                          Colors.white,
+                                                                      color: Colors
+                                                                          .white,
                                                                     ),
                                                                     borderRadius:
-                                                                        BorderRadius
-                                                                            .circular(
+                                                                        BorderRadius.circular(
                                                                             5.0)),
-                                                            focusColor:
-                                                                Color(0xff582e44),
+                                                            focusColor: Color(
+                                                                0xff582e44),
                                                             focusedBorder:
                                                                 OutlineInputBorder(
                                                                     borderSide:
@@ -1345,33 +1437,39 @@ class _SigninState extends State<Signin> {
                                                                           0xff582e44),
                                                                     ),
                                                                     borderRadius:
-                                                                        BorderRadius
-                                                                            .circular(
+                                                                        BorderRadius.circular(
                                                                             5.0)),
 
-                                                            fillColor: Colors.white,
+                                                            fillColor:
+                                                                Colors.white,
                                                             filled: true,
 
                                                             //     contentPadding: const EdgeInsets.fromLTRB(10, 8, 10, 8),
 
-                                                            hintText: 'كلمة السر',
+                                                            hintText:
+                                                                'كلمة السر',
                                                             border: OutlineInputBorder(
                                                                 borderRadius:
                                                                     BorderRadius
                                                                         .circular(
-                                                                        5.0)),
-                                                            suffixIcon: const Icon(
+                                                                            5.0)),
+                                                            suffixIcon:
+                                                                const Icon(
                                                               Icons.password,
-                                                              color: Color(0xffB1B0B0),
+                                                              color: Color(
+                                                                  0xffB1B0B0),
                                                             ),
-                                                            prefixIcon: IconButton(
+                                                            prefixIcon:
+                                                                IconButton(
                                                               icon: Icon(
                                                                 // Based on passwordVisible state choose the icon
                                                                 _password_upVisible
-                                                                    ? Icons.visibility
+                                                                    ? Icons
+                                                                        .visibility
                                                                     : Icons
                                                                         .visibility_off,
-                                                                color: Color(0xffB1B0B0),
+                                                                color: Color(
+                                                                    0xffB1B0B0),
                                                               ),
                                                               onPressed: () {
                                                                 // Update the state i.e. toogle the state of passwordVisible variable
@@ -1387,24 +1485,27 @@ class _SigninState extends State<Signin> {
                                                         ),
                                                       ),
                                                       SizedBox(
-                                                        height:
-                                                            !Provider.of<AuthService>(
-                                                                        context,
-                                                                        listen: false)
-                                                                    .isVisiteur
-                                                                ? HeightSize * 0.015
-                                                                : HeightSize * 0.02,
+                                                        height: !Provider.of<
+                                                                        AuthService>(
+                                                                    context,
+                                                                    listen:
+                                                                        false)
+                                                                .isVisiteur
+                                                            ? HeightSize * 0.015
+                                                            : HeightSize * 0.02,
                                                       ),
                                                       _isLoading
                                                           ? const CircularProgressIndicator()
                                                           : RaisedButton(
-                                                              onPressed: () async {
+                                                              onPressed:
+                                                                  () async {
                                                                 if (_formKeyUP
                                                                     .currentState!
                                                                     .validate()) {
-                                                                  Fluttertoast.showToast(
-                                                                      msg:
-                                                                          'جاري إنشاء حسابك');
+                                                                  Fluttertoast
+                                                                      .showToast(
+                                                                          msg:
+                                                                              'جاري إنشاء حسابك');
                                                                   if (await submit(
                                                                       _email_upController
                                                                           .text,
@@ -1416,26 +1517,20 @@ class _SigninState extends State<Signin> {
                                                                       Navigator.pushReplacement(
                                                                           context,
                                                                           MaterialPageRoute(
-                                                                              builder:
-                                                                                  (_) =>
-                                                                                      accueil()));
+                                                                              builder: (_) => accueil()));
                                                                       Fluttertoast
                                                                           .showToast(
-                                                                              msg:
-                                                                                  'مرحبا بك');
+                                                                              msg: 'مرحبا بك');
                                                                     } else {
                                                                       // Navigator.pop(
                                                                       //     context);
                                                                       Navigator.pushReplacement(
                                                                           context,
                                                                           MaterialPageRoute(
-                                                                              builder:
-                                                                                  (_) =>
-                                                                                      accueil_resto()));
+                                                                              builder: (_) => accueil_resto()));
                                                                       Fluttertoast
                                                                           .showToast(
-                                                                              msg:
-                                                                                  'مرحبا بك');
+                                                                              msg: 'مرحبا بك');
                                                                     }
                                                                   }
                                                                   //     .then(
@@ -1450,51 +1545,54 @@ class _SigninState extends State<Signin> {
                                                                   // });
                                                                 }
                                                               },
-                                                              textColor:
-                                                                  Color(0xff582e44),
+                                                              textColor: Color(
+                                                                  0xff582e44),
                                                               padding:
-                                                                  const EdgeInsets.all(
-                                                                      0.0),
-                                                              shape:
-                                                                  RoundedRectangleBorder(
-                                                                      borderRadius:
-                                                                          BorderRadius
-                                                                              .circular(
-                                                                                  5.0)),
+                                                                  const EdgeInsets
+                                                                      .all(0.0),
+                                                              shape: RoundedRectangleBorder(
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              5.0)),
                                                               child: Container(
-                                                                width: WidthSize * 0.9,
-                                                                height: !Provider.of<
-                                                                                AuthService>(
+                                                                width:
+                                                                    WidthSize *
+                                                                        0.9,
+                                                                height: !Provider.of<AuthService>(
                                                                             context,
                                                                             listen:
                                                                                 false)
                                                                         .isVisiteur
-                                                                    ? HeightSize * 0.08
-                                                                    : HeightSize * 0.08,
+                                                                    ? HeightSize *
+                                                                        0.08
+                                                                    : HeightSize *
+                                                                        0.08,
                                                                 decoration: const BoxDecoration(
-                                                                    color: Colors.white,
+                                                                    color: Colors
+                                                                        .white,
                                                                     borderRadius:
                                                                         BorderRadius.all(
-                                                                            Radius.circular(
-                                                                                5.0))),
+                                                                            Radius.circular(5.0))),
                                                                 child: Center(
                                                                   child: Text(
                                                                     "فتح حساب",
-                                                                    style: TextStyle(
-                                                                        fontFamily: 'Hacen' ,
-
+                                                                    style:
+                                                                        TextStyle(
+                                                                      fontFamily:
+                                                                          'Hacen',
                                                                       fontSize:
                                                                           WidthSize *
-                                                                              (25 /
-                                                                                  540),
+                                                                              (25 / 540),
                                                                       color: Color(
                                                                           0xff582e44),
                                                                       fontWeight:
                                                                           FontWeight
                                                                               .bold,
                                                                     ),
-                                                                    textAlign: TextAlign
-                                                                        .center,
+                                                                    textAlign:
+                                                                        TextAlign
+                                                                            .center,
                                                                   ),
                                                                 ),
                                                               ),

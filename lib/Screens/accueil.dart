@@ -217,7 +217,8 @@ class _accueilState extends State<accueil> {
                                     MaterialPageRoute(
                                         builder: (context) =>
                                             restaurant_details(
-                                                title: "المطعم الفلاني")),
+                                                title: rests.chosenRestaurant!
+                                                    .restName!)),
                                   );
                                 },
                               ),

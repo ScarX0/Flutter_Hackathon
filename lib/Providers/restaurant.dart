@@ -54,6 +54,7 @@ class Restaurants extends ChangeNotifier {
       final docs = data.docs;
 
       Map<String, dynamic> holder;
+      rests.clear();
       for (var element in docs) {
         var id = element.id;
         holder = element.data();
