@@ -56,7 +56,7 @@ class _accueilState extends State<accueil> {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xff582e44),
+        backgroundColor: Color(0xffFAC358),
         actions: [
           IconButton(
               onPressed: () {
